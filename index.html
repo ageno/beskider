@@ -21,7 +21,7 @@
           @apply scroll-smooth;
         }
         body {
-          @apply bg-gray-50 text-gray-900 antialiased;
+          @apply bg-white text-gray-900 antialiased;
         }
         html[data-theme="dark"] body {
           @apply bg-gray-900 text-gray-100;
@@ -121,7 +121,7 @@
           @apply space-y-6;
         }
         .hero__image {
-          @apply aspect-[4/3] w-full rounded-2xl border border-gray-200 bg-gray-100 p-4;
+          @apply aspect-[4/3] w-full overflow-hidden rounded-2xl border border-gray-200 bg-white p-0;
         }
         .hero__image img {
           @apply h-full w-full object-contain;
@@ -182,13 +182,28 @@
           @apply list-disc pl-4 text-gray-600;
         }
         .product-card img {
-          @apply aspect-[4/3] w-full rounded-xl border border-gray-200 bg-gray-100 p-4 object-contain;
+          @apply aspect-[4/3] w-full rounded-xl border border-gray-200 bg-white object-contain;
+        }
+        .product-card h3 {
+          @apply text-lg font-semibold md:text-xl;
         }
         .product-card__prices {
-          @apply text-sm text-gray-600;
+          @apply space-y-1;
+        }
+        .product-card__prices span:first-child {
+          @apply text-lg font-semibold text-gray-900;
+        }
+        .product-card__prices span:last-child {
+          @apply text-sm text-gray-500;
         }
         .product-card__deposit {
           @apply text-sm font-semibold;
+        }
+        .product-card__cta {
+          @apply pt-2;
+        }
+        .product-card__cta .button {
+          @apply w-full;
         }
         .status {
           @apply inline-flex items-center gap-2 text-sm font-semibold;
@@ -237,19 +252,39 @@
           @apply px-6 text-sm text-gray-600;
           max-height: 0;
           overflow: hidden;
-          transition: max-height 0.35s ease;
+          padding-bottom: 0;
+          transition: max-height 0.35s ease, padding 0.35s ease;
         }
         .accordion__panel.is-open {
           @apply pb-4;
         }
         .about {
+          @apply grid gap-6 md:grid-cols-[240px_1fr];
+        }
+        .about__media {
+          @apply aspect-[4/3] w-full overflow-hidden rounded-2xl border border-gray-200 bg-white;
+        }
+        .about__media img {
+          @apply h-full w-full object-contain;
+        }
+        .about__content {
           @apply text-base text-gray-600;
         }
         .contact-card ul {
           @apply space-y-2;
         }
         .footer {
-          @apply border-t border-gray-200 py-10 text-sm text-gray-500;
+          @apply mx-auto max-w-6xl border-t border-gray-200 px-6 py-10 text-sm text-gray-500;
+        }
+        .footer__social {
+          @apply flex flex-wrap items-center gap-4;
+        }
+        .footer__social a {
+          @apply inline-flex items-center gap-2 text-gray-600 hover:text-gray-900;
+        }
+        .footer__social svg {
+          @apply h-4 w-4;
+          fill: currentColor;
         }
         .link-button {
           @apply text-gray-900 underline;
@@ -293,13 +328,16 @@
           @apply space-y-4;
         }
         .gallery__main {
-          @apply aspect-[4/3] w-full rounded-xl border border-gray-200 bg-gray-100 p-4 object-contain;
+          @apply aspect-[4/3] w-full rounded-xl border border-gray-200 bg-white object-contain;
         }
         .gallery__thumbs {
           @apply flex flex-wrap gap-3;
         }
         .gallery__thumbs button {
-          @apply h-16 w-20 rounded-lg border border-gray-200 bg-gray-100 p-2;
+          @apply h-16 w-20 rounded-lg border border-gray-200 bg-white p-0;
+        }
+        .gallery__thumbs img {
+          @apply h-full w-full object-contain;
         }
         .switch {
           @apply flex items-center gap-4 text-sm font-semibold;
@@ -334,8 +372,6 @@
         </button>
         <div class="nav__menu" data-nav-menu>
           <a href="#offer">Oferta</a>
-          <a href="#products">Rowery</a>
-          <a href="#pricing">Cennik</a>
           <a href="#rules">Zasady</a>
           <a href="#faq">FAQ</a>
           <a href="#about">O nas</a>
@@ -419,10 +455,10 @@
 
       <section class="section" id="offer" aria-labelledby="offer-title">
         <div class="section__head">
-          <h2 id="offer-title">Oferta sprzętu</h2>
+          <h2 id="offer-title">Oferta</h2>
           <p>
-            Wybierz kategorię. Rowery MTB są dostępne od ręki, a kolejne kategorie wchodzą do
-            harmonogramu na sezon 2026.
+            Wybierz kategorię sprzętu. Rowery są dostępne od ręki, pozostałe kategorie są
+            przygotowywane na kolejny sezon.
           </p>
         </div>
         <div class="tabs" role="tablist" aria-label="Kategorie sprzętu">
@@ -434,17 +470,7 @@
             id="tab-bikes-button"
             data-tab-target="tab-bikes"
           >
-            Rowery MTB
-          </button>
-          <button
-            class="tabs__tab is-active"
-            role="tab"
-            aria-selected="true"
-            aria-controls="tab-bikes"
-            id="tab-bikes-button"
-            data-tab-target="tab-bikes"
-          >
-            Rowery MTB
+            Rowery
           </button>
           <button class="tabs__tab" role="tab" aria-disabled="true" disabled>
             Narty (coming soon)
@@ -452,58 +478,12 @@
           <button class="tabs__tab" role="tab" aria-disabled="true" disabled>
             Snowboard (coming soon)
           </button>
+          <button class="tabs__tab" role="tab" aria-disabled="true" disabled>
+            Inne (coming soon)
+          </button>
         </div>
         <div class="tab-panel is-active" role="tabpanel" id="tab-bikes">
-          <div class="offer-grid">
-            <article class="offer-card">
-              <h3>Rowery e-MTB</h3>
-              <p>
-                Elektryczne MTB z silnikami nowej generacji. Idealne na Beskidy, wymagające
-                podjazdy i długie zjazdy bez zmęczenia.
-              </p>
-              <ul>
-                <li>Pełna amortyzacja</li>
-                <li>Bateria 700 Wh</li>
-                <li>Konfiguracja S2–S4</li>
-              </ul>
-            </article>
-            <article class="offer-card">
-              <h3>Obsługa premium</h3>
-              <p>
-                Każdy rower przechodzi szczegółową inspekcję. Otrzymujesz ustawienia pod swój
-                styl jazdy oraz check-listę bezpieczeństwa.
-              </p>
-              <ul>
-                <li>Serwis przed odbiorem</li>
-                <li>Protokół zdawczo-odbiorczy</li>
-                <li>Kask obowiązkowy</li>
-              </ul>
-            </article>
-            <article class="offer-card">
-              <h3>Wsparcie na trasie</h3>
-              <p>
-                Dostęp do konsultanta, map tras i rekomendacji. Jesteśmy dostępni zanim
-                wyjedziesz i wtedy, gdy wracasz.
-              </p>
-              <ul>
-                <li>Telefon w godzinach 8:00–20:00</li>
-                <li>Top 10 tras w okolicy</li>
-                <li>FAQ techniczne</li>
-              </ul>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="products" aria-labelledby="products-title">
-        <div class="section__head">
-          <h2 id="products-title">Rowery dostępne teraz</h2>
-          <p>
-            Cztery modele klasy premium. Każdy z nich ma stałą cenę, pełną specyfikację i
-            dokumentację numerów seryjnych. Kliknij, aby zobaczyć szczegóły.
-          </p>
-        </div>
-        <div class="product-grid">
+          <div class="product-grid">
           <article class="product-card">
             <img
               src="./assets/images/turbo-levo-3-expert-1.webp"
@@ -517,17 +497,18 @@
                 <span>300 zł netto / dzień (369 zł brutto)</span>
                 <span>500 zł netto / 2 dni (615 zł brutto)</span>
               </div>
-              <p class="product-card__deposit">Zastaw: 8000 zł</p>
               <div class="product-card__status status status--available">
                 Dostępny
               </div>
-              <button
-                class="button button--primary"
-                type="button"
-                data-open-modal="product-expert"
-              >
-                Zobacz specyfikację
-              </button>
+              <div class="product-card__cta">
+                <button
+                  class="button button--primary"
+                  type="button"
+                  data-open-modal="product-expert"
+                >
+                  Zobacz specyfikację
+                </button>
+              </div>
             </div>
           </article>
           <article class="product-card">
@@ -543,17 +524,18 @@
                 <span>300 zł netto / dzień (369 zł brutto)</span>
                 <span>500 zł netto / 2 dni (615 zł brutto)</span>
               </div>
-              <p class="product-card__deposit">Zastaw: 8000 zł</p>
               <div class="product-card__status status status--rented">
                 Wypożyczony
               </div>
-              <button
-                class="button button--primary"
-                type="button"
-                data-open-modal="product-comp-carbon"
-              >
-                Zobacz specyfikację
-              </button>
+              <div class="product-card__cta">
+                <button
+                  class="button button--primary"
+                  type="button"
+                  data-open-modal="product-comp-carbon"
+                >
+                  Zobacz specyfikację
+                </button>
+              </div>
             </div>
           </article>
           <article class="product-card">
@@ -569,17 +551,18 @@
                 <span>300 zł netto / dzień (369 zł brutto)</span>
                 <span>500 zł netto / 2 dni (615 zł brutto)</span>
               </div>
-              <p class="product-card__deposit">Zastaw: 8000 zł</p>
               <div class="product-card__status status status--available">
                 Dostępny
               </div>
-              <button
-                class="button button--primary"
-                type="button"
-                data-open-modal="product-s-works"
-              >
-                Zobacz specyfikację
-              </button>
+              <div class="product-card__cta">
+                <button
+                  class="button button--primary"
+                  type="button"
+                  data-open-modal="product-s-works"
+                >
+                  Zobacz specyfikację
+                </button>
+              </div>
             </div>
           </article>
           <article class="product-card">
@@ -595,61 +578,21 @@
                 <span>300 zł netto / dzień (369 zł brutto)</span>
                 <span>500 zł netto / 2 dni (615 zł brutto)</span>
               </div>
-              <p class="product-card__deposit">Zastaw: 8000 zł</p>
               <div class="product-card__status status status--rented">
                 Wypożyczony
               </div>
-              <button
-                class="button button--primary"
-                type="button"
-                data-open-modal="product-comp"
-              >
-                Zobacz specyfikację
-              </button>
+              <div class="product-card__cta">
+                <button
+                  class="button button--primary"
+                  type="button"
+                  data-open-modal="product-comp"
+                >
+                  Zobacz specyfikację
+                </button>
+              </div>
             </div>
           </article>
         </div>
-      </section>
-
-      <section class="section" id="pricing" aria-labelledby="pricing-title">
-        <div class="section__head">
-          <h2 id="pricing-title">Cennik</h2>
-          <p>
-            Transparentne ceny netto i brutto. Bez kalkulatorów, bez ukrytych kosztów. Wszystkie
-            modele mają tę samą taryfę.
-          </p>
-        </div>
-        <div class="pricing-grid">
-          <article class="pricing-card">
-            <h3>1 dzień</h3>
-            <p class="pricing-card__price">300 zł netto</p>
-            <p class="pricing-card__gross">369 zł brutto</p>
-            <ul>
-              <li>Pełny serwis przed wydaniem</li>
-              <li>Zastaw 8000 zł</li>
-              <li>Wsparcie techniczne</li>
-            </ul>
-          </article>
-          <article class="pricing-card">
-            <h3>2 dni</h3>
-            <p class="pricing-card__price">500 zł netto</p>
-            <p class="pricing-card__gross">615 zł brutto</p>
-            <ul>
-              <li>Dostępność od ręki</li>
-              <li>Pakiet bezpieczeństwa</li>
-              <li>Briefing tras</li>
-            </ul>
-          </article>
-          <article class="pricing-card">
-            <h3>Zastaw</h3>
-            <p class="pricing-card__price">8000 zł</p>
-            <p class="pricing-card__gross">Zwrotny w 24h</p>
-            <ul>
-              <li>Numer seryjny w umowie</li>
-              <li>Dwa dokumenty tożsamości</li>
-              <li>Odpowiedzialność tylko za realne straty</li>
-            </ul>
-          </article>
         </div>
       </section>
 
@@ -777,29 +720,38 @@
           <h2 id="about-title">O nas</h2>
         </div>
         <div class="about">
-          <p>
-            Beskider powstał z potrzeby stworzenia wypożyczalni, która działa równie sprawnie jak
-            nowoczesne produkty technologiczne. Jesteśmy zespołem ludzi, którzy kochają góry i
-            wielogodzinne wyprawy po Beskidach. Od lat testujemy sprzęt premium i wiemy, że
-            wysoka jakość wymaga równie wysokich standardów obsługi. Nasza siedziba znajduje się
-            w Bielsku-Białej, w miejscu skąd najszybciej dotrzesz na ulubione trasy. Stawiamy na
-            prostotę, jasne zasady i pełną transparentność w kosztach. Uważamy, że wypożyczenie
-            roweru powinno być tak proste jak jego obsługa na szlaku. Dlatego wszystkie informacje
-            prezentujemy w jednym miejscu, a dokumenty przygotowujemy przed Twoim przyjazdem.
-            Nie obiecujemy rzeczy niemożliwych, ale dowozimy to, co uzgadniamy. Każdy rower
-            przechodzi kontrolę po każdej trasie, a części eksploatacyjne są wymieniane wcześniej
-            niż sugeruje producent. Dbamy o estetykę, bo sprzęt premium powinien wyglądać
-            perfekcyjnie. Naszym celem jest długoterminowa relacja z klientami, a nie jednorazowa
-            transakcja. Dlatego słuchamy opinii i rozwijamy ofertę krok po kroku. Współpracujemy
-            z lokalnymi przewodnikami, abyś miał dostęp do najlepszych tras. Gdy jesteś w trasie,
-            możesz liczyć na nasze wsparcie. Wierzymy, że technologia powinna wspierać sport, a
-            nie go komplikować. Dzięki temu projektujemy doświadczenie, które zapamiętasz na
-            długo. Chcemy, aby Beskider był synonimem jakości w wypożyczaniu sprzętu sportowego.
-            Kolejne kategorie są już w planach, ale rowery MTB pozostają naszym sercem. Zawsze
-            stawiamy na bezpieczeństwo, bo od niego zależy przyjemność z jazdy. Jeśli szukasz
-            miejsca, gdzie sprzęt jest przygotowany jak do zawodów, jesteś we właściwym miejscu.
-            Dziękujemy, że jesteś z nami i zapraszamy na kolejne wyprawy.
-          </p>
+          <div class="about__media">
+            <img
+              src="./assets/images/s-works-levo-1.webp"
+              alt="Beskider — sprzęt premium przygotowany do trasy"
+              loading="lazy"
+            />
+          </div>
+          <div class="about__content">
+            <p>
+              Beskider powstał z potrzeby stworzenia wypożyczalni, która działa równie sprawnie jak
+              nowoczesne produkty technologiczne. Jesteśmy zespołem ludzi, którzy kochają góry i
+              wielogodzinne wyprawy po Beskidach. Od lat testujemy sprzęt premium i wiemy, że
+              wysoka jakość wymaga równie wysokich standardów obsługi. Nasza siedziba znajduje się
+              w Bielsku-Białej, w miejscu skąd najszybciej dotrzesz na ulubione trasy. Stawiamy na
+              prostotę, jasne zasady i pełną transparentność w kosztach. Uważamy, że wypożyczenie
+              roweru powinno być tak proste jak jego obsługa na szlaku. Dlatego wszystkie informacje
+              prezentujemy w jednym miejscu, a dokumenty przygotowujemy przed Twoim przyjazdem.
+              Nie obiecujemy rzeczy niemożliwych, ale dowozimy to, co uzgadniamy. Każdy rower
+              przechodzi kontrolę po każdej trasie, a części eksploatacyjne są wymieniane wcześniej
+              niż sugeruje producent. Dbamy o estetykę, bo sprzęt premium powinien wyglądać
+              perfekcyjnie. Naszym celem jest długoterminowa relacja z klientami, a nie jednorazowa
+              transakcja. Dlatego słuchamy opinii i rozwijamy ofertę krok po kroku. Współpracujemy
+              z lokalnymi przewodnikami, abyś miał dostęp do najlepszych tras. Gdy jesteś w trasie,
+              możesz liczyć na nasze wsparcie. Wierzymy, że technologia powinna wspierać sport, a
+              nie go komplikować. Dzięki temu projektujemy doświadczenie, które zapamiętasz na
+              długo. Chcemy, aby Beskider był synonimem jakości w wypożyczaniu sprzętu sportowego.
+              Kolejne kategorie są już w planach, ale rowery MTB pozostają naszym sercem. Zawsze
+              stawiamy na bezpieczeństwo, bo od niego zależy przyjemność z jazdy. Jeśli szukasz
+              miejsca, gdzie sprzęt jest przygotowany jak do zawodów, jesteś we właściwym miejscu.
+              Dziękujemy, że jesteś z nami i zapraszamy na kolejne wyprawy.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -845,6 +797,32 @@
         <button class="link-button" type="button" data-open-modal="privacy">
           Polityka prywatności
         </button>
+      </div>
+      <div class="footer__social">
+        <a href="https://www.instagram.com" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M16.8 3H7.2A4.2 4.2 0 0 0 3 7.2v9.6A4.2 4.2 0 0 0 7.2 21h9.6a4.2 4.2 0 0 0 4.2-4.2V7.2A4.2 4.2 0 0 0 16.8 3Zm2.4 13.8a2.4 2.4 0 0 1-2.4 2.4H7.2a2.4 2.4 0 0 1-2.4-2.4V7.2a2.4 2.4 0 0 1 2.4-2.4h9.6a2.4 2.4 0 0 1 2.4 2.4ZM12 7.2a4.8 4.8 0 1 0 0 9.6 4.8 4.8 0 0 0 0-9.6Zm0 7.8a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm5.1-8.4a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2Z"
+            />
+          </svg>
+          Instagram
+        </a>
+        <a href="https://www.facebook.com" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M13.5 8.5V7c0-.7.4-1 1-1h1.5V4h-2c-2 0-3.5 1.5-3.5 3.5v1H9v2.5h1.5V20h3v-9h2.3l.4-2.5Z"
+            />
+          </svg>
+          Facebook
+        </a>
+        <a href="https://www.youtube.com" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M22 12c0-2.2-.2-3.5-.5-4.3a2.7 2.7 0 0 0-1.8-1.7C18.6 5.6 12 5.6 12 5.6s-6.6 0-7.7.4a2.7 2.7 0 0 0-1.8 1.7C2.2 8.5 2 9.8 2 12s.2 3.5.5 4.3a2.7 2.7 0 0 0 1.8 1.7c1.1.4 7.7.4 7.7.4s6.6 0 7.7-.4a2.7 2.7 0 0 0 1.8-1.7c.3-.8.5-2.1.5-4.3Zm-12 3V9l5.5 3Z"
+            />
+          </svg>
+          YouTube
+        </a>
       </div>
       <div>
         <span>© 2026 Beskider. Wszelkie prawa zastrzeżone.</span>

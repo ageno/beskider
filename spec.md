@@ -74,9 +74,7 @@ Projekt realizowany jest jako **statyczna aplikacja PWA**, bez backendu, z myśl
 Sekcje:
 - Navigation
 - Hero
-- Offer (kategorie)
-- Products (rowery)
-- Pricing
+- Oferta (kategorie + produkty)
 - CTA
 - Zasady
 - FAQ
@@ -114,7 +112,7 @@ Sekcje:
 
 ### 8.1 Kolory
 - Light:
-  - background: #f5f5f7
+  - background: #ffffff
   - text: #0f1115
 - Dark:
   - background: #151618
@@ -159,6 +157,7 @@ Sekcje:
   - Rowery (active)
   - Narty (coming soon)
   - Snowboard (coming soon)
+  - Inne (coming soon)
 - Coming soon:
   - disabled
   - aria-disabled
@@ -180,7 +179,6 @@ Sekcje:
 - Cena:
   - 300 zł netto / dzień (369 zł brutto)
   - 500 zł netto / 2 dni (615 zł brutto)
-- Zastaw: 8000 zł
 - Rozmiar: jeden (S2 / S3 / S4)
 - Status:
   - Dostępny (zielony)
@@ -214,10 +212,8 @@ Zawartość:
 
 ## 12. Pricing
 
-- Per produkt
-- Statyczny HTML
-- Netto + brutto
-- Bez JS kalkulacji
+- Brak osobnej sekcji cennika
+- Ceny prezentowane bezpośrednio na kartach produktów
 
 ---
 
