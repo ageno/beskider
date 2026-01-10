@@ -105,6 +105,7 @@ Sekcje:
 - Header: niski, przylega do górnej krawędzi, subtelna linia podkreślenia
 - Podświetlenie aktywnej zakładki: cienka linia pod linkiem (Apple-like)
 - Styl local-nav jak Apple: jasne tło, cienka linia separatora, aktywne podkreślenie
+- Branding: znak błyskawicy po lewej stronie nazwy Beskider
 
 ---
 
