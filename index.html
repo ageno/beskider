@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pl" data-theme="light">
+<html lang="pl" data-theme="light" data-build="2026-01-10-19">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,7 +14,19 @@
       content="default-src 'self'; img-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' https://www.googletagmanager.com https://cdn.tailwindcss.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; font-src 'self';"
     />
     <link rel="manifest" href="./manifest.json" />
-    <link rel="icon" href="./assets/icons/icon-192.svg" type="image/svg+xml" />
+    <link rel="icon" href="./assets/icons/icon.svg" type="image/svg+xml" />
+    <link
+      rel="preload"
+      as="image"
+      href="./assets/images/hero-mountains-1280.jpg"
+      imagesrcset="
+        ./assets/images/hero-mountains-320.jpg 320w,
+        ./assets/images/hero-mountains-640.jpg 640w,
+        ./assets/images/hero-mountains-1280.jpg 1280w,
+        ./assets/images/hero-mountains.jpg 2000w
+      "
+      imagesizes="100vw"
+    />
     <style type="text/tailwindcss">
       @layer base {
         html {
@@ -38,7 +50,7 @@
           @apply sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-40 focus:rounded-full focus:bg-gray-900 focus:px-4 focus:py-2 focus:text-sm focus:text-white;
         }
         .site-header {
-          @apply sticky top-0 z-20 border-b border-gray-200/80 bg-white/80 backdrop-blur;
+          @apply sticky top-0 z-30 border-b border-gray-200/80 bg-white/80 backdrop-blur;
         }
         .site-header.is-active {
           @apply border-gray-300/80;
@@ -93,14 +105,17 @@
           @apply block;
         }
         .hero--canyon {
-          @apply relative left-1/2 right-1/2 w-screen -mx-[50vw] overflow-hidden rounded-none bg-cover bg-center text-white;
+          @apply relative left-1/2 right-1/2 w-screen -mx-[50vw] overflow-hidden rounded-none text-white;
           min-height: 56vh;
         }
+        .hero__media {
+          @apply absolute inset-0 z-0 h-full w-full object-cover;
+        }
         .hero__overlay {
-          @apply absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/70;
+          @apply absolute inset-0 z-10 bg-gradient-to-b from-black/30 via-black/50 to-black/70;
         }
         .hero__inner {
-          @apply relative mx-auto flex w-full max-w-6xl flex-col gap-6 px-6 py-10 sm:py-14 md:flex-row md:items-end md:justify-between md:gap-12 md:py-24;
+          @apply relative z-20 mx-auto flex w-full max-w-6xl flex-col gap-6 px-6 py-10 sm:py-14 md:flex-row md:items-end md:justify-between md:gap-12 md:py-24;
         }
         .hero--canyon .hero__content {
           @apply max-w-xl space-y-4 sm:space-y-5;
@@ -223,7 +238,10 @@
           @apply rounded-lg border border-gray-200 bg-white p-6;
         }
         .product-card {
-          @apply rounded-lg bg-white overflow-hidden;
+          @apply rounded-lg border border-gray-200 bg-white overflow-hidden;
+        }
+        .product-card__media {
+          @apply p-6;
         }
         .offer-card,
         .product-card,
@@ -323,13 +341,25 @@
           @apply rotate-180 text-gray-600;
         }
         .about {
-          @apply grid gap-6 md:grid-cols-[240px_1fr];
+          @apply grid gap-6 md:grid-cols-[minmax(0,55%)_minmax(0,45%)] md:items-start;
         }
         .about__media {
-          @apply aspect-[4/3] w-full overflow-hidden rounded-lg bg-white;
+          @apply aspect-[4/3] w-full bg-transparent p-0 shadow-none;
+          overflow: visible;
+          transform: rotate(var(--about-tilt, 7deg));
+          transform-origin: left center;
+          will-change: transform;
+        }
+        @media (min-width: 768px) {
+          .about__media {
+            position: relative;
+            --about-bleed: calc((100vw - 100%) / 4);
+            left: calc(-1 * var(--about-bleed));
+            width: calc(100% + var(--about-bleed));
+          }
         }
         .about__media img {
-          @apply h-full w-full object-contain;
+          @apply h-full w-full object-contain rounded-3xl md:rounded-r-3xl md:rounded-l-none;
         }
         .about__content {
           @apply text-base text-gray-600;
@@ -407,7 +437,7 @@
           @apply flex items-center gap-4 text-sm font-semibold;
         }
         html[data-theme="dark"] .site-header {
-          @apply border-gray-800/80 bg-gray-950/70;
+          @apply border-gray-800/80 bg-gray-950/70 backdrop-blur;
         }
         html[data-theme="dark"] .site-header.is-active {
           @apply border-gray-700/80;
@@ -470,7 +500,7 @@
           @apply border-gray-800 bg-gray-900;
         }
         html[data-theme="dark"] .product-card {
-          @apply bg-gray-900;
+          @apply border-gray-800 bg-gray-900;
         }
         html[data-theme="dark"] .product-card__prices span:last-child {
           @apply text-gray-400;
@@ -489,6 +519,9 @@
         }
         html[data-theme="dark"] .accordion {
           @apply divide-gray-800;
+        }
+        html[data-theme="dark"] .accordion__item {
+          @apply bg-gray-900;
         }
         html[data-theme="dark"] .accordion__toggle {
           @apply text-gray-100;
@@ -520,6 +553,15 @@
         html[data-theme="dark"] .modal__close {
           @apply border-gray-700 bg-gray-900 text-gray-200;
         }
+        @media (prefers-reduced-motion: reduce) {
+          html {
+            scroll-behavior: auto;
+          }
+          .accordion__panel,
+          .accordion__icon {
+            transition: none;
+          }
+        }
       }
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -529,7 +571,7 @@
     <a class="skip-link" href="#main">Przejdź do treści</a>
 
     <header class="site-header" id="top">
-      <nav class="nav glass" aria-label="Główna nawigacja">
+      <nav class="nav" aria-label="Główna nawigacja">
         <div class="nav__brand">
           <span class="nav__logo" aria-hidden="true">B</span>
           <span class="text-base" aria-hidden="true">⚡️</span>
@@ -578,11 +620,23 @@
     </header>
 
     <main id="main">
-      <section
-        class="hero hero--canyon"
-        aria-labelledby="hero-title"
-        style="background-image: url('./assets/images/hero-mountains.jpg');"
-      >
+      <section class="hero hero--canyon" aria-labelledby="hero-title">
+        <img
+          class="hero__media"
+          src="./assets/images/hero-mountains-1280.jpg"
+          srcset="
+            ./assets/images/hero-mountains-320.jpg 320w,
+            ./assets/images/hero-mountains-640.jpg 640w,
+            ./assets/images/hero-mountains-1280.jpg 1280w,
+            ./assets/images/hero-mountains.jpg 2000w
+          "
+          sizes="100vw"
+          alt=""
+          decoding="async"
+          fetchpriority="high"
+          loading="eager"
+          aria-hidden="true"
+        />
         <div class="hero__overlay" aria-hidden="true"></div>
         <div class="hero__inner">
           <div class="hero__content">
@@ -660,11 +714,21 @@
         <div class="tab-panel is-active" role="tabpanel" id="tab-bikes">
           <div class="product-grid">
             <article class="product-card">
-              <img
-                src="./assets/images/turbo-levo-3-expert-1.jpg"
-                alt="Turbo Levo 3 Expert T-Type"
-                loading="lazy"
-              />
+              <div class="product-card__media">
+                <img
+                  src="./assets/images/turbo-levo-3-expert-1-640.jpg"
+                  srcset="
+                    ./assets/images/turbo-levo-3-expert-1-320.jpg 320w,
+                    ./assets/images/turbo-levo-3-expert-1-640.jpg 640w,
+                    ./assets/images/turbo-levo-3-expert-1-1280.jpg 1280w,
+                    ./assets/images/turbo-levo-3-expert-1.jpg 4000w
+                  "
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  alt="Turbo Levo 3 Expert T-Type"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
               <div class="product-card__body">
                 <h3>Turbo Levo 3 Expert T-Type</h3>
                 <p>Rozmiar: S3</p>
@@ -687,11 +751,21 @@
               </div>
             </article>
             <article class="product-card">
-              <img
-                src="./assets/images/turbo-levo-3-comp-1.jpg"
-                alt="Turbo Levo 3 Comp Carbon"
-                loading="lazy"
-              />
+              <div class="product-card__media">
+                <img
+                  src="./assets/images/turbo-levo-3-comp-1-640.jpg"
+                  srcset="
+                    ./assets/images/turbo-levo-3-comp-1-320.jpg 320w,
+                    ./assets/images/turbo-levo-3-comp-1-640.jpg 640w,
+                    ./assets/images/turbo-levo-3-comp-1-1280.jpg 1280w,
+                    ./assets/images/turbo-levo-3-comp-1.jpg 4000w
+                  "
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  alt="Turbo Levo 3 Comp Carbon"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
               <div class="product-card__body">
                 <h3>Turbo Levo 3 Comp Carbon</h3>
                 <p>Rozmiar: S3</p>
@@ -714,11 +788,21 @@
               </div>
             </article>
             <article class="product-card">
-              <img
-                src="./assets/images/s-works-levo-1.jpg"
-                alt="S-Works Turbo Levo G3"
-                loading="lazy"
-              />
+              <div class="product-card__media">
+                <img
+                  src="./assets/images/s-works-levo-1-640.jpg"
+                  srcset="
+                    ./assets/images/s-works-levo-1-320.jpg 320w,
+                    ./assets/images/s-works-levo-1-640.jpg 640w,
+                    ./assets/images/s-works-levo-1-1280.jpg 1280w,
+                    ./assets/images/s-works-levo-1.jpg 4000w
+                  "
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  alt="S-Works Turbo Levo G3"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
               <div class="product-card__body">
                 <h3>S-Works Turbo Levo G3</h3>
                 <p>Rozmiar: S4</p>
@@ -741,11 +825,21 @@
               </div>
             </article>
             <article class="product-card">
-              <img
-                src="./assets/images/turbo-levo-comp-1.jpg"
-                alt="Turbo Levo Comp Carbon"
-                loading="lazy"
-              />
+              <div class="product-card__media">
+                <img
+                  src="./assets/images/turbo-levo-comp-1-640.jpg"
+                  srcset="
+                    ./assets/images/turbo-levo-comp-1-320.jpg 320w,
+                    ./assets/images/turbo-levo-comp-1-640.jpg 640w,
+                    ./assets/images/turbo-levo-comp-1-1280.jpg 1280w,
+                    ./assets/images/turbo-levo-comp-1.jpg 3200w
+                  "
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  alt="Turbo Levo Comp Carbon"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
               <div class="product-card__body">
                 <h3>Turbo Levo Comp Carbon</h3>
                 <p>Rozmiar: S2</p>
@@ -883,11 +977,19 @@
           <h2 id="about-title">O nas</h2>
         </div>
         <div class="about">
-          <div class="about__media">
+          <div class="about__media" data-about-tilt>
             <img
-              src="./assets/images/s-works-levo-1.jpg"
-              alt="Beskider — sprzęt premium przygotowany do trasy"
+              src="./assets/images/about-us-640.jpg"
+              srcset="
+                ./assets/images/about-us-320.jpg 320w,
+                ./assets/images/about-us-640.jpg 640w,
+                ./assets/images/about-us-1280.jpg 1280w,
+                ./assets/images/about-us.jpg 3000w
+              "
+              sizes="(min-width: 768px) 55vw, 100vw"
+              alt="Beskider — wypożyczalnia sprzętu premium"
               loading="lazy"
+              decoding="async"
             />
           </div>
           <div class="about__content">
@@ -1093,28 +1195,52 @@
         <div class="gallery" data-gallery>
           <img
             class="gallery__main"
-            src="./assets/images/turbo-levo-3-expert-1.jpg"
+            src="./assets/images/turbo-levo-3-expert-1-1280.jpg"
+            srcset="
+              ./assets/images/turbo-levo-3-expert-1-320.jpg 320w,
+              ./assets/images/turbo-levo-3-expert-1-640.jpg 640w,
+              ./assets/images/turbo-levo-3-expert-1-1280.jpg 1280w,
+              ./assets/images/turbo-levo-3-expert-1.jpg 4000w
+            "
+            sizes="(max-width: 768px) 90vw, 50vw"
             alt="Turbo Levo 3 Expert T-Type"
             data-gallery-main
+            loading="lazy"
+            decoding="async"
           />
           <div class="gallery__thumbs">
             <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-expert-1.jpg">
               <img
-                src="./assets/images/turbo-levo-3-expert-1.jpg"
+                src="./assets/images/turbo-levo-3-expert-1-320.jpg"
+                srcset="
+                  ./assets/images/turbo-levo-3-expert-1-320.jpg 320w,
+                  ./assets/images/turbo-levo-3-expert-1-640.jpg 640w
+                "
+                sizes="80px"
                 alt="Widok 1"
                 loading="lazy"
               />
             </button>
             <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-expert-2.jpg">
               <img
-                src="./assets/images/turbo-levo-3-expert-2.jpg"
+                src="./assets/images/turbo-levo-3-expert-2-320.jpg"
+                srcset="
+                  ./assets/images/turbo-levo-3-expert-2-320.jpg 320w,
+                  ./assets/images/turbo-levo-3-expert-2-640.jpg 640w
+                "
+                sizes="80px"
                 alt="Widok 2"
                 loading="lazy"
               />
             </button>
             <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-expert-3.jpg">
               <img
-                src="./assets/images/turbo-levo-3-expert-3.jpg"
+                src="./assets/images/turbo-levo-3-expert-3-320.jpg"
+                srcset="
+                  ./assets/images/turbo-levo-3-expert-3-320.jpg 320w,
+                  ./assets/images/turbo-levo-3-expert-3-640.jpg 640w
+                "
+                sizes="80px"
                 alt="Widok 3"
                 loading="lazy"
               />
@@ -1152,19 +1278,55 @@
         <div class="gallery" data-gallery>
           <img
             class="gallery__main"
-            src="./assets/images/turbo-levo-3-comp-1.jpg"
+            src="./assets/images/turbo-levo-3-comp-1-1280.jpg"
+            srcset="
+              ./assets/images/turbo-levo-3-comp-1-320.jpg 320w,
+              ./assets/images/turbo-levo-3-comp-1-640.jpg 640w,
+              ./assets/images/turbo-levo-3-comp-1-1280.jpg 1280w,
+              ./assets/images/turbo-levo-3-comp-1.jpg 4000w
+            "
+            sizes="(max-width: 768px) 90vw, 50vw"
             alt="Turbo Levo 3 Comp Carbon"
             data-gallery-main
+            loading="lazy"
+            decoding="async"
           />
           <div class="gallery__thumbs">
             <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-comp-1.jpg">
-              <img src="./assets/images/turbo-levo-3-comp-1.jpg" alt="Widok 1" loading="lazy" />
+              <img
+                src="./assets/images/turbo-levo-3-comp-1-320.jpg"
+                srcset="
+                  ./assets/images/turbo-levo-3-comp-1-320.jpg 320w,
+                  ./assets/images/turbo-levo-3-comp-1-640.jpg 640w
+                "
+                sizes="80px"
+                alt="Widok 1"
+                loading="lazy"
+              />
             </button>
             <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-comp-2.jpg">
-              <img src="./assets/images/turbo-levo-3-comp-2.jpg" alt="Widok 2" loading="lazy" />
+              <img
+                src="./assets/images/turbo-levo-3-comp-2-320.jpg"
+                srcset="
+                  ./assets/images/turbo-levo-3-comp-2-320.jpg 320w,
+                  ./assets/images/turbo-levo-3-comp-2-640.jpg 640w
+                "
+                sizes="80px"
+                alt="Widok 2"
+                loading="lazy"
+              />
             </button>
             <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-comp-3.jpg">
-              <img src="./assets/images/turbo-levo-3-comp-3.jpg" alt="Widok 3" loading="lazy" />
+              <img
+                src="./assets/images/turbo-levo-3-comp-3-320.jpg"
+                srcset="
+                  ./assets/images/turbo-levo-3-comp-3-320.jpg 320w,
+                  ./assets/images/turbo-levo-3-comp-3-640.jpg 640w
+                "
+                sizes="80px"
+                alt="Widok 3"
+                loading="lazy"
+              />
             </button>
           </div>
         </div>
@@ -1199,19 +1361,55 @@
         <div class="gallery" data-gallery>
           <img
             class="gallery__main"
-            src="./assets/images/s-works-levo-1.jpg"
+            src="./assets/images/s-works-levo-1-1280.jpg"
+            srcset="
+              ./assets/images/s-works-levo-1-320.jpg 320w,
+              ./assets/images/s-works-levo-1-640.jpg 640w,
+              ./assets/images/s-works-levo-1-1280.jpg 1280w,
+              ./assets/images/s-works-levo-1.jpg 4000w
+            "
+            sizes="(max-width: 768px) 90vw, 50vw"
             alt="S-Works Turbo Levo G3"
             data-gallery-main
+            loading="lazy"
+            decoding="async"
           />
           <div class="gallery__thumbs">
             <button data-gallery-thumb data-gallery-target="./assets/images/s-works-levo-1.jpg">
-              <img src="./assets/images/s-works-levo-1.jpg" alt="Widok 1" loading="lazy" />
+              <img
+                src="./assets/images/s-works-levo-1-320.jpg"
+                srcset="
+                  ./assets/images/s-works-levo-1-320.jpg 320w,
+                  ./assets/images/s-works-levo-1-640.jpg 640w
+                "
+                sizes="80px"
+                alt="Widok 1"
+                loading="lazy"
+              />
             </button>
             <button data-gallery-thumb data-gallery-target="./assets/images/s-works-levo-2.jpg">
-              <img src="./assets/images/s-works-levo-2.jpg" alt="Widok 2" loading="lazy" />
+              <img
+                src="./assets/images/s-works-levo-2-320.jpg"
+                srcset="
+                  ./assets/images/s-works-levo-2-320.jpg 320w,
+                  ./assets/images/s-works-levo-2-640.jpg 640w
+                "
+                sizes="80px"
+                alt="Widok 2"
+                loading="lazy"
+              />
             </button>
             <button data-gallery-thumb data-gallery-target="./assets/images/s-works-levo-3.jpg">
-              <img src="./assets/images/s-works-levo-3.jpg" alt="Widok 3" loading="lazy" />
+              <img
+                src="./assets/images/s-works-levo-3-320.jpg"
+                srcset="
+                  ./assets/images/s-works-levo-3-320.jpg 320w,
+                  ./assets/images/s-works-levo-3-640.jpg 640w
+                "
+                sizes="80px"
+                alt="Widok 3"
+                loading="lazy"
+              />
             </button>
           </div>
         </div>
@@ -1246,19 +1444,55 @@
         <div class="gallery" data-gallery>
           <img
             class="gallery__main"
-            src="./assets/images/turbo-levo-comp-1.jpg"
+            src="./assets/images/turbo-levo-comp-1-1280.jpg"
+            srcset="
+              ./assets/images/turbo-levo-comp-1-320.jpg 320w,
+              ./assets/images/turbo-levo-comp-1-640.jpg 640w,
+              ./assets/images/turbo-levo-comp-1-1280.jpg 1280w,
+              ./assets/images/turbo-levo-comp-1.jpg 3200w
+            "
+            sizes="(max-width: 768px) 90vw, 50vw"
             alt="Turbo Levo Comp Carbon"
             data-gallery-main
+            loading="lazy"
+            decoding="async"
           />
           <div class="gallery__thumbs">
             <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-comp-1.jpg">
-              <img src="./assets/images/turbo-levo-comp-1.jpg" alt="Widok 1" loading="lazy" />
+              <img
+                src="./assets/images/turbo-levo-comp-1-320.jpg"
+                srcset="
+                  ./assets/images/turbo-levo-comp-1-320.jpg 320w,
+                  ./assets/images/turbo-levo-comp-1-640.jpg 640w
+                "
+                sizes="80px"
+                alt="Widok 1"
+                loading="lazy"
+              />
             </button>
             <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-comp-2.jpg">
-              <img src="./assets/images/turbo-levo-comp-2.jpg" alt="Widok 2" loading="lazy" />
+              <img
+                src="./assets/images/turbo-levo-comp-2-320.jpg"
+                srcset="
+                  ./assets/images/turbo-levo-comp-2-320.jpg 320w,
+                  ./assets/images/turbo-levo-comp-2-640.jpg 640w
+                "
+                sizes="80px"
+                alt="Widok 2"
+                loading="lazy"
+              />
             </button>
             <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-comp-3.jpg">
-              <img src="./assets/images/turbo-levo-comp-3.jpg" alt="Widok 3" loading="lazy" />
+              <img
+                src="./assets/images/turbo-levo-comp-3-320.jpg"
+                srcset="
+                  ./assets/images/turbo-levo-comp-3-320.jpg 320w,
+                  ./assets/images/turbo-levo-comp-3-640.jpg 640w
+                "
+                sizes="80px"
+                alt="Widok 3"
+                loading="lazy"
+              />
             </button>
           </div>
         </div>

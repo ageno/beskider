@@ -14,6 +14,7 @@ const cookieAccept = document.querySelector("[data-cookie-accept]");
 const cookieReject = document.querySelector("[data-cookie-reject]");
 const cookieSettingsButton = document.querySelector("[data-cookie-settings]");
 const cookieSave = document.querySelector("[data-cookie-save]");
+const aboutTilt = document.querySelector("[data-about-tilt]");
 const focusableSelectors =
   "a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex='-1'])";
 
@@ -229,18 +230,38 @@ const initCookieBanner = () => {
 
 const initTabs = () => {
   tabs.forEach((tab) => {
+    const isActive = tab.classList.contains("is-active");
+    tab.setAttribute("aria-selected", String(isActive));
+    tab.setAttribute("tabindex", isActive ? "0" : "-1");
+  });
+  tabs.forEach((tab) => {
     tab.addEventListener("click", () => {
-      tabs.forEach((item) => item.classList.remove("is-active"));
+      tabs.forEach((item) => {
+        const isActive = item === tab;
+        item.classList.toggle("is-active", isActive);
+        item.setAttribute("aria-selected", String(isActive));
+        item.setAttribute("tabindex", isActive ? "0" : "-1");
+      });
       document.querySelectorAll(".tab-panel").forEach((panel) => {
         panel.classList.remove("is-active");
       });
-      tab.classList.add("is-active");
       const panel = document.getElementById(tab.dataset.tabTarget);
       if (panel) {
         panel.classList.add("is-active");
       }
     });
   });
+};
+
+const updateAboutTilt = () => {
+  if (!aboutTilt) return;
+  const rect = aboutTilt.getBoundingClientRect();
+  const viewport = window.innerHeight || 0;
+  const centerOffset = (rect.top + rect.height / 2 - viewport / 2) / viewport;
+  const clamped = Math.max(-0.5, Math.min(0.5, centerOffset));
+  const progress = clamped + 0.5;
+  const rotation = 7 - 9 * progress;
+  aboutTilt.style.setProperty("--about-tilt", `${rotation.toFixed(2)}deg`);
 };
 
 const initAccordion = () => {
@@ -296,32 +317,47 @@ const initGallery = () => {
     const main = gallery.querySelector("[data-gallery-main]");
     const thumbs = gallery.querySelectorAll("[data-gallery-thumb]");
     let startX = 0;
+    const buildImageSrc = (base, size) => base.replace(/\.jpg$/, `-${size}.jpg`);
+    const buildSrcset = (base) =>
+      [320, 640, 1280]
+        .map((size) => `${buildImageSrc(base, size)} ${size}w`)
+        .join(", ");
+
+    const setMainImage = (base) => {
+      if (!main || !base) return;
+      main.src = buildImageSrc(base, 1280);
+      main.srcset = buildSrcset(base);
+      main.dataset.galleryBase = base;
+    };
 
     thumbs.forEach((thumb) => {
       thumb.addEventListener("click", () => {
         const target = thumb.dataset.galleryTarget;
-        if (main && target) {
-          main.src = target;
-        }
+        setMainImage(target);
       });
     });
 
     if (main) {
+      const initialBase = thumbs[0]?.dataset.galleryTarget;
+      if (initialBase) {
+        setMainImage(initialBase);
+      }
+
       main.addEventListener("touchstart", (event) => {
         startX = event.touches[0].clientX;
       });
       main.addEventListener("touchend", (event) => {
         const endX = event.changedTouches[0].clientX;
         if (Math.abs(startX - endX) < 40) return;
+        const currentBase = main.dataset.galleryBase;
         const currentIndex = Array.from(thumbs).findIndex(
-          (thumb) => thumb.dataset.galleryTarget === main.src
+          (thumb) => thumb.dataset.galleryTarget === currentBase
         );
         const direction = startX > endX ? 1 : -1;
-        const nextIndex = (currentIndex + direction + thumbs.length) % thumbs.length;
+        const safeIndex = currentIndex === -1 ? 0 : currentIndex;
+        const nextIndex = (safeIndex + direction + thumbs.length) % thumbs.length;
         const nextTarget = thumbs[nextIndex]?.dataset.galleryTarget;
-        if (nextTarget) {
-          main.src = nextTarget;
-        }
+        setMainImage(nextTarget);
       });
     }
   });
@@ -329,8 +365,11 @@ const initGallery = () => {
 
 const registerServiceWorker = () => {
   if ("serviceWorker" in navigator) {
+    const buildVersion = document.documentElement.dataset.build || "dev";
     window.addEventListener("load", () => {
-      navigator.serviceWorker.register("./sw.js");
+      navigator.serviceWorker.register(
+        `./sw.js?v=${encodeURIComponent(buildVersion)}`
+      );
     });
   }
 };
@@ -359,10 +398,21 @@ if (navToggle && navMenu) {
   });
 }
 
-window.addEventListener("scroll", updateHeaderState, { passive: true });
-window.addEventListener("scroll", updateActiveLink, { passive: true });
-updateHeaderState();
-updateActiveLink();
+let scrollPending = false;
+const handleScroll = () => {
+  if (scrollPending) return;
+  scrollPending = true;
+  window.requestAnimationFrame(() => {
+    updateHeaderState();
+    updateActiveLink();
+    updateAboutTilt();
+    scrollPending = false;
+  });
+};
+
+window.addEventListener("scroll", handleScroll, { passive: true });
+window.addEventListener("resize", updateAboutTilt, { passive: true });
+handleScroll();
 
 initTabs();
 initAccordion();

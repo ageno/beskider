@@ -1,6 +1,0 @@
-<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="512" height="512" rx="120" fill="#1f7a4a"/>
-  <circle cx="256" cy="256" r="180" fill="#232023"/>
-  <path d="M148 304c24-52 96-120 188-120 70 0 122 30 156 62" stroke="#f4f4f4" stroke-width="24" stroke-linecap="round"/>
-  <text x="256" y="300" text-anchor="middle" font-size="96" fill="#f4f4f4" font-family="'Segoe UI', sans-serif" font-weight="700">B</text>
-</svg>

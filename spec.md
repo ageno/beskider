@@ -1,6 +1,6 @@
 # SPEC.md
 ## Beskider – wypożyczalnia sprzętu sportowego
-Wersja: 1.0 (rozszerzona)
+Wersja: 1.1 (rozszerzona)
 Data: 2026-01-10
 
 ---
@@ -91,6 +91,7 @@ Sekcje:
 - Glassmorphism:
   - backdrop-filter: blur()
   - półprzezroczyste tło
+- Header transparentny, półprzezroczystość tylko na pasku nawigacji (glass)
 - Anchor links (smooth scroll)
 - Mobile:
   - hamburger
@@ -103,6 +104,7 @@ Sekcje:
   - tabindex
   - widoczne focus states
 - Header: niski, przylega do górnej krawędzi, subtelna linia podkreślenia
+- Header zawsze nad hero (wyższy z-index) dla klikalności linków
 - Podświetlenie aktywnej zakładki: cienka linia pod linkiem (Apple-like)
 - Styl local-nav jak Apple: jasne tło, cienka linia separatora, aktywne podkreślenie
 - Branding: znak błyskawicy po lewej stronie nazwy Beskider
@@ -193,7 +195,8 @@ Sekcje:
 ### 10.2 Karta produktu
 - Nazwa
 - Zdjęcie
-- Zdjęcie pełna szerokość karty, bez dodatkowych marginesów
+- Zdjęcie z delikatnym wcięciem (24px) od ramki
+- Zdjęcia z `srcset` (320 / 640 / 1280 / full)
 - Cena:
   - 300 zł netto / dzień
   - 369 zł brutto
@@ -209,6 +212,7 @@ Sekcje:
 - Swipe mobile
 - Lazy loading
 - Cache offline
+- `srcset` dla miniatur i obrazów głównych w modalu
 - Zdjęcia produktowe: oficjalne materiały Specialized, zapisane lokalnie bez parametrów (JPG, bez tła)
 
 ### 10.4 Hero image
@@ -273,6 +277,12 @@ Zawartość:
 - Pełny tekst (20–30 zdań)
 - Bez skracania
 - SEO-friendly
+- Zdjęcie: `assets/images/about-us.jpg` + warianty `*-320/640/1280`
+- Układ na desktop: 55/45 (obraz + tekst) dla wizualnej równowagi
+- Zdjęcie „O nas”: pełny bleed do lewej krawędzi na desktop, bez zaokrąglenia po lewej
+- Zdjęcie „O nas”: bez kadrowania (object-contain), bez ramki i bez cienia
+- Bleed realizowany tylko do lewej krawędzi (szerokość kolumny + bleed do krawędzi viewportu)
+- Zdjęcie „O nas”: animacja rotacji podczas scrolla w zakresie 7° do -2°
 
 ---
 
@@ -344,10 +354,12 @@ Zakres:
   - cache-first assets
   - versioning
   - update flow
+- `CACHE_VERSION` wyprowadzony z parametru `v` (data-build w HTML), aktualizowany przy każdym commicie
 - Manifest:
   - icons
   - theme colors
   - description
+- Ikony PWA: PNG; favicon: SVG (B w okręgu)
 
 ---
 
@@ -391,6 +403,9 @@ Lighthouse (mobile):
 ├── manifest.json
 └── assets/
     ├── images/
+    │   ├── *-320.jpg
+    │   ├── *-640.jpg
+    │   └── *-1280.jpg
     └── icons/
 
 Style Tailwind (komponenty + @apply) znajduje się w `index.html`.

@@ -1,24 +1,70 @@
-const CACHE_VERSION = "beskider-v9";
+const swUrl = new URL(self.location.href);
+const cacheSuffix = swUrl.searchParams.get("v") || "dev";
+const CACHE_VERSION = `beskider-${cacheSuffix}`;
 const ASSETS = [
   "./",
   "./index.html",
   "./app.js",
   "./manifest.json",
-  "./assets/icons/icon-192.svg",
-  "./assets/icons/icon-512.svg",
-  "./assets/images/turbo-levo-3-expert-1.jpg",
-  "./assets/images/turbo-levo-3-expert-2.jpg",
-  "./assets/images/turbo-levo-3-expert-3.jpg",
-  "./assets/images/turbo-levo-3-comp-1.jpg",
-  "./assets/images/turbo-levo-3-comp-2.jpg",
-  "./assets/images/turbo-levo-3-comp-3.jpg",
+  "./assets/icons/icon.svg",
+  "./assets/icons/icon-192.png",
+  "./assets/icons/icon-512.png",
+  "./assets/images/about-us-1280.jpg",
+  "./assets/images/about-us-320.jpg",
+  "./assets/images/about-us-640.jpg",
+  "./assets/images/about-us.jpg",
+  "./assets/images/hero-mountains-1280.jpg",
+  "./assets/images/hero-mountains-320.jpg",
+  "./assets/images/hero-mountains-640.jpg",
+  "./assets/images/hero-mountains.jpg",
+  "./assets/images/s-works-levo-1-1280.jpg",
+  "./assets/images/s-works-levo-1-320.jpg",
+  "./assets/images/s-works-levo-1-640.jpg",
   "./assets/images/s-works-levo-1.jpg",
+  "./assets/images/s-works-levo-2-1280.jpg",
+  "./assets/images/s-works-levo-2-320.jpg",
+  "./assets/images/s-works-levo-2-640.jpg",
   "./assets/images/s-works-levo-2.jpg",
+  "./assets/images/s-works-levo-3-1280.jpg",
+  "./assets/images/s-works-levo-3-320.jpg",
+  "./assets/images/s-works-levo-3-640.jpg",
   "./assets/images/s-works-levo-3.jpg",
+  "./assets/images/turbo-levo-3-comp-1-1280.jpg",
+  "./assets/images/turbo-levo-3-comp-1-320.jpg",
+  "./assets/images/turbo-levo-3-comp-1-640.jpg",
+  "./assets/images/turbo-levo-3-comp-1.jpg",
+  "./assets/images/turbo-levo-3-comp-2-1280.jpg",
+  "./assets/images/turbo-levo-3-comp-2-320.jpg",
+  "./assets/images/turbo-levo-3-comp-2-640.jpg",
+  "./assets/images/turbo-levo-3-comp-2.jpg",
+  "./assets/images/turbo-levo-3-comp-3-1280.jpg",
+  "./assets/images/turbo-levo-3-comp-3-320.jpg",
+  "./assets/images/turbo-levo-3-comp-3-640.jpg",
+  "./assets/images/turbo-levo-3-comp-3.jpg",
+  "./assets/images/turbo-levo-3-expert-1-1280.jpg",
+  "./assets/images/turbo-levo-3-expert-1-320.jpg",
+  "./assets/images/turbo-levo-3-expert-1-640.jpg",
+  "./assets/images/turbo-levo-3-expert-1.jpg",
+  "./assets/images/turbo-levo-3-expert-2-1280.jpg",
+  "./assets/images/turbo-levo-3-expert-2-320.jpg",
+  "./assets/images/turbo-levo-3-expert-2-640.jpg",
+  "./assets/images/turbo-levo-3-expert-2.jpg",
+  "./assets/images/turbo-levo-3-expert-3-1280.jpg",
+  "./assets/images/turbo-levo-3-expert-3-320.jpg",
+  "./assets/images/turbo-levo-3-expert-3-640.jpg",
+  "./assets/images/turbo-levo-3-expert-3.jpg",
+  "./assets/images/turbo-levo-comp-1-1280.jpg",
+  "./assets/images/turbo-levo-comp-1-320.jpg",
+  "./assets/images/turbo-levo-comp-1-640.jpg",
   "./assets/images/turbo-levo-comp-1.jpg",
+  "./assets/images/turbo-levo-comp-2-1280.jpg",
+  "./assets/images/turbo-levo-comp-2-320.jpg",
+  "./assets/images/turbo-levo-comp-2-640.jpg",
   "./assets/images/turbo-levo-comp-2.jpg",
-  "./assets/images/turbo-levo-comp-3.jpg",
-  "./assets/images/hero-mountains.jpg"
+  "./assets/images/turbo-levo-comp-3-1280.jpg",
+  "./assets/images/turbo-levo-comp-3-320.jpg",
+  "./assets/images/turbo-levo-comp-3-640.jpg",
+  "./assets/images/turbo-levo-comp-3.jpg"
 ];
 
 self.addEventListener("install", (event) => {
@@ -53,6 +99,28 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
+  const url = new URL(event.request.url);
+  if (url.origin !== self.location.origin) {
+    return;
+  }
+
+  if (event.request.mode === "navigate") {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          if (response && response.ok) {
+            const responseClone = response.clone();
+            caches.open(CACHE_VERSION).then((cache) => {
+              cache.put("./index.html", responseClone);
+            });
+          }
+          return response;
+        })
+        .catch(() => caches.match("./index.html"))
+    );
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request).then((cached) => {
       if (cached) {
@@ -61,13 +129,16 @@ self.addEventListener("fetch", (event) => {
 
       return fetch(event.request)
         .then((response) => {
+          if (!response || !response.ok || response.type === "opaque") {
+            return response;
+          }
           const responseClone = response.clone();
           caches.open(CACHE_VERSION).then((cache) => {
             cache.put(event.request, responseClone);
           });
           return response;
         })
-        .catch(() => caches.match("./index.html"));
+        .catch(() => cached || Response.error());
     })
   );
 });
