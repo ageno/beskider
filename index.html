@@ -11,11 +11,302 @@
     <meta name="theme-color" content="#1f7a4a" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; img-src 'self'; style-src 'self'; script-src 'self' https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; font-src 'self';"
+      content="default-src 'self'; img-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' https://www.googletagmanager.com https://cdn.tailwindcss.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; font-src 'self';"
     />
     <link rel="manifest" href="./manifest.json" />
     <link rel="icon" href="./assets/icons/icon-192.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./style.css" />
+    <style type="text/tailwindcss">
+      @layer base {
+        html {
+          @apply scroll-smooth;
+        }
+        body {
+          @apply bg-gray-50 text-gray-900 antialiased;
+        }
+        html[data-theme="dark"] body {
+          @apply bg-gray-900 text-gray-100;
+        }
+        a {
+          @apply text-inherit no-underline;
+        }
+      }
+      @layer components {
+        .skip-link {
+          @apply sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-40 focus:rounded-full focus:bg-gray-900 focus:px-4 focus:py-2 focus:text-sm focus:text-white;
+        }
+        .site-header {
+          @apply sticky top-0 z-20 border-b border-gray-200/80 bg-white/80 backdrop-blur;
+        }
+        .site-header.is-active {
+          @apply border-gray-300/80;
+        }
+        .glass {
+          @apply bg-white/80 backdrop-blur;
+        }
+        .nav {
+          @apply mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-3;
+        }
+        .nav__brand {
+          @apply flex items-center gap-2;
+        }
+        .nav__logo,
+        .nav__tagline {
+          @apply hidden;
+        }
+        .nav__brand strong {
+          @apply text-lg font-semibold tracking-tight;
+        }
+        .nav__menu {
+          @apply hidden items-center gap-6 md:flex;
+        }
+        .nav__menu.is-open {
+          @apply fixed left-4 right-4 top-16 z-30 flex flex-col gap-4 rounded-xl border border-gray-200 bg-white p-4 shadow-lg;
+        }
+        .nav__menu a {
+          @apply text-sm text-gray-600 hover:text-gray-900;
+        }
+        .nav__menu a.is-active {
+          @apply border-b-2 border-gray-900 pb-2 text-gray-900;
+        }
+        .nav__toggle {
+          @apply inline-flex h-8 w-8 flex-col items-center justify-center gap-1 rounded-md border border-gray-200 bg-white md:hidden;
+        }
+        .nav__toggle span {
+          @apply h-0.5 w-4 bg-gray-900;
+        }
+        .theme-toggle {
+          @apply inline-flex items-center justify-center rounded-full border border-gray-200 bg-white p-2 text-gray-700;
+        }
+        .theme-toggle svg {
+          @apply h-4 w-4;
+          fill: none;
+          stroke: currentColor;
+          stroke-width: 2;
+        }
+        main {
+          @apply mx-auto max-w-6xl px-6 pb-24;
+        }
+        .hero {
+          @apply grid gap-10 py-12 md:grid-cols-2;
+        }
+        .hero__content {
+          @apply space-y-6;
+        }
+        .eyebrow {
+          @apply text-xs uppercase tracking-[0.24em] text-gray-500;
+        }
+        .hero h1 {
+          @apply text-3xl font-semibold tracking-tight md:text-5xl;
+        }
+        .hero__lead {
+          @apply text-base text-gray-600;
+        }
+        .hero__actions,
+        .hero__cta {
+          @apply flex flex-wrap gap-4;
+        }
+        .hero__meta {
+          @apply grid gap-4 sm:grid-cols-3;
+        }
+        .hero__meta div {
+          @apply space-y-1;
+        }
+        .hero__meta strong {
+          @apply text-sm font-semibold;
+        }
+        .hero__meta span {
+          @apply text-sm text-gray-500;
+        }
+        .hero__visual {
+          @apply space-y-6;
+        }
+        .hero__image {
+          @apply aspect-[4/3] w-full rounded-2xl border border-gray-200 bg-gray-100 p-4;
+        }
+        .hero__image img {
+          @apply h-full w-full object-contain;
+        }
+        .hero__card {
+          @apply rounded-2xl border border-gray-200 bg-white p-6;
+        }
+        .section {
+          @apply py-12;
+        }
+        .section__head {
+          @apply max-w-2xl space-y-3;
+        }
+        .section__head h2 {
+          @apply text-2xl font-semibold tracking-tight;
+        }
+        .section__head p {
+          @apply text-gray-600;
+        }
+        .tabs {
+          @apply inline-flex gap-2 rounded-full border border-gray-200 bg-white p-1;
+        }
+        .tabs__tab {
+          @apply rounded-full px-4 py-2 text-sm text-gray-600 hover:text-gray-900;
+        }
+        .tabs__tab.is-active {
+          @apply bg-gray-900 text-white;
+        }
+        .tab-panel {
+          @apply hidden;
+        }
+        .tab-panel.is-active {
+          @apply block;
+        }
+        .offer-grid,
+        .product-grid,
+        .pricing-grid,
+        .rules-grid,
+        .contact-grid {
+          @apply grid gap-6 md:grid-cols-2 lg:grid-cols-3;
+        }
+        .offer-card,
+        .product-card,
+        .pricing-card,
+        .rule-card,
+        .contact-card {
+          @apply rounded-2xl border border-gray-200 bg-white p-6;
+        }
+        .offer-card,
+        .product-card,
+        .pricing-card,
+        .rule-card,
+        .contact-card {
+          @apply space-y-4;
+        }
+        .offer-card ul,
+        .pricing-card ul {
+          @apply list-disc pl-4 text-gray-600;
+        }
+        .product-card img {
+          @apply aspect-[4/3] w-full rounded-xl border border-gray-200 bg-gray-100 p-4 object-contain;
+        }
+        .product-card__prices {
+          @apply text-sm text-gray-600;
+        }
+        .product-card__deposit {
+          @apply text-sm font-semibold;
+        }
+        .status {
+          @apply inline-flex items-center gap-2 text-sm font-semibold;
+        }
+        .status::before {
+          content: "";
+          @apply h-2 w-2 rounded-full bg-green-500;
+        }
+        .status--available {
+          @apply text-green-600;
+        }
+        .status--rented {
+          @apply text-orange-600;
+        }
+        .status--rented::before {
+          @apply bg-orange-500;
+        }
+        .pricing-card__price {
+          @apply text-2xl font-semibold;
+        }
+        .pricing-card__gross {
+          @apply text-sm text-gray-600;
+        }
+        .cta {
+          @apply flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-gray-200 bg-white p-6;
+        }
+        .button {
+          @apply inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold;
+        }
+        .button--primary {
+          @apply bg-gray-900 text-white;
+        }
+        .button--ghost {
+          @apply border border-gray-200 bg-white text-gray-900;
+        }
+        .accordion {
+          @apply space-y-3;
+        }
+        .accordion__item {
+          @apply rounded-2xl border border-gray-200 bg-white;
+        }
+        .accordion__toggle {
+          @apply w-full px-6 py-4 text-left text-sm font-semibold;
+        }
+        .accordion__panel {
+          @apply px-6 text-sm text-gray-600;
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.35s ease;
+        }
+        .accordion__panel.is-open {
+          @apply pb-4;
+        }
+        .about {
+          @apply text-base text-gray-600;
+        }
+        .contact-card ul {
+          @apply space-y-2;
+        }
+        .footer {
+          @apply border-t border-gray-200 py-10 text-sm text-gray-500;
+        }
+        .link-button {
+          @apply text-gray-900 underline;
+        }
+        .cookie-banner {
+          @apply fixed bottom-6 right-6 z-30 max-w-sm rounded-2xl border border-gray-200 bg-white p-6 shadow-lg;
+        }
+        .cookie-banner__actions {
+          @apply flex flex-wrap gap-3;
+        }
+        .modal {
+          @apply fixed inset-0 z-40 hidden items-center justify-center p-6;
+        }
+        .modal.is-open {
+          @apply flex;
+        }
+        .modal__backdrop {
+          @apply absolute inset-0 bg-black/40;
+        }
+        .modal__content {
+          @apply relative z-10 w-full max-w-3xl rounded-2xl border border-gray-200 bg-white p-6;
+          max-height: 90vh;
+          overflow-y: auto;
+        }
+        .modal__content--long {
+          @apply max-w-4xl;
+        }
+        .modal__content--product {
+          @apply max-w-5xl;
+        }
+        .modal__close {
+          @apply absolute right-4 top-4 h-8 w-8 rounded-full border border-gray-200 bg-white text-lg;
+        }
+        .modal__details {
+          @apply grid gap-6 md:grid-cols-2;
+        }
+        .modal__actions {
+          @apply flex justify-end;
+        }
+        .gallery {
+          @apply space-y-4;
+        }
+        .gallery__main {
+          @apply aspect-[4/3] w-full rounded-xl border border-gray-200 bg-gray-100 p-4 object-contain;
+        }
+        .gallery__thumbs {
+          @apply flex flex-wrap gap-3;
+        }
+        .gallery__thumbs button {
+          @apply h-16 w-20 rounded-lg border border-gray-200 bg-gray-100 p-2;
+        }
+        .switch {
+          @apply flex items-center gap-4 text-sm font-semibold;
+        }
+      }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="./app.js"></script>
   </head>
   <body>
@@ -56,11 +347,16 @@
             aria-label="Zmień motyw"
           >
             <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M12 2a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm0 17a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1zm10-7a1 1 0 0 1-1 1h-2a1 1 0 1 1 0-2h2a1 1 0 0 1 1 1zM5 12a1 1 0 0 1-1 1H2a1 1 0 1 1 0-2h2a1 1 0 0 1 1 1zm13.66-6.66a1 1 0 0 1 0 1.41l-1.41 1.41a1 1 0 0 1-1.41-1.41l1.41-1.41a1 1 0 0 1 1.41 0zM8.17 17.66a1 1 0 0 1 0 1.41l-1.41 1.41a1 1 0 0 1-1.41-1.41l1.41-1.41a1 1 0 0 1 1.41 0zm9.49 1.41a1 1 0 0 1-1.41 0l-1.41-1.41a1 1 0 1 1 1.41-1.41l1.41 1.41a1 1 0 0 1 0 1.41zM6.76 6.76a1 1 0 0 1-1.41 0L3.94 5.35A1 1 0 0 1 5.35 3.94l1.41 1.41a1 1 0 0 1 0 1.41zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10z"
-              />
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
             </svg>
-            <span>Motyw</span>
           </button>
         </div>
       </nav>
@@ -96,18 +392,27 @@
             </div>
           </div>
         </div>
-        <div class="hero__card glass">
-          <h2>Najbliższy odbiór</h2>
-          <p>
-            Zarezerwuj telefonicznie, a sprzęt przygotujemy w ciągu 30 minut. Podstawowy
-            przegląd, ciśnienie, check-lista bezpieczeństwa i pełna dokumentacja są zawsze
-            w pakiecie.
-          </p>
-          <div class="hero__cta">
-            <a class="button button--primary" href="#offer">Zobacz kategorie</a>
-            <button class="button button--ghost" type="button" data-open-modal="regulamin">
-              Zasady wypożyczeń
-            </button>
+        <div class="hero__visual">
+          <div class="hero__image">
+            <img
+              src="./assets/images/turbo-levo-3-expert-1.webp"
+              alt="Turbo Levo 3 Expert T-Type"
+              loading="lazy"
+            />
+          </div>
+          <div class="hero__card glass">
+            <h2>Najbliższy odbiór</h2>
+            <p>
+              Zarezerwuj telefonicznie, a sprzęt przygotujemy w ciągu 30 minut. Podstawowy
+              przegląd, ciśnienie, check-lista bezpieczeństwa i pełna dokumentacja są zawsze
+              w pakiecie.
+            </p>
+            <div class="hero__cta">
+              <a class="button button--primary" href="#offer">Zobacz kategorie</a>
+              <button class="button button--ghost" type="button" data-open-modal="regulamin">
+                Zasady wypożyczeń
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -121,6 +426,16 @@
           </p>
         </div>
         <div class="tabs" role="tablist" aria-label="Kategorie sprzętu">
+          <button
+            class="tabs__tab is-active"
+            role="tab"
+            aria-selected="true"
+            aria-controls="tab-bikes"
+            id="tab-bikes-button"
+            data-tab-target="tab-bikes"
+          >
+            Rowery MTB
+          </button>
           <button
             class="tabs__tab is-active"
             role="tab"
@@ -191,13 +506,13 @@
         <div class="product-grid">
           <article class="product-card">
             <img
-              src="./assets/images/turbo-levo-3-expert-1.svg"
+              src="./assets/images/turbo-levo-3-expert-1.webp"
               alt="Turbo Levo 3 Expert T-Type"
               loading="lazy"
             />
             <div class="product-card__body">
               <h3>Turbo Levo 3 Expert T-Type</h3>
-              <p>Rozmiar: S2 / S3 / S4</p>
+              <p>Rozmiar: S3</p>
               <div class="product-card__prices">
                 <span>300 zł netto / dzień (369 zł brutto)</span>
                 <span>500 zł netto / 2 dni (615 zł brutto)</span>
@@ -217,13 +532,13 @@
           </article>
           <article class="product-card">
             <img
-              src="./assets/images/turbo-levo-3-comp-1.svg"
+              src="./assets/images/turbo-levo-3-comp-1.webp"
               alt="Turbo Levo 3 Comp Carbon"
               loading="lazy"
             />
             <div class="product-card__body">
               <h3>Turbo Levo 3 Comp Carbon</h3>
-              <p>Rozmiar: S2 / S3 / S4</p>
+              <p>Rozmiar: S3</p>
               <div class="product-card__prices">
                 <span>300 zł netto / dzień (369 zł brutto)</span>
                 <span>500 zł netto / 2 dni (615 zł brutto)</span>
@@ -243,13 +558,13 @@
           </article>
           <article class="product-card">
             <img
-              src="./assets/images/s-works-levo-1.svg"
+              src="./assets/images/s-works-levo-1.webp"
               alt="S-Works Turbo Levo G3"
               loading="lazy"
             />
             <div class="product-card__body">
               <h3>S-Works Turbo Levo G3</h3>
-              <p>Rozmiar: S2 / S3 / S4</p>
+              <p>Rozmiar: S4</p>
               <div class="product-card__prices">
                 <span>300 zł netto / dzień (369 zł brutto)</span>
                 <span>500 zł netto / 2 dni (615 zł brutto)</span>
@@ -269,13 +584,13 @@
           </article>
           <article class="product-card">
             <img
-              src="./assets/images/turbo-levo-comp-1.svg"
+              src="./assets/images/turbo-levo-comp-1.webp"
               alt="Turbo Levo Comp Carbon"
               loading="lazy"
             />
             <div class="product-card__body">
               <h3>Turbo Levo Comp Carbon</h3>
-              <p>Rozmiar: S2 / S3 / S4</p>
+              <p>Rozmiar: S2</p>
               <div class="product-card__prices">
                 <span>300 zł netto / dzień (369 zł brutto)</span>
                 <span>500 zł netto / 2 dni (615 zł brutto)</span>
@@ -637,28 +952,28 @@
         <div class="gallery" data-gallery>
           <img
             class="gallery__main"
-            src="./assets/images/turbo-levo-3-expert-1.svg"
+            src="./assets/images/turbo-levo-3-expert-1.webp"
             alt="Turbo Levo 3 Expert T-Type"
             data-gallery-main
           />
           <div class="gallery__thumbs">
-            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-expert-1.svg">
+            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-expert-1.webp">
               <img
-                src="./assets/images/turbo-levo-3-expert-1.svg"
+                src="./assets/images/turbo-levo-3-expert-1.webp"
                 alt="Widok 1"
                 loading="lazy"
               />
             </button>
-            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-expert-2.svg">
+            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-expert-2.webp">
               <img
-                src="./assets/images/turbo-levo-3-expert-2.svg"
+                src="./assets/images/turbo-levo-3-expert-2.webp"
                 alt="Widok 2"
                 loading="lazy"
               />
             </button>
-            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-expert-3.svg">
+            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-expert-3.webp">
               <img
-                src="./assets/images/turbo-levo-3-expert-3.svg"
+                src="./assets/images/turbo-levo-3-expert-3.webp"
                 alt="Widok 3"
                 loading="lazy"
               />
@@ -696,19 +1011,19 @@
         <div class="gallery" data-gallery>
           <img
             class="gallery__main"
-            src="./assets/images/turbo-levo-3-comp-1.svg"
+            src="./assets/images/turbo-levo-3-comp-1.webp"
             alt="Turbo Levo 3 Comp Carbon"
             data-gallery-main
           />
           <div class="gallery__thumbs">
-            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-comp-1.svg">
-              <img src="./assets/images/turbo-levo-3-comp-1.svg" alt="Widok 1" loading="lazy" />
+            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-comp-1.webp">
+              <img src="./assets/images/turbo-levo-3-comp-1.webp" alt="Widok 1" loading="lazy" />
             </button>
-            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-comp-2.svg">
-              <img src="./assets/images/turbo-levo-3-comp-2.svg" alt="Widok 2" loading="lazy" />
+            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-comp-2.webp">
+              <img src="./assets/images/turbo-levo-3-comp-2.webp" alt="Widok 2" loading="lazy" />
             </button>
-            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-comp-3.svg">
-              <img src="./assets/images/turbo-levo-3-comp-3.svg" alt="Widok 3" loading="lazy" />
+            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-comp-3.webp">
+              <img src="./assets/images/turbo-levo-3-comp-3.webp" alt="Widok 3" loading="lazy" />
             </button>
           </div>
         </div>
@@ -743,19 +1058,19 @@
         <div class="gallery" data-gallery>
           <img
             class="gallery__main"
-            src="./assets/images/s-works-levo-1.svg"
+            src="./assets/images/s-works-levo-1.webp"
             alt="S-Works Turbo Levo G3"
             data-gallery-main
           />
           <div class="gallery__thumbs">
-            <button data-gallery-thumb data-gallery-target="./assets/images/s-works-levo-1.svg">
-              <img src="./assets/images/s-works-levo-1.svg" alt="Widok 1" loading="lazy" />
+            <button data-gallery-thumb data-gallery-target="./assets/images/s-works-levo-1.webp">
+              <img src="./assets/images/s-works-levo-1.webp" alt="Widok 1" loading="lazy" />
             </button>
-            <button data-gallery-thumb data-gallery-target="./assets/images/s-works-levo-2.svg">
-              <img src="./assets/images/s-works-levo-2.svg" alt="Widok 2" loading="lazy" />
+            <button data-gallery-thumb data-gallery-target="./assets/images/s-works-levo-2.webp">
+              <img src="./assets/images/s-works-levo-2.webp" alt="Widok 2" loading="lazy" />
             </button>
-            <button data-gallery-thumb data-gallery-target="./assets/images/s-works-levo-3.svg">
-              <img src="./assets/images/s-works-levo-3.svg" alt="Widok 3" loading="lazy" />
+            <button data-gallery-thumb data-gallery-target="./assets/images/s-works-levo-3.webp">
+              <img src="./assets/images/s-works-levo-3.webp" alt="Widok 3" loading="lazy" />
             </button>
           </div>
         </div>
@@ -790,19 +1105,19 @@
         <div class="gallery" data-gallery>
           <img
             class="gallery__main"
-            src="./assets/images/turbo-levo-comp-1.svg"
+            src="./assets/images/turbo-levo-comp-1.webp"
             alt="Turbo Levo Comp Carbon"
             data-gallery-main
           />
           <div class="gallery__thumbs">
-            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-comp-1.svg">
-              <img src="./assets/images/turbo-levo-comp-1.svg" alt="Widok 1" loading="lazy" />
+            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-comp-1.webp">
+              <img src="./assets/images/turbo-levo-comp-1.webp" alt="Widok 1" loading="lazy" />
             </button>
-            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-comp-2.svg">
-              <img src="./assets/images/turbo-levo-comp-2.svg" alt="Widok 2" loading="lazy" />
+            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-comp-2.webp">
+              <img src="./assets/images/turbo-levo-comp-2.webp" alt="Widok 2" loading="lazy" />
             </button>
-            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-comp-3.svg">
-              <img src="./assets/images/turbo-levo-comp-3.svg" alt="Widok 3" loading="lazy" />
+            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-comp-3.webp">
+              <img src="./assets/images/turbo-levo-comp-3.webp" alt="Widok 3" loading="lazy" />
             </button>
           </div>
         </div>

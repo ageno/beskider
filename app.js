@@ -1,6 +1,8 @@
 const themeToggle = document.querySelector("[data-theme-toggle]");
 const navToggle = document.querySelector("[data-nav-toggle]");
 const navMenu = document.querySelector("[data-nav-menu]");
+const siteHeader = document.querySelector(".site-header");
+const navLinks = navMenu ? Array.from(navMenu.querySelectorAll("a[href^=\"#\"]")) : [];
 const tabs = document.querySelectorAll("[data-tab-target]");
 const accordionToggles = document.querySelectorAll(".accordion__toggle");
 const modalTriggers = document.querySelectorAll("[data-open-modal]");
@@ -79,6 +81,27 @@ const closeMenu = () => {
     releaseFocus();
     releaseFocus = null;
   }
+};
+
+const updateHeaderState = () => {
+  if (!siteHeader) return;
+  const isActive = window.scrollY > 4 || navMenu?.classList.contains("is-open");
+  siteHeader.classList.toggle("is-active", isActive);
+};
+
+const updateActiveLink = () => {
+  if (!navLinks.length) return;
+  const scrollY = window.scrollY + 120;
+  let current = navLinks[0];
+  navLinks.forEach((link) => {
+    const id = link.getAttribute("href")?.slice(1);
+    const section = id ? document.getElementById(id) : null;
+    if (!section) return;
+    if (section.offsetTop <= scrollY) {
+      current = link;
+    }
+  });
+  navLinks.forEach((link) => link.classList.toggle("is-active", link === current));
 };
 
 const openModal = (modal) => {
@@ -324,12 +347,21 @@ if (navToggle && navMenu) {
     } else {
       openMenu();
     }
+    updateHeaderState();
   });
 
   navMenu.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", closeMenu);
+    link.addEventListener("click", () => {
+      closeMenu();
+      updateHeaderState();
+    });
   });
 }
+
+window.addEventListener("scroll", updateHeaderState, { passive: true });
+window.addEventListener("scroll", updateActiveLink, { passive: true });
+updateHeaderState();
+updateActiveLink();
 
 initTabs();
 initAccordion();

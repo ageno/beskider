@@ -1,4 +1,4 @@
-const CACHE_VERSION = "beskider-v2";
+const CACHE_VERSION = "beskider-v5";
 const ASSETS = [
   "./",
   "./index.html",
@@ -7,18 +7,18 @@ const ASSETS = [
   "./manifest.json",
   "./assets/icons/icon-192.svg",
   "./assets/icons/icon-512.svg",
-  "./assets/images/turbo-levo-3-expert-1.svg",
-  "./assets/images/turbo-levo-3-expert-2.svg",
-  "./assets/images/turbo-levo-3-expert-3.svg",
-  "./assets/images/turbo-levo-3-comp-1.svg",
-  "./assets/images/turbo-levo-3-comp-2.svg",
-  "./assets/images/turbo-levo-3-comp-3.svg",
-  "./assets/images/s-works-levo-1.svg",
-  "./assets/images/s-works-levo-2.svg",
-  "./assets/images/s-works-levo-3.svg",
-  "./assets/images/turbo-levo-comp-1.svg",
-  "./assets/images/turbo-levo-comp-2.svg",
-  "./assets/images/turbo-levo-comp-3.svg"
+  "./assets/images/turbo-levo-3-expert-1.webp",
+  "./assets/images/turbo-levo-3-expert-2.webp",
+  "./assets/images/turbo-levo-3-expert-3.webp",
+  "./assets/images/turbo-levo-3-comp-1.webp",
+  "./assets/images/turbo-levo-3-comp-2.webp",
+  "./assets/images/turbo-levo-3-comp-3.webp",
+  "./assets/images/s-works-levo-1.webp",
+  "./assets/images/s-works-levo-2.webp",
+  "./assets/images/s-works-levo-3.webp",
+  "./assets/images/turbo-levo-comp-1.webp",
+  "./assets/images/turbo-levo-comp-2.webp",
+  "./assets/images/turbo-levo-comp-3.webp"
 ];
 
 self.addEventListener("install", (event) => {

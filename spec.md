@@ -65,7 +65,7 @@ Projekt realizowany jest jako **statyczna aplikacja PWA**, bez backendu, z myśl
 - Backend: brak
 - Dane: statyczne (HTML)
 - Logika: Vanilla JS
-- Stylowanie: CSS3 (custom properties)
+- Stylowanie: Tailwind CSS (CDN) + komponenty utility-first
 
 ---
 
@@ -99,11 +99,14 @@ Sekcje:
   - focus trap
 - Dark/Light toggle:
   - localStorage
-  - inline SVG
+  - inline SVG (ikona bez tekstu)
 - WCAG:
   - aria-labels
   - tabindex
   - widoczne focus states
+- Header: niski, przylega do górnej krawędzi, subtelna linia podkreślenia
+- Podświetlenie aktywnej zakładki: cienka linia pod linkiem (Apple-like)
+- Styl local-nav jak Apple: jasne tło, cienka linia separatora, aktywne podkreślenie
 
 ---
 
@@ -111,14 +114,20 @@ Sekcje:
 
 ### 8.1 Kolory
 - Light:
-  - background: #f4f4f4
-  - text: #111
+  - background: #f5f5f7
+  - text: #0f1115
 - Dark:
-  - background: #232023
-  - text: #f4f4f4
-- Akcent:
-  - zielony (dostępny)
+  - background: #151618
+  - text: #f4f5f7
+- Akcenty:
+  - neutralne grafitowe (CTA / aktywne stany)
   - pomarańczowy (wypożyczony)
+  - zielony tylko dla statusu „Dostępny”
+
+### 8.5 Styl premium (Apple-like)
+- Minimalistyczna estetyka, dużo światła i spójna typografia
+- Brak dekoracyjnych gradientów kolorystycznych
+- Subtelne cienie i cienkie obrysy zamiast ciężkich kart
 
 ### 8.2 Typografia
 - Sans-serif (system font stack)
@@ -127,12 +136,19 @@ Sekcje:
   - body
   - caption
 - Duże światło między sekcjami
+- Skala typograficzna:
+  - xs 12px, sm 14px, md 16px, lg 18px
 
 ### 8.3 Animacje
 - CSS only
 - easing: cubic-bezier (Apple-like)
 - fade / slide / scale
 - prefers-reduced-motion respected
+
+### 8.4 Siatka i spacing
+- Cały layout oparty o siatkę 8px
+- Wszystkie odstępy (padding, margin, gap) i promienie zaokrągleń to wielokrotności 8px
+- Spójne promienie: 8 / 16 / 24 / 32 px + pill
 
 ---
 
@@ -176,6 +192,7 @@ Sekcje:
 - Swipe mobile
 - Lazy loading
 - Cache offline
+- Zdjęcia produktowe: oficjalne materiały Specialized, zapisane lokalnie jako WebP
 
 ---
 
