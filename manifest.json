@@ -1,0 +1,21 @@
+{
+  "name": "Beskider – wypożyczalnia sprzętu sportowego",
+  "short_name": "Beskider",
+  "description": "Premium wypożyczalnia sprzętu sportowego z pełnym trybem offline.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f4f4f4",
+  "theme_color": "#1f7a4a",
+  "icons": [
+    {
+      "src": "./assets/icons/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "./assets/icons/icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}
