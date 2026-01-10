@@ -249,10 +249,11 @@ const initAccordion = () => {
       const panel = toggle.nextElementSibling;
       const isOpen = toggle.getAttribute("aria-expanded") === "true";
       toggle.setAttribute("aria-expanded", String(!isOpen));
+      toggle.classList.toggle("is-open", !isOpen);
       if (panel) {
         if (!isOpen) {
           panel.classList.add("is-open");
-          panel.style.maxHeight = `${panel.scrollHeight}px`;
+          panel.style.maxHeight = `${panel.scrollHeight + 16}px`;
         } else {
           panel.classList.remove("is-open");
           panel.style.maxHeight = "0px";

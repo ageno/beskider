@@ -41,7 +41,7 @@ Projekt realizowany jest jako **statyczna aplikacja PWA**, bez backendu, z myśl
 - One-page website
 - PWA (offline, installable)
 - Prezentacja oferty rowerów MTB
-- Cennik
+- Ceny prezentowane na kartach produktów
 - Zasady wypożyczeń
 - FAQ
 - Regulamin i polityka prywatności
@@ -74,7 +74,7 @@ Projekt realizowany jest jako **statyczna aplikacja PWA**, bez backendu, z myśl
 Sekcje:
 - Navigation
 - Hero
-- Oferta (kategorie + produkty)
+- Sprzęt (kategorie + produkty)
 - CTA
 - Zasady
 - FAQ
@@ -117,6 +117,10 @@ Sekcje:
 - Dark:
   - background: #151618
   - text: #f4f5f7
+- Dark surfaces:
+  - surfaces: gray-900 / gray-950
+  - borders: gray-800
+  - primary CTA: white background, dark text
 - Akcenty:
   - neutralne grafitowe (CTA / aktywne stany)
   - pomarańczowy (wypożyczony)
@@ -126,6 +130,14 @@ Sekcje:
 - Minimalistyczna estetyka, dużo światła i spójna typografia
 - Brak dekoracyjnych gradientów kolorystycznych
 - Subtelne cienie i cienkie obrysy zamiast ciężkich kart
+
+### 8.6 Hero (layout)
+- Full-bleed zdjęcie tła z delikatnym overlayem
+- Treść i CTA ułożone w kolumnie na mobile, obok siebie na desktop
+
+### 8.7 Responsywność
+- Mobile-first: czytelne odstępy między blokami i stabilne łamanie treści
+- Nawigacja i taby zachowują dostępność na małych ekranach
 
 ### 8.2 Typografia
 - Sans-serif (system font stack)
@@ -146,11 +158,11 @@ Sekcje:
 ### 8.4 Siatka i spacing
 - Cały layout oparty o siatkę 8px
 - Wszystkie odstępy (padding, margin, gap) i promienie zaokrągleń to wielokrotności 8px
-- Spójne promienie: 8 / 16 / 24 / 32 px + pill
+- Spójne promienie: preferowany 8 px, większe tylko gdy wymagane
 
 ---
 
-## 9. Offer – kategorie
+## 9. Sprzęt – kategorie
 
 - Tabs (segmented control)
 - Kategorie:
@@ -162,6 +174,10 @@ Sekcje:
   - disabled
   - aria-disabled
   - brak akcji
+- Stany:
+  - inactive: jaśniejsze szarości
+  - hover: subtelne podświetlenie tła
+  - active: ciemne tło, biały tekst
 
 ---
 
@@ -176,13 +192,15 @@ Sekcje:
 ### 10.2 Karta produktu
 - Nazwa
 - Zdjęcie
+- Zdjęcie pełna szerokość karty, bez dodatkowych marginesów
 - Cena:
-  - 300 zł netto / dzień (369 zł brutto)
-  - 500 zł netto / 2 dni (615 zł brutto)
+  - 300 zł netto / dzień
+  - 369 zł brutto
 - Rozmiar: jeden (S2 / S3 / S4)
 - Status:
   - Dostępny (zielony)
   - Wypożyczony (pomarańczowy)
+- Karta bez obramowania, białe tło
 
 ### 10.3 Galeria
 - Lokalna (assets/)
@@ -190,7 +208,10 @@ Sekcje:
 - Swipe mobile
 - Lazy loading
 - Cache offline
-- Zdjęcia produktowe: oficjalne materiały Specialized, zapisane lokalnie jako WebP
+- Zdjęcia produktowe: oficjalne materiały Specialized, zapisane lokalnie bez parametrów (JPG, bez tła)
+
+### 10.4 Hero image
+- Nagłówek wykorzystuje panoramiczne zdjęcie w tle (lokalne `assets/images/`)
 
 ---
 
@@ -213,14 +234,14 @@ Zawartość:
 ## 12. Pricing
 
 - Brak osobnej sekcji cennika
-- Ceny prezentowane bezpośrednio na kartach produktów
+- Ceny prezentowane bezpośrednio na kartach produktów (netto/brutto)
 
 ---
 
 ## 13. CTA
 
 - Jeden komponent
-- Scroll do Offer
+- Scroll do Sprzęt
 - Spójny copy
 - Widoczny wielokrotnie
 
@@ -364,13 +385,14 @@ Lighthouse (mobile):
 
 /
 ├── index.html
-├── style.css
 ├── app.js
 ├── sw.js
 ├── manifest.json
 └── assets/
     ├── images/
     └── icons/
+
+Style Tailwind (komponenty + @apply) znajduje się w `index.html`.
 
 ---
 

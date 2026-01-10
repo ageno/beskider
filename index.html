@@ -21,13 +21,16 @@
           @apply scroll-smooth;
         }
         body {
-          @apply bg-white text-gray-900 antialiased;
+          @apply bg-white text-gray-900 antialiased overflow-x-hidden;
         }
         html[data-theme="dark"] body {
           @apply bg-gray-900 text-gray-100;
         }
         a {
           @apply text-inherit no-underline;
+        }
+        p {
+          @apply leading-relaxed;
         }
       }
       @layer components {
@@ -60,13 +63,13 @@
           @apply hidden items-center gap-6 md:flex;
         }
         .nav__menu.is-open {
-          @apply fixed left-4 right-4 top-16 z-30 flex flex-col gap-4 rounded-xl border border-gray-200 bg-white p-4 shadow-lg;
+          @apply fixed left-4 right-4 top-16 z-30 flex max-h-[70vh] flex-col gap-4 overflow-y-auto rounded-lg border border-gray-200 bg-white p-4 shadow-lg;
         }
         .nav__menu a {
-          @apply text-sm text-gray-600 hover:text-gray-900;
+          @apply border-b-2 border-transparent pb-1 text-sm text-gray-600 hover:text-gray-900;
         }
         .nav__menu a.is-active {
-          @apply border-b-2 border-gray-900 pb-2 text-gray-900;
+          @apply border-gray-900 text-gray-900;
         }
         .nav__toggle {
           @apply inline-flex h-8 w-8 flex-col items-center justify-center gap-1 rounded-md border border-gray-200 bg-white md:hidden;
@@ -75,7 +78,7 @@
           @apply h-0.5 w-4 bg-gray-900;
         }
         .theme-toggle {
-          @apply inline-flex items-center justify-center rounded-full border border-gray-200 bg-white p-2 text-gray-700;
+          @apply inline-flex items-center justify-center rounded-lg border border-gray-200 bg-white p-2 text-gray-700;
         }
         .theme-toggle svg {
           @apply h-4 w-4;
@@ -87,7 +90,55 @@
           @apply mx-auto max-w-6xl px-6 pb-24;
         }
         .hero {
-          @apply grid gap-10 py-12 md:grid-cols-2;
+          @apply block;
+        }
+        .hero--canyon {
+          @apply relative left-1/2 right-1/2 w-screen -mx-[50vw] overflow-hidden rounded-none bg-cover bg-center text-white;
+          min-height: 56vh;
+        }
+        .hero__overlay {
+          @apply absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/70;
+        }
+        .hero__inner {
+          @apply relative mx-auto flex w-full max-w-6xl flex-col gap-6 px-6 py-10 sm:py-14 md:flex-row md:items-end md:justify-between md:gap-12 md:py-24;
+        }
+        .hero--canyon .hero__content {
+          @apply max-w-xl space-y-4 sm:space-y-5;
+        }
+        .hero--canyon .eyebrow,
+        .hero--canyon .hero__lead,
+        .hero--canyon .hero__meta span {
+          @apply text-white/80;
+        }
+        .hero--canyon .hero__meta strong {
+          @apply text-white;
+        }
+        .hero--canyon .button--primary {
+          @apply bg-white text-gray-900;
+        }
+        .hero--canyon .button--ghost {
+          @apply border-white/40 bg-white/10 text-white;
+        }
+        .hero--canyon .hero__card {
+          @apply w-full rounded-lg border border-white/20 bg-white/10 text-white backdrop-blur md:max-w-sm md:self-end;
+        }
+        .hero--canyon .hero__meta {
+          @apply gap-4;
+        }
+        .hero--canyon .hero__meta > div {
+          @apply rounded-lg bg-white/10 p-3 sm:p-4;
+        }
+        .feature-band {
+          @apply relative left-1/2 right-1/2 w-screen -mx-[50vw] bg-gray-50;
+        }
+        .feature-band__inner {
+          @apply mx-auto max-w-6xl px-6 py-10;
+        }
+        .feature-grid {
+          @apply grid gap-4 sm:grid-cols-2 lg:grid-cols-3;
+        }
+        .feature-card {
+          @apply rounded-lg border border-gray-200 bg-white p-4;
         }
         .hero__content {
           @apply space-y-6;
@@ -96,17 +147,16 @@
           @apply text-xs uppercase tracking-[0.24em] text-gray-500;
         }
         .hero h1 {
-          @apply text-3xl font-semibold tracking-tight md:text-5xl;
+          @apply text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl;
         }
         .hero__lead {
-          @apply text-base text-gray-600;
+          @apply text-sm text-gray-600 sm:text-base;
         }
-        .hero__actions,
-        .hero__cta {
+        .hero__actions {
           @apply flex flex-wrap gap-4;
         }
         .hero__meta {
-          @apply grid gap-4 sm:grid-cols-3;
+          @apply grid gap-3 sm:grid-cols-2 lg:grid-cols-3;
         }
         .hero__meta div {
           @apply space-y-1;
@@ -121,34 +171,37 @@
           @apply space-y-6;
         }
         .hero__image {
-          @apply aspect-[4/3] w-full overflow-hidden rounded-2xl border border-gray-200 bg-white p-0;
+          @apply aspect-[4/3] w-full overflow-hidden rounded-lg bg-white p-0;
         }
         .hero__image img {
           @apply h-full w-full object-contain;
         }
         .hero__card {
-          @apply rounded-2xl border border-gray-200 bg-white p-6;
+          @apply rounded-lg border border-gray-200 bg-white p-6;
         }
         .section {
-          @apply py-12;
+          @apply space-y-6 py-12 sm:space-y-8;
         }
         .section__head {
-          @apply max-w-2xl space-y-3;
+          @apply max-w-2xl space-y-4;
         }
         .section__head h2 {
           @apply text-2xl font-semibold tracking-tight;
         }
         .section__head p {
-          @apply text-gray-600;
+          @apply leading-relaxed text-gray-600;
         }
         .tabs {
-          @apply inline-flex gap-2 rounded-full border border-gray-200 bg-white p-1;
+          @apply flex w-full flex-wrap gap-4 rounded-lg border border-gray-200 bg-white p-2 sm:w-auto sm:flex-nowrap;
         }
         .tabs__tab {
-          @apply rounded-full px-4 py-2 text-sm text-gray-600 hover:text-gray-900;
+          @apply whitespace-nowrap rounded-md px-4 py-2 text-sm text-gray-400 transition hover:bg-gray-100 hover:text-gray-700;
         }
         .tabs__tab.is-active {
-          @apply bg-gray-900 text-white;
+          @apply bg-gray-900 text-white shadow-sm;
+        }
+        .tabs__tab[disabled] {
+          @apply cursor-not-allowed text-gray-300 hover:bg-transparent hover:text-gray-300;
         }
         .tab-panel {
           @apply hidden;
@@ -161,14 +214,16 @@
         .pricing-grid,
         .rules-grid,
         .contact-grid {
-          @apply grid gap-6 md:grid-cols-2 lg:grid-cols-3;
+          @apply grid gap-6 sm:grid-cols-2 lg:grid-cols-3;
         }
         .offer-card,
-        .product-card,
         .pricing-card,
         .rule-card,
         .contact-card {
-          @apply rounded-2xl border border-gray-200 bg-white p-6;
+          @apply rounded-lg border border-gray-200 bg-white p-6;
+        }
+        .product-card {
+          @apply rounded-lg bg-white overflow-hidden;
         }
         .offer-card,
         .product-card,
@@ -182,13 +237,16 @@
           @apply list-disc pl-4 text-gray-600;
         }
         .product-card img {
-          @apply aspect-[4/3] w-full rounded-xl border border-gray-200 bg-white object-contain;
+          @apply aspect-[4/3] w-full bg-white object-contain;
         }
         .product-card h3 {
           @apply text-lg font-semibold md:text-xl;
         }
         .product-card__prices {
           @apply space-y-1;
+        }
+        .product-card__body {
+          @apply space-y-3 px-6 pb-6;
         }
         .product-card__prices span:first-child {
           @apply text-lg font-semibold text-gray-900;
@@ -228,10 +286,10 @@
           @apply text-sm text-gray-600;
         }
         .cta {
-          @apply flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-gray-200 bg-white p-6;
+          @apply flex flex-col gap-4 rounded-lg border border-gray-200 bg-white p-6 sm:flex-row sm:items-center sm:justify-between;
         }
         .button {
-          @apply inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold;
+          @apply inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold;
         }
         .button--primary {
           @apply bg-gray-900 text-white;
@@ -240,16 +298,16 @@
           @apply border border-gray-200 bg-white text-gray-900;
         }
         .accordion {
-          @apply space-y-3;
+          @apply divide-y divide-gray-200;
         }
         .accordion__item {
-          @apply rounded-2xl border border-gray-200 bg-white;
+          @apply bg-white;
         }
         .accordion__toggle {
-          @apply w-full px-6 py-4 text-left text-sm font-semibold;
+          @apply flex w-full items-center justify-between px-0 py-4 text-left text-sm font-semibold;
         }
         .accordion__panel {
-          @apply px-6 text-sm text-gray-600;
+          @apply px-0 text-sm text-gray-600;
           max-height: 0;
           overflow: hidden;
           padding-bottom: 0;
@@ -258,11 +316,17 @@
         .accordion__panel.is-open {
           @apply pb-4;
         }
+        .accordion__icon {
+          @apply h-4 w-4 text-gray-400 transition-transform;
+        }
+        .accordion__toggle.is-open .accordion__icon {
+          @apply rotate-180 text-gray-600;
+        }
         .about {
           @apply grid gap-6 md:grid-cols-[240px_1fr];
         }
         .about__media {
-          @apply aspect-[4/3] w-full overflow-hidden rounded-2xl border border-gray-200 bg-white;
+          @apply aspect-[4/3] w-full overflow-hidden rounded-lg bg-white;
         }
         .about__media img {
           @apply h-full w-full object-contain;
@@ -274,7 +338,7 @@
           @apply space-y-2;
         }
         .footer {
-          @apply mx-auto max-w-6xl border-t border-gray-200 px-6 py-10 text-sm text-gray-500;
+          @apply mx-auto max-w-6xl space-y-6 border-t border-gray-200 px-6 py-10 text-sm text-gray-500 sm:flex sm:items-start sm:justify-between sm:space-y-0;
         }
         .footer__social {
           @apply flex flex-wrap items-center gap-4;
@@ -290,13 +354,13 @@
           @apply text-gray-900 underline;
         }
         .cookie-banner {
-          @apply fixed bottom-6 right-6 z-30 max-w-sm rounded-2xl border border-gray-200 bg-white p-6 shadow-lg;
+          @apply fixed bottom-6 left-4 right-4 z-30 w-auto rounded-lg border border-gray-200 bg-white p-6 shadow-lg sm:left-auto sm:right-6 sm:max-w-sm;
         }
         .cookie-banner__actions {
           @apply flex flex-wrap gap-3;
         }
         .modal {
-          @apply fixed inset-0 z-40 hidden items-center justify-center p-6;
+          @apply fixed inset-0 z-40 hidden items-center justify-center p-4 sm:p-6;
         }
         .modal.is-open {
           @apply flex;
@@ -305,7 +369,7 @@
           @apply absolute inset-0 bg-black/40;
         }
         .modal__content {
-          @apply relative z-10 w-full max-w-3xl rounded-2xl border border-gray-200 bg-white p-6;
+          @apply relative z-10 w-full max-w-3xl rounded-lg border border-gray-200 bg-white p-4 sm:p-6;
           max-height: 90vh;
           overflow-y: auto;
         }
@@ -328,19 +392,133 @@
           @apply space-y-4;
         }
         .gallery__main {
-          @apply aspect-[4/3] w-full rounded-xl border border-gray-200 bg-white object-contain;
+          @apply aspect-[4/3] w-full rounded-lg bg-white object-contain;
         }
         .gallery__thumbs {
           @apply flex flex-wrap gap-3;
         }
         .gallery__thumbs button {
-          @apply h-16 w-20 rounded-lg border border-gray-200 bg-white p-0;
+          @apply h-16 w-20 rounded-md bg-white p-0;
         }
         .gallery__thumbs img {
           @apply h-full w-full object-contain;
         }
         .switch {
           @apply flex items-center gap-4 text-sm font-semibold;
+        }
+        html[data-theme="dark"] .site-header {
+          @apply border-gray-800/80 bg-gray-950/70;
+        }
+        html[data-theme="dark"] .site-header.is-active {
+          @apply border-gray-700/80;
+        }
+        html[data-theme="dark"] .glass {
+          @apply bg-gray-950/70;
+        }
+        html[data-theme="dark"] .nav__toggle {
+          @apply border-gray-700 bg-gray-900;
+        }
+        html[data-theme="dark"] .nav__toggle span {
+          @apply bg-gray-100;
+        }
+        html[data-theme="dark"] .nav__menu.is-open {
+          @apply border-gray-800 bg-gray-900;
+        }
+        html[data-theme="dark"] .nav__menu a {
+          @apply text-gray-300;
+        }
+        html[data-theme="dark"] .nav__menu a:hover {
+          @apply text-white;
+        }
+        html[data-theme="dark"] .nav__menu a.is-active {
+          @apply border-white text-white;
+        }
+        html[data-theme="dark"] .theme-toggle {
+          @apply border-gray-700 bg-gray-900 text-gray-200;
+        }
+        html[data-theme="dark"] .feature-band {
+          @apply bg-gray-950;
+        }
+        html[data-theme="dark"] .feature-card {
+          @apply border-gray-800 bg-gray-900;
+        }
+        html[data-theme="dark"] .feature-card p {
+          @apply text-gray-400;
+        }
+        html[data-theme="dark"] .section__head p {
+          @apply text-gray-400;
+        }
+        html[data-theme="dark"] .tabs {
+          @apply border-gray-800 bg-gray-900;
+        }
+        html[data-theme="dark"] .tabs__tab {
+          @apply text-gray-500;
+        }
+        html[data-theme="dark"] .tabs__tab:hover {
+          @apply bg-gray-800 text-gray-200;
+        }
+        html[data-theme="dark"] .tabs__tab.is-active {
+          @apply bg-white text-gray-900;
+        }
+        html[data-theme="dark"] .tabs__tab[disabled] {
+          @apply text-gray-600;
+        }
+        html[data-theme="dark"] .offer-card,
+        html[data-theme="dark"] .pricing-card,
+        html[data-theme="dark"] .rule-card,
+        html[data-theme="dark"] .contact-card {
+          @apply border-gray-800 bg-gray-900;
+        }
+        html[data-theme="dark"] .product-card {
+          @apply bg-gray-900;
+        }
+        html[data-theme="dark"] .product-card__prices span:last-child {
+          @apply text-gray-400;
+        }
+        html[data-theme="dark"] .cta {
+          @apply border-gray-800 bg-gray-900;
+        }
+        html[data-theme="dark"] .button--primary {
+          @apply bg-white text-gray-900;
+        }
+        html[data-theme="dark"] .button--ghost {
+          @apply border-gray-700 bg-transparent text-gray-100;
+        }
+        html[data-theme="dark"] .button--ghost:hover {
+          @apply bg-gray-800;
+        }
+        html[data-theme="dark"] .accordion {
+          @apply divide-gray-800;
+        }
+        html[data-theme="dark"] .accordion__toggle {
+          @apply text-gray-100;
+        }
+        html[data-theme="dark"] .accordion__panel {
+          @apply text-gray-400;
+        }
+        html[data-theme="dark"] .accordion__icon {
+          @apply text-gray-500;
+        }
+        html[data-theme="dark"] .about__content {
+          @apply text-gray-400;
+        }
+        html[data-theme="dark"] .footer {
+          @apply border-gray-800 text-gray-400;
+        }
+        html[data-theme="dark"] .footer__social a {
+          @apply text-gray-300 hover:text-white;
+        }
+        html[data-theme="dark"] .link-button {
+          @apply text-gray-200;
+        }
+        html[data-theme="dark"] .cookie-banner {
+          @apply border-gray-800 bg-gray-900;
+        }
+        html[data-theme="dark"] .modal__content {
+          @apply border-gray-800 bg-gray-900;
+        }
+        html[data-theme="dark"] .modal__close {
+          @apply border-gray-700 bg-gray-900 text-gray-200;
         }
       }
     </style>
@@ -371,7 +549,7 @@
           <span></span>
         </button>
         <div class="nav__menu" data-nav-menu>
-          <a href="#offer">Oferta</a>
+          <a href="#equipment">Sprzęt</a>
           <a href="#rules">Zasady</a>
           <a href="#faq">FAQ</a>
           <a href="#about">O nas</a>
@@ -399,63 +577,59 @@
     </header>
 
     <main id="main">
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="hero__content">
-          <p class="eyebrow">Beskider • Bielsko-Biała</p>
-          <h1 id="hero-title">Wypożycz rower MTB klasy premium bez kompromisów.</h1>
-          <p class="hero__lead">
-            Beskider to nowa jakość wypożyczania sprzętu sportowego. Dostajesz rower w pełnym
-            serwisie, jasne zasady i obsługę, która działa tak lekko jak najlepsze rozwiązania
-            Apple. Jesteśmy gotowi na sezon, a Ty? Zaplanuj trasę, sprawdź ofertę i odbierz
-            sprzęt w centrum Beskidów.
-          </p>
-          <div class="hero__actions">
-            <a class="button button--primary" href="#offer">Sprawdź ofertę</a>
-            <a class="button button--ghost" href="#contact">Skontaktuj się</a>
-          </div>
-          <div class="hero__meta">
-            <div>
-              <strong>100% offline</strong>
-              <span>PWA z pełnym cache</span>
-            </div>
-            <div>
-              <strong>4 modele MTB</strong>
-              <span>Turbo Levo + S-Works</span>
-            </div>
-            <div>
-              <strong>Odbiór od 8:00</strong>
-              <span>Parking Błonia</span>
+      <section
+        class="hero hero--canyon"
+        aria-labelledby="hero-title"
+        style="background-image: url('./assets/images/hero-mountains.jpg');"
+      >
+        <div class="hero__overlay" aria-hidden="true"></div>
+        <div class="hero__inner">
+          <div class="hero__content">
+            <p class="eyebrow">Beskider • Bielsko-Biała</p>
+            <h1 id="hero-title">Wypożycz rower MTB klasy premium bez kompromisów.</h1>
+            <p class="hero__lead">
+              Beskider to nowa jakość wypożyczania sprzętu sportowego. Dostajesz rower w pełnym
+              serwisie, jasne zasady i obsługę, która działa tak lekko jak najlepsze rozwiązania
+              Apple. Jesteśmy gotowi na sezon, a Ty? Zaplanuj trasę, sprawdź ofertę i odbierz
+              sprzęt w centrum Beskidów.
+            </p>
+            <div class="hero__actions">
+              <a class="button button--primary" href="#equipment">Wyrusz z nami w podróż</a>
             </div>
           </div>
         </div>
-        <div class="hero__visual">
-          <div class="hero__image">
-            <img
-              src="./assets/images/turbo-levo-3-expert-1.webp"
-              alt="Turbo Levo 3 Expert T-Type"
-              loading="lazy"
-            />
-          </div>
-          <div class="hero__card glass">
-            <h2>Najbliższy odbiór</h2>
-            <p>
-              Zarezerwuj telefonicznie, a sprzęt przygotujemy w ciągu 30 minut. Podstawowy
-              przegląd, ciśnienie, check-lista bezpieczeństwa i pełna dokumentacja są zawsze
-              w pakiecie.
-            </p>
-            <div class="hero__cta">
-              <a class="button button--primary" href="#offer">Zobacz kategorie</a>
-              <button class="button button--ghost" type="button" data-open-modal="regulamin">
-                Zasady wypożyczeń
-              </button>
+      </section>
+      <section class="feature-band" aria-label="Wyróżniki Beskider">
+        <div class="feature-band__inner">
+          <div class="feature-grid">
+            <div class="feature-card flex items-start justify-between gap-3">
+              <div>
+                <strong>Wysokie modele e-MTB</strong>
+                <p class="text-sm text-gray-500">Nowa generacja elektrycznych MTB</p>
+              </div>
+              <span aria-hidden="true">⚡️</span>
+            </div>
+            <div class="feature-card flex items-start justify-between gap-3">
+              <div>
+                <strong>Super jakość premium</strong>
+                <p class="text-sm text-gray-500">Serwis, kontrola i standard klasy top</p>
+              </div>
+              <span aria-hidden="true">✨</span>
+            </div>
+            <div class="feature-card flex items-start justify-between gap-3">
+              <div>
+                <strong>Odbiór od 8:00</strong>
+                <p class="text-sm text-gray-500">Bielsko-Biała</p>
+              </div>
+              <span aria-hidden="true">📍</span>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="section" id="offer" aria-labelledby="offer-title">
+      <section class="section" id="equipment" aria-labelledby="equipment-title">
         <div class="section__head">
-          <h2 id="offer-title">Oferta</h2>
+          <h2 id="equipment-title">Sprzęt</h2>
           <p>
             Wybierz kategorię sprzętu. Rowery są dostępne od ręki, pozostałe kategorie są
             przygotowywane na kolejny sezon.
@@ -484,115 +658,115 @@
         </div>
         <div class="tab-panel is-active" role="tabpanel" id="tab-bikes">
           <div class="product-grid">
-          <article class="product-card">
-            <img
-              src="./assets/images/turbo-levo-3-expert-1.webp"
-              alt="Turbo Levo 3 Expert T-Type"
-              loading="lazy"
-            />
-            <div class="product-card__body">
-              <h3>Turbo Levo 3 Expert T-Type</h3>
-              <p>Rozmiar: S3</p>
-              <div class="product-card__prices">
-                <span>300 zł netto / dzień (369 zł brutto)</span>
-                <span>500 zł netto / 2 dni (615 zł brutto)</span>
+            <article class="product-card">
+              <img
+                src="./assets/images/turbo-levo-3-expert-1.jpg"
+                alt="Turbo Levo 3 Expert T-Type"
+                loading="lazy"
+              />
+              <div class="product-card__body">
+                <h3>Turbo Levo 3 Expert T-Type</h3>
+                <p>Rozmiar: S3</p>
+                <div class="product-card__prices">
+                  <span>300 zł netto / dzień</span>
+                  <span>369 zł brutto</span>
+                </div>
+                <div class="product-card__status status status--available">
+                  Dostępny
+                </div>
+                <div class="product-card__cta">
+                  <button
+                    class="button button--ghost"
+                    type="button"
+                    data-open-modal="product-expert"
+                  >
+                    Zobacz specyfikację
+                  </button>
+                </div>
               </div>
-              <div class="product-card__status status status--available">
-                Dostępny
+            </article>
+            <article class="product-card">
+              <img
+                src="./assets/images/turbo-levo-3-comp-1.jpg"
+                alt="Turbo Levo 3 Comp Carbon"
+                loading="lazy"
+              />
+              <div class="product-card__body">
+                <h3>Turbo Levo 3 Comp Carbon</h3>
+                <p>Rozmiar: S3</p>
+                <div class="product-card__prices">
+                  <span>300 zł netto / dzień</span>
+                  <span>369 zł brutto</span>
+                </div>
+                <div class="product-card__status status status--rented">
+                  Wypożyczony
+                </div>
+                <div class="product-card__cta">
+                  <button
+                    class="button button--ghost"
+                    type="button"
+                    data-open-modal="product-comp-carbon"
+                  >
+                    Zobacz specyfikację
+                  </button>
+                </div>
               </div>
-              <div class="product-card__cta">
-                <button
-                  class="button button--primary"
-                  type="button"
-                  data-open-modal="product-expert"
-                >
-                  Zobacz specyfikację
-                </button>
+            </article>
+            <article class="product-card">
+              <img
+                src="./assets/images/s-works-levo-1.jpg"
+                alt="S-Works Turbo Levo G3"
+                loading="lazy"
+              />
+              <div class="product-card__body">
+                <h3>S-Works Turbo Levo G3</h3>
+                <p>Rozmiar: S4</p>
+                <div class="product-card__prices">
+                  <span>300 zł netto / dzień</span>
+                  <span>369 zł brutto</span>
+                </div>
+                <div class="product-card__status status status--available">
+                  Dostępny
+                </div>
+                <div class="product-card__cta">
+                  <button
+                    class="button button--ghost"
+                    type="button"
+                    data-open-modal="product-s-works"
+                  >
+                    Zobacz specyfikację
+                  </button>
+                </div>
               </div>
-            </div>
-          </article>
-          <article class="product-card">
-            <img
-              src="./assets/images/turbo-levo-3-comp-1.webp"
-              alt="Turbo Levo 3 Comp Carbon"
-              loading="lazy"
-            />
-            <div class="product-card__body">
-              <h3>Turbo Levo 3 Comp Carbon</h3>
-              <p>Rozmiar: S3</p>
-              <div class="product-card__prices">
-                <span>300 zł netto / dzień (369 zł brutto)</span>
-                <span>500 zł netto / 2 dni (615 zł brutto)</span>
+            </article>
+            <article class="product-card">
+              <img
+                src="./assets/images/turbo-levo-comp-1.jpg"
+                alt="Turbo Levo Comp Carbon"
+                loading="lazy"
+              />
+              <div class="product-card__body">
+                <h3>Turbo Levo Comp Carbon</h3>
+                <p>Rozmiar: S2</p>
+                <div class="product-card__prices">
+                  <span>300 zł netto / dzień</span>
+                  <span>369 zł brutto</span>
+                </div>
+                <div class="product-card__status status status--rented">
+                  Wypożyczony
+                </div>
+                <div class="product-card__cta">
+                  <button
+                    class="button button--ghost"
+                    type="button"
+                    data-open-modal="product-comp"
+                  >
+                    Zobacz specyfikację
+                  </button>
+                </div>
               </div>
-              <div class="product-card__status status status--rented">
-                Wypożyczony
-              </div>
-              <div class="product-card__cta">
-                <button
-                  class="button button--primary"
-                  type="button"
-                  data-open-modal="product-comp-carbon"
-                >
-                  Zobacz specyfikację
-                </button>
-              </div>
-            </div>
-          </article>
-          <article class="product-card">
-            <img
-              src="./assets/images/s-works-levo-1.webp"
-              alt="S-Works Turbo Levo G3"
-              loading="lazy"
-            />
-            <div class="product-card__body">
-              <h3>S-Works Turbo Levo G3</h3>
-              <p>Rozmiar: S4</p>
-              <div class="product-card__prices">
-                <span>300 zł netto / dzień (369 zł brutto)</span>
-                <span>500 zł netto / 2 dni (615 zł brutto)</span>
-              </div>
-              <div class="product-card__status status status--available">
-                Dostępny
-              </div>
-              <div class="product-card__cta">
-                <button
-                  class="button button--primary"
-                  type="button"
-                  data-open-modal="product-s-works"
-                >
-                  Zobacz specyfikację
-                </button>
-              </div>
-            </div>
-          </article>
-          <article class="product-card">
-            <img
-              src="./assets/images/turbo-levo-comp-1.webp"
-              alt="Turbo Levo Comp Carbon"
-              loading="lazy"
-            />
-            <div class="product-card__body">
-              <h3>Turbo Levo Comp Carbon</h3>
-              <p>Rozmiar: S2</p>
-              <div class="product-card__prices">
-                <span>300 zł netto / dzień (369 zł brutto)</span>
-                <span>500 zł netto / 2 dni (615 zł brutto)</span>
-              </div>
-              <div class="product-card__status status status--rented">
-                Wypożyczony
-              </div>
-              <div class="product-card__cta">
-                <button
-                  class="button button--primary"
-                  type="button"
-                  data-open-modal="product-comp"
-                >
-                  Zobacz specyfikację
-                </button>
-              </div>
-            </div>
-          </article>
-        </div>
+            </article>
+          </div>
         </div>
       </section>
 
@@ -604,7 +778,7 @@
             przygotuje sprzęt do odbioru.
           </p>
         </div>
-        <a class="button button--primary" href="#offer">Przejdź do oferty</a>
+        <a class="button button--primary" href="#equipment">Przejdź do sprzętu</a>
       </section>
 
       <section class="section" id="rules" aria-labelledby="rules-title">
@@ -647,9 +821,7 @@
         </div>
         <div class="accordion" data-accordion>
           <div class="accordion__item">
-            <button class="accordion__toggle" type="button" aria-expanded="false">
-              Czy mogę odebrać rower wcześniej niż 8:00?
-            </button>
+            <button class="accordion__toggle" type="button" aria-expanded="false"><span>Czy mogę odebrać rower wcześniej niż 8:00?</span><svg class="accordion__icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
             <div class="accordion__panel">
               <p>
                 Tak, po wcześniejszym ustaleniu telefonicznym. Priorytetem jest przygotowanie
@@ -658,9 +830,7 @@
             </div>
           </div>
           <div class="accordion__item">
-            <button class="accordion__toggle" type="button" aria-expanded="false">
-              Jakie dokumenty są wymagane?
-            </button>
+            <button class="accordion__toggle" type="button" aria-expanded="false"><span>Jakie dokumenty są wymagane?</span><svg class="accordion__icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
             <div class="accordion__panel">
               <p>
                 Wymagane są dwa dokumenty tożsamości (dowód osobisty i prawo jazdy lub paszport).
@@ -669,9 +839,7 @@
             </div>
           </div>
           <div class="accordion__item">
-            <button class="accordion__toggle" type="button" aria-expanded="false">
-              Czy rowery są przygotowane do jazdy enduro?
-            </button>
+            <button class="accordion__toggle" type="button" aria-expanded="false"><span>Czy rowery są przygotowane do jazdy enduro?</span><svg class="accordion__icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
             <div class="accordion__panel">
               <p>
                 Tak. Każdy model jest skonfigurowany pod styl trail i enduro, z odpowiednim
@@ -680,9 +848,7 @@
             </div>
           </div>
           <div class="accordion__item">
-            <button class="accordion__toggle" type="button" aria-expanded="false">
-              Co jeśli spóźnię się ze zwrotem?
-            </button>
+            <button class="accordion__toggle" type="button" aria-expanded="false"><span>Co jeśli spóźnię się ze zwrotem?</span><svg class="accordion__icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
             <div class="accordion__panel">
               <p>
                 Każde opóźnienie skutkuje naliczeniem kolejnej pełnej doby. Dzięki temu wiemy, że
@@ -691,9 +857,7 @@
             </div>
           </div>
           <div class="accordion__item">
-            <button class="accordion__toggle" type="button" aria-expanded="false">
-              Czy mogę zabrać rower poza Beskidy?
-            </button>
+            <button class="accordion__toggle" type="button" aria-expanded="false"><span>Czy mogę zabrać rower poza Beskidy?</span><svg class="accordion__icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
             <div class="accordion__panel">
               <p>
                 Tak, ale musisz poinformować o tym przy podpisywaniu umowy. Dzięki temu wiemy,
@@ -702,9 +866,7 @@
             </div>
           </div>
           <div class="accordion__item">
-            <button class="accordion__toggle" type="button" aria-expanded="false">
-              Czy mogę wypożyczyć kask i ochraniacze?
-            </button>
+            <button class="accordion__toggle" type="button" aria-expanded="false"><span>Czy mogę wypożyczyć kask i ochraniacze?</span><svg class="accordion__icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
             <div class="accordion__panel">
               <p>
                 Tak, kask jest obowiązkowy i dostępny w ramach pakietu bezpieczeństwa. Ochraniacze
@@ -722,7 +884,7 @@
         <div class="about">
           <div class="about__media">
             <img
-              src="./assets/images/s-works-levo-1.webp"
+              src="./assets/images/s-works-levo-1.jpg"
               alt="Beskider — sprzęt premium przygotowany do trasy"
               loading="lazy"
             />
@@ -930,28 +1092,28 @@
         <div class="gallery" data-gallery>
           <img
             class="gallery__main"
-            src="./assets/images/turbo-levo-3-expert-1.webp"
+            src="./assets/images/turbo-levo-3-expert-1.jpg"
             alt="Turbo Levo 3 Expert T-Type"
             data-gallery-main
           />
           <div class="gallery__thumbs">
-            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-expert-1.webp">
+            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-expert-1.jpg">
               <img
-                src="./assets/images/turbo-levo-3-expert-1.webp"
+                src="./assets/images/turbo-levo-3-expert-1.jpg"
                 alt="Widok 1"
                 loading="lazy"
               />
             </button>
-            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-expert-2.webp">
+            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-expert-2.jpg">
               <img
-                src="./assets/images/turbo-levo-3-expert-2.webp"
+                src="./assets/images/turbo-levo-3-expert-2.jpg"
                 alt="Widok 2"
                 loading="lazy"
               />
             </button>
-            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-expert-3.webp">
+            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-expert-3.jpg">
               <img
-                src="./assets/images/turbo-levo-3-expert-3.webp"
+                src="./assets/images/turbo-levo-3-expert-3.jpg"
                 alt="Widok 3"
                 loading="lazy"
               />
@@ -989,19 +1151,19 @@
         <div class="gallery" data-gallery>
           <img
             class="gallery__main"
-            src="./assets/images/turbo-levo-3-comp-1.webp"
+            src="./assets/images/turbo-levo-3-comp-1.jpg"
             alt="Turbo Levo 3 Comp Carbon"
             data-gallery-main
           />
           <div class="gallery__thumbs">
-            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-comp-1.webp">
-              <img src="./assets/images/turbo-levo-3-comp-1.webp" alt="Widok 1" loading="lazy" />
+            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-comp-1.jpg">
+              <img src="./assets/images/turbo-levo-3-comp-1.jpg" alt="Widok 1" loading="lazy" />
             </button>
-            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-comp-2.webp">
-              <img src="./assets/images/turbo-levo-3-comp-2.webp" alt="Widok 2" loading="lazy" />
+            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-comp-2.jpg">
+              <img src="./assets/images/turbo-levo-3-comp-2.jpg" alt="Widok 2" loading="lazy" />
             </button>
-            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-comp-3.webp">
-              <img src="./assets/images/turbo-levo-3-comp-3.webp" alt="Widok 3" loading="lazy" />
+            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-comp-3.jpg">
+              <img src="./assets/images/turbo-levo-3-comp-3.jpg" alt="Widok 3" loading="lazy" />
             </button>
           </div>
         </div>
@@ -1036,19 +1198,19 @@
         <div class="gallery" data-gallery>
           <img
             class="gallery__main"
-            src="./assets/images/s-works-levo-1.webp"
+            src="./assets/images/s-works-levo-1.jpg"
             alt="S-Works Turbo Levo G3"
             data-gallery-main
           />
           <div class="gallery__thumbs">
-            <button data-gallery-thumb data-gallery-target="./assets/images/s-works-levo-1.webp">
-              <img src="./assets/images/s-works-levo-1.webp" alt="Widok 1" loading="lazy" />
+            <button data-gallery-thumb data-gallery-target="./assets/images/s-works-levo-1.jpg">
+              <img src="./assets/images/s-works-levo-1.jpg" alt="Widok 1" loading="lazy" />
             </button>
-            <button data-gallery-thumb data-gallery-target="./assets/images/s-works-levo-2.webp">
-              <img src="./assets/images/s-works-levo-2.webp" alt="Widok 2" loading="lazy" />
+            <button data-gallery-thumb data-gallery-target="./assets/images/s-works-levo-2.jpg">
+              <img src="./assets/images/s-works-levo-2.jpg" alt="Widok 2" loading="lazy" />
             </button>
-            <button data-gallery-thumb data-gallery-target="./assets/images/s-works-levo-3.webp">
-              <img src="./assets/images/s-works-levo-3.webp" alt="Widok 3" loading="lazy" />
+            <button data-gallery-thumb data-gallery-target="./assets/images/s-works-levo-3.jpg">
+              <img src="./assets/images/s-works-levo-3.jpg" alt="Widok 3" loading="lazy" />
             </button>
           </div>
         </div>
@@ -1083,19 +1245,19 @@
         <div class="gallery" data-gallery>
           <img
             class="gallery__main"
-            src="./assets/images/turbo-levo-comp-1.webp"
+            src="./assets/images/turbo-levo-comp-1.jpg"
             alt="Turbo Levo Comp Carbon"
             data-gallery-main
           />
           <div class="gallery__thumbs">
-            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-comp-1.webp">
-              <img src="./assets/images/turbo-levo-comp-1.webp" alt="Widok 1" loading="lazy" />
+            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-comp-1.jpg">
+              <img src="./assets/images/turbo-levo-comp-1.jpg" alt="Widok 1" loading="lazy" />
             </button>
-            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-comp-2.webp">
-              <img src="./assets/images/turbo-levo-comp-2.webp" alt="Widok 2" loading="lazy" />
+            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-comp-2.jpg">
+              <img src="./assets/images/turbo-levo-comp-2.jpg" alt="Widok 2" loading="lazy" />
             </button>
-            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-comp-3.webp">
-              <img src="./assets/images/turbo-levo-comp-3.webp" alt="Widok 3" loading="lazy" />
+            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-comp-3.jpg">
+              <img src="./assets/images/turbo-levo-comp-3.jpg" alt="Widok 3" loading="lazy" />
             </button>
           </div>
         </div>
