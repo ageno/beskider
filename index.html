@@ -1,85 +1,830 @@
 <!doctype html>
-<html lang="pl">
+<html lang="pl" data-theme="light">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Beskider</title>
+    <title>Beskider – wypożyczalnia sprzętu sportowego</title>
     <meta
       name="description"
-      content="Beskider — pierwsza wersja strony w przygotowaniu."
+      content="Beskider to premium wypożyczalnia rowerów MTB w Beskidach. Poznaj ofertę, zasady i dostępne modele w trybie offline-ready PWA."
     />
-    <style>
-      :root {
-        color-scheme: light;
-        font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
-        line-height: 1.5;
-        background: #f6f7fb;
-        color: #1a1d24;
-      }
-
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-
-      body {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 24px;
-      }
-
-      main {
-        max-width: 640px;
-        background: #ffffff;
-        padding: 40px;
-        border-radius: 20px;
-        box-shadow: 0 24px 48px rgba(21, 28, 46, 0.12);
-      }
-
-      h1 {
-        font-size: 2.25rem;
-        margin-bottom: 16px;
-      }
-
-      p {
-        font-size: 1.1rem;
-        color: #444b5a;
-        margin-bottom: 20px;
-      }
-
-      ul {
-        list-style: none;
-        display: grid;
-        gap: 12px;
-      }
-
-      li {
-        background: #f0f3ff;
-        padding: 14px 16px;
-        border-radius: 12px;
-        font-size: 0.98rem;
-      }
-
-      strong {
-        color: #1d2b57;
-      }
-    </style>
+    <meta name="theme-color" content="#1f7a4a" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; img-src 'self'; style-src 'self'; script-src 'self' https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; font-src 'self';"
+    />
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="icon" href="./assets/icons/icon-192.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./style.css" />
+    <script defer src="./app.js"></script>
   </head>
   <body>
-    <main>
-      <h1>Beskider</h1>
-      <p>
-        Witaj! To pierwsza wersja strony projektu Beskider. Już wkrótce pojawi
-        się tu więcej treści.
-      </p>
-      <ul>
-        <li><strong>Status:</strong> wersja startowa</li>
-        <li><strong>Plan:</strong> opis projektu, oferta, kontakt</li>
-        <li><strong>Kontakt:</strong> hello@beskider.pl</li>
-      </ul>
+    <a class="skip-link" href="#main">Przejdź do treści</a>
+
+    <header class="site-header" id="top">
+      <nav class="nav glass" aria-label="Główna nawigacja">
+        <div class="nav__brand">
+          <span class="nav__logo" aria-hidden="true">B</span>
+          <div>
+            <strong>Beskider</strong>
+            <span class="nav__tagline">Premium wypożyczalnia MTB</span>
+          </div>
+        </div>
+        <button
+          class="nav__toggle"
+          type="button"
+          aria-label="Otwórz menu"
+          aria-expanded="false"
+          data-nav-toggle
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="nav__menu" data-nav-menu>
+          <a href="#offer">Oferta</a>
+          <a href="#products">Rowery</a>
+          <a href="#pricing">Cennik</a>
+          <a href="#rules">Zasady</a>
+          <a href="#faq">FAQ</a>
+          <a href="#about">O nas</a>
+          <a href="#contact">Kontakt</a>
+          <button
+            class="theme-toggle"
+            type="button"
+            data-theme-toggle
+            aria-label="Zmień motyw"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M12 2a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm0 17a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1zm10-7a1 1 0 0 1-1 1h-2a1 1 0 1 1 0-2h2a1 1 0 0 1 1 1zM5 12a1 1 0 0 1-1 1H2a1 1 0 1 1 0-2h2a1 1 0 0 1 1 1zm13.66-6.66a1 1 0 0 1 0 1.41l-1.41 1.41a1 1 0 0 1-1.41-1.41l1.41-1.41a1 1 0 0 1 1.41 0zM8.17 17.66a1 1 0 0 1 0 1.41l-1.41 1.41a1 1 0 0 1-1.41-1.41l1.41-1.41a1 1 0 0 1 1.41 0zm9.49 1.41a1 1 0 0 1-1.41 0l-1.41-1.41a1 1 0 1 1 1.41-1.41l1.41 1.41a1 1 0 0 1 0 1.41zM6.76 6.76a1 1 0 0 1-1.41 0L3.94 5.35A1 1 0 0 1 5.35 3.94l1.41 1.41a1 1 0 0 1 0 1.41zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10z"
+              />
+            </svg>
+            <span>Motyw</span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero__content">
+          <p class="eyebrow">Beskider • Bielsko-Biała</p>
+          <h1 id="hero-title">Wypożycz rower MTB klasy premium bez kompromisów.</h1>
+          <p class="hero__lead">
+            Beskider to nowa jakość wypożyczania sprzętu sportowego. Dostajesz rower w pełnym
+            serwisie, jasne zasady i obsługę, która działa tak lekko jak najlepsze rozwiązania
+            Apple. Jesteśmy gotowi na sezon, a Ty? Zaplanuj trasę, sprawdź ofertę i odbierz
+            sprzęt w centrum Beskidów.
+          </p>
+          <div class="hero__actions">
+            <a class="button button--primary" href="#offer">Sprawdź ofertę</a>
+            <a class="button button--ghost" href="#contact">Skontaktuj się</a>
+          </div>
+          <div class="hero__meta">
+            <div>
+              <strong>100% offline</strong>
+              <span>PWA z pełnym cache</span>
+            </div>
+            <div>
+              <strong>4 modele MTB</strong>
+              <span>Turbo Levo + S-Works</span>
+            </div>
+            <div>
+              <strong>Odbiór od 8:00</strong>
+              <span>Parking Błonia</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero__card glass">
+          <h2>Najbliższy odbiór</h2>
+          <p>
+            Zarezerwuj telefonicznie, a sprzęt przygotujemy w ciągu 30 minut. Podstawowy
+            przegląd, ciśnienie, check-lista bezpieczeństwa i pełna dokumentacja są zawsze
+            w pakiecie.
+          </p>
+          <div class="hero__cta">
+            <a class="button button--primary" href="#offer">Zobacz kategorie</a>
+            <button class="button button--ghost" type="button" data-open-modal="regulamin">
+              Zasady wypożyczeń
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="offer" aria-labelledby="offer-title">
+        <div class="section__head">
+          <h2 id="offer-title">Oferta sprzętu</h2>
+          <p>
+            Wybierz kategorię. Rowery MTB są dostępne od ręki, a kolejne kategorie wchodzą do
+            harmonogramu na sezon 2026.
+          </p>
+        </div>
+        <div class="tabs" role="tablist" aria-label="Kategorie sprzętu">
+          <button
+            class="tabs__tab is-active"
+            role="tab"
+            aria-selected="true"
+            aria-controls="tab-bikes"
+            id="tab-bikes-button"
+            data-tab-target="tab-bikes"
+          >
+            Rowery MTB
+          </button>
+          <button class="tabs__tab" role="tab" aria-disabled="true" disabled>
+            Narty (coming soon)
+          </button>
+          <button class="tabs__tab" role="tab" aria-disabled="true" disabled>
+            Snowboard (coming soon)
+          </button>
+        </div>
+        <div class="tab-panel is-active" role="tabpanel" id="tab-bikes">
+          <div class="offer-grid">
+            <article class="offer-card">
+              <h3>Rowery e-MTB</h3>
+              <p>
+                Elektryczne MTB z silnikami nowej generacji. Idealne na Beskidy, wymagające
+                podjazdy i długie zjazdy bez zmęczenia.
+              </p>
+              <ul>
+                <li>Pełna amortyzacja</li>
+                <li>Bateria 700 Wh</li>
+                <li>Konfiguracja S2–S4</li>
+              </ul>
+            </article>
+            <article class="offer-card">
+              <h3>Obsługa premium</h3>
+              <p>
+                Każdy rower przechodzi szczegółową inspekcję. Otrzymujesz ustawienia pod swój
+                styl jazdy oraz check-listę bezpieczeństwa.
+              </p>
+              <ul>
+                <li>Serwis przed odbiorem</li>
+                <li>Protokół zdawczo-odbiorczy</li>
+                <li>Kask obowiązkowy</li>
+              </ul>
+            </article>
+            <article class="offer-card">
+              <h3>Wsparcie na trasie</h3>
+              <p>
+                Dostęp do konsultanta, map tras i rekomendacji. Jesteśmy dostępni zanim
+                wyjedziesz i wtedy, gdy wracasz.
+              </p>
+              <ul>
+                <li>Telefon w godzinach 8:00–20:00</li>
+                <li>Top 10 tras w okolicy</li>
+                <li>FAQ techniczne</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="products" aria-labelledby="products-title">
+        <div class="section__head">
+          <h2 id="products-title">Rowery dostępne teraz</h2>
+          <p>
+            Cztery modele klasy premium. Każdy z nich ma stałą cenę, pełną specyfikację i
+            dokumentację numerów seryjnych. Kliknij, aby zobaczyć szczegóły.
+          </p>
+        </div>
+        <div class="product-grid">
+          <article class="product-card">
+            <img
+              src="./assets/images/turbo-levo-3-expert-1.svg"
+              alt="Turbo Levo 3 Expert T-Type"
+              loading="lazy"
+            />
+            <div class="product-card__body">
+              <h3>Turbo Levo 3 Expert T-Type</h3>
+              <p>Rozmiar: S2 / S3 / S4</p>
+              <div class="product-card__prices">
+                <span>300 zł netto / dzień (369 zł brutto)</span>
+                <span>500 zł netto / 2 dni (615 zł brutto)</span>
+              </div>
+              <p class="product-card__deposit">Zastaw: 8000 zł</p>
+              <div class="product-card__status status status--available">
+                Dostępny
+              </div>
+              <button
+                class="button button--primary"
+                type="button"
+                data-open-modal="product-expert"
+              >
+                Zobacz specyfikację
+              </button>
+            </div>
+          </article>
+          <article class="product-card">
+            <img
+              src="./assets/images/turbo-levo-3-comp-1.svg"
+              alt="Turbo Levo 3 Comp Carbon"
+              loading="lazy"
+            />
+            <div class="product-card__body">
+              <h3>Turbo Levo 3 Comp Carbon</h3>
+              <p>Rozmiar: S2 / S3 / S4</p>
+              <div class="product-card__prices">
+                <span>300 zł netto / dzień (369 zł brutto)</span>
+                <span>500 zł netto / 2 dni (615 zł brutto)</span>
+              </div>
+              <p class="product-card__deposit">Zastaw: 8000 zł</p>
+              <div class="product-card__status status status--rented">
+                Wypożyczony
+              </div>
+              <button
+                class="button button--primary"
+                type="button"
+                data-open-modal="product-comp-carbon"
+              >
+                Zobacz specyfikację
+              </button>
+            </div>
+          </article>
+          <article class="product-card">
+            <img
+              src="./assets/images/s-works-levo-1.svg"
+              alt="S-Works Turbo Levo G3"
+              loading="lazy"
+            />
+            <div class="product-card__body">
+              <h3>S-Works Turbo Levo G3</h3>
+              <p>Rozmiar: S2 / S3 / S4</p>
+              <div class="product-card__prices">
+                <span>300 zł netto / dzień (369 zł brutto)</span>
+                <span>500 zł netto / 2 dni (615 zł brutto)</span>
+              </div>
+              <p class="product-card__deposit">Zastaw: 8000 zł</p>
+              <div class="product-card__status status status--available">
+                Dostępny
+              </div>
+              <button
+                class="button button--primary"
+                type="button"
+                data-open-modal="product-s-works"
+              >
+                Zobacz specyfikację
+              </button>
+            </div>
+          </article>
+          <article class="product-card">
+            <img
+              src="./assets/images/turbo-levo-comp-1.svg"
+              alt="Turbo Levo Comp Carbon"
+              loading="lazy"
+            />
+            <div class="product-card__body">
+              <h3>Turbo Levo Comp Carbon</h3>
+              <p>Rozmiar: S2 / S3 / S4</p>
+              <div class="product-card__prices">
+                <span>300 zł netto / dzień (369 zł brutto)</span>
+                <span>500 zł netto / 2 dni (615 zł brutto)</span>
+              </div>
+              <p class="product-card__deposit">Zastaw: 8000 zł</p>
+              <div class="product-card__status status status--rented">
+                Wypożyczony
+              </div>
+              <button
+                class="button button--primary"
+                type="button"
+                data-open-modal="product-comp"
+              >
+                Zobacz specyfikację
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="pricing" aria-labelledby="pricing-title">
+        <div class="section__head">
+          <h2 id="pricing-title">Cennik</h2>
+          <p>
+            Transparentne ceny netto i brutto. Bez kalkulatorów, bez ukrytych kosztów. Wszystkie
+            modele mają tę samą taryfę.
+          </p>
+        </div>
+        <div class="pricing-grid">
+          <article class="pricing-card">
+            <h3>1 dzień</h3>
+            <p class="pricing-card__price">300 zł netto</p>
+            <p class="pricing-card__gross">369 zł brutto</p>
+            <ul>
+              <li>Pełny serwis przed wydaniem</li>
+              <li>Zastaw 8000 zł</li>
+              <li>Wsparcie techniczne</li>
+            </ul>
+          </article>
+          <article class="pricing-card">
+            <h3>2 dni</h3>
+            <p class="pricing-card__price">500 zł netto</p>
+            <p class="pricing-card__gross">615 zł brutto</p>
+            <ul>
+              <li>Dostępność od ręki</li>
+              <li>Pakiet bezpieczeństwa</li>
+              <li>Briefing tras</li>
+            </ul>
+          </article>
+          <article class="pricing-card">
+            <h3>Zastaw</h3>
+            <p class="pricing-card__price">8000 zł</p>
+            <p class="pricing-card__gross">Zwrotny w 24h</p>
+            <ul>
+              <li>Numer seryjny w umowie</li>
+              <li>Dwa dokumenty tożsamości</li>
+              <li>Odpowiedzialność tylko za realne straty</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="cta" aria-labelledby="cta-title">
+        <div>
+          <h2 id="cta-title">Gotowy na trasę?</h2>
+          <p>
+            Wybierz model i potwierdź dostępność. Zespół Beskider odpowie w ciągu 30 minut i
+            przygotuje sprzęt do odbioru.
+          </p>
+        </div>
+        <a class="button button--primary" href="#offer">Przejdź do oferty</a>
+      </section>
+
+      <section class="section" id="rules" aria-labelledby="rules-title">
+        <div class="section__head">
+          <h2 id="rules-title">Zasady wypożyczeń – skrót</h2>
+          <p>
+            Najważniejsze informacje w pigułce. Pełne zasady znajdziesz w regulaminie.
+          </p>
+        </div>
+        <div class="rules-grid">
+          <article class="rule-card">
+            <h3>Doba wypożyczenia</h3>
+            <p>
+              Doba liczona jest od godziny odbioru. Zwrot następuje do 10:00 następnego dnia.
+            </p>
+          </article>
+          <article class="rule-card">
+            <h3>Zastaw 8000 zł</h3>
+            <p>
+              Zastaw jest zwrotny po zdaniu sprzętu i weryfikacji stanu technicznego.
+            </p>
+          </article>
+          <article class="rule-card">
+            <h3>Bezpieczeństwo</h3>
+            <p>
+              Kask jest obowiązkowy. Jazda odbywa się na własne ryzyko, a sprzęt nie może być
+              modyfikowany ani podnajmowany.
+            </p>
+          </article>
+          <button class="button button--ghost" type="button" data-open-modal="regulamin">
+            Pełny regulamin
+          </button>
+        </div>
+      </section>
+
+      <section class="section" id="faq" aria-labelledby="faq-title">
+        <div class="section__head">
+          <h2 id="faq-title">FAQ</h2>
+          <p>Najczęstsze pytania organizacyjne i techniczne.</p>
+        </div>
+        <div class="accordion" data-accordion>
+          <div class="accordion__item">
+            <button class="accordion__toggle" type="button" aria-expanded="false">
+              Czy mogę odebrać rower wcześniej niż 8:00?
+            </button>
+            <div class="accordion__panel">
+              <p>
+                Tak, po wcześniejszym ustaleniu telefonicznym. Priorytetem jest przygotowanie
+                sprzętu i dokumentów, dlatego prosimy o minimum 24h wyprzedzenia.
+              </p>
+            </div>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__toggle" type="button" aria-expanded="false">
+              Jakie dokumenty są wymagane?
+            </button>
+            <div class="accordion__panel">
+              <p>
+                Wymagane są dwa dokumenty tożsamości (dowód osobisty i prawo jazdy lub paszport).
+                Dane trafiają do protokołu i są chronione zgodnie z polityką prywatności.
+              </p>
+            </div>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__toggle" type="button" aria-expanded="false">
+              Czy rowery są przygotowane do jazdy enduro?
+            </button>
+            <div class="accordion__panel">
+              <p>
+                Tak. Każdy model jest skonfigurowany pod styl trail i enduro, z odpowiednim
+                skokiem zawieszenia i agresywną geometrią.
+              </p>
+            </div>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__toggle" type="button" aria-expanded="false">
+              Co jeśli spóźnię się ze zwrotem?
+            </button>
+            <div class="accordion__panel">
+              <p>
+                Każde opóźnienie skutkuje naliczeniem kolejnej pełnej doby. Dzięki temu wiemy, że
+                kolejni klienci odbiorą rower w idealnym stanie.
+              </p>
+            </div>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__toggle" type="button" aria-expanded="false">
+              Czy mogę zabrać rower poza Beskidy?
+            </button>
+            <div class="accordion__panel">
+              <p>
+                Tak, ale musisz poinformować o tym przy podpisywaniu umowy. Dzięki temu wiemy,
+                gdzie się znajduje sprzęt oraz jakie wsparcie przygotować.
+              </p>
+            </div>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__toggle" type="button" aria-expanded="false">
+              Czy mogę wypożyczyć kask i ochraniacze?
+            </button>
+            <div class="accordion__panel">
+              <p>
+                Tak, kask jest obowiązkowy i dostępny w ramach pakietu bezpieczeństwa. Ochraniacze
+                można dobrać indywidualnie podczas odbioru.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="about" aria-labelledby="about-title">
+        <div class="section__head">
+          <h2 id="about-title">O nas</h2>
+        </div>
+        <div class="about">
+          <p>
+            Beskider powstał z potrzeby stworzenia wypożyczalni, która działa równie sprawnie jak
+            nowoczesne produkty technologiczne. Jesteśmy zespołem ludzi, którzy kochają góry i
+            wielogodzinne wyprawy po Beskidach. Od lat testujemy sprzęt premium i wiemy, że
+            wysoka jakość wymaga równie wysokich standardów obsługi. Nasza siedziba znajduje się
+            w Bielsku-Białej, w miejscu skąd najszybciej dotrzesz na ulubione trasy. Stawiamy na
+            prostotę, jasne zasady i pełną transparentność w kosztach. Uważamy, że wypożyczenie
+            roweru powinno być tak proste jak jego obsługa na szlaku. Dlatego wszystkie informacje
+            prezentujemy w jednym miejscu, a dokumenty przygotowujemy przed Twoim przyjazdem.
+            Nie obiecujemy rzeczy niemożliwych, ale dowozimy to, co uzgadniamy. Każdy rower
+            przechodzi kontrolę po każdej trasie, a części eksploatacyjne są wymieniane wcześniej
+            niż sugeruje producent. Dbamy o estetykę, bo sprzęt premium powinien wyglądać
+            perfekcyjnie. Naszym celem jest długoterminowa relacja z klientami, a nie jednorazowa
+            transakcja. Dlatego słuchamy opinii i rozwijamy ofertę krok po kroku. Współpracujemy
+            z lokalnymi przewodnikami, abyś miał dostęp do najlepszych tras. Gdy jesteś w trasie,
+            możesz liczyć na nasze wsparcie. Wierzymy, że technologia powinna wspierać sport, a
+            nie go komplikować. Dzięki temu projektujemy doświadczenie, które zapamiętasz na
+            długo. Chcemy, aby Beskider był synonimem jakości w wypożyczaniu sprzętu sportowego.
+            Kolejne kategorie są już w planach, ale rowery MTB pozostają naszym sercem. Zawsze
+            stawiamy na bezpieczeństwo, bo od niego zależy przyjemność z jazdy. Jeśli szukasz
+            miejsca, gdzie sprzęt jest przygotowany jak do zawodów, jesteś we właściwym miejscu.
+            Dziękujemy, że jesteś z nami i zapraszamy na kolejne wyprawy.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="contact" aria-labelledby="contact-title">
+        <div class="section__head">
+          <h2 id="contact-title">Kontakt</h2>
+          <p>Skontaktuj się z nami lub odwiedź punkt odbioru.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3>E-mail</h3>
+            <p><a href="mailto:hello@beskider.pl">hello@beskider.pl</a></p>
+            <p>Odpowiadamy maksymalnie w 30 minut w godzinach 8:00–20:00.</p>
+          </div>
+          <div class="contact-card">
+            <h3>Social media</h3>
+            <ul>
+              <li><a href="https://www.instagram.com" rel="noopener">Instagram</a></li>
+              <li><a href="https://www.facebook.com" rel="noopener">Facebook</a></li>
+              <li><a href="https://www.youtube.com" rel="noopener">YouTube</a></li>
+            </ul>
+          </div>
+          <div class="contact-card">
+            <h3>Lokalizacja</h3>
+            <p>Bielsko-Biała</p>
+            <p>ul. Czołgistów – parking Błonia</p>
+            <p>Odbiory i zwroty po wcześniejszym kontakcie.</p>
+          </div>
+        </div>
+      </section>
     </main>
+
+    <footer class="footer">
+      <div>
+        <strong>Beskider sp. z o.o.</strong>
+        <span>NIP: 000-000-00-00</span>
+        <span>ul. Przykładowa 1, 00-000 Bielsko-Biała</span>
+      </div>
+      <div>
+        <button class="link-button" type="button" data-open-modal="regulamin">
+          Regulamin
+        </button>
+        <button class="link-button" type="button" data-open-modal="privacy">
+          Polityka prywatności
+        </button>
+      </div>
+      <div>
+        <span>© 2026 Beskider. Wszelkie prawa zastrzeżone.</span>
+      </div>
+    </footer>
+
+    <div class="cookie-banner glass" id="cookie-banner" role="dialog" aria-live="polite">
+      <div>
+        <h3>Twoja prywatność</h3>
+        <p>
+          Używamy cookies, aby ulepszać działanie strony i mierzyć statystyki w GA4. Możesz
+          zaakceptować, odrzucić lub spersonalizować ustawienia.
+        </p>
+      </div>
+      <div class="cookie-banner__actions">
+        <button class="button button--ghost" type="button" data-cookie-reject>
+          Odrzuć
+        </button>
+        <button class="button button--ghost" type="button" data-cookie-settings>
+          Ustawienia
+        </button>
+        <button class="button button--primary" type="button" data-cookie-accept>
+          Akceptuj
+        </button>
+      </div>
+    </div>
+
+    <div class="modal" id="cookie-settings" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="modal__backdrop" data-close-modal></div>
+      <div class="modal__content glass" role="document">
+        <button class="modal__close" type="button" data-close-modal aria-label="Zamknij modal">
+          ×
+        </button>
+        <h2>Ustawienia cookies</h2>
+        <p>Możesz zmienić zgodę na analitykę. Funkcjonalne cookies są zawsze aktywne.</p>
+        <label class="switch">
+          <input type="checkbox" id="analytics-toggle" />
+          <span>GA4 / analityka</span>
+        </label>
+        <div class="modal__actions">
+          <button class="button button--ghost" type="button" data-cookie-save>
+            Zapisz wybór
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="regulamin" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="modal__backdrop" data-close-modal></div>
+      <div class="modal__content modal__content--long glass" role="document">
+        <button class="modal__close" type="button" data-close-modal aria-label="Zamknij modal">
+          ×
+        </button>
+        <h2>Regulamin wypożyczeń</h2>
+        <ol>
+          <li>Regulamin dotyczy sprzętu sportowego: rowerów MTB oraz przyszłych kategorii.</li>
+          <li>Wypożyczający musi mieć ukończone 18 lat.</li>
+          <li>Wymagane są dwa dokumenty tożsamości.</li>
+          <li>Odpowiedzialność klienta obejmuje realne straty związane z uszkodzeniem sprzętu.</li>
+          <li>Opóźnienie w zwrocie skutkuje naliczeniem kolejnej pełnej doby.</li>
+          <li>Kask jest obowiązkowy.</li>
+          <li>Zakaz modyfikacji sprzętu bez zgody wypożyczalni.</li>
+          <li>Zakaz podnajmu oraz udostępniania sprzętu osobom trzecim.</li>
+          <li>Jazda odbywa się na własne ryzyko.</li>
+          <li>Prawo właściwe: prawo polskie.</li>
+          <li>Sąd właściwy: Bielsko-Biała.</li>
+          <li>Wypożyczalnia zastrzega prawo do zmian regulaminu.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="modal" id="privacy" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="modal__backdrop" data-close-modal></div>
+      <div class="modal__content modal__content--long glass" role="document">
+        <button class="modal__close" type="button" data-close-modal aria-label="Zamknij modal">
+          ×
+        </button>
+        <h2>Polityka prywatności</h2>
+        <p>
+          Administratorem danych jest Beskider sp. z o.o. (placeholder). Dane kontaktowe znajdują
+          się w stopce strony.
+        </p>
+        <p>
+          Wykorzystujemy cookies w celach analitycznych (GA4), aby poprawiać jakość usług.
+          Możesz w każdej chwili zmienić zgodę w ustawieniach cookies.
+        </p>
+        <p>
+          Strona jest przygotowana pod przyszły formularz rezerwacji. Wtedy będziemy informować
+          o dodatkowych celach przetwarzania danych.
+        </p>
+        <p>
+          Dane przechowujemy przez okresy wynikające z przepisów prawa lub do momentu cofnięcia
+          zgody. Szczegóły dostępne są na życzenie.
+        </p>
+      </div>
+    </div>
+
+    <div class="modal" id="product-expert" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="modal__backdrop" data-close-modal></div>
+      <div class="modal__content modal__content--product glass" role="document">
+        <button class="modal__close" type="button" data-close-modal aria-label="Zamknij modal">
+          ×
+        </button>
+        <h2>Turbo Levo 3 Expert T-Type</h2>
+        <div class="gallery" data-gallery>
+          <img
+            class="gallery__main"
+            src="./assets/images/turbo-levo-3-expert-1.svg"
+            alt="Turbo Levo 3 Expert T-Type"
+            data-gallery-main
+          />
+          <div class="gallery__thumbs">
+            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-expert-1.svg">
+              <img
+                src="./assets/images/turbo-levo-3-expert-1.svg"
+                alt="Widok 1"
+                loading="lazy"
+              />
+            </button>
+            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-expert-2.svg">
+              <img
+                src="./assets/images/turbo-levo-3-expert-2.svg"
+                alt="Widok 2"
+                loading="lazy"
+              />
+            </button>
+            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-expert-3.svg">
+              <img
+                src="./assets/images/turbo-levo-3-expert-3.svg"
+                alt="Widok 3"
+                loading="lazy"
+              />
+            </button>
+          </div>
+        </div>
+        <div class="modal__details">
+          <div>
+            <h3>Specyfikacja techniczna</h3>
+            <ul>
+              <li>Silnik: Specialized 2.2, 90 Nm</li>
+              <li>Bateria: 700 Wh, Smart Control</li>
+              <li>Amortyzacja: 160 mm przód / 150 mm tył</li>
+              <li>Hamulce: Magura MT7, tarcze 220 mm</li>
+              <li>Napęd: SRAM GX Eagle T-Type 12s</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Zastaw i dokumenty</h3>
+            <p>Zastaw: 8000 zł. Wymagane dwa dokumenty tożsamości.</p>
+            <h3>Numery seryjne</h3>
+            <p>Każdy rower posiada numer seryjny wpisany do protokołu odbioru.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="product-comp-carbon" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="modal__backdrop" data-close-modal></div>
+      <div class="modal__content modal__content--product glass" role="document">
+        <button class="modal__close" type="button" data-close-modal aria-label="Zamknij modal">
+          ×
+        </button>
+        <h2>Turbo Levo 3 Comp Carbon</h2>
+        <div class="gallery" data-gallery>
+          <img
+            class="gallery__main"
+            src="./assets/images/turbo-levo-3-comp-1.svg"
+            alt="Turbo Levo 3 Comp Carbon"
+            data-gallery-main
+          />
+          <div class="gallery__thumbs">
+            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-comp-1.svg">
+              <img src="./assets/images/turbo-levo-3-comp-1.svg" alt="Widok 1" loading="lazy" />
+            </button>
+            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-comp-2.svg">
+              <img src="./assets/images/turbo-levo-3-comp-2.svg" alt="Widok 2" loading="lazy" />
+            </button>
+            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-comp-3.svg">
+              <img src="./assets/images/turbo-levo-3-comp-3.svg" alt="Widok 3" loading="lazy" />
+            </button>
+          </div>
+        </div>
+        <div class="modal__details">
+          <div>
+            <h3>Specyfikacja techniczna</h3>
+            <ul>
+              <li>Silnik: Specialized 2.1, 90 Nm</li>
+              <li>Bateria: 700 Wh, szybkie ładowanie</li>
+              <li>Amortyzacja: Fox 38 / Float X</li>
+              <li>Napęd: SRAM GX Eagle 12s</li>
+              <li>Koła: Roval Traverse, 29"</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Zastaw i dokumenty</h3>
+            <p>Zastaw: 8000 zł. Zapisujemy numery seryjne w umowie.</p>
+            <h3>Numery seryjne</h3>
+            <p>Numery seryjne są weryfikowane przed odbiorem oraz zwrotem.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="product-s-works" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="modal__backdrop" data-close-modal></div>
+      <div class="modal__content modal__content--product glass" role="document">
+        <button class="modal__close" type="button" data-close-modal aria-label="Zamknij modal">
+          ×
+        </button>
+        <h2>S-Works Turbo Levo G3</h2>
+        <div class="gallery" data-gallery>
+          <img
+            class="gallery__main"
+            src="./assets/images/s-works-levo-1.svg"
+            alt="S-Works Turbo Levo G3"
+            data-gallery-main
+          />
+          <div class="gallery__thumbs">
+            <button data-gallery-thumb data-gallery-target="./assets/images/s-works-levo-1.svg">
+              <img src="./assets/images/s-works-levo-1.svg" alt="Widok 1" loading="lazy" />
+            </button>
+            <button data-gallery-thumb data-gallery-target="./assets/images/s-works-levo-2.svg">
+              <img src="./assets/images/s-works-levo-2.svg" alt="Widok 2" loading="lazy" />
+            </button>
+            <button data-gallery-thumb data-gallery-target="./assets/images/s-works-levo-3.svg">
+              <img src="./assets/images/s-works-levo-3.svg" alt="Widok 3" loading="lazy" />
+            </button>
+          </div>
+        </div>
+        <div class="modal__details">
+          <div>
+            <h3>Specyfikacja techniczna</h3>
+            <ul>
+              <li>Rama: S-Works FACT 11m</li>
+              <li>Silnik: Specialized 2.2, 90 Nm</li>
+              <li>Bateria: 700 Wh, Range Optimizer</li>
+              <li>Zawieszenie: RockShox Zeb / Super Deluxe</li>
+              <li>Napęd: SRAM XX Eagle T-Type</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Zastaw i dokumenty</h3>
+            <p>Wymagany zastaw 8000 zł, rozliczany do 24h po zwrocie.</p>
+            <h3>Numery seryjne</h3>
+            <p>Każdy egzemplarz posiada rejestrowany numer seryjny.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="product-comp" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="modal__backdrop" data-close-modal></div>
+      <div class="modal__content modal__content--product glass" role="document">
+        <button class="modal__close" type="button" data-close-modal aria-label="Zamknij modal">
+          ×
+        </button>
+        <h2>Turbo Levo Comp Carbon</h2>
+        <div class="gallery" data-gallery>
+          <img
+            class="gallery__main"
+            src="./assets/images/turbo-levo-comp-1.svg"
+            alt="Turbo Levo Comp Carbon"
+            data-gallery-main
+          />
+          <div class="gallery__thumbs">
+            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-comp-1.svg">
+              <img src="./assets/images/turbo-levo-comp-1.svg" alt="Widok 1" loading="lazy" />
+            </button>
+            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-comp-2.svg">
+              <img src="./assets/images/turbo-levo-comp-2.svg" alt="Widok 2" loading="lazy" />
+            </button>
+            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-comp-3.svg">
+              <img src="./assets/images/turbo-levo-comp-3.svg" alt="Widok 3" loading="lazy" />
+            </button>
+          </div>
+        </div>
+        <div class="modal__details">
+          <div>
+            <h3>Specyfikacja techniczna</h3>
+            <ul>
+              <li>Silnik: Specialized 2.1, 90 Nm</li>
+              <li>Bateria: 700 Wh</li>
+              <li>Amortyzacja: RockShox Lyrik / Deluxe</li>
+              <li>Napęd: SRAM GX Eagle 12s</li>
+              <li>Opony: Butcher / Eliminator, 29"</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Zastaw i dokumenty</h3>
+            <p>Zastaw 8000 zł, zwrot po weryfikacji stanu technicznego.</p>
+            <h3>Numery seryjne</h3>
+            <p>Numery seryjne są przechowywane w protokole.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
