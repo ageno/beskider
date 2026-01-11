@@ -65,7 +65,7 @@ Projekt realizowany jest jako **statyczna aplikacja PWA**, bez backendu, z myśl
 - Backend: brak
 - Dane: statyczne (HTML)
 - Logika: Vanilla JS
-- Stylowanie: Tailwind CSS (CDN) + komponenty utility-first
+- Stylowanie: skompilowany CSS inline w `index.html` (bez CDN)
 
 ---
 
@@ -98,7 +98,7 @@ Sekcje:
   - focus trap
 - Dark/Light toggle:
   - localStorage
-  - inline SVG (ikona bez tekstu)
+  - inline SVG (księżyc w light, słońce w dark)
 - WCAG:
   - aria-labels
   - tabindex
@@ -106,7 +106,10 @@ Sekcje:
 - Header: niski, przylega do górnej krawędzi, subtelna linia podkreślenia
 - Header zawsze nad hero (wyższy z-index) dla klikalności linków
 - Podświetlenie aktywnej zakładki: cienka linia pod linkiem (Apple-like)
+- Podkreślenie aktywnej zakładki: jeden animowany pasek przesuwający się po osi X, wyrównany do dolnej krawędzi headera
+- Podkreślenie aktywnej zakładki: pozycjonowane względem kontenera `.nav` (kotwica od lewej) dla precyzji
 - Styl local-nav jak Apple: jasne tło, cienka linia separatora, aktywne podkreślenie
+- Pozycjonowanie linków: wysokość linków w menu dopasowana do przycisku motywu, wyśrodkowanie w osi Y
 - Branding: znak błyskawicy po lewej stronie nazwy Beskider
 
 ---
@@ -408,7 +411,7 @@ Lighthouse (mobile):
     │   └── *-1280.jpg
     └── icons/
 
-Style Tailwind (komponenty + @apply) znajduje się w `index.html`.
+Style są skompilowane i w pełni inline w `index.html`.
 
 ---
 

@@ -1,6 +1,8 @@
 const themeToggle = document.querySelector("[data-theme-toggle]");
 const navToggle = document.querySelector("[data-nav-toggle]");
 const navMenu = document.querySelector("[data-nav-menu]");
+const navContainer = document.querySelector(".nav");
+const navUnderline = document.querySelector("[data-nav-underline]");
 const siteHeader = document.querySelector(".site-header");
 const navLinks = navMenu ? Array.from(navMenu.querySelectorAll("a[href^=\"#\"]")) : [];
 const tabs = document.querySelectorAll("[data-tab-target]");
@@ -90,6 +92,19 @@ const updateHeaderState = () => {
   siteHeader.classList.toggle("is-active", isActive);
 };
 
+const updateNavUnderline = (link) => {
+  if (!navUnderline || !navContainer || !link) return;
+  if (!window.matchMedia("(min-width: 768px)").matches) {
+    navUnderline.style.width = "0";
+    return;
+  }
+  const navRect = navContainer.getBoundingClientRect();
+  const linkRect = link.getBoundingClientRect();
+  const left = linkRect.left - navRect.left;
+  navUnderline.style.width = `${linkRect.width}px`;
+  navUnderline.style.transform = `translateX(${left}px)`;
+};
+
 const updateActiveLink = () => {
   if (!navLinks.length) return;
   const scrollY = window.scrollY + 120;
@@ -103,6 +118,7 @@ const updateActiveLink = () => {
     }
   });
   navLinks.forEach((link) => link.classList.toggle("is-active", link === current));
+  updateNavUnderline(current);
 };
 
 const openModal = (modal) => {
@@ -411,7 +427,10 @@ const handleScroll = () => {
 };
 
 window.addEventListener("scroll", handleScroll, { passive: true });
-window.addEventListener("resize", updateAboutTilt, { passive: true });
+window.addEventListener("resize", () => {
+  updateAboutTilt();
+  updateActiveLink();
+}, { passive: true });
 handleScroll();
 
 initTabs();
