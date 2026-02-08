@@ -1,6 +1,6 @@
 const swUrl = new URL(self.location.href);
 const cacheSuffix = swUrl.searchParams.get("v") || "dev";
-const CACHE_VERSION = `beskider-${cacheSuffix}`;
+const CACHE_VERSION = `beskider-${cacheSuffix}-20260208b`;
 const ASSETS = [
   "./",
   "./index.html",
@@ -64,7 +64,12 @@ const ASSETS = [
   "./assets/images/turbo-levo-comp-3-1280.jpg",
   "./assets/images/turbo-levo-comp-3-320.jpg",
   "./assets/images/turbo-levo-comp-3-640.jpg",
-  "./assets/images/turbo-levo-comp-3.jpg"
+  "./assets/images/turbo-levo-comp-3.jpg",
+  "./assets/images/tarmac-sl8-1-320.jpg",
+  "./assets/images/tarmac-sl8-1-640.jpg",
+  "./assets/images/tarmac-sl8-1-1280.jpg",
+  "./assets/images/tarmac-sl8-1.jpg",
+  "./assets/images/aethos-hero-white-bg.jpg"
 ];
 
 self.addEventListener("install", (event) => {

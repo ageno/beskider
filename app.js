@@ -245,26 +245,31 @@ const initCookieBanner = () => {
 };
 
 const initTabs = () => {
+  const panels = document.querySelectorAll(".tab-panel");
+  const applyPanelVisibility = (targetId) => {
+    const showAll = targetId === "tab-bikes-all";
+    panels.forEach((panel) => {
+      panel.classList.toggle("is-active", showAll || panel.id === targetId);
+    });
+  };
+  const activeTab = document.querySelector(".tabs__tab.is-active[data-tab-target]");
+  if (activeTab) applyPanelVisibility(activeTab.dataset.tabTarget);
   tabs.forEach((tab) => {
     const isActive = tab.classList.contains("is-active");
-    tab.setAttribute("aria-selected", String(isActive));
-    tab.setAttribute("tabindex", isActive ? "0" : "-1");
+    if (tab.hasAttribute("aria-selected")) tab.setAttribute("aria-selected", String(isActive));
+    if (tab.hasAttribute("tabindex")) tab.setAttribute("tabindex", isActive ? "0" : "-1");
   });
   tabs.forEach((tab) => {
     tab.addEventListener("click", () => {
+      const targetId = tab.dataset.tabTarget;
+      if (!targetId) return;
       tabs.forEach((item) => {
-        const isActive = item === tab;
+        const isActive = item.dataset.tabTarget === targetId;
         item.classList.toggle("is-active", isActive);
-        item.setAttribute("aria-selected", String(isActive));
-        item.setAttribute("tabindex", isActive ? "0" : "-1");
+        if (item.hasAttribute("aria-selected")) item.setAttribute("aria-selected", String(isActive));
+        if (item.hasAttribute("tabindex")) item.setAttribute("tabindex", isActive ? "0" : "-1");
       });
-      document.querySelectorAll(".tab-panel").forEach((panel) => {
-        panel.classList.remove("is-active");
-      });
-      const panel = document.getElementById(tab.dataset.tabTarget);
-      if (panel) {
-        panel.classList.add("is-active");
-      }
+      applyPanelVisibility(targetId);
     });
   });
 };

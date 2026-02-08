@@ -71,17 +71,27 @@ Projekt realizowany jest jako **statyczna aplikacja PWA**, bez backendu, z myśl
 
 ## 6. Struktura informacji (IA)
 
-Sekcje:
+Lista sekcji w kolejności na stronie (źródło prawdy przy code review i planowaniu treści):
+
 - Navigation
 - Hero
-- Sprzęt (kategorie + produkty)
+- Wyróżniki (feature-band)
+- Sprzęt
+  - Nagłówek sekcji + intro
+  - Rowery elektryczne (intro: E-MTB, E-ROAD BIKE)
+  - Akcesoria w cenie (kask, zestaw naprawczy, konsultacje tras)
+  - Tabs (kategorie: Rowery eMTB, Rowery Szosowe, Narty, Snowboard, Inne)
+  - Karty produktów (grid)
 - CTA
+- Jak wynająć (kontakt, odbiór, co zabrać)
 - Zasady
 - FAQ
 - O nas
 - Kontakt
 - Stopka
 - Modale: Produkt, Regulamin, Polityka
+
+Przy każdej nowej sekcji lub nowym linku w nav należy zaktualizować niniejszą listę oraz ewentualnie §7 (Nawigacja).
 
 ---
 
@@ -172,7 +182,8 @@ Sekcje:
 
 - Tabs (segmented control)
 - Kategorie:
-  - Rowery (active)
+  - Rowery eMTB (active) – karty e-MTB
+  - Rowery Szosowe – S-Works Tarmac SL8 (SRAM RED AXS), S-Works Aethos (SRAM Red eTap AXS)
   - Narty (coming soon)
   - Snowboard (coming soon)
   - Inne (coming soon)
@@ -190,24 +201,18 @@ Sekcje:
 ## 10. Produkty – rowery
 
 ### 10.1 Modele
-- Turbo Levo 3 Expert T-Type
-- Turbo Levo 3 Comp Carbon
-- S-Works Turbo Levo G3
-- Turbo Levo Comp Carbon
+- **eMTB:** Turbo Levo 3 Expert T-Type, Turbo Levo 3 Comp Carbon, S-Works Turbo Levo G3, Turbo Levo Comp Carbon
+- **Szosowe:** S-Works Tarmac SL8 – SRAM RED AXS, S-Works Aethos – SRAM Red eTap AXS
 
 ### 10.2 Karta produktu
-- Nazwa
 - Zdjęcie
 - Zdjęcie z delikatnym wcięciem (24px) od ramki
 - Zdjęcia z `srcset` (320 / 640 / 1280 / full)
-- Cena:
-  - 300 zł netto / dzień
-  - 369 zł brutto
-- Rozmiar: jeden (S2 / S3 / S4)
-- Status:
-  - Dostępny (zielony)
-  - Wypożyczony (pomarańczowy)
+- Cena: od 369 zł netto / dzień
+- Rozmiar: tylko wartość (S2 / S3 / S4) w badge’u z ciemnym tłem i białym fontem, bez opisu „Rozmiar:”
+- Status: badge/label na boxie z rowerem (na zdjęciu), półprzezroczyste tło; Dostępny (zielone tło), Wypożyczony (pomarańczowe tło), biały font
 - Karta bez obramowania, białe tło
+- Brak przycisku „Zobacz specyfikację” (powiększenie / modal produktu wyłączone)
 
 ### 10.3 Galeria
 - Lokalna (assets/)
@@ -224,6 +229,8 @@ Sekcje:
 ---
 
 ## 11. Modal produktu
+
+Modal nie jest obecnie dostępny z listy sprzętu (przycisk „Zobacz specyfikację” usunięty). Markup modali pozostaje w HTML na ewentualne ponowne włączenie.
 
 - Fullscreen
 - Glass background
@@ -242,7 +249,7 @@ Zawartość:
 ## 12. Pricing
 
 - Brak osobnej sekcji cennika
-- Ceny prezentowane bezpośrednio na kartach produktów (netto/brutto)
+- Ceny prezentowane bezpośrednio na kartach produktów (od 369 zł netto / dzień)
 
 ---
 
@@ -412,6 +419,25 @@ Lighthouse (mobile):
     └── icons/
 
 Style są skompilowane i w pełni inline w `index.html`.
+README.md opisuje uruchomienie, cache/versioning oraz zasady obrazów i ikon.
+
+### 26.1 Treść (content inventory)
+
+Szybka mapa treści w `index.html` (do planowania zmian copy):
+
+| Lokalizacja (id / sekcja) | Opis |
+|---------------------------|------|
+| hero | H1, lead, przycisk CTA |
+| feature-band | Wyróżniki (3 kolumny) |
+| equipment | Nagłówek, intro, Rowery elektryczne / Akcesoria, taby, karty produktów |
+| cta | Nagłówek, lead, przycisk |
+| jak-wynajac | 3 karty: kontakt, odbiór, co zabrać |
+| rules | Nagłówek, 3 karty zasad, przycisk regulamin |
+| faq | Accordion z pytaniami |
+| about | Obraz + tekst „O nas” |
+| contact | E-mail, social, adres |
+| stopka | Firma, NIP, copyright |
+| Modale | Produkt (galeria, spec), Regulamin, Polityka |
 
 ---
 
