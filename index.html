@@ -1321,6 +1321,7 @@ html[data-theme="dark"] .tabs-sticky-wrap {
         .product-grid,
         .pricing-grid,
         .rules-grid,
+        .routes-grid,
         .contact-grid {
   display: grid;
   gap: 1.5rem;
@@ -1331,6 +1332,7 @@ html[data-theme="dark"] .tabs-sticky-wrap {
         .product-grid,
         .pricing-grid,
         .rules-grid,
+        .routes-grid,
         .contact-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1341,6 +1343,7 @@ html[data-theme="dark"] .tabs-sticky-wrap {
         .product-grid,
         .pricing-grid,
         .rules-grid,
+        .routes-grid,
         .contact-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -1349,6 +1352,7 @@ html[data-theme="dark"] .tabs-sticky-wrap {
 .offer-card,
         .pricing-card,
         .rule-card,
+        .route-card,
         .contact-card {
   border-radius: 0.5rem;
   border-width: 1px;
@@ -1392,8 +1396,8 @@ html[data-theme="dark"] .tabs-sticky-wrap {
 }
 
 .product-card__media .product-card__status.status--available {
-  background-color: rgb(243 244 246 / 0.95);
-  color: rgb(22 163 74);
+  background-color: rgb(240 249 244);
+  color: rgb(52 105 80);
 }
 
 .product-card__media .product-card__status.status--rented {
@@ -1426,10 +1430,58 @@ html[data-theme="dark"] .tabs-sticky-wrap {
         .product-card > :not([hidden]) ~ :not([hidden]),
         .pricing-card > :not([hidden]) ~ :not([hidden]),
         .rule-card > :not([hidden]) ~ :not([hidden]),
+        .route-card > :not([hidden]) ~ :not([hidden]),
         .contact-card > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+}
+
+.rule-card h3 {
+  font-weight: 600;
+}
+
+.route-card__difficulty {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.125rem;
+  font-size: 0.6rem;
+  line-height: 1;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin: 0;
+}
+
+.route-card__difficulty--very-hard { background-color: rgb(253 243 243); color: rgb(130 62 58); }
+.route-card__difficulty--hard { background-color: rgb(253 245 243); color: rgb(120 70 65); }
+.route-card__difficulty--medium { background-color: rgb(251 248 241); color: rgb(115 85 60); }
+.route-card__difficulty--easy { background-color: rgb(240 249 244); color: rgb(52 105 80); }
+.route-card__difficulty--very-easy { background-color: rgb(240 249 251); color: rgb(48 105 115); }
+
+.route-card__title {
+  font-weight: 600;
+}
+
+.route-card__meta {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: rgb(107 114 128);
+  margin: 0;
+}
+
+html[data-theme="dark"] .route-card__meta {
+  color: rgb(156 163 175);
+}
+
+html[data-theme="dark"] .route-card__difficulty--very-hard { background-color: rgb(69 35 33); color: rgb(253 228 225); }
+html[data-theme="dark"] .route-card__difficulty--hard { background-color: rgb(60 40 38); color: rgb(252 232 228); }
+html[data-theme="dark"] .route-card__difficulty--medium { background-color: rgb(55 48 40); color: rgb(251 243 230); }
+html[data-theme="dark"] .route-card__difficulty--easy { background-color: rgb(35 55 45); color: rgb(218 245 232); }
+html[data-theme="dark"] .route-card__difficulty--very-easy { background-color: rgb(35 52 58); color: rgb(218 242 247); }
+
+.route-card.route-card--hidden {
+  display: none;
 }
 
 .offer-card ul,
@@ -2122,6 +2174,7 @@ html[data-theme="dark"] .tabs__tab[disabled] {
 html[data-theme="dark"] .offer-card,
         html[data-theme="dark"] .pricing-card,
         html[data-theme="dark"] .rule-card,
+        html[data-theme="dark"] .route-card,
         html[data-theme="dark"] .contact-card {
   --tw-border-opacity: 1;
   border-color: rgb(31 41 55 / var(--tw-border-opacity, 1));
@@ -2137,8 +2190,8 @@ html[data-theme="dark"] .product-card {
 }
 
 html[data-theme="dark"] .product-card__media .product-card__status.status--available {
-  background-color: rgb(55 65 81 / 0.9);
-  color: rgb(134 239 172);
+  background-color: rgb(35 55 45);
+  color: rgb(218 245 232);
 }
 
 html[data-theme="dark"] .product-card__media .product-card__status.status--rented {
@@ -3115,6 +3168,7 @@ html[data-theme="dark"] .modal__close {
         </button>
         <div class="nav__menu" data-nav-menu>
           <a href="#equipment">Sprzęt</a>
+          <a href="#routes">Trasy</a>
           <a href="#rules">Zasady</a>
           <a href="#faq">FAQ</a>
           <a href="#about">O nas</a>
@@ -3440,6 +3494,120 @@ html[data-theme="dark"] .modal__close {
         <a class="button button--primary" href="#equipment">Przejdź do sprzętu</a>
       </section>
 
+      <section class="section" id="routes" aria-labelledby="routes-title">
+        <div class="section__head">
+          <h2 id="routes-title">Trasy</h2>
+          <p>
+            Nie wiesz gdzie jeździć? Spokojnie! Chętnie Ci pomożemy, sami jeździmy i wiemy
+            dokładnie gdzie można pojechać, aby wyjazd był niezapomniany. Trasy dopasujemy do
+            Twojego stopnia zaawansowania. Możemy wysłać Ci gotowe linki do wrzucenia na Komoot,
+            Stravę lub Google Maps. Nie zapomnij naładować telefonu!
+          </p>
+        </div>
+        <div class="tabs-sticky-wrap">
+          <div class="tabs tabs--routes" role="tablist" aria-label="Filtr trudności tras">
+            <button type="button" class="tabs__tab is-active" data-route-filter="all">Wszystko</button>
+            <button type="button" class="tabs__tab" data-route-filter="very-easy">Bardzo łatwa</button>
+            <button type="button" class="tabs__tab" data-route-filter="easy">Łatwa</button>
+            <button type="button" class="tabs__tab" data-route-filter="medium">Średnia</button>
+            <button type="button" class="tabs__tab" data-route-filter="hard">Trudna</button>
+            <button type="button" class="tabs__tab" data-route-filter="very-hard">Bardzo trudna</button>
+          </div>
+        </div>
+        <div class="routes-grid">
+          <article class="route-card" data-route-difficulty="easy">
+            <h3 class="route-card__title">Daglezjowy</h3>
+            <p>Łagodnie wijąca się ścieżka podjazdowa na Kozią Górę, przyjemniejsza niż szutrowa droga.</p>
+            <span class="route-card__difficulty route-card__difficulty--easy" aria-label="Trudność: łatwa">Łatwa</span>
+            <p class="route-card__meta">Długość: 4 600 m · Spadek: 6,5% · Obniżenie: 271 m</p>
+          </article>
+          <article class="route-card" data-route-difficulty="easy">
+            <h3 class="route-card__title">Bystry</h3>
+            <p>Szeroki flow trail ze sporą ilością elementów do skakania; mniej doświadczeni muszą się mieć na baczności.</p>
+            <span class="route-card__difficulty route-card__difficulty--easy" aria-label="Trudność: łatwa">Łatwa</span>
+            <p class="route-card__meta">Długość: 2 660 m · Spadek: 7,4% · Obniżenie: 71 m</p>
+          </article>
+          <article class="route-card" data-route-difficulty="very-hard">
+            <h3 class="route-card__title">Dziabar</h3>
+            <p>Stroma i kręta trasa z bardzo stromą skalistą ścianką w środku (brak objazdu) i szybką sekcją na końcu.</p>
+            <span class="route-card__difficulty route-card__difficulty--very-hard" aria-label="Trudność: bardzo trudna">Bardzo trudna</span>
+            <p class="route-card__meta">Długość: 1 300 m · Spadek: 16,1% · Obniżenie: 210 m</p>
+          </article>
+          <article class="route-card" data-route-difficulty="very-hard">
+            <h3 class="route-card__title">Kamieniołom</h3>
+            <p>Trudna technicznie, naturalna ścieżka ze sporą liczbą głazów, korzeni i uskoków.</p>
+            <span class="route-card__difficulty route-card__difficulty--very-hard" aria-label="Trudność: bardzo trudna">Bardzo trudna</span>
+            <p class="route-card__meta">Długość: 1 800 m · Spadek: 13,8% · Obniżenie: 246 m</p>
+          </article>
+          <article class="route-card" data-route-difficulty="very-hard">
+            <h3 class="route-card__title">DH+</h3>
+            <p>Stroma, kamienista i bardzo szybka trasa ze sporą ilością nierówności i sztucznych elementów.</p>
+            <span class="route-card__difficulty route-card__difficulty--very-hard" aria-label="Trudność: bardzo trudna">Bardzo trudna</span>
+            <p class="route-card__meta">Długość: 2 000 m · Spadek: 13,5% · Obniżenie: 271 m</p>
+          </article>
+          <article class="route-card" data-route-difficulty="hard">
+            <h3 class="route-card__title">Gaciok</h3>
+            <p>Naturalny kręty singletrack z jednym wypłaszczeniem i krótkim podjazdem.</p>
+            <span class="route-card__difficulty route-card__difficulty--hard" aria-label="Trudność: trudna">Trudna</span>
+            <p class="route-card__meta">Długość: 2 345 m · Spadek: 6,5% · Obniżenie: 143 m</p>
+          </article>
+          <article class="route-card" data-route-difficulty="hard">
+            <h3 class="route-card__title">Sahaira</h3>
+            <p>Połączenie naturalnej ścieżki leśnej (środek) z szerszą linią w typie A-line (początek i koniec).</p>
+            <span class="route-card__difficulty route-card__difficulty--hard" aria-label="Trudność: trudna">Trudna</span>
+            <p class="route-card__meta">Długość: 1 740 m · Spadek: 11,2% · Obniżenie: 195 m</p>
+          </article>
+          <article class="route-card" data-route-difficulty="easy">
+            <h3 class="route-card__title">Dębowiec</h3>
+            <p>Płynna, momentami szybka trasa z małymi „hopkami” i bandami; w dolnej części dosyć stroma.</p>
+            <span class="route-card__difficulty route-card__difficulty--easy" aria-label="Trudność: łatwa">Łatwa</span>
+            <p class="route-card__meta">Długość: 2 500 m · Spadek: 12,5% · Obniżenie: 311 m</p>
+          </article>
+          <article class="route-card" data-route-difficulty="hard">
+            <h3 class="route-card__title">Gondola</h3>
+            <p>Szybka i płynna trasa w górnej części (uwaga na przecięcie szlaków!), z przejazdami przez strumień w dolnej.</p>
+            <span class="route-card__difficulty route-card__difficulty--hard" aria-label="Trudność: trudna">Trudna</span>
+            <p class="route-card__meta">Długość: 2 000 m · Spadek: 12% · Obniżenie: 240 m</p>
+          </article>
+          <article class="route-card" data-route-difficulty="hard">
+            <h3 class="route-card__title">Cygan</h3>
+            <p>Kręta, niezbyt szybka, ale płynna ścieżka ze sporą ilością flow (kolor czerwony).</p>
+            <span class="route-card__difficulty route-card__difficulty--hard" aria-label="Trudność: trudna">Trudna</span>
+            <p class="route-card__meta">Długość: 2 600 m · Spadek: 11,8% · Obniżenie: 303 m</p>
+          </article>
+          <article class="route-card" data-route-difficulty="hard">
+            <h3 class="route-card__title">Stary zielony</h3>
+            <p>Bardzo szybka trasa, wymaga sporego asortymentu umiejętności i dużej kontroli roweru.</p>
+            <span class="route-card__difficulty route-card__difficulty--hard" aria-label="Trudność: trudna">Trudna</span>
+            <p class="route-card__meta">Długość: 2 450 m · Spadek: 11% · Obniżenie: 269 m</p>
+          </article>
+          <article class="route-card" data-route-difficulty="medium">
+            <h3 class="route-card__title">Rock'n'Rolla</h3>
+            <p>Najdłuższa i najbardziej urozmaicona trasa w kompleksie (zjazd + podjazd).</p>
+            <span class="route-card__difficulty route-card__difficulty--medium" aria-label="Trudność: średnia">Średnia</span>
+            <p class="route-card__meta">Długość: 6 200 m · Spadek: 7,1% · Obniżenie: 342 m</p>
+          </article>
+          <article class="route-card" data-route-difficulty="very-easy">
+            <h3 class="route-card__title">Cyganka</h3>
+            <p>Łagodnie opadająca, gładka i płynna trasa biegnąca wzdłuż malowniczego strumyka.</p>
+            <span class="route-card__difficulty route-card__difficulty--very-easy" aria-label="Trudność: bardzo łatwa">Bardzo łatwa</span>
+            <p class="route-card__meta">Długość: 1 650 m · Spadek: 4% · Obniżenie: 50 m</p>
+          </article>
+          <article class="route-card" data-route-difficulty="easy">
+            <h3 class="route-card__title">Twister</h3>
+            <p>Niezbyt stroma, ale bardzo zakręcona ścieżka.</p>
+            <span class="route-card__difficulty route-card__difficulty--easy" aria-label="Trudność: łatwa">Łatwa</span>
+            <p class="route-card__meta">Długość: 4 400 m · Spadek: 6,2% · Obniżenie: 270 m</p>
+          </article>
+          <article class="route-card" data-route-difficulty="very-easy">
+            <h3 class="route-card__title">Stefanka</h3>
+            <p>Łagodnie opadająca, kręta i pofalowana ścieżka.</p>
+            <span class="route-card__difficulty route-card__difficulty--very-easy" aria-label="Trudność: bardzo łatwa">Bardzo łatwa</span>
+            <p class="route-card__meta">Długość: 860 m · Spadek: 4,9% · Obniżenie: 42 m</p>
+          </article>
+        </div>
+      </section>
+
       <section class="section" id="rules" aria-labelledby="rules-title">
         <div class="section__head">
           <h2 id="rules-title">Zasady wypożyczeń – skrót</h2>
@@ -3465,6 +3633,30 @@ html[data-theme="dark"] .modal__close {
             <p>
               Kask jest obowiązkowy. Jazda odbywa się na własne ryzyko, a sprzęt nie może być
               modyfikowany ani podnajmowany.
+            </p>
+          </article>
+          <article class="rule-card">
+            <h3>Regulamin</h3>
+            <p>
+              Sprzęt sportowy wypożyczany jest po spełnieniu warunków regulaminu i zastrzeżeń na tej stronie.
+            </p>
+          </article>
+          <article class="rule-card">
+            <h3>Kaucja / depozyt</h3>
+            <p>
+              Blokada kaucji na karcie w postaci depozytu 5000 zł (zablokowanie przez bank określonej kwoty na Twojej karcie kredytowej).
+            </p>
+          </article>
+          <article class="rule-card">
+            <h3>Udział własny</h3>
+            <p>
+              Udział własny w szkodzie z opcją wykupienia dodatkowego ubezpieczenia, które redukuje udział własny do kwoty kaucji.
+            </p>
+          </article>
+          <article class="rule-card">
+            <h3>Weryfikacja</h3>
+            <p>
+              Dwa dokumenty tożsamości do umowy (dowód osobisty, prawo jazdy, mObywatel lub paszport).
             </p>
           </article>
           <button class="button button--ghost" type="button" data-open-modal="regulamin">
@@ -3530,6 +3722,14 @@ html[data-theme="dark"] .modal__close {
               <p>
                 Tak, kask jest obowiązkowy i dostępny w ramach pakietu bezpieczeństwa. Ochraniacze
                 można dobrać indywidualnie podczas odbioru.
+              </p>
+            </div>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__toggle" type="button" aria-expanded="false"><span>Dlaczego jesteście drożsi niż konkurencja?</span><svg class="accordion__icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
+            <div class="accordion__panel">
+              <p>
+                Ponieważ nasze rowery to modele z górnej półki najlepszych firm. To rowery dla pasjonatów. Jeżeli zadajesz to pytanie, to znaczy, że nasza wypożyczalnia nie jest dla Ciebie ;)
               </p>
             </div>
           </div>

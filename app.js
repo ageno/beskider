@@ -274,6 +274,27 @@ const initTabs = () => {
   });
 };
 
+const initRouteFilters = () => {
+  const routeFilters = document.querySelectorAll("[data-route-filter]");
+  const routeCards = document.querySelectorAll(".route-card[data-route-difficulty]");
+  if (!routeFilters.length || !routeCards.length) return;
+
+  const applyFilter = (filterValue) => {
+    routeCards.forEach((card) => {
+      const match = filterValue === "all" || card.dataset.routeDifficulty === filterValue;
+      card.classList.toggle("route-card--hidden", !match);
+    });
+  };
+
+  routeFilters.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const filterValue = btn.dataset.routeFilter;
+      routeFilters.forEach((b) => b.classList.toggle("is-active", b === btn));
+      applyFilter(filterValue);
+    });
+  });
+};
+
 const updateAboutTilt = () => {
   if (!aboutTilt) return;
   const rect = aboutTilt.getBoundingClientRect();
@@ -439,6 +460,7 @@ window.addEventListener("resize", () => {
 handleScroll();
 
 initTabs();
+initRouteFilters();
 initAccordion();
 initModals();
 initGallery();

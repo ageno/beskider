@@ -83,7 +83,9 @@ Lista sekcji w kolejności na stronie (źródło prawdy przy code review i plano
   - Tabs (kategorie: Rowery eMTB, Rowery Szosowe, Narty, Snowboard, Inne)
   - Karty produktów (grid)
 - CTA
-- Jak wynająć (kontakt, odbiór, co zabrać)
+- Trasy
+  - Nagłówek sekcji + intro (pomoc w wyborze tras, linki Komoot/Strava/Google Maps)
+  - Siatka 3 kolumny: karty tras (nazwa, opis, trudność, długość m, spadek %, obniżenie m)
 - Zasady
 - FAQ
 - O nas
