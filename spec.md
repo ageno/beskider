@@ -446,7 +446,7 @@ Szybka mapa treści w `index.html` (do planowania zmian copy):
 
 | Lokalizacja (id / sekcja) | Opis |
 |---------------------------|------|
-| hero | H1, lead, przycisk CTA |
+| hero | H1 (rower + przewodnik), lead, przycisk CTA |
 | feature-band | Wyróżniki (3 kolumny) |
 | equipment | Nagłówek, intro, Rowery elektryczne / Akcesoria, taby, karty produktów |
 | cta | Nagłówek, lead, przycisk |

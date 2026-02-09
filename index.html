@@ -706,6 +706,12 @@ p {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav__brand:hover {
+  color: inherit;
 }
 
 .nav__logo,
@@ -1330,6 +1336,7 @@ main {
         .pricing-grid,
         .rules-grid,
         .routes-grid,
+        .guides-grid,
         .contact-grid {
   display: grid;
   gap: 1.5rem;
@@ -1341,6 +1348,7 @@ main {
         .pricing-grid,
         .rules-grid,
         .routes-grid,
+        .guides-grid,
         .contact-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1352,6 +1360,7 @@ main {
         .pricing-grid,
         .rules-grid,
         .routes-grid,
+        .guides-grid,
         .contact-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -1361,6 +1370,7 @@ main {
         .pricing-card,
         .rule-card,
         .route-card,
+        .guide-card,
         .contact-card {
   border-radius: 0.5rem;
   border-width: 1px;
@@ -1369,6 +1379,44 @@ main {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
   padding: 1.5rem;
+}
+
+.guide-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+}
+
+.guide-card__image-wrap {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.08);
+}
+
+.guide-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.guide-card__body {
+  padding: 1.25rem 0 0;
+}
+
+.guide-card h3 {
+  font-weight: 600;
+}
+
+.guide-card__body > p {
+  margin-top: 0.5rem;
 }
 
 .product-card {
@@ -1439,6 +1487,7 @@ main {
         .pricing-card > :not([hidden]) ~ :not([hidden]),
         .rule-card > :not([hidden]) ~ :not([hidden]),
         .route-card > :not([hidden]) ~ :not([hidden]),
+        .guide-card > :not([hidden]) ~ :not([hidden]),
         .contact-card > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
@@ -2222,11 +2271,21 @@ html[data-theme="dark"] .offer-card,
         html[data-theme="dark"] .pricing-card,
         html[data-theme="dark"] .rule-card,
         html[data-theme="dark"] .route-card,
+        html[data-theme="dark"] .guide-card,
         html[data-theme="dark"] .contact-card {
   --tw-border-opacity: 1;
   border-color: rgb(38 38 38 / var(--tw-border-opacity, 1));
   --tw-bg-opacity: 1;
   background-color: rgb(23 23 23 / var(--tw-bg-opacity, 1));
+}
+
+html[data-theme="dark"] .guide-card {
+  border: none;
+  background-color: transparent;
+}
+
+html[data-theme="dark"] .guide-card__image-wrap {
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.25), 0 1px 2px -1px rgb(0 0 0 / 0.2);
 }
 
 html[data-theme="dark"] .product-card {
@@ -3212,14 +3271,14 @@ html[data-theme="dark"] .modal__close {
 
     <header class="site-header" id="top">
       <nav class="nav" aria-label="Główna nawigacja">
-        <div class="nav__brand">
+        <a class="nav__brand" href="#top" aria-label="Beskider – strona główna">
           <span class="nav__logo" aria-hidden="true">B</span>
           <span class="text-base" aria-hidden="true">⚡️</span>
           <div>
             <strong>Beskider</strong>
             <span class="nav__tagline">Premium wypożyczalnia MTB</span>
           </div>
-        </div>
+        </a>
         <button
           class="nav__toggle"
           type="button"
@@ -3237,6 +3296,7 @@ html[data-theme="dark"] .modal__close {
           <a href="#rules">Zasady</a>
           <a href="#faq">FAQ</a>
           <a href="#about">O nas</a>
+          <a href="#guides">Przewodnicy</a>
           <a href="#contact">Kontakt</a>
           <button
             class="theme-toggle"
@@ -3286,12 +3346,9 @@ html[data-theme="dark"] .modal__close {
         <div class="hero__inner">
           <div class="hero__content">
             <p class="eyebrow">Beskider • Bielsko-Biała</p>
-            <h1 id="hero-title">Wypożycz rower MTB klasy premium bez kompromisów.</h1>
+            <h1 id="hero-title">Wypożycz rower klasy premium z przewodnikiem</h1>
             <p class="hero__lead">
-              Beskider to nowa jakość wypożyczania sprzętu sportowego. Dostajesz rower w pełnym
-              serwisie, jasne zasady i obsługę, która działa tak lekko jak najlepsze rozwiązania
-              Apple. Jesteśmy gotowi na sezon, a Ty? Zaplanuj trasę, sprawdź ofertę i odbierz
-              sprzęt w centrum Beskidów.
+              Beskider to nowy standard wypożyczania sprzętu sportowego z lokalnym, doświadczonym przewodnikiem. Otrzymujesz w pełni przygotowany, świeżo serwisowany rower, przejrzyste zasady i sprawną obsługę. Po krótkiej konsultacji przewodnik dopasuje trasę i pokaże najlepsze lokalne miejscówki. Jesteśmy gotowi na sezon. A Ty?
             </p>
             <div class="hero__actions">
               <a class="button button--primary" href="#equipment">Wyrusz z nami w podróż</a>
@@ -3424,7 +3481,7 @@ html[data-theme="dark"] .modal__close {
               <div class="product-card__body">
                 <p class="product-card__size-label">S3</p>
                 <h3 class="product-card__title">Turbo Levo 3 Expert T-Type</h3>
-                <p class="product-card__price">od 369 zł netto / dzień</p>
+                <p class="product-card__price">499 zł rower + 399 zł przewodnik / dzień</p>
               </div>
             </article>
             <article class="product-card">
@@ -3448,7 +3505,7 @@ html[data-theme="dark"] .modal__close {
               <div class="product-card__body">
                 <p class="product-card__size-label">S3</p>
                 <h3 class="product-card__title">Turbo Levo 3 Comp Carbon</h3>
-                <p class="product-card__price">od 369 zł netto / dzień</p>
+                <p class="product-card__price">499 zł rower + 399 zł przewodnik / dzień</p>
               </div>
             </article>
             <article class="product-card">
@@ -3472,7 +3529,7 @@ html[data-theme="dark"] .modal__close {
               <div class="product-card__body">
                 <p class="product-card__size-label">S4</p>
                 <h3 class="product-card__title">S-Works Turbo Levo G3</h3>
-                <p class="product-card__price">od 369 zł netto / dzień</p>
+                <p class="product-card__price">499 zł rower + 399 zł przewodnik / dzień</p>
               </div>
             </article>
             <article class="product-card">
@@ -3496,7 +3553,7 @@ html[data-theme="dark"] .modal__close {
               <div class="product-card__body">
                 <p class="product-card__size-label">S2</p>
                 <h3 class="product-card__title">Turbo Levo Comp Carbon</h3>
-                <p class="product-card__price">od 369 zł netto / dzień</p>
+                <p class="product-card__price">499 zł rower + 399 zł przewodnik / dzień</p>
               </div>
             </article>
           </div>
@@ -3524,7 +3581,7 @@ html[data-theme="dark"] .modal__close {
               <div class="product-card__body">
                 <p class="product-card__size-label">54</p>
                 <h3 class="product-card__title">S-Works Tarmac SL8 – SRAM RED AXS</h3>
-                <p class="product-card__price">od 369 zł netto / dzień</p>
+                <p class="product-card__price">499 zł rower + 399 zł przewodnik / dzień</p>
               </div>
             </article>
             <article class="product-card">
@@ -3548,7 +3605,7 @@ html[data-theme="dark"] .modal__close {
               <div class="product-card__body">
                 <p class="product-card__size-label">58</p>
                 <h3 class="product-card__title">S-Works Aethos – SRAM Red eTap AXS</h3>
-                <p class="product-card__price">od 369 zł netto / dzień</p>
+                <p class="product-card__price">499 zł rower + 399 zł przewodnik / dzień</p>
               </div>
             </article>
           </div>
@@ -3691,32 +3748,31 @@ html[data-theme="dark"] .modal__close {
           <article class="rule-card">
             <h3>Doba wypożyczenia</h3>
             <p>
-              Doba liczona jest od godziny odbioru. Zwrot następuje do 10:00 następnego dnia.
-            </p>
-          </article>
-          <article class="rule-card">
-            <h3>Zastaw 8000 zł</h3>
-            <p>
-              Zastaw jest zwrotny po zdaniu sprzętu i weryfikacji stanu technicznego.
+              Doba liczona jest od godziny odbioru do godziny 10:00 następnego dnia. W przypadku opóźnienia powyżej 15 minut doliczany jest koszt następnej doby.
             </p>
           </article>
           <article class="rule-card">
             <h3>Bezpieczeństwo</h3>
             <p>
-              Kask jest obowiązkowy. Jazda odbywa się na własne ryzyko, a sprzęt nie może być
-              modyfikowany ani podnajmowany.
+              Kask jest obowiązkowy w każdym przypadku. Jazda na rowerze wiąże się z licznymi ryzykami i odbywa się na własne ryzyko wynajmującego.
+            </p>
+          </article>
+          <article class="rule-card">
+            <h3>Modyfikacje</h3>
+            <p>
+              Sprzęt nie może być modyfikowany, rozkręcany, przystosowywany ponad zmianę położenia wysokości siodła. Części składowe roweru są ewidencjonowane i sprawdzane.
             </p>
           </article>
           <article class="rule-card">
             <h3>Regulamin</h3>
             <p>
-              Sprzęt sportowy wypożyczany jest po spełnieniu warunków regulaminu i zastrzeżeń na tej stronie.
+              Sprzęt sportowy wypożyczany jest po spełnieniu warunków regulaminu i zastrzeżeń na tej stronie. Pełna treść regulaminu dostępna jest <a href="#" data-open-modal="regulamin">tutaj</a>.
             </p>
           </article>
           <article class="rule-card">
             <h3>Kaucja / depozyt</h3>
             <p>
-              Blokada kaucji na karcie w postaci depozytu 5000 zł (zablokowanie przez bank określonej kwoty na Twojej karcie kredytowej).
+              Wymagana jest kaucja zwrotna w postaci blokady depozytu na karcie kredytowej. Kwota depozytu już od 5000 zł (zablokowanie przez bank określonej kwoty na Twojej karcie kredytowej, wysokość zależy od konkretnego modelu roweru).
             </p>
           </article>
           <article class="rule-card">
@@ -3728,7 +3784,13 @@ html[data-theme="dark"] .modal__close {
           <article class="rule-card">
             <h3>Weryfikacja</h3>
             <p>
-              Dwa dokumenty tożsamości do umowy (dowód osobisty, prawo jazdy, mObywatel lub paszport).
+              Do wypożyczenia sprzętu potrzebne Ci będą dwa dokumenty tożsamości (dowód osobisty, prawo jazdy, mObywatel lub paszport).
+            </p>
+          </article>
+          <article class="rule-card">
+            <h3>Odmowa wynajmu</h3>
+            <p>
+              W trosce o bezpieczeństwo sprzętu w przypadku uzasadnionych przyczyn zastrzegamy sobie prawo do odmówienia wynajmu sprzętu.
             </p>
           </article>
           <button class="button button--ghost" type="button" data-open-modal="regulamin">
@@ -3767,6 +3829,14 @@ html[data-theme="dark"] .modal__close {
               <p>
                 Tak. Każdy model jest skonfigurowany pod styl trail i enduro, z odpowiednim
                 skokiem zawieszenia i agresywną geometrią.
+              </p>
+            </div>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__toggle" type="button" aria-expanded="false"><span>Dlaczego jeżeli spóźnię się z oddaniem roweru doliczacie kolejną dobę?</span><svg class="accordion__icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
+            <div class="accordion__panel">
+              <p>
+                Inni klienci czekają na swój rower. Musimy mieć czas na weryfikację zdawanego sprzętu, przygotowanie i dostosowanie roweru do nowego ridera. To bardzo ważne.
               </p>
             </div>
           </div>
@@ -3863,6 +3933,59 @@ html[data-theme="dark"] .modal__close {
               jesteś z nami i zapraszamy na kolejne wyprawy.
             </p>
           </div>
+        </div>
+      </section>
+
+      <section class="section" id="guides" aria-labelledby="guides-title">
+        <div class="section__head">
+          <h2 id="guides-title">Przewodnicy Beskider (Wkrótce ;))</h2>
+        </div>
+        <div class="guides-grid">
+          <article class="guide-card">
+            <div class="guide-card__image-wrap">
+              <img
+                class="guide-card__image"
+                src="./assets/images/guide-pawel-nowak.png"
+                alt="Paweł Nowak, przewodnik MTB w górach"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="guide-card__body">
+              <h3>Paweł Nowak</h3>
+              <p>Certyfikowany przewodnik MTB i ratownik GOPR. Specjalizuje się w technicznych trasach enduro i lubi całodniowe wyprawy po Beskidach.</p>
+            </div>
+          </article>
+          <article class="guide-card">
+            <div class="guide-card__image-wrap">
+              <img
+                class="guide-card__image"
+                src="./assets/images/guide-klaudia-mec.png"
+                alt="Klaudia Mec, przewodniczka e-MTB na szlaku"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="guide-card__body">
+              <h3>Klaudia Mec</h3>
+              <p>Instruktorka e-MTB z wieloletnim doświadczeniem w prowadzeniu grup. Stawia na płynność jazdy, bezpieczeństwo i najlepsze widoki na trasie.</p>
+            </div>
+          </article>
+          <article class="guide-card">
+            <div class="guide-card__image-wrap">
+              <img
+                class="guide-card__image"
+                src="./assets/images/guide-anna-zielinska.png"
+                alt="Anna Zielińska, przewodniczka górska na grani"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="guide-card__body">
+              <h3>Anna Zielińska</h3>
+              <p>Przewodniczka górska i trenerka kondycyjna. Uwielbia długie podjazdy, leśne single i spokojne tempo dopasowane do uczestników.</p>
+            </div>
+          </article>
         </div>
       </section>
 
@@ -4365,8 +4488,6 @@ html[data-theme="dark"] .modal__close {
             </ul>
           </div>
           <div>
-            <h3>Zastaw i dokumenty</h3>
-            <p>Zastaw 8000 zł, zwrot po weryfikacji stanu technicznego.</p>
             <h3>Numery seryjne</h3>
             <p>Numery seryjne są przechowywane w protokole.</p>
           </div>
