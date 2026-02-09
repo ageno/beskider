@@ -89,6 +89,7 @@ Lista sekcji w kolejności na stronie (źródło prawdy przy code review i plano
 - Zasady
 - FAQ
 - O nas
+- Przewodnicy Beskider (3 karty: zdjęcie, imię i nazwisko, krótki opis)
 - Kontakt
 - Stopka (przełącznik trybu: Automatyczny / Ciemny / Jasny; firma, linki, social, copyright)
 - Modale: Produkt, Regulamin, Polityka
@@ -212,7 +213,7 @@ Przy każdej nowej sekcji lub nowym linku w nav należy zaktualizować niniejsz�
 - Zdjęcie
 - Zdjęcie z delikatnym wcięciem (24px) od ramki
 - Zdjęcia z `srcset` (320 / 640 / 1280 / full)
-- Cena: od 369 zł netto / dzień
+- Cena: 499 zł rower + 399 zł przewodnik / dzień
 - Rozmiar: tylko wartość (S2 / S3 / S4) w badge’u z ciemnym tłem i białym fontem, bez opisu „Rozmiar:”
 - Status: badge/label na boxie z rowerem (na zdjęciu), półprzezroczyste tło; Dostępny (zielone tło), Wypożyczony (pomarańczowe tło), biały font
 - Karta bez obramowania, białe tło
@@ -253,7 +254,7 @@ Zawartość:
 ## 12. Pricing
 
 - Brak osobnej sekcji cennika
-- Ceny prezentowane bezpośrednio na kartach produktów (od 369 zł netto / dzień)
+- Ceny prezentowane bezpośrednio na kartach produktów (499 zł rower + 399 zł przewodnik / dzień)
 
 ---
 
@@ -279,13 +280,14 @@ Zawartość:
 ## 14. Zasady (summary)
 
 Karty w siatce (rules-grid):
-- Doba wypożyczenia (od godziny odbioru, zwrot do 10:00)
-- Zastaw 8000 zł
-- Bezpieczeństwo (kask, jazda na własne ryzyko)
+- Doba wypożyczenia (od godziny odbioru do 10:00 następnego dnia; opóźnienie powyżej 15 min = koszt kolejnej doby)
+- Bezpieczeństwo (kask obowiązkowy w każdym przypadku, jazda na własne ryzyko wynajmującego)
+- Modyfikacje (sprzęt bez modyfikacji/rozkręcania poza wysokością siodła, części ewidencjonowane i sprawdzane)
 - Regulamin (sprzęt wypożyczany po spełnieniu warunków regulaminu i zastrzeżeń)
-- Kaucja/depozyt (blokada 5000 zł na karcie kredytowej)
+- Kaucja/depozyt (kaucja zwrotna, blokada depozytu na karcie kredytowej, już od 5000 zł, wysokość zależy od modelu roweru)
 - Udział własny (z opcją wykupienia ubezpieczenia redukującego do kwoty kaucji)
-- Weryfikacja (dwa dokumenty tożsamości: dowód, prawo jazdy, mObywatel lub paszport)
+- Weryfikacja (do wypożyczenia dwa dokumenty tożsamości: dowód, prawo jazdy, mObywatel lub paszport)
+- Odmowa wynajmu (prawo do odmowy wynajmu z uzasadnionych przyczyn, w trosce o bezpieczeństwo sprzętu)
 - Przycisk „Pełny regulamin” otwiera modal. Tytuły kart pogrubione (font-weight 600).
 
 ---
@@ -295,7 +297,7 @@ Karty w siatce (rules-grid):
 - Accordion
 - CSS transitions
 - Keyboard accessible
-- Pytania: organizacyjne, techniczne, m.in. dokumenty, odbiór, enduro, zwrot, kask/ochraniacze, „Dlaczego jesteście drożsi niż konkurencja?”
+- Pytania: organizacyjne, techniczne, m.in. dokumenty, odbiór, enduro, zwrot, dlaczego przy spóźnieniu doliczana jest kolejna doba, kask/ochraniacze, „Dlaczego jesteście drożsi niż konkurencja?”
 
 ---
 
@@ -452,6 +454,7 @@ Szybka mapa treści w `index.html` (do planowania zmian copy):
 | rules | Nagłówek, 3 karty zasad, przycisk regulamin |
 | faq | Accordion z pytaniami |
 | about | Obraz + tekst „O nas” |
+| guides | Przewodnicy Beskider: 3 karty (zdjęcie, imię i nazwisko, opis) |
 | contact | E-mail, social, adres |
 | stopka | Przełącznik trybu (Auto/Ciemny/Jasny), firma, linki, social, copyright |
 | Modale | Produkt (galeria, spec), Regulamin, Polityka |

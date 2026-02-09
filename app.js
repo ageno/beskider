@@ -113,6 +113,7 @@ const updateHeaderState = () => {
   siteHeader.classList.toggle("is-active", isActive);
 };
 
+let navUnderlineInitialized = false;
 const updateNavUnderline = (link) => {
   if (!navUnderline || !navContainer || !link) return;
   if (!window.matchMedia("(min-width: 768px)").matches) {
@@ -122,9 +123,18 @@ const updateNavUnderline = (link) => {
   const navRect = navContainer.getBoundingClientRect();
   const linkRect = link.getBoundingClientRect();
   const left = linkRect.left - navRect.left;
+  if (!navUnderlineInitialized) {
+    navUnderline.style.transition = "none";
+    navUnderlineInitialized = true;
+    requestAnimationFrame(() => {
+      if (navUnderline) navUnderline.style.transition = "";
+    });
+  }
   navUnderline.style.width = `${linkRect.width}px`;
   navUnderline.style.transform = `translateX(${left}px)`;
 };
+
+let pinnedNavLink = null;
 
 const updateActiveLink = () => {
   if (!navLinks.length) return;
@@ -141,6 +151,15 @@ const updateActiveLink = () => {
         current = link;
       }
     });
+  }
+  if (pinnedNavLink) {
+    const pinnedId = pinnedNavLink.getAttribute("href")?.slice(1);
+    const pinnedSection = pinnedId ? document.getElementById(pinnedId) : null;
+    if (pinnedSection && pinnedSection.offsetTop <= scrollY) {
+      pinnedNavLink = null;
+    } else {
+      current = pinnedNavLink;
+    }
   }
   navLinks.forEach((link) => link.classList.toggle("is-active", link === current));
   updateNavUnderline(current);
@@ -355,7 +374,10 @@ const initModals = () => {
   modalTriggers.forEach((trigger) => {
     const modalId = trigger.dataset.openModal;
     const modal = document.getElementById(modalId);
-    trigger.addEventListener("click", () => openModal(modal));
+    trigger.addEventListener("click", (e) => {
+      e.preventDefault();
+      openModal(modal);
+    });
   });
 
   modals.forEach((modal) => {
@@ -472,6 +494,14 @@ if (navToggle && navMenu) {
   });
 }
 
+navLinks.forEach((link) => {
+  link.addEventListener("click", () => {
+    pinnedNavLink = link;
+    navLinks.forEach((l) => l.classList.toggle("is-active", l === link));
+    updateNavUnderline(link);
+  });
+});
+
 let scrollPending = false;
 const handleScroll = () => {
   if (scrollPending) return;
@@ -484,9 +514,6 @@ const handleScroll = () => {
   });
 };
 
-if (navLinks.length) {
-  updateNavUnderline(navLinks[0]);
-}
 window.addEventListener("scroll", handleScroll, { passive: true });
 window.addEventListener("resize", () => {
   updateAboutTilt();

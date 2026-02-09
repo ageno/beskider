@@ -78,7 +78,7 @@ Uruchom w DevTools (Lighthouse, tryb mobile). Docelowe wartości ze [spec.md §2
 
 ## Zasady i FAQ
 
-- [ ] Sekcja Zasady: wszystkie karty widoczne (Doba, Zastaw 8000 zł, Bezpieczeństwo, Regulamin, Kaucja/depozyt, Udział własny, Weryfikacja), tytuły pogrubione
+- [ ] Sekcja Zasady: wszystkie karty widoczne (Doba, Bezpieczeństwo, Modyfikacje, Regulamin, Kaucja/depozyt, Udział własny, Weryfikacja, Odmowa wynajmu), tytuły pogrubione
 - [ ] FAQ: accordion otwiera/zamyka odpowiedzi; pytanie „Dlaczego jesteście drożsi niż konkurencja?” z odpowiedzią
 
 ## Inne

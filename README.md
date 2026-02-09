@@ -31,7 +31,7 @@ Otwórz `http://localhost:8000`.
 ## Sekcje
 - **Sprzęt:** filtr Wszystko / Rowery eMTB / Rowery Szosowe (sticky taby), karty z etykietą typu (eMTB/Road) i statusem (Dostępny).
 - **Trasy:** 15 tras z Enduro Trails (Bielsko-Biała), filtry po trudności (Wszystko, Bardzo łatwa–Bardzo trudna).
-- **Zasady:** Doba, Zastaw 8000 zł, Bezpieczeństwo, Regulamin, Kaucja/depozyt 5000 zł, Udział własny, Weryfikacja.
+- **Zasady:** Doba, Bezpieczeństwo, Modyfikacje, Regulamin, Kaucja/depozyt 5000 zł, Udział własny, Weryfikacja, Odmowa wynajmu.
 - **Nawigacja:** Sprzęt, Trasy, Zasady, FAQ, O nas, Kontakt.
 
 ## Rowery szosowe – zdjęcia
