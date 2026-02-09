@@ -994,6 +994,56 @@ main {
   color: rgb(255 255 255 / 0.8);
 }
 
+.hero--canyon h1 {
+  color: rgb(255 255 255);
+}
+
+/* Ozdobnik „przewodnikiem” – wybierz jedną klasę: hero__highlight--gold | --line | --pill | --white */
+.hero__highlight {
+  font-style: italic;
+  display: inline-block;
+  padding-left: 0.08em;
+  padding-right: 0.04em;
+}
+
+/* A: gradient westernowy vintage (ziemisty, sepia) + animacja jak spalona klisza */
+@keyframes hero-highlight-film {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 18% 54%; }
+}
+
+.hero__highlight--gold {
+  background: linear-gradient(135deg, rgb(255 250 240) 0%, rgb(218 195 165) 50%, rgb(180 155 120) 100%);
+  background-size: 160% 160%;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: none;
+  animation: hero-highlight-film 6s ease-in-out infinite;
+}
+
+/* B: biały tekst + pomarańczowa kreska pod spodem */
+.hero__highlight--line {
+  color: rgb(255 255 255);
+  box-shadow: 0 2px 0 0 rgb(251 146 60);
+}
+
+/* C: jasna „pill” w tle (delikatna ramka) */
+.hero__highlight--pill {
+  color: rgb(255 255 255);
+  background: rgb(255 255 255 / 0.12);
+  padding: 0.1em 0.35em;
+  border-radius: 0.25rem;
+  border: 1px solid rgb(255 255 255 / 0.25);
+}
+
+/* D: czysty biały, tylko mocniejsza waga + delikatna poświata */
+.hero__highlight--white {
+  color: rgb(255 255 255);
+  text-shadow: 0 0 32px rgb(255 255 255 / 0.4);
+}
+
 .hero--canyon .hero__meta strong {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
@@ -1134,16 +1184,16 @@ main {
 }
 
 .hero__lead {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity, 1));
 }
 
 @media (min-width: 640px) {
   .hero__lead {
-    font-size: 1rem;
-    line-height: 1.5rem;
+    font-size: 1.125rem;
+    line-height: 1.625rem;
   }
 }
 
@@ -3398,7 +3448,7 @@ html[data-theme="dark"] .modal__close {
         <div class="hero__inner">
           <div class="hero__content">
             <p class="eyebrow">Beskider • Bielsko-Biała</p>
-            <h1 id="hero-title">Wypożycz rower klasy premium z przewodnikiem</h1>
+            <h1 id="hero-title">Wypożycz rower klasy premium z <span class="hero__highlight hero__highlight--gold">przewodnikiem</span></h1>
             <p class="hero__lead">
               Beskider to nowy standard wypożyczania sprzętu sportowego z lokalnym, doświadczonym przewodnikiem. Otrzymujesz w pełni przygotowany, świeżo serwisowany rower, przejrzyste zasady i sprawną obsługę. Po krótkiej konsultacji przewodnik dopasuje trasę i pokaże najlepsze lokalne miejscówki. Jesteśmy gotowi na sezon. A Ty?
             </p>
