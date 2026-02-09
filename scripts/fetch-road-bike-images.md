@@ -1,6 +1,8 @@
 # Pobieranie zdjęć rowerów szosowych (Tarmac SL8, Aethos)
 
-Strona Specialized ładuje zdjęcia produktów dynamicznie, więc nie da się ich pobrać jednym skryptem bez przeglądarki. Zrób to ręcznie w 3 krokach.
+**Źródła obrazów:** Linki do oryginałów (Specialized CDN) są w `assets/images/sources/` – po jednym pliku .md na model (tarmac-sl8.md, aethos.md). Główne zdjęcia hero rowerów są pobrane z CDN jako PNG z przezroczystością i zapisane lokalnie (np. `tarmac-sl8-1.png`, `aethos-1.png`) z wariantami 320/640/1280.
+
+Poniżej: instrukcja ręczna na wypadek potrzeby ponownego pobrania lub innego źródła.
 
 ## Krok 1: Pobierz główne zdjęcie z przeglądarki
 

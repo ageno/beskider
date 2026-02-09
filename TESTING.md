@@ -6,7 +6,7 @@ Użyj przed release’em. Docelowe wartości Lighthouse: [spec.md §24](spec.md)
 
 ## Nawigacja
 
-- [ ] Linki anchor (Sprzęt, Zasady, FAQ, O nas, Kontakt) przewijają do właściwych sekcji
+- [ ] Linki anchor (Sprzęt, Trasy, Zasady, FAQ, O nas, Kontakt) przewijają do właściwych sekcji
 - [ ] Aktywna zakładka w nav podświetlona (podkreślenie)
 - [ ] Mobile: hamburger otwiera/zamyka menu
 - [ ] Mobile: focus trap w otwartym menu (Tab nie ucieka poza menu)
@@ -16,11 +16,17 @@ Użyj przed release’em. Docelowe wartości Lighthouse: [spec.md §24](spec.md)
 
 ## Sekcja Sprzęt
 
-- [ ] Taby: przełączanie między Rowery / Narty / Snowboard / Inne (coming soon disabled)
-- [ ] Karty produktów: ceny, status (Dostępny / Wypożyczony), rozmiar
-- [ ] Klik „Zobacz specyfikację” otwiera modal produktu
-- [ ] Modal: ESC zamyka, focus trap, scroll wewnątrz modalu
-- [ ] Zamknięcie modalu przyraca focus do przycisku
+- [ ] Taby: Wszystko / Rowery eMTB / Rowery Szosowe (filtr; coming soon disabled)
+- [ ] Przy „Wszystko” widoczne obie kategorie (eMTB + Szosowe)
+- [ ] Karty produktów: ceny, status (Dostępny), rozmiar, etykieta typu (eMTB / Road)
+- [ ] Sticky tablist przy przewijaniu sekcji
+
+## Sekcja Trasy
+
+- [ ] Filtry trudności: Wszystko / Bardzo łatwa / Łatwa / Średnia / Trudna / Bardzo trudna
+- [ ] Po wyborze filtra widoczne tylko karty o danej trudności
+- [ ] Karty tras: nazwa, opis, label trudności, długość, spadek %, obniżenie (m)
+- [ ] Sticky tablist przy przewijaniu sekcji Trasy
 
 ---
 
@@ -69,6 +75,11 @@ Uruchom w DevTools (Lighthouse, tryb mobile). Docelowe wartości ze [spec.md §2
 - [ ] PWA: wszystkie wymagane audyty zaliczone
 
 ---
+
+## Zasady i FAQ
+
+- [ ] Sekcja Zasady: wszystkie karty widoczne (Doba, Zastaw 8000 zł, Bezpieczeństwo, Regulamin, Kaucja/depozyt, Udział własny, Weryfikacja), tytuły pogrubione
+- [ ] FAQ: accordion otwiera/zamyka odpowiedzi; pytanie „Dlaczego jesteście drożsi niż konkurencja?” z odpowiedzią
 
 ## Inne
 

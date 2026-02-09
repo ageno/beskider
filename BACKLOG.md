@@ -4,11 +4,19 @@ Krótka lista zadań do planowania pracy. Szczegóły roadmapu: [spec.md §27](s
 
 ---
 
+## Zrobione (odniesienie)
+
+- Sekcja **Trasy** (15 tras Enduro Trails, filtry trudności, sticky taby).
+- Rozszerzone **Zasady** (Regulamin, Kaucja/depozyt 5000 zł, Udział własny, Weryfikacja).
+- **Sprzęt:** filtr Wszystko / eMTB / Szosowe, etykiety eMTB/Road na kartach.
+- FAQ: pytanie o cenę vs konkurencja.
+- Spójność etykiet (dostępność, trudność) i pogrubione tytuły (trasy, zasady).
+
+---
+
 ## Teraz / Next
 
-- [ ] Dodaj sekcję **Jak wynająć eBike lub MTB?** (kontakt, odbiór, co zabrać) między CTA a Zasady
-- [ ] Dodaj blok **Rowery elektryczne** (intro: E-MTB, E-ROAD BIKE) oraz **Akcesoria w cenie** w sekcji Sprzęt
-- [ ] Link **Jak wynająć** w nawigacji (anchor `#jak-wynajac`)
+- [ ] Sekcja **Jak wynająć?** (kontakt, odbiór, co zabrać) między CTA a Zasady + link w nav (`#jak-wynajac`)
 
 ---
 

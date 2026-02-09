@@ -593,16 +593,29 @@ body {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
   --tw-text-opacity: 1;
-  color: rgb(17 24 39 / var(--tw-text-opacity, 1));
+  color: rgb(23 23 23 / var(--tw-text-opacity, 1));
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Dark mode: wyłącznie neutralna szarość R=G=B. Body NIGDY 17 24 39 (to granat). */
+html[data-theme="dark"],
 html[data-theme="dark"] body {
-  --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity, 1));
+  min-height: 100vh;
+  background-color: rgb(23 23 23) !important; /* 23 23 23 = szarość; 17 24 39 = NIE */
+}
+html[data-theme="dark"] body {
   --tw-text-opacity: 1;
-  color: rgb(243 244 246 / var(--tw-text-opacity, 1));
+  color: rgb(243 243 243 / var(--tw-text-opacity, 1));
+}
+html[data-theme="dark"] body,
+html[data-theme="dark"] .section,
+html[data-theme="dark"] .feature-band,
+html[data-theme="dark"] .feature-band__inner,
+html[data-theme="dark"] .hero,
+html[data-theme="dark"] .cta,
+html[data-theme="dark"] main {
+  background-color: rgb(23 23 23) !important;
 }
 
 a {
@@ -641,7 +654,7 @@ p {
   z-index: 40;
   border-radius: 9999px;
   --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity, 1));
+  background-color: rgb(23 23 23 / var(--tw-bg-opacity, 1));
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 0.5rem;
@@ -757,13 +770,13 @@ p {
 
 .nav__menu a:hover {
   --tw-text-opacity: 1;
-  color: rgb(17 24 39 / var(--tw-text-opacity, 1));
+  color: rgb(23 23 23 / var(--tw-text-opacity, 1));
 }
 
 .nav__menu a.is-active {
   --tw-border-opacity: 1;
   --tw-text-opacity: 1;
-  color: rgb(17 24 39 / var(--tw-text-opacity, 1));
+  color: rgb(23 23 23 / var(--tw-text-opacity, 1));
 }
 
 .nav__toggle {
@@ -792,7 +805,7 @@ p {
   height: 0.125rem;
   width: 1rem;
   --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity, 1));
+  background-color: rgb(23 23 23 / var(--tw-bg-opacity, 1));
 }
 
 .theme-toggle {
@@ -811,7 +824,7 @@ p {
   padding: 0px;
   line-height: 0;
   --tw-text-opacity: 1;
-  color: rgb(55 65 81 / var(--tw-text-opacity, 1));
+  color: rgb(64 64 64 / var(--tw-text-opacity, 1));
 }
 
 .theme-toggle svg {
@@ -933,7 +946,7 @@ main {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
   --tw-text-opacity: 1;
-  color: rgb(17 24 39 / var(--tw-text-opacity, 1));
+  color: rgb(23 23 23 / var(--tw-text-opacity, 1));
 }
 
 .hero--canyon .button--ghost {
@@ -1228,17 +1241,22 @@ main {
 
 .tabs-sticky-wrap {
   position: sticky;
-  top: 0;
+  top: 4.5rem; /* odstęp poniżej sticky header */
   z-index: 10;
   margin-bottom: 1rem;
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+  background-color: rgb(255 255 255 / 0.8);
+  --tw-backdrop-blur: blur(8px);
+  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
   padding-bottom: 0.25rem;
   border-radius: 0.5rem;
 }
 
 html[data-theme="dark"] .tabs-sticky-wrap {
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity, 1));
+  background-color: rgb(18 18 18 / 0.7);
+  --tw-backdrop-blur: blur(8px);
+  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
 }
 
 .tabs {
@@ -1284,12 +1302,12 @@ html[data-theme="dark"] .tabs-sticky-wrap {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity, 1));
   --tw-text-opacity: 1;
-  color: rgb(55 65 81 / var(--tw-text-opacity, 1));
+  color: rgb(64 64 64 / var(--tw-text-opacity, 1));
 }
 
 .tabs__tab.is-active {
   --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity, 1));
+  background-color: rgb(23 23 23 / var(--tw-bg-opacity, 1));
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
   --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
@@ -1369,13 +1387,13 @@ html[data-theme="dark"] .tabs-sticky-wrap {
   border-width: 1px;
   --tw-border-opacity: 1;
   border-color: rgb(229 231 235 / var(--tw-border-opacity, 1));
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+  background-color: transparent;
 }
 
 .product-card__media {
   position: relative;
   padding: 1.5rem;
+  background-color: transparent;
 }
 
 .product-card__media .product-card__status {
@@ -1471,7 +1489,7 @@ html[data-theme="dark"] .tabs-sticky-wrap {
 }
 
 html[data-theme="dark"] .route-card__meta {
-  color: rgb(156 163 175);
+  color: rgb(163 163 163);
 }
 
 html[data-theme="dark"] .route-card__difficulty--very-hard { background-color: rgb(69 35 33); color: rgb(253 228 225); }
@@ -1495,10 +1513,9 @@ html[data-theme="dark"] .route-card__difficulty--very-easy { background-color: r
 .product-card img {
   aspect-ratio: 4/3;
   width: 100%;
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
   -o-object-fit: contain;
      object-fit: contain;
+  background: none;
 }
 
 .product-card h3 {
@@ -1540,7 +1557,7 @@ html[data-theme="dark"] .route-card__difficulty--very-easy { background-color: r
   line-height: 1.25rem;
   font-weight: 500;
   letter-spacing: 0.02em;
-  background-color: rgb(17 24 39);
+  background-color: rgb(23 23 23);
   color: rgb(255 255 255);
   margin: 0;
 }
@@ -1550,7 +1567,7 @@ html[data-theme="dark"] .route-card__difficulty--very-easy { background-color: r
   line-height: 1.5rem;
   font-weight: 600;
   --tw-text-opacity: 1;
-  color: rgb(17 24 39 / var(--tw-text-opacity, 1));
+  color: rgb(23 23 23 / var(--tw-text-opacity, 1));
   margin: 0;
 }
 
@@ -1565,7 +1582,7 @@ html[data-theme="dark"] .route-card__difficulty--very-easy { background-color: r
   font-size: 1rem;
   line-height: 1.5rem;
   --tw-text-opacity: 1;
-  color: rgb(17 24 39 / var(--tw-text-opacity, 1));
+  color: rgb(23 23 23 / var(--tw-text-opacity, 1));
   margin: 0;
 }
 
@@ -1666,7 +1683,7 @@ html[data-theme="dark"] .route-card__difficulty--very-easy { background-color: r
 
 .button--primary {
   --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity, 1));
+  background-color: rgb(23 23 23 / var(--tw-bg-opacity, 1));
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
@@ -1678,7 +1695,7 @@ html[data-theme="dark"] .route-card__difficulty--very-easy { background-color: r
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
   --tw-text-opacity: 1;
-  color: rgb(17 24 39 / var(--tw-text-opacity, 1));
+  color: rgb(23 23 23 / var(--tw-text-opacity, 1));
 }
 
 .accordion > :not([hidden]) ~ :not([hidden]) {
@@ -1750,7 +1767,7 @@ html[data-theme="dark"] .route-card__difficulty--very-easy { background-color: r
 
 @media (min-width: 768px) {
   .about {
-    grid-template-columns: minmax(0,55%) minmax(0,45%);
+    grid-template-columns: minmax(0, 28%) minmax(0, 72%);
     align-items: flex-start;
   }
 }
@@ -1772,9 +1789,7 @@ html[data-theme="dark"] .route-card__difficulty--very-easy { background-color: r
 @media (min-width: 768px) {
   .about__media {
     position: relative;
-    --about-bleed: calc((100vw - 100%) / 4);
-    left: calc(-1 * var(--about-bleed));
-    width: calc(100% + var(--about-bleed));
+    max-width: 18rem;
   }
 }
 
@@ -1800,6 +1815,10 @@ html[data-theme="dark"] .route-card__difficulty--very-easy { background-color: r
   line-height: 1.5rem;
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity, 1));
+}
+
+.about__content p + p {
+  margin-top: 1rem;
 }
 
 .contact-card ul > :not([hidden]) ~ :not([hidden]) {
@@ -1865,7 +1884,7 @@ html[data-theme="dark"] .route-card__difficulty--very-easy { background-color: r
 
 .footer__social a:hover {
   --tw-text-opacity: 1;
-  color: rgb(17 24 39 / var(--tw-text-opacity, 1));
+  color: rgb(23 23 23 / var(--tw-text-opacity, 1));
 }
 
 .footer__social svg {
@@ -1874,9 +1893,45 @@ html[data-theme="dark"] .route-card__difficulty--very-easy { background-color: r
   fill: currentColor;
 }
 
+.theme-switcher {
+  display: inline-flex;
+  border-radius: 0.5rem;
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(229 231 235 / var(--tw-border-opacity, 1));
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity, 1));
+  padding: 0.125rem;
+  gap: 0;
+}
+
+.theme-switcher__option {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.8125rem;
+  border-radius: 0.375rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity, 1));
+}
+
+.theme-switcher__option:hover {
+  --tw-text-opacity: 1;
+  color: rgb(64 64 64 / var(--tw-text-opacity, 1));
+}
+
+.theme-switcher__option[aria-pressed="true"] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+  --tw-text-opacity: 1;
+  color: rgb(23 23 23 / var(--tw-text-opacity, 1));
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+
 .link-button {
   --tw-text-opacity: 1;
-  color: rgb(17 24 39 / var(--tw-text-opacity, 1));
+  color: rgb(23 23 23 / var(--tw-text-opacity, 1));
   text-decoration-line: underline;
 }
 
@@ -2052,43 +2107,43 @@ html[data-theme="dark"] .route-card__difficulty--very-easy { background-color: r
 }
 
 html[data-theme="dark"] .site-header {
-  border-color: rgb(31 41 55 / 0.8);
-  background-color: rgb(3 7 18 / 0.7);
+  border-color: rgb(38 38 38 / 0.8);
+  background-color: rgb(18 18 18 / 0.7);
   --tw-backdrop-blur: blur(8px);
   -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
   backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
 }
 
 html[data-theme="dark"] .site-header.is-active {
-  border-color: rgb(55 65 81 / 0.8);
+  border-color: rgb(64 64 64 / 0.8);
 }
 
 html[data-theme="dark"] .glass {
-  background-color: rgb(3 7 18 / 0.7);
+  background-color: rgb(18 18 18 / 0.7);
 }
 
 html[data-theme="dark"] .nav__toggle {
   --tw-border-opacity: 1;
-  border-color: rgb(55 65 81 / var(--tw-border-opacity, 1));
+  border-color: rgb(64 64 64 / var(--tw-border-opacity, 1));
   --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity, 1));
+  background-color: rgb(38 38 38 / var(--tw-bg-opacity, 1));
 }
 
 html[data-theme="dark"] .nav__toggle span {
   --tw-bg-opacity: 1;
-  background-color: rgb(243 244 246 / var(--tw-bg-opacity, 1));
+  background-color: rgb(243 243 243 / var(--tw-bg-opacity, 1));
 }
 
 html[data-theme="dark"] .nav__menu.is-open {
   --tw-border-opacity: 1;
-  border-color: rgb(31 41 55 / var(--tw-border-opacity, 1));
+  border-color: rgb(38 38 38 / var(--tw-border-opacity, 1));
   --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity, 1));
+  background-color: rgb(23 23 23 / var(--tw-bg-opacity, 1));
 }
 
 html[data-theme="dark"] .nav__menu a {
   --tw-text-opacity: 1;
-  color: rgb(209 213 219 / var(--tw-text-opacity, 1));
+  color: rgb(210 210 210 / var(--tw-text-opacity, 1));
 }
 
 html[data-theme="dark"] .nav__menu a:hover {
@@ -2105,70 +2160,70 @@ html[data-theme="dark"] .nav__menu a.is-active {
 
 html[data-theme="dark"] .theme-toggle {
   --tw-border-opacity: 1;
-  border-color: rgb(55 65 81 / var(--tw-border-opacity, 1));
+  border-color: rgb(64 64 64 / var(--tw-border-opacity, 1));
   --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity, 1));
+  background-color: rgb(38 38 38 / var(--tw-bg-opacity, 1));
   --tw-text-opacity: 1;
-  color: rgb(229 231 235 / var(--tw-text-opacity, 1));
+  color: rgb(230 230 230 / var(--tw-text-opacity, 1));
 }
 
 html[data-theme="dark"] .feature-band {
   --tw-bg-opacity: 1;
-  background-color: rgb(3 7 18 / var(--tw-bg-opacity, 1));
+  background-color: rgb(18 18 18 / var(--tw-bg-opacity, 1));
 }
 
 html[data-theme="dark"] .feature-card {
   --tw-border-opacity: 1;
-  border-color: rgb(31 41 55 / var(--tw-border-opacity, 1));
+  border-color: rgb(38 38 38 / var(--tw-border-opacity, 1));
   --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity, 1));
+  background-color: rgb(23 23 23 / var(--tw-bg-opacity, 1));
 }
 
 html[data-theme="dark"] .feature-card p {
   --tw-text-opacity: 1;
-  color: rgb(156 163 175 / var(--tw-text-opacity, 1));
+  color: rgb(163 163 163 / var(--tw-text-opacity, 1));
 }
 
 html[data-theme="dark"] .section__head p {
   --tw-text-opacity: 1;
-  color: rgb(156 163 175 / var(--tw-text-opacity, 1));
+  color: rgb(163 163 163 / var(--tw-text-opacity, 1));
 }
 
 html[data-theme="dark"] .equipment-intro p,
 html[data-theme="dark"] .equipment-intro li {
   --tw-text-opacity: 1;
-  color: rgb(156 163 175 / var(--tw-text-opacity, 1));
+  color: rgb(163 163 163 / var(--tw-text-opacity, 1));
 }
 
 html[data-theme="dark"] .tabs {
   --tw-border-opacity: 1;
-  border-color: rgb(31 41 55 / var(--tw-border-opacity, 1));
+  border-color: rgb(38 38 38 / var(--tw-border-opacity, 1));
   --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity, 1));
+  background-color: rgb(23 23 23 / var(--tw-bg-opacity, 1));
 }
 
 html[data-theme="dark"] .tabs__tab {
   --tw-text-opacity: 1;
-  color: rgb(107 114 128 / var(--tw-text-opacity, 1));
+  color: rgb(115 115 115 / var(--tw-text-opacity, 1));
 }
 
 html[data-theme="dark"] .tabs__tab:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(31 41 55 / var(--tw-bg-opacity, 1));
+  background-color: rgb(38 38 38 / var(--tw-bg-opacity, 1));
   --tw-text-opacity: 1;
-  color: rgb(229 231 235 / var(--tw-text-opacity, 1));
+  color: rgb(230 230 230 / var(--tw-text-opacity, 1));
 }
 
 html[data-theme="dark"] .tabs__tab.is-active {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
   --tw-text-opacity: 1;
-  color: rgb(17 24 39 / var(--tw-text-opacity, 1));
+  color: rgb(23 23 23 / var(--tw-text-opacity, 1));
 }
 
 html[data-theme="dark"] .tabs__tab[disabled] {
   --tw-text-opacity: 1;
-  color: rgb(75 85 99 / var(--tw-text-opacity, 1));
+  color: rgb(82 82 82 / var(--tw-text-opacity, 1));
 }
 
 html[data-theme="dark"] .offer-card,
@@ -2177,117 +2232,116 @@ html[data-theme="dark"] .offer-card,
         html[data-theme="dark"] .route-card,
         html[data-theme="dark"] .contact-card {
   --tw-border-opacity: 1;
-  border-color: rgb(31 41 55 / var(--tw-border-opacity, 1));
+  border-color: rgb(38 38 38 / var(--tw-border-opacity, 1));
   --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity, 1));
+  background-color: rgb(23 23 23 / var(--tw-bg-opacity, 1));
 }
 
 html[data-theme="dark"] .product-card {
   --tw-border-opacity: 1;
-  border-color: rgb(31 41 55 / var(--tw-border-opacity, 1));
-  --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity, 1));
+  border-color: rgb(38 38 38 / var(--tw-border-opacity, 1));
+  background-color: transparent;
 }
 
 html[data-theme="dark"] .product-card__media .product-card__status.status--available {
-  background-color: rgb(35 55 45);
-  color: rgb(218 245 232);
+  background-color: rgb(40 58 48);
+  color: rgb(200 230 215);
 }
 
 html[data-theme="dark"] .product-card__media .product-card__status.status--rented {
-  background-color: rgb(55 65 81 / 0.9);
+  background-color: rgb(64 64 64 / 0.9);
   color: rgb(253 186 116);
 }
 
 html[data-theme="dark"] .product-card__media .product-card__type-icon {
-  color: rgb(107 114 128);
+  color: rgb(115 115 115);
 }
 
 html[data-theme="dark"] .product-card__size {
-  background-color: rgb(55 65 81);
+  background-color: rgb(64 64 64);
   color: rgb(255 255 255);
 }
 
 html[data-theme="dark"] .product-card__size-label {
-  background-color: rgb(55 65 81);
+  background-color: rgb(64 64 64);
   color: rgb(255 255 255);
 }
 
 html[data-theme="dark"] .product-card__title {
-  color: rgb(243 244 246);
+  color: rgb(243 243 243);
 }
 
 html[data-theme="dark"] .product-card__price {
-  color: rgb(243 244 246);
+  color: rgb(243 243 243);
 }
 
 html[data-theme="dark"] .cta {
   --tw-border-opacity: 1;
-  border-color: rgb(31 41 55 / var(--tw-border-opacity, 1));
+  border-color: rgb(38 38 38 / var(--tw-border-opacity, 1));
   --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity, 1));
+  background-color: rgb(23 23 23 / var(--tw-bg-opacity, 1));
 }
 
 html[data-theme="dark"] .button--primary {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
   --tw-text-opacity: 1;
-  color: rgb(17 24 39 / var(--tw-text-opacity, 1));
+  color: rgb(23 23 23 / var(--tw-text-opacity, 1));
 }
 
 html[data-theme="dark"] .button--ghost {
   --tw-border-opacity: 1;
-  border-color: rgb(55 65 81 / var(--tw-border-opacity, 1));
+  border-color: rgb(64 64 64 / var(--tw-border-opacity, 1));
   background-color: transparent;
   --tw-text-opacity: 1;
-  color: rgb(243 244 246 / var(--tw-text-opacity, 1));
+  color: rgb(243 243 243 / var(--tw-text-opacity, 1));
 }
 
 html[data-theme="dark"] .button--ghost:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(31 41 55 / var(--tw-bg-opacity, 1));
+  background-color: rgb(38 38 38 / var(--tw-bg-opacity, 1));
 }
 
 html[data-theme="dark"] .accordion > :not([hidden]) ~ :not([hidden]) {
   --tw-divide-opacity: 1;
-  border-color: rgb(31 41 55 / var(--tw-divide-opacity, 1));
+  border-color: rgb(38 38 38 / var(--tw-divide-opacity, 1));
 }
 
 html[data-theme="dark"] .accordion__item {
   --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity, 1));
+  background-color: rgb(23 23 23 / var(--tw-bg-opacity, 1));
 }
 
 html[data-theme="dark"] .accordion__toggle {
   --tw-text-opacity: 1;
-  color: rgb(243 244 246 / var(--tw-text-opacity, 1));
+  color: rgb(243 243 243 / var(--tw-text-opacity, 1));
 }
 
 html[data-theme="dark"] .accordion__panel {
   --tw-text-opacity: 1;
-  color: rgb(156 163 175 / var(--tw-text-opacity, 1));
+  color: rgb(163 163 163 / var(--tw-text-opacity, 1));
 }
 
 html[data-theme="dark"] .accordion__icon {
   --tw-text-opacity: 1;
-  color: rgb(107 114 128 / var(--tw-text-opacity, 1));
+  color: rgb(115 115 115 / var(--tw-text-opacity, 1));
 }
 
 html[data-theme="dark"] .about__content {
   --tw-text-opacity: 1;
-  color: rgb(156 163 175 / var(--tw-text-opacity, 1));
+  color: rgb(163 163 163 / var(--tw-text-opacity, 1));
 }
 
 html[data-theme="dark"] .footer {
   --tw-border-opacity: 1;
-  border-color: rgb(31 41 55 / var(--tw-border-opacity, 1));
+  border-color: rgb(38 38 38 / var(--tw-border-opacity, 1));
   --tw-text-opacity: 1;
-  color: rgb(156 163 175 / var(--tw-text-opacity, 1));
+  color: rgb(163 163 163 / var(--tw-text-opacity, 1));
 }
 
 html[data-theme="dark"] .footer__social a {
   --tw-text-opacity: 1;
-  color: rgb(209 213 219 / var(--tw-text-opacity, 1));
+  color: rgb(210 210 210 / var(--tw-text-opacity, 1));
 }
 
 html[data-theme="dark"] .footer__social a:hover {
@@ -2295,32 +2349,50 @@ html[data-theme="dark"] .footer__social a:hover {
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
+html[data-theme="dark"] .theme-switcher {
+  border-color: rgb(64 64 64 / var(--tw-border-opacity, 1));
+  background-color: rgb(38 38 38 / var(--tw-bg-opacity, 1));
+}
+
+html[data-theme="dark"] .theme-switcher__option {
+  color: rgb(163 163 163 / var(--tw-text-opacity, 1));
+}
+
+html[data-theme="dark"] .theme-switcher__option:hover {
+  color: rgb(230 230 230 / var(--tw-text-opacity, 1));
+}
+
+html[data-theme="dark"] .theme-switcher__option[aria-pressed="true"] {
+  background-color: rgb(64 64 64 / var(--tw-bg-opacity, 1));
+  color: rgb(243 243 243 / var(--tw-text-opacity, 1));
+}
+
 html[data-theme="dark"] .link-button {
   --tw-text-opacity: 1;
-  color: rgb(229 231 235 / var(--tw-text-opacity, 1));
+  color: rgb(230 230 230 / var(--tw-text-opacity, 1));
 }
 
 html[data-theme="dark"] .cookie-banner {
   --tw-border-opacity: 1;
-  border-color: rgb(31 41 55 / var(--tw-border-opacity, 1));
+  border-color: rgb(38 38 38 / var(--tw-border-opacity, 1));
   --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity, 1));
+  background-color: rgb(23 23 23 / var(--tw-bg-opacity, 1));
 }
 
 html[data-theme="dark"] .modal__content {
   --tw-border-opacity: 1;
-  border-color: rgb(31 41 55 / var(--tw-border-opacity, 1));
+  border-color: rgb(38 38 38 / var(--tw-border-opacity, 1));
   --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity, 1));
+  background-color: rgb(23 23 23 / var(--tw-bg-opacity, 1));
 }
 
 html[data-theme="dark"] .modal__close {
   --tw-border-opacity: 1;
-  border-color: rgb(55 65 81 / var(--tw-border-opacity, 1));
+  border-color: rgb(64 64 64 / var(--tw-border-opacity, 1));
   --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity, 1));
+  background-color: rgb(38 38 38 / var(--tw-bg-opacity, 1));
   --tw-text-opacity: 1;
-  color: rgb(229 231 235 / var(--tw-text-opacity, 1));
+  color: rgb(230 230 230 / var(--tw-text-opacity, 1));
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2672,21 +2744,21 @@ html[data-theme="dark"] .modal__close {
 
 .border-gray-700 {
   --tw-border-opacity: 1;
-  border-color: rgb(55 65 81 / var(--tw-border-opacity, 1));
+  border-color: rgb(64 64 64 / var(--tw-border-opacity, 1));
 }
 
 .border-gray-800 {
   --tw-border-opacity: 1;
-  border-color: rgb(31 41 55 / var(--tw-border-opacity, 1));
+  border-color: rgb(38 38 38 / var(--tw-border-opacity, 1));
 }
 
 .border-gray-800\/80 {
-  border-color: rgb(31 41 55 / 0.8);
+  border-color: rgb(38 38 38 / 0.8);
 }
 
 .border-gray-900 {
   --tw-border-opacity: 1;
-  border-color: rgb(17 24 39 / var(--tw-border-opacity, 1));
+  border-color: rgb(23 23 23 / var(--tw-border-opacity, 1));
 }
 
 .border-transparent {
@@ -2708,16 +2780,17 @@ html[data-theme="dark"] .modal__close {
 
 .bg-gray-800 {
   --tw-bg-opacity: 1;
-  background-color: rgb(31 41 55 / var(--tw-bg-opacity, 1));
+  background-color: rgb(38 38 38 / var(--tw-bg-opacity, 1));
 }
 
 .bg-gray-900 {
   --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity, 1));
+  /* Neutralna szarość R=G=B. NIGDY nie używaj 17 24 39 (Tailwind gray-900 = granat). */
+  background-color: rgb(23 23 23 / var(--tw-bg-opacity, 1));
 }
 
 .bg-gray-950\/70 {
-  background-color: rgb(3 7 18 / 0.7);
+  background-color: rgb(18 18 18 / 0.7);
 }
 
 .bg-transparent {
@@ -2901,7 +2974,7 @@ html[data-theme="dark"] .modal__close {
 
 .text-gray-900 {
   --tw-text-opacity: 1;
-  color: rgb(17 24 39 / var(--tw-text-opacity, 1));
+  color: rgb(23 23 23 / var(--tw-text-opacity, 1));
 }
 
 .text-inherit {
@@ -2984,7 +3057,7 @@ html[data-theme="dark"] .modal__close {
 
 .focus\:bg-gray-900:focus {
   --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity, 1));
+  background-color: rgb(23 23 23 / var(--tw-bg-opacity, 1));
 }
 
 .focus\:px-4:focus {
@@ -3122,7 +3195,7 @@ html[data-theme="dark"] .modal__close {
       left: 0;
       height: 2px;
       width: 0;
-      background-color: rgb(17 24 39 / 1);
+      background-color: rgb(23 23 23 / 1);
       transform: translateX(0);
       transition: transform 0.35s ease, width 0.35s ease;
       will-change: transform, width;
@@ -3341,12 +3414,12 @@ html[data-theme="dark"] .modal__close {
             <article class="product-card">
               <div class="product-card__media">
                 <img
-                  src="./assets/images/turbo-levo-3-expert-1-640.jpg"
+                  src="./assets/images/turbo-levo-3-expert-1-640.png"
                   srcset="
-                    ./assets/images/turbo-levo-3-expert-1-320.jpg 320w,
-                    ./assets/images/turbo-levo-3-expert-1-640.jpg 640w,
-                    ./assets/images/turbo-levo-3-expert-1-1280.jpg 1280w,
-                    ./assets/images/turbo-levo-3-expert-1.jpg 4000w
+                    ./assets/images/turbo-levo-3-expert-1-320.png 320w,
+                    ./assets/images/turbo-levo-3-expert-1-640.png 640w,
+                    ./assets/images/turbo-levo-3-expert-1-1280.png 1280w,
+                    ./assets/images/turbo-levo-3-expert-1.png 4000w
                   "
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   alt="Turbo Levo 3 Expert T-Type"
@@ -3365,12 +3438,12 @@ html[data-theme="dark"] .modal__close {
             <article class="product-card">
               <div class="product-card__media">
                 <img
-                  src="./assets/images/turbo-levo-3-comp-1-640.jpg"
+                  src="./assets/images/turbo-levo-3-comp-1-640.png"
                   srcset="
-                    ./assets/images/turbo-levo-3-comp-1-320.jpg 320w,
-                    ./assets/images/turbo-levo-3-comp-1-640.jpg 640w,
-                    ./assets/images/turbo-levo-3-comp-1-1280.jpg 1280w,
-                    ./assets/images/turbo-levo-3-comp-1.jpg 4000w
+                    ./assets/images/turbo-levo-3-comp-1-320.png 320w,
+                    ./assets/images/turbo-levo-3-comp-1-640.png 640w,
+                    ./assets/images/turbo-levo-3-comp-1-1280.png 1280w,
+                    ./assets/images/turbo-levo-3-comp-1.png 4000w
                   "
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   alt="Turbo Levo 3 Comp Carbon"
@@ -3389,12 +3462,12 @@ html[data-theme="dark"] .modal__close {
             <article class="product-card">
               <div class="product-card__media">
                 <img
-                  src="./assets/images/s-works-levo-1-640.jpg"
+                  src="./assets/images/s-works-levo-1-640.png"
                   srcset="
-                    ./assets/images/s-works-levo-1-320.jpg 320w,
-                    ./assets/images/s-works-levo-1-640.jpg 640w,
-                    ./assets/images/s-works-levo-1-1280.jpg 1280w,
-                    ./assets/images/s-works-levo-1.jpg 4000w
+                    ./assets/images/s-works-levo-1-320.png 320w,
+                    ./assets/images/s-works-levo-1-640.png 640w,
+                    ./assets/images/s-works-levo-1-1280.png 1280w,
+                    ./assets/images/s-works-levo-1.png 4000w
                   "
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   alt="S-Works Turbo Levo G3"
@@ -3413,12 +3486,12 @@ html[data-theme="dark"] .modal__close {
             <article class="product-card">
               <div class="product-card__media">
                 <img
-                  src="./assets/images/turbo-levo-comp-1-640.jpg"
+                  src="./assets/images/turbo-levo-comp-1-640.png"
                   srcset="
-                    ./assets/images/turbo-levo-comp-1-320.jpg 320w,
-                    ./assets/images/turbo-levo-comp-1-640.jpg 640w,
-                    ./assets/images/turbo-levo-comp-1-1280.jpg 1280w,
-                    ./assets/images/turbo-levo-comp-1.jpg 3200w
+                    ./assets/images/turbo-levo-comp-1-320.png 320w,
+                    ./assets/images/turbo-levo-comp-1-640.png 640w,
+                    ./assets/images/turbo-levo-comp-1-1280.png 1280w,
+                    ./assets/images/turbo-levo-comp-1.png 3200w
                   "
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   alt="Turbo Levo Comp Carbon"
@@ -3441,12 +3514,12 @@ html[data-theme="dark"] .modal__close {
             <article class="product-card">
               <div class="product-card__media">
                 <img
-                  src="./assets/images/tarmac-sl8-1-640.jpg"
+                  src="./assets/images/tarmac-sl8-1-640.png"
                   srcset="
-                    ./assets/images/tarmac-sl8-1-320.jpg 320w,
-                    ./assets/images/tarmac-sl8-1-640.jpg 640w,
-                    ./assets/images/tarmac-sl8-1-1280.jpg 1280w,
-                    ./assets/images/tarmac-sl8-1.jpg 4000w
+                    ./assets/images/tarmac-sl8-1-320.png 320w,
+                    ./assets/images/tarmac-sl8-1-640.png 640w,
+                    ./assets/images/tarmac-sl8-1-1280.png 1280w,
+                    ./assets/images/tarmac-sl8-1.png 4000w
                   "
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   alt="S-Works Tarmac SL8 – SRAM RED AXS"
@@ -3465,7 +3538,14 @@ html[data-theme="dark"] .modal__close {
             <article class="product-card">
               <div class="product-card__media">
                 <img
-                  src="./assets/images/aethos-hero-white-bg.jpg"
+                  src="./assets/images/aethos-1-640.png"
+                  srcset="
+                    ./assets/images/aethos-1-320.png 320w,
+                    ./assets/images/aethos-1-640.png 640w,
+                    ./assets/images/aethos-1-1280.png 1280w,
+                    ./assets/images/aethos-1.png 4000w
+                  "
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   alt="S-Works Aethos – SRAM Red eTap AXS"
                   loading="lazy"
                   decoding="async"
@@ -3750,7 +3830,7 @@ html[data-theme="dark"] .modal__close {
                 ./assets/images/about-us-1280.jpg 1280w,
                 ./assets/images/about-us.jpg 3000w
               "
-              sizes="(min-width: 768px) 55vw, 100vw"
+              sizes="(min-width: 768px) 18rem, 100vw"
               alt="Beskider — wypożyczalnia sprzętu premium"
               loading="lazy"
               decoding="async"
@@ -3761,24 +3841,34 @@ html[data-theme="dark"] .modal__close {
               Beskider powstał z potrzeby stworzenia wypożyczalni, która działa równie sprawnie jak
               nowoczesne produkty technologiczne. Jesteśmy zespołem ludzi, którzy kochają góry i
               wielogodzinne wyprawy po Beskidach. Od lat testujemy sprzęt premium i wiemy, że
-              wysoka jakość wymaga równie wysokich standardów obsługi. Nasza siedziba znajduje się
-              w Bielsku-Białej, w miejscu skąd najszybciej dotrzesz na ulubione trasy. Stawiamy na
-              prostotę, jasne zasady i pełną transparentność w kosztach. Uważamy, że wypożyczenie
-              roweru powinno być tak proste jak jego obsługa na szlaku. Dlatego wszystkie informacje
-              prezentujemy w jednym miejscu, a dokumenty przygotowujemy przed Twoim przyjazdem.
+              wysoka jakość wymaga równie wysokich standardów obsługi.
+            </p>
+            <p>
+              Nasza siedziba znajduje się w Bielsku-Białej, w miejscu skąd najszybciej dotrzesz na
+              ulubione trasy. Stawiamy na prostotę, jasne zasady i pełną transparentność w kosztach.
+              Uważamy, że wypożyczenie roweru powinno być tak proste jak jego obsługa na szlaku.
+              Dlatego wszystkie informacje prezentujemy w jednym miejscu, a dokumenty
+              przygotowujemy przed Twoim przyjazdem.
+            </p>
+            <p>
               Nie obiecujemy rzeczy niemożliwych, ale dowozimy to, co uzgadniamy. Każdy rower
               przechodzi kontrolę po każdej trasie, a części eksploatacyjne są wymieniane wcześniej
               niż sugeruje producent. Dbamy o estetykę, bo sprzęt premium powinien wyglądać
-              perfekcyjnie. Naszym celem jest długoterminowa relacja z klientami, a nie jednorazowa
-              transakcja. Dlatego słuchamy opinii i rozwijamy ofertę krok po kroku. Współpracujemy
-              z lokalnymi przewodnikami, abyś miał dostęp do najlepszych tras. Gdy jesteś w trasie,
-              możesz liczyć na nasze wsparcie. Wierzymy, że technologia powinna wspierać sport, a
-              nie go komplikować. Dzięki temu projektujemy doświadczenie, które zapamiętasz na
-              długo. Chcemy, aby Beskider był synonimem jakości w wypożyczaniu sprzętu sportowego.
-              Kolejne kategorie są już w planach, ale rowery MTB pozostają naszym sercem. Zawsze
-              stawiamy na bezpieczeństwo, bo od niego zależy przyjemność z jazdy. Jeśli szukasz
-              miejsca, gdzie sprzęt jest przygotowany jak do zawodów, jesteś we właściwym miejscu.
-              Dziękujemy, że jesteś z nami i zapraszamy na kolejne wyprawy.
+              perfekcyjnie.
+            </p>
+            <p>
+              Naszym celem jest długoterminowa relacja z klientami, a nie jednorazowa transakcja.
+              Dlatego słuchamy opinii i rozwijamy ofertę krok po kroku. Współpracujemy z lokalnymi
+              przewodnikami, abyś miał dostęp do najlepszych tras. Gdy jesteś w trasie, możesz
+              liczyć na nasze wsparcie.
+            </p>
+            <p>
+              Wierzymy, że technologia powinna wspierać sport, a nie go komplikować. Chcemy, aby
+              Beskider był synonimem jakości w wypożyczaniu sprzętu sportowego. Kolejne kategorie
+              są już w planach, ale rowery MTB pozostają naszym sercem. Zawsze stawiamy na
+              bezpieczeństwo, bo od niego zależy przyjemność z jazdy. Jeśli szukasz miejsca, gdzie
+              sprzęt jest przygotowany jak do zawodów, jesteś we właściwym miejscu. Dziękujemy, że
+              jesteś z nami i zapraszamy na kolejne wyprawy.
             </p>
           </div>
         </div>
@@ -3815,6 +3905,17 @@ html[data-theme="dark"] .modal__close {
 
     <footer class="footer">
       <div>
+        <div class="theme-switcher" role="group" aria-label="Tryb motywu">
+          <button type="button" class="theme-switcher__option" data-theme-option="auto" aria-pressed="false">
+            Automatyczny
+          </button>
+          <button type="button" class="theme-switcher__option" data-theme-option="dark" aria-pressed="false">
+            Ciemny
+          </button>
+          <button type="button" class="theme-switcher__option" data-theme-option="light" aria-pressed="false">
+            Jasny
+          </button>
+        </div>
         <strong>Beskider sp. z o.o.</strong>
         <span>NIP: 000-000-00-00</span>
         <span>ul. Przykładowa 1, 00-000 Bielsko-Biała</span>
@@ -3959,12 +4060,12 @@ html[data-theme="dark"] .modal__close {
         <div class="gallery" data-gallery>
           <img
             class="gallery__main"
-            src="./assets/images/turbo-levo-3-expert-1-1280.jpg"
+            src="./assets/images/turbo-levo-3-expert-1-1280.png"
             srcset="
-              ./assets/images/turbo-levo-3-expert-1-320.jpg 320w,
-              ./assets/images/turbo-levo-3-expert-1-640.jpg 640w,
-              ./assets/images/turbo-levo-3-expert-1-1280.jpg 1280w,
-              ./assets/images/turbo-levo-3-expert-1.jpg 4000w
+              ./assets/images/turbo-levo-3-expert-1-320.png 320w,
+              ./assets/images/turbo-levo-3-expert-1-640.png 640w,
+              ./assets/images/turbo-levo-3-expert-1-1280.png 1280w,
+              ./assets/images/turbo-levo-3-expert-1.png 4000w
             "
             sizes="(max-width: 768px) 90vw, 50vw"
             alt="Turbo Levo 3 Expert T-Type"
@@ -3973,12 +4074,12 @@ html[data-theme="dark"] .modal__close {
             decoding="async"
           />
           <div class="gallery__thumbs">
-            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-expert-1.jpg">
+            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-expert-1.png">
               <img
-                src="./assets/images/turbo-levo-3-expert-1-320.jpg"
+                src="./assets/images/turbo-levo-3-expert-1-320.png"
                 srcset="
-                  ./assets/images/turbo-levo-3-expert-1-320.jpg 320w,
-                  ./assets/images/turbo-levo-3-expert-1-640.jpg 640w
+                  ./assets/images/turbo-levo-3-expert-1-320.png 320w,
+                  ./assets/images/turbo-levo-3-expert-1-640.png 640w
                 "
                 sizes="80px"
                 alt="Widok 1"
@@ -4042,12 +4143,12 @@ html[data-theme="dark"] .modal__close {
         <div class="gallery" data-gallery>
           <img
             class="gallery__main"
-            src="./assets/images/turbo-levo-3-comp-1-1280.jpg"
+            src="./assets/images/turbo-levo-3-comp-1-1280.png"
             srcset="
-              ./assets/images/turbo-levo-3-comp-1-320.jpg 320w,
-              ./assets/images/turbo-levo-3-comp-1-640.jpg 640w,
-              ./assets/images/turbo-levo-3-comp-1-1280.jpg 1280w,
-              ./assets/images/turbo-levo-3-comp-1.jpg 4000w
+              ./assets/images/turbo-levo-3-comp-1-320.png 320w,
+              ./assets/images/turbo-levo-3-comp-1-640.png 640w,
+              ./assets/images/turbo-levo-3-comp-1-1280.png 1280w,
+              ./assets/images/turbo-levo-3-comp-1.png 4000w
             "
             sizes="(max-width: 768px) 90vw, 50vw"
             alt="Turbo Levo 3 Comp Carbon"
@@ -4056,12 +4157,12 @@ html[data-theme="dark"] .modal__close {
             decoding="async"
           />
           <div class="gallery__thumbs">
-            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-comp-1.jpg">
+            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-3-comp-1.png">
               <img
-                src="./assets/images/turbo-levo-3-comp-1-320.jpg"
+                src="./assets/images/turbo-levo-3-comp-1-320.png"
                 srcset="
-                  ./assets/images/turbo-levo-3-comp-1-320.jpg 320w,
-                  ./assets/images/turbo-levo-3-comp-1-640.jpg 640w
+                  ./assets/images/turbo-levo-3-comp-1-320.png 320w,
+                  ./assets/images/turbo-levo-3-comp-1-640.png 640w
                 "
                 sizes="80px"
                 alt="Widok 1"
@@ -4125,12 +4226,12 @@ html[data-theme="dark"] .modal__close {
         <div class="gallery" data-gallery>
           <img
             class="gallery__main"
-            src="./assets/images/s-works-levo-1-1280.jpg"
+            src="./assets/images/s-works-levo-1-1280.png"
             srcset="
-              ./assets/images/s-works-levo-1-320.jpg 320w,
-              ./assets/images/s-works-levo-1-640.jpg 640w,
-              ./assets/images/s-works-levo-1-1280.jpg 1280w,
-              ./assets/images/s-works-levo-1.jpg 4000w
+              ./assets/images/s-works-levo-1-320.png 320w,
+              ./assets/images/s-works-levo-1-640.png 640w,
+              ./assets/images/s-works-levo-1-1280.png 1280w,
+              ./assets/images/s-works-levo-1.png 4000w
             "
             sizes="(max-width: 768px) 90vw, 50vw"
             alt="S-Works Turbo Levo G3"
@@ -4139,12 +4240,12 @@ html[data-theme="dark"] .modal__close {
             decoding="async"
           />
           <div class="gallery__thumbs">
-            <button data-gallery-thumb data-gallery-target="./assets/images/s-works-levo-1.jpg">
+            <button data-gallery-thumb data-gallery-target="./assets/images/s-works-levo-1.png">
               <img
-                src="./assets/images/s-works-levo-1-320.jpg"
+                src="./assets/images/s-works-levo-1-320.png"
                 srcset="
-                  ./assets/images/s-works-levo-1-320.jpg 320w,
-                  ./assets/images/s-works-levo-1-640.jpg 640w
+                  ./assets/images/s-works-levo-1-320.png 320w,
+                  ./assets/images/s-works-levo-1-640.png 640w
                 "
                 sizes="80px"
                 alt="Widok 1"
@@ -4208,12 +4309,12 @@ html[data-theme="dark"] .modal__close {
         <div class="gallery" data-gallery>
           <img
             class="gallery__main"
-            src="./assets/images/turbo-levo-comp-1-1280.jpg"
+            src="./assets/images/turbo-levo-comp-1-1280.png"
             srcset="
-              ./assets/images/turbo-levo-comp-1-320.jpg 320w,
-              ./assets/images/turbo-levo-comp-1-640.jpg 640w,
-              ./assets/images/turbo-levo-comp-1-1280.jpg 1280w,
-              ./assets/images/turbo-levo-comp-1.jpg 3200w
+              ./assets/images/turbo-levo-comp-1-320.png 320w,
+              ./assets/images/turbo-levo-comp-1-640.png 640w,
+              ./assets/images/turbo-levo-comp-1-1280.png 1280w,
+              ./assets/images/turbo-levo-comp-1.png 3200w
             "
             sizes="(max-width: 768px) 90vw, 50vw"
             alt="Turbo Levo Comp Carbon"
@@ -4222,12 +4323,12 @@ html[data-theme="dark"] .modal__close {
             decoding="async"
           />
           <div class="gallery__thumbs">
-            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-comp-1.jpg">
+            <button data-gallery-thumb data-gallery-target="./assets/images/turbo-levo-comp-1.png">
               <img
-                src="./assets/images/turbo-levo-comp-1-320.jpg"
+                src="./assets/images/turbo-levo-comp-1-320.png"
                 srcset="
-                  ./assets/images/turbo-levo-comp-1-320.jpg 320w,
-                  ./assets/images/turbo-levo-comp-1-640.jpg 640w
+                  ./assets/images/turbo-levo-comp-1-320.png 320w,
+                  ./assets/images/turbo-levo-comp-1-640.png 640w
                 "
                 sizes="80px"
                 alt="Widok 1"

@@ -24,24 +24,45 @@ const GA_MEASUREMENT_ID = "G-XXXXXXXXXX";
 let gaLoaded = false;
 let releaseFocus = null;
 
-const setTheme = (theme) => {
-  document.documentElement.setAttribute("data-theme", theme);
-  localStorage.setItem("beskider-theme", theme);
+const THEME_KEY = "beskider-theme";
+const VALID_PREFERENCES = ["auto", "light", "dark"];
+
+const getThemePreference = () => {
+  const stored = localStorage.getItem(THEME_KEY);
+  return VALID_PREFERENCES.includes(stored) ? stored : "auto";
+};
+
+const getEffectiveTheme = () => {
+  const pref = getThemePreference();
+  if (pref !== "auto") return pref;
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+};
+
+const setTheme = (preference) => {
+  if (!VALID_PREFERENCES.includes(preference)) return;
+  localStorage.setItem(THEME_KEY, preference);
+  const effective = preference === "auto" ? getEffectiveTheme() : preference;
+  document.documentElement.setAttribute("data-theme", effective);
+  const switchers = document.querySelectorAll("[data-theme-option]");
+  switchers.forEach((el) => {
+    const value = el.getAttribute("data-theme-option");
+    el.setAttribute("aria-pressed", value === preference ? "true" : "false");
+  });
 };
 
 const initTheme = () => {
-  const stored = localStorage.getItem("beskider-theme");
-  if (stored) {
-    setTheme(stored);
-    return;
-  }
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  setTheme(prefersDark ? "dark" : "light");
+  const preference = getThemePreference();
+  setTheme(preference);
+  const mq = window.matchMedia("(prefers-color-scheme: dark)");
+  mq.addEventListener("change", () => {
+    if (getThemePreference() !== "auto") return;
+    document.documentElement.setAttribute("data-theme", getEffectiveTheme());
+  });
 };
 
 const toggleTheme = () => {
-  const current = document.documentElement.getAttribute("data-theme");
-  setTheme(current === "dark" ? "light" : "dark");
+  const effective = document.documentElement.getAttribute("data-theme");
+  setTheme(effective === "dark" ? "light" : "dark");
 };
 
 const trapFocus = (container, closeOnEscape = false) => {
@@ -421,6 +442,13 @@ initTheme();
 if (themeToggle) {
   themeToggle.addEventListener("click", toggleTheme);
 }
+
+document.querySelectorAll("[data-theme-option]").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const preference = btn.getAttribute("data-theme-option");
+    setTheme(preference);
+  });
+});
 
 if (navToggle && navMenu) {
   navToggle.addEventListener("click", () => {

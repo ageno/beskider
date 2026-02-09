@@ -24,9 +24,9 @@ This is a static site with no build step.
 
 ## Testing Guidelines
 - No automated tests currently.
-- Manual checks: navigation anchors, tabs, accordion behavior, modal focus/close, theme toggle,
-  cookie consent flow, and image loading (no cropping).
+- Manual checks: navigation anchors (Sprzęt, Trasy, Zasady, FAQ, O nas, Kontakt), taby sprzętu (Wszystko/eMTB/Szosowe), taby trudności tras, accordion, modal focus/close, theme toggle, cookie consent flow, image loading (no cropping).
 - Verify mobile layout for overflow and wrapping.
+- Pełna checklista: [TESTING.md](TESTING.md).
 
 ## Commit & Pull Request Guidelines
 - Use short, imperative commit messages (e.g., `Refine equipment cards`).

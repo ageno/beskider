@@ -90,7 +90,7 @@ Lista sekcji w kolejności na stronie (źródło prawdy przy code review i plano
 - FAQ
 - O nas
 - Kontakt
-- Stopka
+- Stopka (przełącznik trybu: Automatyczny / Ciemny / Jasny; firma, linki, social, copyright)
 - Modale: Produkt, Regulamin, Polityka
 
 Przy każdej nowej sekcji lub nowym linku w nav należy zaktualizować niniejszą listę oraz ewentualnie §7 (Nawigacja).
@@ -108,9 +108,12 @@ Przy każdej nowej sekcji lub nowym linku w nav należy zaktualizować niniejsz�
 - Mobile:
   - hamburger
   - focus trap
-- Dark/Light toggle:
-  - localStorage
-  - inline SVG (księżyc w light, słońce w dark)
+- Tryb motywu (auto / ciemny / jasny):
+  - wybór w stopce (segment: Automatyczny, Ciemny, Jasny)
+  - szybki przełącznik w nav (light ↔ dark)
+  - localStorage (`beskider-theme`: `auto` | `light` | `dark`)
+  - przy „auto”: `prefers-color-scheme`, nasłuch na zmianę
+  - inline SVG w nav (księżyc w light, słońce w dark)
 - WCAG:
   - aria-labels
   - tabindex
@@ -132,12 +135,12 @@ Przy każdej nowej sekcji lub nowym linku w nav należy zaktualizować niniejsz�
 - Light:
   - background: #ffffff
   - text: #0f1115
-- Dark:
-  - background: #151618
+- Dark (neutralna szarość, jak Cursor/Specialized, bez granatu/niebieskiego):
+  - background: #171717 (rgb 23 23 23)
   - text: #f4f5f7
 - Dark surfaces:
-  - surfaces: gray-900 / gray-950
-  - borders: gray-800
+  - surfaces: neutralne szarości (23 23 23 / 38 38 38 / 64 64 64)
+  - borders: rgb(38 38 38)
   - primary CTA: white background, dark text
 - Akcenty:
   - neutralne grafitowe (CTA / aktywne stany)
@@ -182,13 +185,12 @@ Przy każdej nowej sekcji lub nowym linku w nav należy zaktualizować niniejsz�
 
 ## 9. Sprzęt – kategorie
 
-- Tabs (segmented control)
+- Tabs (segmented control) jako filtr; sticky.
 - Kategorie:
-  - Rowery eMTB (active) – karty e-MTB
+  - **Wszystko** (domyślna) – pokazuje obie kategorie (eMTB + Szosowe)
+  - Rowery eMTB – karty e-MTB
   - Rowery Szosowe – S-Works Tarmac SL8 (SRAM RED AXS), S-Works Aethos (SRAM Red eTap AXS)
-  - Narty (coming soon)
-  - Snowboard (coming soon)
-  - Inne (coming soon)
+  - Narty, Snowboard, Inne (coming soon, disabled)
 - Coming soon:
   - disabled
   - aria-disabled
@@ -223,7 +225,7 @@ Przy każdej nowej sekcji lub nowym linku w nav należy zaktualizować niniejsz�
 - Lazy loading
 - Cache offline
 - `srcset` dla miniatur i obrazów głównych w modalu
-- Zdjęcia produktowe: oficjalne materiały Specialized, zapisane lokalnie bez parametrów (JPG, bez tła)
+- Zdjęcia produktowe: oficjalne materiały Specialized (HERO z CDN), zapisane lokalnie jako PNG z przezroczystością; źródła i linki do oryginałów w `assets/images/sources/*.md`
 
 ### 10.4 Hero image
 - Nagłówek wykorzystuje panoramiczne zdjęcie w tle (lokalne `assets/images/`)
@@ -264,12 +266,27 @@ Zawartość:
 
 ---
 
+## 13a. Trasy
+
+- Źródło danych: Enduro Trails (Bielsko-Biała), [endurotrails.pl/trasy/](https://endurotrails.pl/trasy/).
+- Intro: pomoc w wyborze tras, linki Komoot/Strava/Google Maps, dopasowanie do poziomu.
+- Filtry trudności: zakładki Wszystko / Bardzo łatwa / Łatwa / Średnia / Trudna / Bardzo trudna (sticky).
+- Karty tras (routes-grid, 3 kolumny): nazwa, krótki opis, label trudności (delikatna kolorystyka), długość (m), średni spadek (%), obniżenie (m). Tytuły pogrubione.
+- 15 tras: Daglezjowy, Bystry, Dziabar, Kamieniołom, DH+, Gaciok, Sahaira, Dębowiec, Gondola, Cygan, Stary zielony, Rock'n'Rolla, Cyganka, Twister, Stefanka.
+
+---
+
 ## 14. Zasady (summary)
 
-- Doba liczona od godziny odbioru
-- Zwrot do 10:00
+Karty w siatce (rules-grid):
+- Doba wypożyczenia (od godziny odbioru, zwrot do 10:00)
 - Zastaw 8000 zł
-- Szczegóły w regulaminie
+- Bezpieczeństwo (kask, jazda na własne ryzyko)
+- Regulamin (sprzęt wypożyczany po spełnieniu warunków regulaminu i zastrzeżeń)
+- Kaucja/depozyt (blokada 5000 zł na karcie kredytowej)
+- Udział własny (z opcją wykupienia ubezpieczenia redukującego do kwoty kaucji)
+- Weryfikacja (dwa dokumenty tożsamości: dowód, prawo jazdy, mObywatel lub paszport)
+- Przycisk „Pełny regulamin” otwiera modal. Tytuły kart pogrubione (font-weight 600).
 
 ---
 
@@ -278,9 +295,7 @@ Zawartość:
 - Accordion
 - CSS transitions
 - Keyboard accessible
-- Pytania:
-  - organizacyjne
-  - techniczne
+- Pytania: organizacyjne, techniczne, m.in. dokumenty, odbiór, enduro, zwrot, kask/ochraniacze, „Dlaczego jesteście drożsi niż konkurencja?”
 
 ---
 
@@ -438,7 +453,7 @@ Szybka mapa treści w `index.html` (do planowania zmian copy):
 | faq | Accordion z pytaniami |
 | about | Obraz + tekst „O nas” |
 | contact | E-mail, social, adres |
-| stopka | Firma, NIP, copyright |
+| stopka | Przełącznik trybu (Auto/Ciemny/Jasny), firma, linki, social, copyright |
 | Modale | Produkt (galeria, spec), Regulamin, Polityka |
 
 ---
