@@ -130,14 +130,18 @@ const updateActiveLink = () => {
   if (!navLinks.length) return;
   const scrollY = window.scrollY + 120;
   let current = navLinks[0];
-  navLinks.forEach((link) => {
-    const id = link.getAttribute("href")?.slice(1);
-    const section = id ? document.getElementById(id) : null;
-    if (!section) return;
-    if (section.offsetTop <= scrollY) {
-      current = link;
-    }
-  });
+  if (window.scrollY < 150) {
+    current = navLinks[0];
+  } else {
+    navLinks.forEach((link) => {
+      const id = link.getAttribute("href")?.slice(1);
+      const section = id ? document.getElementById(id) : null;
+      if (!section) return;
+      if (section.offsetTop <= scrollY) {
+        current = link;
+      }
+    });
+  }
   navLinks.forEach((link) => link.classList.toggle("is-active", link === current));
   updateNavUnderline(current);
 };
@@ -480,6 +484,9 @@ const handleScroll = () => {
   });
 };
 
+if (navLinks.length) {
+  updateNavUnderline(navLinks[0]);
+}
 window.addEventListener("scroll", handleScroll, { passive: true });
 window.addEventListener("resize", () => {
   updateAboutTilt();
