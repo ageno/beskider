@@ -666,6 +666,8 @@ p {
 }
 
 .site-header {
+  --nav-brand-base: rgb(23 23 23);
+  --nav-brand-shine: rgb(251 146 60);
   position: sticky;
   top: 0px;
   z-index: 30;
@@ -712,6 +714,40 @@ p {
 
 .nav__brand:hover {
   color: inherit;
+}
+
+@keyframes nav-bolt-ignite {
+  0% { filter: drop-shadow(0 0 0 transparent); transform: scale(1); }
+  35% { filter: drop-shadow(0 0 8px rgb(249 115 22)) drop-shadow(0 0 12px rgb(234 88 12)); transform: scale(1.15); }
+  70% { filter: drop-shadow(0 0 4px rgb(251 146 60)); transform: scale(1.05); }
+  100% { filter: drop-shadow(0 0 0 transparent); transform: scale(1); }
+}
+
+.nav__bolt {
+  display: inline-block;
+}
+
+.nav__brand:hover .nav__bolt {
+  animation: nav-bolt-ignite 0.45s ease-out forwards;
+}
+
+@keyframes nav-name-glow {
+  0% { background-position: 100% 0; }
+  100% { background-position: 0% 0; }
+}
+
+.nav__brand-name {
+  display: inline-block;
+  background: linear-gradient(90deg, var(--nav-brand-base) 0%, var(--nav-brand-base) 35%, var(--nav-brand-shine) 50%, var(--nav-brand-base) 65%, var(--nav-brand-base) 100%);
+  background-size: 250% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.nav__brand:hover .nav__brand-name {
+  animation: nav-name-glow 0.5s ease-out 0.06s forwards;
 }
 
 .nav__logo,
@@ -876,6 +912,21 @@ main {
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  filter: blur(14px);
+  transform: scale(1.12) translateX(-48px);
+  opacity: 0.7;
+  transition: filter 1.2s cubic-bezier(0.16, 0, 0, 1), transform 1.2s cubic-bezier(0.16, 0, 0, 1), opacity 1.2s cubic-bezier(0.16, 0, 0, 1);
+  will-change: filter, transform, opacity;
+}
+
+.hero.hero--loaded .hero__media {
+  filter: blur(0);
+  transform: scale(1) translateX(0);
+  opacity: 1;
+}
+
+.hero.hero--scrolled .hero__media {
+  transition: filter 0.35s ease-out, transform 0.35s ease-out;
 }
 
 .hero__overlay {
@@ -2146,6 +2197,7 @@ html[data-theme="dark"] .route-card__difficulty--very-easy { background-color: r
 }
 
 html[data-theme="dark"] .site-header {
+  --nav-brand-base: rgb(243 243 243);
   border-color: rgb(38 38 38 / 0.8);
   background-color: rgb(18 18 18 / 0.7);
   --tw-backdrop-blur: blur(8px);
@@ -3273,9 +3325,9 @@ html[data-theme="dark"] .modal__close {
       <nav class="nav" aria-label="Główna nawigacja">
         <a class="nav__brand" href="#top" aria-label="Beskider – strona główna">
           <span class="nav__logo" aria-hidden="true">B</span>
-          <span class="text-base" aria-hidden="true">⚡️</span>
+          <span class="nav__bolt text-base" aria-hidden="true">⚡️</span>
           <div>
-            <strong>Beskider</strong>
+            <strong class="nav__brand-name">Beskider</strong>
             <span class="nav__tagline">Premium wypożyczalnia MTB</span>
           </div>
         </a>

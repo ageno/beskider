@@ -17,6 +17,8 @@ const cookieReject = document.querySelector("[data-cookie-reject]");
 const cookieSettingsButton = document.querySelector("[data-cookie-settings]");
 const cookieSave = document.querySelector("[data-cookie-save]");
 const aboutTilt = document.querySelector("[data-about-tilt]");
+const hero = document.querySelector(".hero");
+const heroMedia = document.querySelector(".hero__media");
 const focusableSelectors =
   "a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex='-1'])";
 
@@ -502,6 +504,22 @@ navLinks.forEach((link) => {
   });
 });
 
+const updateHeroScroll = () => {
+  if (!hero || !heroMedia) return;
+  const y = window.scrollY;
+  if (y > 0) {
+    hero.classList.add("hero--scrolled");
+    const blur = Math.min(y * 0.04, 6);
+    const parallax = y * 0.22;
+    heroMedia.style.filter = `blur(${blur}px)`;
+    heroMedia.style.transform = `translateY(${parallax}px)`;
+  } else {
+    hero.classList.remove("hero--scrolled");
+    heroMedia.style.filter = "";
+    heroMedia.style.transform = "";
+  }
+};
+
 let scrollPending = false;
 const handleScroll = () => {
   if (scrollPending) return;
@@ -510,14 +528,20 @@ const handleScroll = () => {
     updateHeaderState();
     updateActiveLink();
     updateAboutTilt();
+    updateHeroScroll();
     scrollPending = false;
   });
 };
+
+if (hero) {
+  setTimeout(() => hero.classList.add("hero--loaded"), 80);
+}
 
 window.addEventListener("scroll", handleScroll, { passive: true });
 window.addEventListener("resize", () => {
   updateAboutTilt();
   updateActiveLink();
+  updateHeroScroll();
 }, { passive: true });
 handleScroll();
 
