@@ -80,7 +80,7 @@ Lista sekcji w kolejności na stronie (źródło prawdy przy code review i plano
   - Nagłówek sekcji + intro
   - Rowery elektryczne (intro: E-MTB, E-ROAD BIKE)
   - Akcesoria w cenie (kask, zestaw naprawczy, konsultacje tras)
-  - Tabs (kategorie: Rowery eMTB, Rowery Szosowe, Narty, Snowboard, Inne)
+  - Tabs (kategorie: Rowery eMTB, Rowery Szosowe, Inne)
   - Karty produktów (grid)
 - CTA
 - Trasy
@@ -194,7 +194,7 @@ Przy każdej nowej sekcji lub nowym linku w nav należy zaktualizować niniejsz�
   - **Wszystko** (domyślna) – pokazuje obie kategorie (eMTB + Szosowe)
   - Rowery eMTB – karty e-MTB
   - Rowery Szosowe – S-Works Tarmac SL8 (SRAM RED AXS), S-Works Aethos (SRAM Red eTap AXS)
-  - Narty, Snowboard, Inne (coming soon, disabled)
+  - Inne (coming soon, disabled)
 - Coming soon:
   - disabled
   - aria-disabled

@@ -59,9 +59,10 @@ html[data-theme="dark"] .tabnav-platter {
 
 /* ---------- scroller (horizontal scroll container) ---------- */
 .tabnav-scroller {
+  position: relative;
   display: flex;
   gap: 2px;
-  /* 4px padding gives room for the active pill's box-shadow
+  /* 4px padding gives room for the indicator's box-shadow
      to render without being clipped by .tabnav-viewport. */
   padding: 4px;
   overflow-x: auto;
@@ -70,6 +71,39 @@ html[data-theme="dark"] .tabnav-platter {
   -webkit-overflow-scrolling: touch;
   touch-action: pan-x;
   scroll-behavior: smooth;
+}
+
+/* ---------- indicator (animated floating pill, Apple-style) ----------
+ * Separate element that moves under the active tab; position/size
+ * driven by --indicator-x and --indicator-w (set by JS). */
+.tabnav-indicator {
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: var(--indicator-w, 0);
+  transform: translateX(var(--indicator-x, 0));
+  border-radius: 9999px;
+  background: var(--tabnav-active-bg);
+  box-shadow: var(--tabnav-active-shadow);
+  pointer-events: none;
+  z-index: 0;
+  /* Apple-like easing; smooth move + resize */
+  transition:
+    transform 320ms cubic-bezier(0.25, 0.1, 0.25, 1),
+    width 320ms cubic-bezier(0.25, 0.1, 0.25, 1),
+    box-shadow 320ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* no animation on initial paint */
+.tabnav-scroller:not(.tabnav-indicator-ready) .tabnav-indicator {
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tabnav-indicator {
+    transition-duration: 1ms;
+  }
 }
 
 .tabnav-scroller::-webkit-scrollbar {
@@ -85,6 +119,8 @@ html[data-theme="dark"] .tabnav-platter {
 
 /* ---------- tab buttons ---------- */
 .tabnav-tab {
+  position: relative;
+  z-index: 1;
   appearance: none;
   -webkit-appearance: none;
   border: none;
@@ -99,10 +135,7 @@ html[data-theme="dark"] .tabnav-platter {
   color: var(--tabnav-tab-color);
   cursor: pointer;
   flex-shrink: 0;
-  transition:
-    color 0.25s ease,
-    background-color 0.25s ease,
-    box-shadow 0.3s ease;
+  transition: color 0.25s ease;
 }
 
 .tabnav-tab:hover {
@@ -118,11 +151,9 @@ html[data-theme="dark"] .tabnav-platter {
   border-radius: 9999px;
 }
 
-/* active (floating pill) */
+/* active — indicator provides pill; tab text only changes color */
 .tabnav-tab.is-active {
-  background: var(--tabnav-active-bg);
   color: var(--tabnav-active-color);
-  box-shadow: var(--tabnav-active-shadow);
 }
 
 .tabnav-tab.is-active:hover {

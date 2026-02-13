@@ -319,9 +319,9 @@ const initTabs = () => {
       });
       applyPanelVisibility(targetId);
 
-      /* scroll newly active tab into center (tabnav API) */
       const platter = tab.closest(".tabnav-platter");
       if (platter && platter._tabnav) {
+        platter._tabnav.updateIndicator();
         platter._tabnav.scrollTabIntoView(tab);
       }
     });
@@ -346,9 +346,9 @@ const initRouteFilters = () => {
       routeFilters.forEach((b) => b.classList.toggle("is-active", b === btn));
       applyFilter(filterValue);
 
-      /* scroll active filter tab into center (tabnav API) */
       const platter = btn.closest(".tabnav-platter");
       if (platter && platter._tabnav) {
+        platter._tabnav.updateIndicator();
         platter._tabnav.scrollTabIntoView(btn);
       }
     });

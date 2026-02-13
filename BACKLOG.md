@@ -29,4 +29,4 @@ Zgodnie z [spec.md §27 – Future roadmap](spec.md):
 - Płatności
 - Panel admina
 - CMS / JSON
-- Kolejne kategorie (Narty, Snowboard, Inne)
+- Kolejne kategorie (Inne)

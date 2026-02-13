@@ -151,8 +151,6 @@
         <button class="tabnav-tab is-active" role="tab" aria-selected="true" tabindex="0">Wszystko</button>
         <button class="tabnav-tab" role="tab" aria-selected="false" tabindex="-1">Rowery eMTB</button>
         <button class="tabnav-tab" role="tab" aria-selected="false" tabindex="-1">Rowery Szosowe</button>
-        <button class="tabnav-tab" role="tab" aria-selected="false" tabindex="-1">Narty biegowe</button>
-        <button class="tabnav-tab" role="tab" aria-selected="false" tabindex="-1">Snowboard freestyle</button>
         <button class="tabnav-tab" role="tab" aria-selected="false" tabindex="-1">Biegi narciarskie</button>
         <button class="tabnav-tab" role="tab" aria-selected="false" tabindex="-1">Skialpinizm</button>
         <button class="tabnav-tab" role="tab" aria-selected="false" tabindex="-1">Rakiety śnieżne</button>
@@ -192,8 +190,6 @@
         <button class="tabnav-tab is-active" role="tab" aria-selected="true" tabindex="0">Wszystko</button>
         <button class="tabnav-tab" role="tab" aria-selected="false" tabindex="-1">eMTB</button>
         <button class="tabnav-tab" role="tab" aria-selected="false" tabindex="-1">Szosowe</button>
-        <button class="tabnav-tab" role="tab" aria-disabled="true" disabled tabindex="-1">Narty (soon)</button>
-        <button class="tabnav-tab" role="tab" aria-disabled="true" disabled tabindex="-1">Snowboard (soon)</button>
         <button class="tabnav-tab" role="tab" aria-disabled="true" disabled tabindex="-1">Inne (soon)</button>
       </div>
     </div>
@@ -234,9 +230,9 @@
         });
       }
 
-      /* scroll active tab into view */
       var platter = tab.closest('.tabnav-platter');
       if (platter && platter._tabnav) {
+        platter._tabnav.updateIndicator();
         platter._tabnav.scrollTabIntoView(tab);
       }
     });

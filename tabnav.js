@@ -32,6 +32,26 @@
     var leftBtn = platter.querySelector(".tabnav-arrow.is-left .tabnav-arrow-btn");
     var rightBtn = platter.querySelector(".tabnav-arrow.is-right .tabnav-arrow-btn");
 
+    /* --- 0. Indicator (animated floating pill) --- */
+    var indicator = document.createElement("div");
+    indicator.className = "tabnav-indicator";
+    indicator.setAttribute("aria-hidden", "true");
+    scroller.insertBefore(indicator, scroller.firstChild);
+
+    function updateIndicator() {
+      var active = scroller.querySelector(".tabnav-tab.is-active");
+      if (!active) {
+        scroller.style.setProperty("--indicator-x", "0");
+        scroller.style.setProperty("--indicator-w", "0");
+        return;
+      }
+      var x = active.offsetLeft;
+      var w = active.offsetWidth;
+      scroller.style.setProperty("--indicator-x", x + "px");
+      scroller.style.setProperty("--indicator-w", w + "px");
+      scroller.classList.add("tabnav-indicator-ready");
+    }
+
     /* --- 1. Overflow detection ---
      * Compare scrollWidth vs clientWidth; update CSS classes that
      * drive arrow visibility (opacity via CSS transition). */
@@ -50,12 +70,18 @@
 
     if (typeof ResizeObserver !== "undefined") {
       new ResizeObserver(function () {
-        requestAnimationFrame(updateOverflow);
+        requestAnimationFrame(function () {
+          updateOverflow();
+          updateIndicator();
+        });
       }).observe(scroller);
     }
 
     window.addEventListener("resize", function () {
-      requestAnimationFrame(updateOverflow);
+      requestAnimationFrame(function () {
+        updateOverflow();
+        updateIndicator();
+      });
     }, { passive: true });
 
     /* --- 2. Arrow click: scroll by ~70 % of visible width --- */
@@ -125,12 +151,17 @@
     /* --- expose API for external code (tab activation, etc.) --- */
     platter._tabnav = {
       scrollTabIntoView: scrollTabIntoView,
-      updateOverflow: updateOverflow
+      updateOverflow: updateOverflow,
+      updateIndicator: updateIndicator
     };
 
     /* initial state */
     updateOverflow();
-    requestAnimationFrame(updateOverflow);
+    updateIndicator();
+    requestAnimationFrame(function () {
+      updateOverflow();
+      updateIndicator();
+    });
   }
 
   /* ---- global init ---- */
