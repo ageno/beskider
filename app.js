@@ -5,7 +5,7 @@ const navContainer = document.querySelector(".nav");
 const navUnderline = document.querySelector("[data-nav-underline]");
 const siteHeader = document.querySelector(".site-header");
 const navLinks = navMenu ? Array.from(navMenu.querySelectorAll("a[href^=\"#\"]")) : [];
-const tabs = document.querySelectorAll("[data-tab-target]");
+const tabs = document.querySelectorAll(".tabnav-tab[data-tab-target]");
 const accordionToggles = document.querySelectorAll(".accordion__toggle");
 const modalTriggers = document.querySelectorAll("[data-open-modal]");
 const modals = document.querySelectorAll(".modal");
@@ -290,6 +290,8 @@ const initCookieBanner = () => {
   }
 };
 
+/* Tab scroll arrows are now handled by tabnav.js */
+
 const initTabs = () => {
   const panels = document.querySelectorAll(".tab-panel");
   const applyPanelVisibility = (targetId) => {
@@ -298,12 +300,12 @@ const initTabs = () => {
       panel.classList.toggle("is-active", showAll || panel.id === targetId);
     });
   };
-  const activeTab = document.querySelector(".tabs__tab.is-active[data-tab-target]");
+  const activeTab = document.querySelector(".tabnav-tab.is-active[data-tab-target]");
   if (activeTab) applyPanelVisibility(activeTab.dataset.tabTarget);
   tabs.forEach((tab) => {
     const isActive = tab.classList.contains("is-active");
-    if (tab.hasAttribute("aria-selected")) tab.setAttribute("aria-selected", String(isActive));
-    if (tab.hasAttribute("tabindex")) tab.setAttribute("tabindex", isActive ? "0" : "-1");
+    tab.setAttribute("aria-selected", String(isActive));
+    tab.setAttribute("tabindex", isActive ? "0" : "-1");
   });
   tabs.forEach((tab) => {
     tab.addEventListener("click", () => {
@@ -312,10 +314,16 @@ const initTabs = () => {
       tabs.forEach((item) => {
         const isActive = item.dataset.tabTarget === targetId;
         item.classList.toggle("is-active", isActive);
-        if (item.hasAttribute("aria-selected")) item.setAttribute("aria-selected", String(isActive));
-        if (item.hasAttribute("tabindex")) item.setAttribute("tabindex", isActive ? "0" : "-1");
+        item.setAttribute("aria-selected", String(isActive));
+        item.setAttribute("tabindex", isActive ? "0" : "-1");
       });
       applyPanelVisibility(targetId);
+
+      /* scroll newly active tab into center (tabnav API) */
+      const platter = tab.closest(".tabnav-platter");
+      if (platter && platter._tabnav) {
+        platter._tabnav.scrollTabIntoView(tab);
+      }
     });
   });
 };
@@ -337,6 +345,12 @@ const initRouteFilters = () => {
       const filterValue = btn.dataset.routeFilter;
       routeFilters.forEach((b) => b.classList.toggle("is-active", b === btn));
       applyFilter(filterValue);
+
+      /* scroll active filter tab into center (tabnav API) */
+      const platter = btn.closest(".tabnav-platter");
+      if (platter && platter._tabnav) {
+        platter._tabnav.scrollTabIntoView(btn);
+      }
     });
   });
 };
@@ -510,9 +524,8 @@ const updateHeroScroll = () => {
   if (y > 0) {
     hero.classList.add("hero--scrolled");
     const blur = Math.min(y * 0.04, 6);
-    const parallax = y * 0.22;
     heroMedia.style.filter = `blur(${blur}px)`;
-    heroMedia.style.transform = `translateY(${parallax}px)`;
+    heroMedia.style.transform = "";
   } else {
     hero.classList.remove("hero--scrolled");
     heroMedia.style.filter = "";

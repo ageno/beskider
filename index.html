@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pl" data-theme="light" data-build="2026-02-08">
+<html lang="pl" data-theme="light" data-build="2026-02-13">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -899,6 +899,7 @@ main {
   width: 100vw;
   overflow: hidden;
   border-radius: 0px;
+  background-color: #1a2320;
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
   min-height: 56vh;
@@ -913,7 +914,7 @@ main {
   -o-object-fit: cover;
      object-fit: cover;
   filter: blur(14px);
-  transform: scale(1.12) translateX(-48px);
+  transform: scale(1.22) translateX(0);
   opacity: 0.7;
   transition: filter 1.2s cubic-bezier(0.16, 0, 0, 1), transform 1.2s cubic-bezier(0.16, 0, 0, 1), opacity 1.2s cubic-bezier(0.16, 0, 0, 1);
   will-change: filter, transform, opacity;
@@ -933,7 +934,7 @@ main {
   position: absolute;
   inset: 0px;
   z-index: 10;
-  background-image: none;
+  background-image: linear-gradient(to bottom, #1a2320 0%, transparent 80px);
 }
 
 .hero__inner {
@@ -1348,159 +1349,10 @@ main {
 
 .tabs-sticky-wrap {
   position: sticky;
-  top: 4.5rem; /* odstęp poniżej sticky header */
+  top: 4.5rem;
   z-index: 10;
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
-}
-
-.tabs-scroll {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-/* Strzałki jak na Apple – delikatny gradient (cień), znikanie na skrajnych pozycjach w JS */
-/* Apple-style horizontal scroll arrows */
-.tabs-scroll__arrow {
-  --arrow-diameter: 36px;
-  --arrow-bg: rgba(210, 210, 215, 0.64);
-  --arrow-bg-hover: rgba(223, 223, 227, 0.70);
-  --arrow-color: rgba(0, 0, 0, 0.56);
-  --arrow-color-hover: rgba(0, 0, 0, 0.64);
-  
-  position: absolute;
-  top: 50%;
-  margin-top: calc(var(--arrow-diameter) * -0.5);
-  width: var(--arrow-diameter);
-  height: var(--arrow-diameter);
-  border-radius: var(--arrow-diameter);
-  background: var(--arrow-bg);
-  color: var(--arrow-color);
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 2;
-  transition: background 100ms linear, color 100ms linear, opacity 100ms linear;
-}
-
-.tabs-scroll__arrow:hover {
-  background: var(--arrow-bg-hover);
-  color: var(--arrow-color-hover);
-}
-
-.tabs-scroll__arrow--left {
-  left: 18px;
-}
-
-.tabs-scroll__arrow--right {
-  right: 18px;
-}
-
-.tabs-scroll__arrow[aria-hidden="true"] {
-  opacity: 0.42;
-  pointer-events: none;
-}
-
-@media (max-width: 639px) {
-  .tabs-scroll .tabs {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    min-width: 0;
-    gap: 0.5rem;
-    padding: 0.5rem; /* Stały padding - nigdy się nie zmienia! */
-    border-radius: 0.75rem;
-  }
-
-  .tabs-scroll .tabs::-webkit-scrollbar {
-    display: none;
-  }
-}
-
-@media (min-width: 640px) {
-  .tabs-scroll__arrow {
-    display: none !important;
-  }
-
-  .tabs-scroll .tabs {
-    flex-wrap: nowrap;
-  }
-}
-
-.tabs {
-  display: flex;
-  width: 100%;
-  flex-wrap: wrap;
-  gap: 1rem;
-  border-radius: 0.5rem;
-  border-width: 1px;
-  --tw-border-opacity: 1;
-  border-color: rgb(229 231 235 / var(--tw-border-opacity, 1));
-  background-color: rgb(255 255 255 / 0.8);
-  --tw-backdrop-blur: blur(8px);
-  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
-  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
-  padding: 0.5rem;
-}
-
-@media (min-width: 640px) {
-  .tabs {
-    width: auto;
-    flex-wrap: nowrap;
-  }
-}
-
-.tabs__tab {
-  white-space: nowrap;
-  border-radius: 0.375rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  --tw-text-opacity: 1;
-  color: rgb(156 163 175 / var(--tw-text-opacity, 1));
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
-.tabs__tab:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(243 244 246 / var(--tw-bg-opacity, 1));
-  --tw-text-opacity: 1;
-  color: rgb(64 64 64 / var(--tw-text-opacity, 1));
-}
-
-.tabs__tab.is-active {
-  --tw-bg-opacity: 1;
-  background-color: rgb(23 23 23 / var(--tw-bg-opacity, 1));
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
-  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-.tabs__tab[disabled] {
-  cursor: not-allowed;
-  --tw-text-opacity: 1;
-  color: rgb(209 213 219 / var(--tw-text-opacity, 1));
-}
-
-.tabs__tab[disabled]:hover {
-  background-color: transparent;
-  --tw-text-opacity: 1;
-  color: rgb(209 213 219 / var(--tw-text-opacity, 1));
 }
 
 .tab-panel {
@@ -2421,46 +2273,7 @@ html[data-theme="dark"] .equipment-intro li {
   color: rgb(163 163 163 / var(--tw-text-opacity, 1));
 }
 
-html[data-theme="dark"] .tabs {
-  --tw-border-opacity: 1;
-  border-color: rgb(38 38 38 / var(--tw-border-opacity, 1));
-  background-color: rgb(18 18 18 / 0.7);
-  --tw-backdrop-blur: blur(8px);
-  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
-  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
-}
-
-html[data-theme="dark"] .tabs__tab {
-  --tw-text-opacity: 1;
-  color: rgb(115 115 115 / var(--tw-text-opacity, 1));
-}
-
-html[data-theme="dark"] .tabs__tab:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(38 38 38 / var(--tw-bg-opacity, 1));
-  --tw-text-opacity: 1;
-  color: rgb(230 230 230 / var(--tw-text-opacity, 1));
-}
-
-html[data-theme="dark"] .tabs__tab.is-active {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
-  --tw-text-opacity: 1;
-  color: rgb(23 23 23 / var(--tw-text-opacity, 1));
-}
-
-html[data-theme="dark"] .tabs__tab[disabled] {
-  --tw-text-opacity: 1;
-  color: rgb(82 82 82 / var(--tw-text-opacity, 1));
-}
-
-/* Apple-style arrows dark mode */
-html[data-theme="dark"] .tabs-scroll__arrow {
-  --arrow-bg: rgba(45, 45, 48, 0.64);
-  --arrow-bg-hover: rgba(58, 58, 60, 0.70);
-  --arrow-color: rgba(255, 255, 255, 0.56);
-  --arrow-color-hover: rgba(255, 255, 255, 0.64);
-}
+/* dark mode tab overrides are in tabnav.css */
 
 html[data-theme="dark"] .offer-card,
         html[data-theme="dark"] .pricing-card,
@@ -3459,6 +3272,8 @@ html[data-theme="dark"] .modal__close {
       background-color: rgb(255 255 255 / 1);
     }
     </style>
+    <link rel="stylesheet" href="./tabnav.css" />
+    <script defer src="./tabnav.js"></script>
     <script defer src="./app.js"></script>
   </head>
   <body>
@@ -3611,54 +3426,60 @@ html[data-theme="dark"] .modal__close {
           </div>
         </div>
         <div class="tabs-sticky-wrap">
-          <div class="tabs-scroll">
-            <button type="button" class="tabs-scroll__arrow tabs-scroll__arrow--left" aria-label="Przewiń w lewo" aria-hidden="true">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
-            </button>
-            <div class="tabs" role="tablist" aria-label="Kategorie sprzętu">
-              <button
-                class="tabs__tab is-active"
-                role="tab"
-                aria-selected="true"
-                aria-controls="tab-bikes-emtb tab-bikes-road"
-                id="tab-bikes-all-button"
-                data-tab-target="tab-bikes-all"
-              >
-                Wszystko
-              </button>
-              <button
-                class="tabs__tab"
-                role="tab"
-                aria-selected="false"
-                aria-controls="tab-bikes-emtb"
-                id="tab-bikes-emtb-button"
-                data-tab-target="tab-bikes-emtb"
-              >
-                Rowery eMTB
-              </button>
-              <button
-                class="tabs__tab"
-                role="tab"
-                aria-selected="false"
-                aria-controls="tab-bikes-road"
-                id="tab-bikes-road-button"
-                data-tab-target="tab-bikes-road"
-              >
-                Rowery Szosowe
-              </button>
-              <button class="tabs__tab" role="tab" aria-disabled="true" disabled>
-                Narty (coming soon)
-              </button>
-              <button class="tabs__tab" role="tab" aria-disabled="true" disabled>
-                Snowboard (coming soon)
-              </button>
-              <button class="tabs__tab" role="tab" aria-disabled="true" disabled>
-                Inne (coming soon)
+          <div class="tabnav-platter">
+            <div class="tabnav-arrow is-left">
+              <button type="button" class="tabnav-arrow-btn" aria-label="Przewiń w lewo" tabindex="-1">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 10L4 6l4-4"/></svg>
               </button>
             </div>
-            <button type="button" class="tabs-scroll__arrow tabs-scroll__arrow--right" aria-label="Przewiń w prawo" aria-hidden="true">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
-            </button>
+            <div class="tabnav-viewport">
+              <div class="tabnav-scroller" role="tablist" aria-label="Kategorie sprzętu">
+                <button
+                  class="tabnav-tab is-active"
+                  role="tab"
+                  aria-selected="true"
+                  tabindex="0"
+                  aria-controls="tab-bikes-emtb tab-bikes-road"
+                  id="tab-bikes-all-button"
+                  data-tab-target="tab-bikes-all"
+                >
+                  Wszystko
+                </button>
+                <button
+                  class="tabnav-tab"
+                  role="tab"
+                  aria-selected="false"
+                  tabindex="-1"
+                  aria-controls="tab-bikes-emtb"
+                  id="tab-bikes-emtb-button"
+                  data-tab-target="tab-bikes-emtb"
+                >
+                  Rowery eMTB
+                </button>
+                <button
+                  class="tabnav-tab"
+                  role="tab"
+                  aria-selected="false"
+                  tabindex="-1"
+                  aria-controls="tab-bikes-road"
+                  id="tab-bikes-road-button"
+                  data-tab-target="tab-bikes-road"
+                >
+                  Rowery Szosowe
+                </button>
+                <button class="tabnav-tab" role="tab" aria-disabled="true" disabled tabindex="-1">
+                  Narty (coming soon)
+                </button>
+                <button class="tabnav-tab" role="tab" aria-disabled="true" disabled tabindex="-1">
+                  Snowboard (coming soon)
+                </button>
+              </div>
+            </div>
+            <div class="tabnav-arrow is-right">
+              <button type="button" class="tabnav-arrow-btn" aria-label="Przewiń w prawo" tabindex="-1">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2l4 4-4 4"/></svg>
+              </button>
+            </div>
           </div>
         </div>
         <div class="tab-panel is-active" role="tabpanel" id="tab-bikes-emtb" aria-labelledby="tab-bikes-emtb-button" data-filter-category="emtb">
@@ -3837,21 +3658,27 @@ html[data-theme="dark"] .modal__close {
           </p>
         </div>
         <div class="tabs-sticky-wrap">
-          <div class="tabs-scroll">
-            <button type="button" class="tabs-scroll__arrow tabs-scroll__arrow--left" aria-label="Przewiń w lewo" aria-hidden="true">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
-            </button>
-            <div class="tabs tabs--routes" role="tablist" aria-label="Filtr trudności tras">
-              <button type="button" class="tabs__tab is-active" data-route-filter="all">Wszystko</button>
-              <button type="button" class="tabs__tab" data-route-filter="very-easy">Bardzo łatwa</button>
-              <button type="button" class="tabs__tab" data-route-filter="easy">Łatwa</button>
-              <button type="button" class="tabs__tab" data-route-filter="medium">Średnia</button>
-              <button type="button" class="tabs__tab" data-route-filter="hard">Trudna</button>
-              <button type="button" class="tabs__tab" data-route-filter="very-hard">Bardzo trudna</button>
+          <div class="tabnav-platter">
+            <div class="tabnav-arrow is-left">
+              <button type="button" class="tabnav-arrow-btn" aria-label="Przewiń w lewo" tabindex="-1">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 10L4 6l4-4"/></svg>
+              </button>
             </div>
-            <button type="button" class="tabs-scroll__arrow tabs-scroll__arrow--right" aria-label="Przewiń w prawo" aria-hidden="true">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
-            </button>
+            <div class="tabnav-viewport">
+              <div class="tabnav-scroller" aria-label="Filtr trudności tras">
+                <button type="button" class="tabnav-tab is-active" data-route-filter="all">Wszystko</button>
+                <button type="button" class="tabnav-tab" data-route-filter="very-easy">Bardzo łatwa</button>
+                <button type="button" class="tabnav-tab" data-route-filter="easy">Łatwa</button>
+                <button type="button" class="tabnav-tab" data-route-filter="medium">Średnia</button>
+                <button type="button" class="tabnav-tab" data-route-filter="hard">Trudna</button>
+                <button type="button" class="tabnav-tab" data-route-filter="very-hard">Bardzo trudna</button>
+              </div>
+            </div>
+            <div class="tabnav-arrow is-right">
+              <button type="button" class="tabnav-arrow-btn" aria-label="Przewiń w prawo" tabindex="-1">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2l4 4-4 4"/></svg>
+              </button>
+            </div>
           </div>
         </div>
         <div class="routes-grid">

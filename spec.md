@@ -188,6 +188,7 @@ Przy każdej nowej sekcji lub nowym linku w nav należy zaktualizować niniejsz�
 ## 9. Sprzęt – kategorie
 
 - Tabs (segmented control) jako filtr; sticky.
+- **Komponent tabnav** (`tabnav.css`, `tabnav.js`, `tabnav.html`): Apple-style platter z przewijaniem poziomym, strzałkami przy overflow i obsługą klawiatury. DOM: `.tabnav-platter` > `.tabnav-viewport` > `.tabnav-scroller` (role="tablist") > `.tabnav-tab`, plus `.tabnav-arrow` jako overlay.
 - Na mobile: jedna linia, scroll poziomy, strzałki „Przewiń w lewo/prawo” gdy lista nie mieści się (ukryty scrollbar).
 - Kategorie:
   - **Wszystko** (domyślna) – pokazuje obie kategorie (eMTB + Szosowe)
@@ -233,6 +234,8 @@ Przy każdej nowej sekcji lub nowym linku w nav należy zaktualizować niniejsz�
 
 ### 10.4 Hero image
 - Nagłówek wykorzystuje panoramiczne zdjęcie w tle (lokalne `assets/images/`)
+- Aby uniknąć białego gradientu na krawędziach przy nałożonym blurze: sekcja hero ma ciemne tło (`background-color`), a zdjęcie w stanie z blur jest powiększone (scale ~1.22) i wyśrodkowane, tak że krawędzie obrazu nie wchodzą w viewport.
+- Przy scrollu stosowany jest tylko blur (bez translateY), żeby obraz nie odsłaniał ciemnego tła; overlay ma gradient u góry (#1a2320 → transparent) na wszelki wypadek.
 
 ---
 
@@ -433,6 +436,9 @@ Lighthouse (mobile):
 ├── app.js
 ├── sw.js
 ├── manifest.json
+├── tabnav.css
+├── tabnav.js
+├── tabnav.html
 └── assets/
     ├── images/
     │   ├── *-320.jpg

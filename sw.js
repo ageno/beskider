@@ -1,10 +1,12 @@
 const swUrl = new URL(self.location.href);
 const cacheSuffix = swUrl.searchParams.get("v") || "dev";
-const CACHE_VERSION = `beskider-${cacheSuffix}-20260209c`;
+const CACHE_VERSION = `beskider-${cacheSuffix}-20260213a`;
 const ASSETS = [
   "./",
   "./index.html",
   "./app.js",
+  "./tabnav.css",
+  "./tabnav.js",
   "./manifest.json",
   "./assets/icons/icon.svg",
   "./assets/icons/icon-192.png",
