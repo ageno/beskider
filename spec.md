@@ -160,6 +160,7 @@ Przy każdej nowej sekcji lub nowym linku w nav należy zaktualizować niniejsz�
 ### 8.7 Responsywność
 - Mobile-first: czytelne odstępy między blokami i stabilne łamanie treści
 - Nawigacja i taby zachowują dostępność na małych ekranach
+- Taby (Sprzęt, Trasy) na mobile: zawsze w jednej linii, przewijanie poziome, strzałki L/P gdy jest overflow (styl Apple)
 
 ### 8.2 Typografia
 - Sans-serif (system font stack)
@@ -187,6 +188,7 @@ Przy każdej nowej sekcji lub nowym linku w nav należy zaktualizować niniejsz�
 ## 9. Sprzęt – kategorie
 
 - Tabs (segmented control) jako filtr; sticky.
+- Na mobile: jedna linia, scroll poziomy, strzałki „Przewiń w lewo/prawo” gdy lista nie mieści się (ukryty scrollbar).
 - Kategorie:
   - **Wszystko** (domyślna) – pokazuje obie kategorie (eMTB + Szosowe)
   - Rowery eMTB – karty e-MTB
@@ -211,6 +213,7 @@ Przy każdej nowej sekcji lub nowym linku w nav należy zaktualizować niniejsz�
 
 ### 10.2 Karta produktu
 - Zdjęcie
+- Zdjęcie: przy najechaniu myszką płynne, delikatne powiększenie (scale ~1.06, transition 0.4s cubic-bezier); kontener z overflow hidden
 - Zdjęcie z delikatnym wcięciem (24px) od ramki
 - Zdjęcia z `srcset` (320 / 640 / 1280 / full)
 - Cena: 499 zł rower + 399 zł przewodnik / dzień
@@ -271,7 +274,7 @@ Zawartość:
 
 - Źródło danych: Enduro Trails (Bielsko-Biała), [endurotrails.pl/trasy/](https://endurotrails.pl/trasy/).
 - Intro: pomoc w wyborze tras, linki Komoot/Strava/Google Maps, dopasowanie do poziomu.
-- Filtry trudności: zakładki Wszystko / Bardzo łatwa / Łatwa / Średnia / Trudna / Bardzo trudna (sticky).
+- Filtry trudności: zakładki Wszystko / Bardzo łatwa / Łatwa / Średnia / Trudna / Bardzo trudna (sticky). Na mobile: jedna linia, scroll poziomy, strzałki jak w sekcji Sprzęt.
 - Karty tras (routes-grid, 3 kolumny): nazwa, krótki opis, label trudności (delikatna kolorystyka), długość (m), średni spadek (%), obniżenie (m). Tytuły pogrubione.
 - 15 tras: Daglezjowy, Bystry, Dziabar, Kamieniołom, DH+, Gaciok, Sahaira, Dębowiec, Gondola, Cygan, Stary zielony, Rock'n'Rolla, Cyganka, Twister, Stefanka.
 

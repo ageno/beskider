@@ -1354,6 +1354,85 @@ main {
   padding-bottom: 0.5rem;
 }
 
+.tabs-scroll {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Strzałki jak na Apple – delikatny gradient (cień), znikanie na skrajnych pozycjach w JS */
+/* Apple-style horizontal scroll arrows */
+.tabs-scroll__arrow {
+  --arrow-diameter: 36px;
+  --arrow-bg: rgba(210, 210, 215, 0.64);
+  --arrow-bg-hover: rgba(223, 223, 227, 0.70);
+  --arrow-color: rgba(0, 0, 0, 0.56);
+  --arrow-color-hover: rgba(0, 0, 0, 0.64);
+  
+  position: absolute;
+  top: 50%;
+  margin-top: calc(var(--arrow-diameter) * -0.5);
+  width: var(--arrow-diameter);
+  height: var(--arrow-diameter);
+  border-radius: var(--arrow-diameter);
+  background: var(--arrow-bg);
+  color: var(--arrow-color);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: background 100ms linear, color 100ms linear, opacity 100ms linear;
+}
+
+.tabs-scroll__arrow:hover {
+  background: var(--arrow-bg-hover);
+  color: var(--arrow-color-hover);
+}
+
+.tabs-scroll__arrow--left {
+  left: 18px;
+}
+
+.tabs-scroll__arrow--right {
+  right: 18px;
+}
+
+.tabs-scroll__arrow[aria-hidden="true"] {
+  opacity: 0.42;
+  pointer-events: none;
+}
+
+@media (max-width: 639px) {
+  .tabs-scroll .tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    min-width: 0;
+    gap: 0.5rem;
+    padding: 0.5rem; /* Stały padding - nigdy się nie zmienia! */
+    border-radius: 0.75rem;
+  }
+
+  .tabs-scroll .tabs::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (min-width: 640px) {
+  .tabs-scroll__arrow {
+    display: none !important;
+  }
+
+  .tabs-scroll .tabs {
+    flex-wrap: nowrap;
+  }
+}
+
 .tabs {
   display: flex;
   width: 100%;
@@ -1533,6 +1612,7 @@ main {
   position: relative;
   padding: 1.5rem;
   background-color: transparent;
+  overflow: hidden;
 }
 
 .product-card__media .product-card__status {
@@ -1656,6 +1736,11 @@ html[data-theme="dark"] .route-card__difficulty--very-easy { background-color: r
   -o-object-fit: contain;
      object-fit: contain;
   background: none;
+  transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.product-card:hover img {
+  transform: scale(1.06);
 }
 
 .product-card h3 {
@@ -2367,6 +2452,14 @@ html[data-theme="dark"] .tabs__tab.is-active {
 html[data-theme="dark"] .tabs__tab[disabled] {
   --tw-text-opacity: 1;
   color: rgb(82 82 82 / var(--tw-text-opacity, 1));
+}
+
+/* Apple-style arrows dark mode */
+html[data-theme="dark"] .tabs-scroll__arrow {
+  --arrow-bg: rgba(45, 45, 48, 0.64);
+  --arrow-bg-hover: rgba(58, 58, 60, 0.70);
+  --arrow-color: rgba(255, 255, 255, 0.56);
+  --arrow-color-hover: rgba(255, 255, 255, 0.64);
 }
 
 html[data-theme="dark"] .offer-card,
@@ -3518,45 +3611,53 @@ html[data-theme="dark"] .modal__close {
           </div>
         </div>
         <div class="tabs-sticky-wrap">
-          <div class="tabs" role="tablist" aria-label="Kategorie sprzętu">
-            <button
-              class="tabs__tab is-active"
-              role="tab"
-              aria-selected="true"
-              aria-controls="tab-bikes-emtb tab-bikes-road"
-              id="tab-bikes-all-button"
-              data-tab-target="tab-bikes-all"
-            >
-              Wszystko
+          <div class="tabs-scroll">
+            <button type="button" class="tabs-scroll__arrow tabs-scroll__arrow--left" aria-label="Przewiń w lewo" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
             </button>
-            <button
-              class="tabs__tab"
-              role="tab"
-              aria-selected="false"
-              aria-controls="tab-bikes-emtb"
-              id="tab-bikes-emtb-button"
-              data-tab-target="tab-bikes-emtb"
-            >
-              Rowery eMTB
-            </button>
-            <button
-              class="tabs__tab"
-              role="tab"
-              aria-selected="false"
-              aria-controls="tab-bikes-road"
-              id="tab-bikes-road-button"
-              data-tab-target="tab-bikes-road"
-            >
-              Rowery Szosowe
-            </button>
-            <button class="tabs__tab" role="tab" aria-disabled="true" disabled>
-              Narty (coming soon)
-            </button>
-            <button class="tabs__tab" role="tab" aria-disabled="true" disabled>
-              Snowboard (coming soon)
-            </button>
-            <button class="tabs__tab" role="tab" aria-disabled="true" disabled>
-              Inne (coming soon)
+            <div class="tabs" role="tablist" aria-label="Kategorie sprzętu">
+              <button
+                class="tabs__tab is-active"
+                role="tab"
+                aria-selected="true"
+                aria-controls="tab-bikes-emtb tab-bikes-road"
+                id="tab-bikes-all-button"
+                data-tab-target="tab-bikes-all"
+              >
+                Wszystko
+              </button>
+              <button
+                class="tabs__tab"
+                role="tab"
+                aria-selected="false"
+                aria-controls="tab-bikes-emtb"
+                id="tab-bikes-emtb-button"
+                data-tab-target="tab-bikes-emtb"
+              >
+                Rowery eMTB
+              </button>
+              <button
+                class="tabs__tab"
+                role="tab"
+                aria-selected="false"
+                aria-controls="tab-bikes-road"
+                id="tab-bikes-road-button"
+                data-tab-target="tab-bikes-road"
+              >
+                Rowery Szosowe
+              </button>
+              <button class="tabs__tab" role="tab" aria-disabled="true" disabled>
+                Narty (coming soon)
+              </button>
+              <button class="tabs__tab" role="tab" aria-disabled="true" disabled>
+                Snowboard (coming soon)
+              </button>
+              <button class="tabs__tab" role="tab" aria-disabled="true" disabled>
+                Inne (coming soon)
+              </button>
+            </div>
+            <button type="button" class="tabs-scroll__arrow tabs-scroll__arrow--right" aria-label="Przewiń w prawo" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
             </button>
           </div>
         </div>
@@ -3736,13 +3837,21 @@ html[data-theme="dark"] .modal__close {
           </p>
         </div>
         <div class="tabs-sticky-wrap">
-          <div class="tabs tabs--routes" role="tablist" aria-label="Filtr trudności tras">
-            <button type="button" class="tabs__tab is-active" data-route-filter="all">Wszystko</button>
-            <button type="button" class="tabs__tab" data-route-filter="very-easy">Bardzo łatwa</button>
-            <button type="button" class="tabs__tab" data-route-filter="easy">Łatwa</button>
-            <button type="button" class="tabs__tab" data-route-filter="medium">Średnia</button>
-            <button type="button" class="tabs__tab" data-route-filter="hard">Trudna</button>
-            <button type="button" class="tabs__tab" data-route-filter="very-hard">Bardzo trudna</button>
+          <div class="tabs-scroll">
+            <button type="button" class="tabs-scroll__arrow tabs-scroll__arrow--left" aria-label="Przewiń w lewo" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <div class="tabs tabs--routes" role="tablist" aria-label="Filtr trudności tras">
+              <button type="button" class="tabs__tab is-active" data-route-filter="all">Wszystko</button>
+              <button type="button" class="tabs__tab" data-route-filter="very-easy">Bardzo łatwa</button>
+              <button type="button" class="tabs__tab" data-route-filter="easy">Łatwa</button>
+              <button type="button" class="tabs__tab" data-route-filter="medium">Średnia</button>
+              <button type="button" class="tabs__tab" data-route-filter="hard">Trudna</button>
+              <button type="button" class="tabs__tab" data-route-filter="very-hard">Bardzo trudna</button>
+            </div>
+            <button type="button" class="tabs-scroll__arrow tabs-scroll__arrow--right" aria-label="Przewiń w prawo" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
           </div>
         </div>
         <div class="routes-grid">
