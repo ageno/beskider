@@ -17,6 +17,7 @@ const cookieReject = document.querySelector("[data-cookie-reject]");
 const cookieSettingsButton = document.querySelector("[data-cookie-settings]");
 const cookieSave = document.querySelector("[data-cookie-save]");
 const aboutTilt = document.querySelector("[data-about-tilt]");
+const ctaPlusCard = document.querySelector(".cta-plus");
 const hero = document.querySelector(".hero");
 const heroMedia = document.querySelector(".hero__media");
 const focusableSelectors =
@@ -518,6 +519,19 @@ navLinks.forEach((link) => {
   });
 });
 
+/* CTA+ subtle scroll rotation: 1.8deg → ~0.6deg as user scrolls past */
+const updateCtaRotation = () => {
+  if (!ctaPlusCard) return;
+  const rect = ctaPlusCard.getBoundingClientRect();
+  const vh = window.innerHeight;
+  // progress 0 → 1 as card goes from bottom of viewport to top
+  const raw = 1 - rect.top / vh;
+  const t = Math.max(0, Math.min(1, raw));
+  // ease: start at 1.8deg, settle to ~0.6deg
+  const deg = 1.8 - t * 1.2;
+  ctaPlusCard.style.setProperty("--cta-rotate", deg.toFixed(2) + "deg");
+};
+
 const updateHeroScroll = () => {
   if (!hero || !heroMedia) return;
   const y = window.scrollY;
@@ -542,6 +556,7 @@ const handleScroll = () => {
     updateActiveLink();
     updateAboutTilt();
     updateHeroScroll();
+    updateCtaRotation();
     scrollPending = false;
   });
 };

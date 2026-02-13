@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pl" data-theme="light" data-build="2026-02-13">
+<html lang="pl" data-theme="light" data-build="2026-02-14">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -716,6 +716,12 @@ p {
   color: inherit;
 }
 
+.nav__brand:focus-visible {
+  outline: 2px solid #0071e3;
+  outline-offset: 4px;
+  border-radius: 0.25rem;
+}
+
 @keyframes nav-bolt-ignite {
   0% { filter: drop-shadow(0 0 0 transparent); transform: scale(1); }
   35% { filter: drop-shadow(0 0 8px rgb(249 115 22)) drop-shadow(0 0 12px rgb(234 88 12)); transform: scale(1.15); }
@@ -810,9 +816,23 @@ p {
   color: rgb(75 85 99 / var(--tw-text-opacity, 1));
 }
 
+.nav__menu a {
+  transition: color 0.2s ease, opacity 0.15s ease;
+}
+
 .nav__menu a:hover {
   --tw-text-opacity: 1;
   color: rgb(23 23 23 / var(--tw-text-opacity, 1));
+}
+
+.nav__menu a:active {
+  opacity: 0.7;
+}
+
+.nav__menu a:focus-visible {
+  outline: 2px solid #0071e3;
+  outline-offset: 2px;
+  border-radius: 0.25rem;
 }
 
 .nav__menu a.is-active {
@@ -850,6 +870,25 @@ p {
   background-color: rgb(23 23 23 / var(--tw-bg-opacity, 1));
 }
 
+.nav__toggle {
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+}
+
+.nav__toggle:hover {
+  background-color: rgb(249 250 251);
+  border-color: rgb(209 213 219);
+}
+
+.nav__toggle:active {
+  background-color: rgb(243 244 246);
+  transform: scale(0.95);
+}
+
+.nav__toggle:focus-visible {
+  outline: 2px solid #0071e3;
+  outline-offset: 2px;
+}
+
 .theme-toggle {
   align-self: center;
   display: inline-flex;
@@ -875,6 +914,25 @@ p {
   fill: none;
   stroke: currentColor;
   stroke-width: 2;
+}
+
+.theme-toggle {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+
+.theme-toggle:hover {
+  background-color: rgb(249 250 251);
+  border-color: rgb(209 213 219);
+}
+
+.theme-toggle:active {
+  background-color: rgb(243 244 246);
+  transform: scale(0.92);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid #0071e3;
+  outline-offset: 2px;
 }
 
 main {
@@ -946,6 +1004,8 @@ main {
   width: 100%;
   max-width: 72rem;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: 1.5rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
@@ -962,17 +1022,19 @@ main {
 
 @media (min-width: 768px) {
   .hero__inner {
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 3rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
     padding-top: 6rem;
     padding-bottom: 6rem;
   }
 }
 
 .hero--canyon .hero__content {
-  max-width: 36rem;
+  max-width: 56rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero--canyon .hero__content > :not([hidden]) ~ :not([hidden]) {
@@ -1064,6 +1126,23 @@ main {
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
+.hero--canyon .button--primary:hover {
+  background-color: rgb(230 230 230);
+}
+
+.hero--canyon .button--primary:active {
+  background-color: rgb(210 210 210);
+}
+
+.hero--canyon .button--ghost:hover {
+  background-color: rgb(255 255 255 / 0.18);
+  border-color: rgb(255 255 255 / 0.55);
+}
+
+.hero--canyon .button--ghost:active {
+  background-color: rgb(255 255 255 / 0.12);
+}
+
 .hero--canyon .hero__card {
   width: 100%;
   border-radius: 0.5rem;
@@ -1148,6 +1227,161 @@ main {
   padding: 1rem;
 }
 
+/* ---------- CTA+ (Beskider+ promo card) ---------- */
+.cta-plus-wrap {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+  padding: 0 1.5rem;
+  z-index: 2;
+  margin-top: -2.5rem;
+}
+
+@media (min-width: 768px) {
+  .cta-plus-wrap {
+    margin-top: -3.5rem;
+  }
+}
+
+.cta-plus {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  overflow: hidden;
+  border-radius: 1rem;
+  border: 1px solid rgb(229 231 235);
+  background-color: rgb(255 255 255);
+  max-width: 72rem;
+  margin: 0 auto;
+  transform: rotate(var(--cta-rotate, 1.8deg));
+  transform-origin: center center;
+  will-change: transform;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+  box-shadow:
+    0 8px 32px rgb(0 0 0 / 0.08),
+    0 2px 8px rgb(0 0 0 / 0.04);
+}
+
+.cta-plus:hover {
+  box-shadow:
+    0 12px 40px rgb(0 0 0 / 0.1),
+    0 4px 12px rgb(0 0 0 / 0.06);
+  border-color: rgb(209 213 219);
+}
+
+.cta-plus:focus-visible {
+  outline: 2px solid #0071e3;
+  outline-offset: 2px;
+}
+
+.cta-plus__body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0%;
+  min-width: 0;
+  gap: 1rem;
+  padding: 1.25rem 1.25rem;
+  justify-content: center;
+}
+
+.cta-plus__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgb(107 114 128);
+}
+
+.cta-plus__badge svg {
+  width: 0.875rem;
+  height: 0.875rem;
+  fill: #ffcb03;
+  margin-right: -0.2rem;
+}
+
+.cta-plus__title {
+  display: none;
+}
+
+.cta-plus__desc {
+  font-size: 1rem;
+  line-height: 1.625;
+  color: rgb(75 85 99);
+  max-width: 32rem;
+  margin: 0;
+}
+
+.cta-plus__fine {
+  font-size: 0.8125rem;
+  color: rgb(156 163 175);
+  margin: 0;
+}
+
+.cta-plus__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-top: 0.25rem;
+}
+
+.cta-plus__actions .button {
+  width: auto;
+}
+
+.cta-plus__media {
+  position: relative;
+  flex: 0 0 28%;
+  min-height: 120px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.cta-plus__media img {
+  width: 140%;
+  height: 140%;
+  object-fit: cover;
+  object-position: left center;
+  transform-origin: left center;
+}
+
+/* Tablet+ (768px) */
+@media (min-width: 768px) {
+  .cta-plus__body {
+    padding: 2.5rem;
+    gap: 1rem;
+  }
+
+  .cta-plus__media {
+    flex: 0 0 35%;
+    min-height: 240px;
+  }
+
+  .cta-plus__actions .button {
+    width: auto;
+  }
+}
+
+/* Desktop (1024px): wider image area */
+@media (min-width: 1024px) {
+  .cta-plus__body {
+    padding: 3rem;
+    gap: 1rem;
+  }
+
+  .cta-plus__media {
+    flex: 0 0 40%;
+  }
+}
+
 .hero__content > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
@@ -1201,6 +1435,7 @@ main {
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 1rem;
 }
 
@@ -1756,6 +1991,7 @@ html[data-theme="dark"] .route-card__difficulty--very-easy { background-color: r
   font-size: 0.875rem;
   line-height: 1.25rem;
   font-weight: 600;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
 }
 
 .button--primary {
@@ -1773,6 +2009,35 @@ html[data-theme="dark"] .route-card__difficulty--very-easy { background-color: r
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
   --tw-text-opacity: 1;
   color: rgb(23 23 23 / var(--tw-text-opacity, 1));
+}
+
+.button--primary:hover {
+  background-color: rgb(38 38 38);
+}
+
+.button--primary:active {
+  background-color: rgb(50 50 50);
+  transform: scale(0.98);
+}
+
+.button--primary:focus-visible {
+  outline: 2px solid #0071e3;
+  outline-offset: 2px;
+}
+
+.button--ghost:hover {
+  background-color: rgb(249 250 251);
+  border-color: rgb(209 213 219);
+}
+
+.button--ghost:active {
+  background-color: rgb(243 244 246);
+  transform: scale(0.98);
+}
+
+.button--ghost:focus-visible {
+  outline: 2px solid #0071e3;
+  outline-offset: 2px;
 }
 
 .accordion > :not([hidden]) ~ :not([hidden]) {
@@ -1801,6 +2066,21 @@ html[data-theme="dark"] .route-card__difficulty--very-easy { background-color: r
   font-size: 0.875rem;
   line-height: 1.25rem;
   font-weight: 600;
+  transition: color 0.2s ease, opacity 0.15s ease;
+}
+
+.accordion__toggle:hover {
+  color: rgb(23 23 23);
+}
+
+.accordion__toggle:active {
+  opacity: 0.7;
+}
+
+.accordion__toggle:focus-visible {
+  outline: 2px solid #0071e3;
+  outline-offset: -2px;
+  border-radius: 0.25rem;
 }
 
 .accordion__panel {
@@ -1959,9 +2239,23 @@ html[data-theme="dark"] .route-card__difficulty--very-easy { background-color: r
   color: rgb(75 85 99 / var(--tw-text-opacity, 1));
 }
 
+.footer__social a {
+  transition: color 0.2s ease, opacity 0.15s ease;
+}
+
 .footer__social a:hover {
   --tw-text-opacity: 1;
   color: rgb(23 23 23 / var(--tw-text-opacity, 1));
+}
+
+.footer__social a:active {
+  opacity: 0.7;
+}
+
+.footer__social a:focus-visible {
+  outline: 2px solid #0071e3;
+  outline-offset: 2px;
+  border-radius: 0.25rem;
 }
 
 .footer__social svg {
@@ -1993,9 +2287,23 @@ html[data-theme="dark"] .route-card__difficulty--very-easy { background-color: r
   color: rgb(107 114 128 / var(--tw-text-opacity, 1));
 }
 
+.theme-switcher__option {
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+}
+
 .theme-switcher__option:hover {
   --tw-text-opacity: 1;
   color: rgb(64 64 64 / var(--tw-text-opacity, 1));
+}
+
+.theme-switcher__option:active {
+  transform: scale(0.95);
+}
+
+.theme-switcher__option:focus-visible {
+  outline: 2px solid #0071e3;
+  outline-offset: -2px;
+  border-radius: 0.375rem;
 }
 
 .theme-switcher__option[aria-pressed="true"] {
@@ -2010,6 +2318,20 @@ html[data-theme="dark"] .route-card__difficulty--very-easy { background-color: r
   --tw-text-opacity: 1;
   color: rgb(23 23 23 / var(--tw-text-opacity, 1));
   text-decoration-line: underline;
+  transition: color 0.2s ease, opacity 0.15s ease;
+}
+
+.link-button:hover {
+  color: rgb(75 85 99);
+}
+
+.link-button:active {
+  opacity: 0.7;
+}
+
+.link-button:focus-visible {
+  outline: 2px solid #0071e3;
+  outline-offset: 2px;
 }
 
 .cookie-banner {
@@ -2118,6 +2440,22 @@ html[data-theme="dark"] .route-card__difficulty--very-easy { background-color: r
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
   font-size: 1.125rem;
   line-height: 1.75rem;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+}
+
+.modal__close:hover {
+  background-color: rgb(249 250 251);
+  border-color: rgb(209 213 219);
+}
+
+.modal__close:active {
+  background-color: rgb(243 244 246);
+  transform: scale(0.92);
+}
+
+.modal__close:focus-visible {
+  outline: 2px solid #0071e3;
+  outline-offset: 2px;
 }
 
 .modal__details {
@@ -2165,6 +2503,21 @@ html[data-theme="dark"] .route-card__difficulty--very-easy { background-color: r
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
   padding: 0px;
+  border: 2px solid transparent;
+  transition: border-color 0.2s ease, transform 0.1s ease;
+}
+
+.gallery__thumbs button:hover {
+  border-color: rgb(209 213 219);
+}
+
+.gallery__thumbs button:active {
+  transform: scale(0.95);
+}
+
+.gallery__thumbs button:focus-visible {
+  outline: 2px solid #0071e3;
+  outline-offset: 2px;
 }
 
 .gallery__thumbs img {
@@ -2262,6 +2615,37 @@ html[data-theme="dark"] .feature-card p {
   color: rgb(163 163 163 / var(--tw-text-opacity, 1));
 }
 
+/* CTA+ dark mode */
+html[data-theme="dark"] .cta-plus {
+  border-color: rgb(38 38 38);
+  background-color: rgb(23 23 23);
+}
+
+html[data-theme="dark"] .cta-plus {
+  box-shadow:
+    0 8px 32px rgb(0 0 0 / 0.25),
+    0 2px 8px rgb(0 0 0 / 0.15);
+}
+
+html[data-theme="dark"] .cta-plus:hover {
+  border-color: rgb(64 64 64);
+  box-shadow:
+    0 12px 40px rgb(0 0 0 / 0.35),
+    0 4px 12px rgb(0 0 0 / 0.2);
+}
+
+html[data-theme="dark"] .cta-plus__desc {
+  color: rgb(163 163 163);
+}
+
+html[data-theme="dark"] .cta-plus__fine {
+  color: rgb(115 115 115);
+}
+
+html[data-theme="dark"] .cta-plus__badge {
+  color: rgb(115 115 115);
+}
+
 html[data-theme="dark"] .section__head p {
   --tw-text-opacity: 1;
   color: rgb(163 163 163 / var(--tw-text-opacity, 1));
@@ -2356,9 +2740,21 @@ html[data-theme="dark"] .button--ghost {
   color: rgb(243 243 243 / var(--tw-text-opacity, 1));
 }
 
+html[data-theme="dark"] .button--primary:hover {
+  background-color: rgb(230 230 230);
+}
+
+html[data-theme="dark"] .button--primary:active {
+  background-color: rgb(210 210 210);
+}
+
 html[data-theme="dark"] .button--ghost:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(38 38 38 / var(--tw-bg-opacity, 1));
+}
+
+html[data-theme="dark"] .button--ghost:active {
+  background-color: rgb(50 50 50);
 }
 
 html[data-theme="dark"] .accordion > :not([hidden]) ~ :not([hidden]) {
@@ -2431,6 +2827,33 @@ html[data-theme="dark"] .link-button {
   color: rgb(230 230 230 / var(--tw-text-opacity, 1));
 }
 
+html[data-theme="dark"] .link-button:hover {
+  color: rgb(255 255 255);
+}
+
+html[data-theme="dark"] .nav__toggle:hover {
+  background-color: rgb(50 50 50);
+  border-color: rgb(82 82 82);
+}
+
+html[data-theme="dark"] .theme-toggle:hover {
+  background-color: rgb(50 50 50);
+  border-color: rgb(82 82 82);
+}
+
+html[data-theme="dark"] .accordion__toggle:hover {
+  color: rgb(255 255 255);
+}
+
+html[data-theme="dark"] .modal__close:hover {
+  background-color: rgb(50 50 50);
+  border-color: rgb(82 82 82);
+}
+
+html[data-theme="dark"] .gallery__thumbs button:hover {
+  border-color: rgb(82 82 82);
+}
+
 html[data-theme="dark"] .cookie-banner {
   --tw-border-opacity: 1;
   border-color: rgb(38 38 38 / var(--tw-border-opacity, 1));
@@ -2462,6 +2885,10 @@ html[data-theme="dark"] .modal__close {
   .accordion__panel,
           .accordion__icon {
     transition: none;
+  }
+
+  .cta-plus {
+    transform: none !important;
   }
 }
 
@@ -3356,9 +3783,9 @@ html[data-theme="dark"] .modal__close {
         <div class="hero__inner">
           <div class="hero__content">
             <p class="eyebrow">Beskider • Bielsko-Biała</p>
-            <h1 id="hero-title">Wypożycz rower klasy premium z <span class="hero__highlight hero__highlight--gold">przewodnikiem</span></h1>
+            <h1 id="hero-title">Górska przygoda <span style="white-space:nowrap">z&nbsp;<span class="hero__highlight hero__highlight--gold">przewodnikiem</span></span><br>na najwyższym poziomie</h1>
             <p class="hero__lead">
-              Beskider to nowy standard wypożyczania sprzętu sportowego z lokalnym, doświadczonym przewodnikiem. Otrzymujesz w pełni przygotowany, świeżo serwisowany rower, przejrzyste zasady i sprawną obsługę. Po krótkiej konsultacji przewodnik dopasuje trasę i pokaże najlepsze lokalne miejscówki. Jesteśmy gotowi na sezon. A Ty?
+              Topowy rower. Lokalny przewodnik, który zna każdy metr trasy. Mniej kompromisów. Więcej gór. Więcej prędkości. Więcej wolności. Wsiadasz. I&nbsp;dzień od razu wchodzi na wyższy poziom.
             </p>
             <div class="hero__actions">
               <a class="button button--primary" href="#equipment">Wyrusz z nami w podróż</a>
@@ -3366,6 +3793,59 @@ html[data-theme="dark"] .modal__close {
           </div>
         </div>
       </section>
+
+      <!-- CTA: Beskider+ -->
+      <div class="cta-plus-wrap">
+        <a href="#beskider-plus" class="cta-plus" aria-label="Dołącz do Beskider+">
+          <div class="cta-plus__body">
+            <span class="cta-plus__badge" aria-hidden="true">
+              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8.94 1.37a1 1 0 0 0-1.88 0L5.7 5.04l-3.92.57a1 1 0 0 0-.56 1.7l2.84 2.77-.67 3.9a1 1 0 0 0 1.45 1.06L8 13.35l3.16 1.66a1 1 0 0 0 1.45-1.06l-.67-3.9 2.84-2.77a1 1 0 0 0-.56-1.7l-3.92-.57-1.36-3.64Z"/></svg>
+              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8.94 1.37a1 1 0 0 0-1.88 0L5.7 5.04l-3.92.57a1 1 0 0 0-.56 1.7l2.84 2.77-.67 3.9a1 1 0 0 0 1.45 1.06L8 13.35l3.16 1.66a1 1 0 0 0 1.45-1.06l-.67-3.9 2.84-2.77a1 1 0 0 0-.56-1.7l-3.92-.57-1.36-3.64Z"/></svg>
+              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8.94 1.37a1 1 0 0 0-1.88 0L5.7 5.04l-3.92.57a1 1 0 0 0-.56 1.7l2.84 2.77-.67 3.9a1 1 0 0 0 1.45 1.06L8 13.35l3.16 1.66a1 1 0 0 0 1.45-1.06l-.67-3.9 2.84-2.77a1 1 0 0 0-.56-1.7l-3.92-.57-1.36-3.64Z"/></svg>
+              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8.94 1.37a1 1 0 0 0-1.88 0L5.7 5.04l-3.92.57a1 1 0 0 0-.56 1.7l2.84 2.77-.67 3.9a1 1 0 0 0 1.45 1.06L8 13.35l3.16 1.66a1 1 0 0 0 1.45-1.06l-.67-3.9 2.84-2.77a1 1 0 0 0-.56-1.7l-3.92-.57-1.36-3.64Z"/></svg>
+              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8.94 1.37a1 1 0 0 0-1.88 0L5.7 5.04l-3.92.57a1 1 0 0 0-.56 1.7l2.84 2.77-.67 3.9a1 1 0 0 0 1.45 1.06L8 13.35l3.16 1.66a1 1 0 0 0 1.45-1.06l-.67-3.9 2.84-2.77a1 1 0 0 0-.56-1.7l-3.92-.57-1.36-3.64Z"/></svg>
+              Beskider+
+            </span>
+            <p class="cta-plus__desc">
+              Odblokuj możliwość swobodnego korzystania z garażu pełnego fenomenalnego sprzętu,
+              na którym będziesz mógł jeździć kiedy będziesz chciał.
+            </p>
+            <p class="cta-plus__fine">Możesz anulować w dowolnym momencie.</p>
+            <div class="cta-plus__actions">
+              <span class="button button--primary" role="presentation">Dołącz do&nbsp;<strong>Beskider+</strong></span>
+            </div>
+          </div>
+          <div class="cta-plus__media">
+            <picture>
+              <source
+                type="image/webp"
+                srcset="
+                  ./assets/images/beskider-plus-cta-480.webp 480w,
+                  ./assets/images/beskider-plus-cta-640.webp 640w,
+                  ./assets/images/beskider-plus-cta-1024.webp 1024w
+                "
+                sizes="(min-width: 768px) 40vw, 100vw"
+              />
+              <img
+                src="./assets/images/beskider-plus-cta-640.jpg"
+                srcset="
+                  ./assets/images/beskider-plus-cta-480.jpg 480w,
+                  ./assets/images/beskider-plus-cta-640.jpg 640w,
+                  ./assets/images/beskider-plus-cta-1024.jpg 1024w
+                "
+                sizes="(min-width: 768px) 40vw, 100vw"
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                decoding="async"
+                width="1024"
+                height="682"
+              />
+            </picture>
+          </div>
+        </a>
+      </div>
+
       <section class="feature-band" aria-label="Wyróżniki Beskider">
         <div class="feature-band__inner">
           <div class="feature-grid">

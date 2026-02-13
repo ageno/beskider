@@ -1,6 +1,6 @@
 const swUrl = new URL(self.location.href);
 const cacheSuffix = swUrl.searchParams.get("v") || "dev";
-const CACHE_VERSION = `beskider-${cacheSuffix}-20260213a`;
+const CACHE_VERSION = `beskider-${cacheSuffix}-20260214a`;
 const ASSETS = [
   "./",
   "./index.html",
@@ -77,7 +77,13 @@ const ASSETS = [
   "./assets/images/aethos-1.png",
   "./assets/images/guide-pawel-nowak.png",
   "./assets/images/guide-klaudia-mec.png",
-  "./assets/images/guide-anna-zielinska.png"
+  "./assets/images/guide-anna-zielinska.png",
+  "./assets/images/beskider-plus-cta-480.webp",
+  "./assets/images/beskider-plus-cta-640.webp",
+  "./assets/images/beskider-plus-cta-1024.webp",
+  "./assets/images/beskider-plus-cta-480.jpg",
+  "./assets/images/beskider-plus-cta-640.jpg",
+  "./assets/images/beskider-plus-cta-1024.jpg"
 ];
 
 self.addEventListener("install", (event) => {

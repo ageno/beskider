@@ -160,6 +160,10 @@ html[data-theme="dark"] .tabnav-platter {
   color: var(--tabnav-active-color);
 }
 
+.tabnav-tab:active:not([disabled]):not([aria-disabled="true"]) {
+  opacity: 0.7;
+}
+
 /* disabled */
 .tabnav-tab[disabled],
 .tabnav-tab[aria-disabled="true"] {
@@ -257,6 +261,11 @@ html[data-theme="dark"] .tabnav-platter {
 .tabnav-arrow-btn:focus-visible {
   outline: 2px solid var(--tabnav-focus-ring);
   outline-offset: 1px;
+}
+
+.tabnav-arrow-btn:active {
+  background: var(--tabnav-arrow-hover-bg);
+  transform: scale(0.9);
 }
 
 .tabnav-arrow-btn svg {

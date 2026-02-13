@@ -75,6 +75,7 @@ Lista sekcji w kolejności na stronie (źródło prawdy przy code review i plano
 
 - Navigation
 - Hero
+- CTA Beskider+ (karta z grafiką Memphis; nagłówek, opis, przycisk „Dołącz do Beskider+"; klikalna karta)
 - Wyróżniki (feature-band)
 - Sprzęt
   - Nagłówek sekcji + intro
