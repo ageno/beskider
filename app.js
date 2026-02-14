@@ -536,11 +536,16 @@ const updateCtaRotation = () => {
 const updateHeroScroll = () => {
   if (!hero || !heroMedia) return;
   const y = window.scrollY;
+  const heroHeight = hero.offsetHeight;
+  const maxScroll = Math.max(heroHeight * 0.8, 200);
+  const progress = Math.min(y / maxScroll, 1);
+
   if (y > 0) {
     hero.classList.add("hero--scrolled");
     const blur = Math.min(y * 0.04, 6);
     heroMedia.style.filter = `blur(${blur}px)`;
-    heroMedia.style.transform = "";
+    const scale = 1.1 + progress * 0.11;
+    heroMedia.style.transform = `scale(${scale.toFixed(3)}) translateX(0)`;
   } else {
     hero.classList.remove("hero--scrolled");
     heroMedia.style.filter = "";
