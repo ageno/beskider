@@ -283,8 +283,9 @@ Zawartość:
 - Intro: pomoc w wyborze tras, linki Komoot/Strava/Google Maps, dopasowanie do poziomu.
 - Filtry trudności: zakładki Wszystko / Bardzo łatwa / Łatwa / Średnia / Trudna / Bardzo trudna (sticky). Na mobile: jedna linia, scroll poziomy, strzałki jak w sekcji Sprzęt.
 - Karty tras (routes-grid, 3 kolumny): nazwa, krótki opis (oryginalne opisy, nie plagiat źródła), label trudności (delikatna kolorystyka), długość (m), nachylenie (%), przewyższenie (m), rodzaj nawierzchni. Tytuły pogrubione.
-- 15 tras: Daglezjowy, Bystry, Dziabar, Kamieniołom, DH+, Gaciok, Sahaira, Dębowiec, Gondola, Cygan, Stary zielony, Rock'n'Rolla, Cyganka, Twister, Stefanka.
-- Meta kart: Długość · Nachylenie · Przewyższenie · Rodzaj (podjazdowa / naturalna / mieszana / utwardzona).
+- 17 tras: Daglezjowy, Bystry, Dziabar, Kamieniołom, DH+, Gaciok, Sahaira, Dębowiec, Gondola, Cygan, Stary zielony, Rock'n'Rolla, Cyganka, Twister, Stefanka, Gaiki, Magurka Wilkowicka.
+- Meta kart: Długość · Nachylenie · Przewyższenie · Rodzaj (podjazdowa / naturalna / mieszana / utwardzona / nieoficjalne single).
+- Karta może mieć wiele labeli trudności (np. „Trudna" + „Bardzo trudna"). `data-route-difficulty` przyjmuje wartości oddzielone spacją; filtr pokazuje kartę gdy dowolna z nich pasuje.
 
 ---
 
