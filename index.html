@@ -2576,6 +2576,419 @@ html[data-theme="dark"] .perk-item__desc {
   justify-content: flex-end;
 }
 
+/* ---------- Peek gallery (nad Trasami): slider z pagerem kapsułą ---------- */
+.peek-gallery {
+  --peek-bg: #1a1b1e;
+  --peek-fg: #fff;
+  --peek-muted: rgba(255, 255, 255, 0.7);
+  --peek-slide-radius: 24px;
+  --peek-slide-radius-desk: 32px;
+  --peek-gap: 2rem;
+  --peek-ease: ease-in-out;
+  --peek-dur: 500ms;
+  --peek-pager-dur: 400ms;
+  --peek-slide-height: clamp(320px, 42vw, 560px);
+  --peek-slide-width-mobile: 82%;
+  --peek-slide-width-tablet: 78%;
+  --peek-slide-width-desk: 69rem;
+  background: var(--peek-bg);
+  color: var(--peek-fg);
+  padding: 2.5rem 0 3rem;
+  margin: 0;
+  margin-top: 3rem;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  box-sizing: border-box;
+}
+
+html[data-theme="dark"] .peek-gallery {
+  --peek-bg: #16171a;
+}
+
+.peek-gallery__head {
+  max-width: 72rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1.5rem 2.5rem;
+  text-align: left;
+}
+
+.peek-gallery__title {
+  margin: 0;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  line-height: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: #fff;
+}
+
+.peek-gallery__inner {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.peek-gallery__viewport {
+  position: relative;
+  overflow: hidden;
+  touch-action: none;
+  margin-bottom: 1.5rem;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.peek-gallery__track {
+  display: flex;
+  gap: var(--peek-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  will-change: transform;
+  transition: transform var(--peek-dur) var(--peek-ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .peek-gallery__track {
+    transition-duration: 80ms;
+  }
+  .peek-gallery__slide {
+    transition: none;
+  }
+}
+
+.peek-gallery__slide {
+  flex: 0 0 var(--peek-slide-width-mobile);
+  min-width: 0;
+  height: var(--peek-slide-height);
+  border-radius: var(--peek-slide-radius);
+  overflow: hidden;
+  position: relative;
+  background: #1a1a1a;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  filter: brightness(0.7);
+  transition: filter var(--peek-dur) var(--peek-ease);
+}
+
+.peek-gallery__slide[aria-hidden="false"] {
+  filter: brightness(1);
+}
+
+/* Winieta na każdym slajdzie – przyciemnienie od krawędzi do środka, przesuwa się ze slajdem */
+.peek-gallery__slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: inherit;
+  background: radial-gradient(
+    ellipse 70% 70% at 50% 50%,
+    transparent 28%,
+    rgba(0, 0, 0, 0.4) 55%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
+}
+
+@media (min-width: 768px) {
+  .peek-gallery__slide {
+    flex: 0 0 var(--peek-slide-width-tablet);
+  }
+}
+
+@media (min-width: 1024px) {
+  .peek-gallery__slide {
+    flex: 0 0 var(--peek-slide-width-desk);
+    border-radius: var(--peek-slide-radius-desk);
+  }
+}
+
+.peek-gallery__media-wrap {
+  position: absolute;
+  inset: 0;
+}
+
+@keyframes peek-portrait-scroll {
+  0% { transform: scale(1) translateY(0); }
+  100% { transform: scale(1.04) translateY(-50%); }
+}
+
+.peek-gallery__media-wrap img,
+.peek-gallery__media-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  -webkit-user-drag: none;
+  user-drag: none;
+  pointer-events: none;
+}
+
+.peek-gallery__media-wrap {
+  pointer-events: none;
+}
+
+.peek-gallery__media-wrap--portrait {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.peek-gallery__media-wrap--portrait img {
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  object-fit: contain;
+  object-position: center top;
+  animation: peek-portrait-scroll 9.6s ease-in-out infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .peek-gallery__media-wrap--portrait img {
+    animation: none;
+  }
+}
+
+.peek-gallery__text {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 1.5rem 1.5rem 1.25rem;
+  max-width: 92%;
+  margin: 0;
+  z-index: 2;
+  color: var(--peek-text-color, #0d0d0d);
+  font-size: 1rem;
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+.peek-gallery__text :first-child {
+  margin-top: 0;
+}
+
+.peek-gallery__text :last-child {
+  margin-bottom: 0;
+}
+
+.peek-gallery__text sup {
+  font-size: 0.7em;
+  vertical-align: super;
+}
+
+@media (min-width: 768px) {
+  .peek-gallery__text {
+    padding: 2rem 2.25rem 2rem;
+    max-width: 58%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .peek-gallery__text {
+    padding: 2.5rem 3rem 2.5rem;
+    max-width: 52%;
+  }
+}
+
+/* Jednolite zdanie na slajdzie – bez nagłówka, jeden styl */
+.peek-gallery__text-body {
+  font-size: clamp(1.125rem, 4vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.35;
+  margin: 0;
+  max-width: 22em;
+  letter-spacing: -0.01em;
+  --peek-text-start: -144px;
+  opacity: 0;
+  transform: translateX(var(--peek-text-start));
+  transition: opacity 0.5s var(--peek-ease), transform 0.7s var(--peek-ease);
+}
+
+/* Kierunek wjazdu tekstu = kierunek przewijania: next → z prawej, prev → z lewej */
+.peek-gallery[data-peek-dir="next"] .peek-gallery__text-body {
+  --peek-text-start: 144px;
+}
+
+.peek-gallery__slide[aria-hidden="false"] .peek-gallery__text-body {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .peek-gallery__text-body {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .peek-gallery__text-body {
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    max-width: 26em;
+  }
+}
+
+@media (min-width: 1024px) {
+  .peek-gallery__text-body {
+    font-size: clamp(1.375rem, 2.2vw, 1.875rem);
+    line-height: 1.4;
+    max-width: 28em;
+  }
+}
+
+/* Pager: sticki w obrębie galerii, półprzezroczysty z blurem */
+.peek-gallery__footer {
+  position: sticky;
+  bottom: 1.5rem;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 1rem 0 0.5rem;
+}
+
+.peek-gallery__pager {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  background: rgba(45, 45, 45, 0.55);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+.peek-gallery__pager-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 8px;
+}
+
+.peek-gallery__pager-dots {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 8px;
+}
+
+/* Timed progress (jak Apple timed-dotnav): wypełnienie aktywnej kropki do następnego slajdu */
+.peek-gallery__dot-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 8px;
+  width: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+  transition: width linear;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .peek-gallery__dot-progress {
+    transition-duration: 0ms;
+  }
+}
+
+.peek-gallery__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(255, 255, 255, 0.35);
+  padding: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: width var(--peek-pager-dur) var(--peek-ease), background var(--peek-pager-dur) var(--peek-ease), transform var(--peek-pager-dur) var(--peek-ease);
+}
+
+.peek-gallery__dot[aria-current="true"] {
+  width: 20px;
+  background: var(--peek-fg);
+}
+
+.peek-gallery__dot:hover {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.peek-gallery__dot[aria-current="false"]:hover {
+  transform: scale(1.15);
+}
+
+.peek-gallery__dot:focus-visible {
+  outline: 2px solid #0071e3;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .peek-gallery__dot {
+    transition-duration: 0ms;
+  }
+}
+
+/* Modal wideo */
+.peek-gallery-video-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.peek-gallery-video-modal[hidden] {
+  display: none;
+}
+
+.peek-gallery-video-modal__inner {
+  width: 100%;
+  max-width: 900px;
+  position: relative;
+}
+
+.peek-gallery-video-modal video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.peek-gallery-video-modal__close {
+  position: absolute;
+  top: -2.5rem;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.peek-gallery-video-modal__close:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.peek-gallery-video-modal__close:focus-visible {
+  outline: 2px solid #0071e3;
+  outline-offset: 2px;
+}
+
 .gallery > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
@@ -3804,6 +4217,7 @@ html[data-theme="dark"] .modal__close {
     </style>
     <link rel="stylesheet" href="./tabnav.css" />
     <script defer src="./tabnav.js"></script>
+    <script defer src="./peek-gallery.js"></script>
     <script defer src="./app.js"></script>
   </head>
   <body>
@@ -3832,6 +4246,7 @@ html[data-theme="dark"] .modal__close {
         </button>
         <div class="nav__menu" data-nav-menu>
           <a href="#equipment" class="is-active">Sprzęt</a>
+          <a href="#gallery">Galeria</a>
           <a href="#routes">Trasy</a>
           <a href="#rules">Zasady</a>
           <a href="#faq">FAQ</a>
@@ -4222,6 +4637,87 @@ html[data-theme="dark"] .modal__close {
           </p>
         </div>
         <a class="button button--primary" href="#equipment">Przejdź do sprzętu</a>
+      </section>
+
+      <section
+        class="peek-gallery"
+        id="gallery"
+        role="region"
+        aria-labelledby="gallery-title"
+        data-peek-gallery
+      >
+        <div class="peek-gallery__head">
+          <h2 id="gallery-title" class="peek-gallery__title">Obraz powie Ci więcej niż 1000 słów</h2>
+        </div>
+        <script type="application/json" data-peek-gallery-config>
+        {
+          "items": [
+            {
+              "id": "mgla-beskidy",
+              "title": "Schronisko na Klimczoku wyłania się z mlecznej mgły o świcie.",
+              "subtitle": "",
+              "theme": { "overlayTextColor": "#fff" },
+              "media": {
+                "type": "image",
+                "src": "./assets/images/gallery-mgla-beskidy.png",
+                "sizes": "(max-width: 768px) 92vw, 70vw",
+                "alt": "Schronisko na Klimczoku wyłania się z mlecznej mgły o świcie."
+              }
+            },
+            {
+              "id": "portret-rowerzysta",
+              "title": "W trasie",
+              "subtitle": "Rowery górskie w plenerze – góry, jesienne kolory i dobra zabawa.",
+              "media": {
+                "type": "image",
+                "src": "./assets/images/gallery-portret-rowerzysta.png",
+                "sizes": "(max-width: 768px) 92vw, 70vw",
+                "alt": "Rowerzysta w kasku na tle gór"
+              }
+            },
+            {
+              "id": "dwoch-rowerzystow",
+              "title": "Jeździmy o różnych porach dnia... i nocy. Jak będziesz miał szczęście to trafisz na takie widoki.",
+              "subtitle": "",
+              "theme": { "overlayTextColor": "#fff" },
+              "media": {
+                "type": "image",
+                "src": "./assets/images/gallery-dwoch-rowerzystow-zachod.png",
+                "sizes": "(max-width: 768px) 92vw, 70vw",
+                "alt": "Widok na szlaku o zachodzie słońca – rowerzyści w górach"
+              }
+            },
+            {
+              "id": "rowerzysta-emtb",
+              "title": "Nasze tripy to nie tylko jazda i odkrywanie ścieżek, to okazja do dyskusji, poznania ciekawych ludzi.",
+              "subtitle": "",
+              "media": {
+                "type": "image",
+                "src": "./assets/images/gallery-rowerzysta-emtb-polana.png",
+                "sizes": "(max-width: 768px) 92vw, 70vw",
+                "alt": "Tripy rowerowe – jazda, ścieżki i spotkania z ludźmi"
+              }
+            },
+            {
+              "id": "rower-nad-woda",
+              "title": "Rano szosa, a po południu eMTB? W Bielsku to możliwe.",
+              "subtitle": "",
+              "portraitInFrame": true,
+              "objectPosition": "center 80%",
+              "theme": { "overlayTextColor": "#fff" },
+              "media": {
+                "type": "image",
+                "src": "./assets/images/gallery-rower-nad-woda.png",
+                "sizes": "(max-width: 768px) 92vw, 70vw",
+                "alt": "Rower szosowy przy barierce nad jeziorem, w tle zalesione wzgórza."
+              }
+            }
+          ],
+          "loop": true,
+          "autoplay": false,
+          "a11yLabel": "Galeria"
+        }
+        </script>
       </section>
 
       <section class="section" id="routes" aria-labelledby="routes-title">

@@ -1,12 +1,13 @@
 const swUrl = new URL(self.location.href);
 const cacheSuffix = swUrl.searchParams.get("v") || "dev";
-const CACHE_VERSION = `beskider-${cacheSuffix}-20260214a`;
+const CACHE_VERSION = `beskider-${cacheSuffix}-20260214d`;
 const ASSETS = [
   "./",
   "./index.html",
   "./app.js",
   "./tabnav.css",
   "./tabnav.js",
+  "./peek-gallery.js",
   "./manifest.json",
   "./assets/icons/icon.svg",
   "./assets/icons/icon-192.png",
@@ -83,7 +84,12 @@ const ASSETS = [
   "./assets/images/beskider-plus-cta-1024.webp",
   "./assets/images/beskider-plus-cta-480.jpg",
   "./assets/images/beskider-plus-cta-640.jpg",
-  "./assets/images/beskider-plus-cta-1024.jpg"
+  "./assets/images/beskider-plus-cta-1024.jpg",
+  "./assets/images/gallery-mgla-beskidy.png",
+  "./assets/images/gallery-portret-rowerzysta.png",
+  "./assets/images/gallery-dwoch-rowerzystow-zachod.png",
+  "./assets/images/gallery-rowerzysta-emtb-polana.png",
+  "./assets/images/gallery-rower-nad-woda.png"
 ];
 
 self.addEventListener("install", (event) => {

@@ -84,6 +84,10 @@ Lista sekcji w kolejności na stronie (źródło prawdy przy code review i plano
   - Tabs (kategorie: Rowery eMTB, Rowery Szosowe, Inne)
   - Karty produktów (grid)
 - CTA
+- Galeria (#gallery)
+  - Slider typu „peek” (aktywny slajd na środku, sąsiednie po bokach), dane z JSON (data-peek-gallery-config)
+  - Pager w formie kapsuły (kropki + animowany aktywny „dash”), opcjonalny przycisk play dla slajdów wideo
+  - Swipe/drag, klawiatura (strzałki, Home, End), lazy-load mediów ±1, a11y, prefers-reduced-motion
 - Trasy
   - Nagłówek sekcji + intro (pomoc w wyborze tras, linki Komoot/Strava/Google Maps)
   - Siatka 3 kolumny: karty tras (nazwa, opis, trudność, długość m, spadek %, obniżenie m)
@@ -228,13 +232,10 @@ Przy każdej nowej sekcji lub nowym linku w nav należy zaktualizować niniejsz�
 - Brak przycisku „Zobacz specyfikację” (powiększenie / modal produktu wyłączone)
 
 ### 10.3 Galeria
-- Lokalna (assets/)
-- Miniatury + hero image
-- Swipe mobile
-- Lazy loading
-- Cache offline
-- `srcset` dla miniatur i obrazów głównych w modalu
-- Zdjęcia produktowe: oficjalne materiały Specialized (HERO z CDN), zapisane lokalnie jako PNG z przezroczystością; źródła i linki do oryginałów w `assets/images/sources/*.md`
+- Slider typu „peek” nad sekcją Trasy, dane z `data-peek-gallery-config` (JSON)
+- Zdjęcia w sliderze: 4 pliki w `assets/images/` – Beskidy w mgle, portret rowerzysty w górach, dwaj rowerzyści o zachodzie słońca, rowerzysta z e-MTB na polanie (`gallery-mgla-beskidy.png`, `gallery-portret-rowerzysta.png`, `gallery-dwoch-rowerzystow-zachod.png`, `gallery-rowerzysta-emtb-polana.png`)
+- Swipe / przewijanie w bok, pager z kropkami (timed-dotnav), autoplay, lazy loading ±2 slajdy
+- Cache offline (pliki galerii w `sw.js` ASSETS)
 
 ### 10.4 Hero image
 - Nagłówek wykorzystuje panoramiczne zdjęcie w tle (lokalne `assets/images/`)
