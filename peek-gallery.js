@@ -148,18 +148,35 @@
     const slideWidth = this._getSlideWidthPx();
     var slotIndex = this.index;
     if (this.loop && this.slides && this.slides.length > this.count) {
-      slotIndex = this._slotOffset != null ? this._slotOffset : 1 + this.index;
+      var so = this._slotOffset != null ? this._slotOffset : 1 + this.index;
+      if (this.index === 0 && so >= 2 && so <= this.count) {
+        this._slotOffset = 1;
+        so = 1;
+      } else if (this.index === this.count - 1 && so >= 1 && so < this.count) {
+        this._slotOffset = this.count;
+        so = this.count;
+      }
+      slotIndex = so;
     }
     return slotIndex * (slideWidth + GAP_PX);
   };
 
   PeekGallery.prototype._renderTrack = function () {
     if (!this.track || !this.viewport) return;
+    if (this._pointerStart != null) return;
+    if (this.loop && this.slides && this.slides.length > this.count && this._slotOffset != null && this._slotOffset >= 1 && this._slotOffset <= this.count) {
+      var expectedIndex = this._slotOffset - 1;
+      if (this.index !== expectedIndex) {
+        this.index = expectedIndex;
+        this._updateUI();
+      }
+    }
     const vw = this.viewport.offsetWidth;
     const slideWidth = this._getSlideWidthPx();
     const center = vw / 2 - slideWidth / 2;
     const offset = this._getTrackOffsetPx();
-    this.track.style.transform = "translate3d(" + (-offset + center) + "px, 0, 0)";
+    const tx = -offset + center;
+    this.track.style.transform = "translate3d(" + tx + "px, 0, 0)";
   };
 
   PeekGallery.prototype._updateSlideVisibility = function () {
@@ -335,7 +352,9 @@
 
   PeekGallery.prototype._onPointerDown = function (e) {
     if (!this.viewport) return;
-    this._pointerStart = { x: e.clientX, y: e.clientY, t: Date.now() };
+    const center = this.viewport.offsetWidth / 2 - this._getSlideWidthPx() / 2;
+    const baseTx = -this._getTrackOffsetPx() + center;
+    this._pointerStart = { x: e.clientX, y: e.clientY, t: Date.now(), baseTx: baseTx };
     this._pointerMoved = false;
     this.track.style.transition = "none";
   };
@@ -347,8 +366,11 @@
     const vw = this.viewport.offsetWidth;
     const slideWidth = this._getSlideWidthPx();
     const center = vw / 2 - slideWidth / 2;
-    const baseX = -this._getTrackOffsetPx() + center;
-    this.track.style.transform = "translate3d(" + (baseX + dx) + "px, 0, 0)";
+    const baseTx = this._pointerStart.baseTx;
+    const txMax = center;
+    const txMin = -((this.count - 1) * (slideWidth + GAP_PX)) + center;
+    const tx = Math.max(txMin, Math.min(txMax, baseTx + dx));
+    this.track.style.transform = "translate3d(" + tx + "px, 0, 0)";
   };
 
   PeekGallery.prototype._onPointerUp = function (e) {
@@ -594,7 +616,19 @@
       var slide = e.target.closest(".peek-gallery__slide");
       if (!slide) return;
       var i = parseInt(slide.dataset.peekSlideIndex, 10);
-      if (!Number.isNaN(i)) self.goTo(i, "slide-click");
+      if (Number.isNaN(i)) return;
+      if (i === self.index) return;
+      if (self.loop && self.slides && self.slides.length > self.count) {
+        if (self.index === 0 && i === self.count - 1) {
+          self.prev();
+          return;
+        }
+        if (self.index === self.count - 1 && i === 0) {
+          self.next();
+          return;
+        }
+      }
+      self.goTo(i, "slide-click");
     });
 
     this.viewport.addEventListener("pointerdown", function (e) {

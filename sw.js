@@ -1,6 +1,6 @@
 const swUrl = new URL(self.location.href);
 const cacheSuffix = swUrl.searchParams.get("v") || "dev";
-const CACHE_VERSION = `beskider-${cacheSuffix}-20260214d`;
+const CACHE_VERSION = `beskider-${cacheSuffix}-20260215`;
 const ASSETS = [
   "./",
   "./index.html",
