@@ -87,6 +87,9 @@ Lista sekcji w kolejności na stronie (źródło prawdy przy code review i plano
 - Trasy
   - Nagłówek sekcji + intro (pomoc w wyborze tras, linki Komoot/Strava/Google Maps)
   - Siatka 3 kolumny: karty tras (nazwa, opis, trudność, długość m, spadek %, obniżenie m)
+- Dlaczego Beskider (#perks)
+  - Siatka 2–3 kolumny: 12 ikon z tytułem i opisem (zalety usługi)
+  - Styl wzorowany na sekcji „Udogodnienia" (ikona + tekst, delikatne tło ikon w zielonym)
 - Zasady
 - FAQ
 - O nas
@@ -279,8 +282,20 @@ Zawartość:
 - Źródło danych: Enduro Trails (Bielsko-Biała), [endurotrails.pl/trasy/](https://endurotrails.pl/trasy/).
 - Intro: pomoc w wyborze tras, linki Komoot/Strava/Google Maps, dopasowanie do poziomu.
 - Filtry trudności: zakładki Wszystko / Bardzo łatwa / Łatwa / Średnia / Trudna / Bardzo trudna (sticky). Na mobile: jedna linia, scroll poziomy, strzałki jak w sekcji Sprzęt.
-- Karty tras (routes-grid, 3 kolumny): nazwa, krótki opis, label trudności (delikatna kolorystyka), długość (m), średni spadek (%), obniżenie (m). Tytuły pogrubione.
+- Karty tras (routes-grid, 3 kolumny): nazwa, krótki opis (oryginalne opisy, nie plagiat źródła), label trudności (delikatna kolorystyka), długość (m), nachylenie (%), przewyższenie (m), rodzaj nawierzchni. Tytuły pogrubione.
 - 15 tras: Daglezjowy, Bystry, Dziabar, Kamieniołom, DH+, Gaciok, Sahaira, Dębowiec, Gondola, Cygan, Stary zielony, Rock'n'Rolla, Cyganka, Twister, Stefanka.
+- Meta kart: Długość · Nachylenie · Przewyższenie · Rodzaj (podjazdowa / naturalna / mieszana / utwardzona).
+
+---
+
+## 13b. Dlaczego Beskider (#perks)
+
+- Sekcja zalet usługi umieszczona między Trasami a Zasadami.
+- Layout inspirowany sekcją „Udogodnienia w tym budynku" (clusteroffices.com) – grid ikon z tytułem i opisem.
+- Grid: 1 kolumna mobile → 2 kolumny (640 px) → 3 kolumny (1024 px).
+- Każdy element: kwadratowa ikona (36 px, zielone tło, SVG Heroicons Outline) + tytuł (semi-bold) + opis (muted).
+- 12 pozycji: Sprzęt premium, Lokalny przewodnik, Dopasowanie trasy, Pełne wyposażenie, Serwis przed wyjazdem, Mapy i nawigacja, Elastyczne godziny, Bezpłatny parking, Płatność bezgotówkowa, Wsparcie na trasie, Ubezpieczenie, Siedziba w Bielsku-Białej.
+- Dark mode: ciemne zielone tło ikon, jaśniejsze opisy.
 
 ---
 

@@ -1809,6 +1809,102 @@ html[data-theme="dark"] .route-card__difficulty--very-easy { background-color: r
   display: none;
 }
 
+/* ── Perks / Advantages grid ── */
+.perks-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem 2rem;
+}
+
+@media (min-width: 640px) {
+  .perks-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .perks-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.perk-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.perk-item__icon {
+  flex-shrink: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+}
+
+/* ── Perk icon colors (light) ── */
+.perk-item:nth-child(1)  .perk-item__icon { background-color: rgb(255 251 235); color: rgb(146 110 45); }
+.perk-item:nth-child(2)  .perk-item__icon { background-color: rgb(236 252 250); color: rgb(34 115 108); }
+.perk-item:nth-child(3)  .perk-item__icon { background-color: rgb(243 240 255); color: rgb(88 72 153); }
+.perk-item:nth-child(4)  .perk-item__icon { background-color: rgb(240 249 244); color: rgb(38 120 74); }
+.perk-item:nth-child(5)  .perk-item__icon { background-color: rgb(240 244 250); color: rgb(68 93 128); }
+.perk-item:nth-child(6)  .perk-item__icon { background-color: rgb(255 241 244); color: rgb(155 65 82); }
+.perk-item:nth-child(7)  .perk-item__icon { background-color: rgb(236 248 255); color: rgb(38 110 160); }
+.perk-item:nth-child(8)  .perk-item__icon { background-color: rgb(248 245 240); color: rgb(120 100 72); }
+.perk-item:nth-child(9)  .perk-item__icon { background-color: rgb(245 240 255); color: rgb(107 70 155); }
+.perk-item:nth-child(10) .perk-item__icon { background-color: rgb(236 252 255); color: rgb(28 118 138); }
+.perk-item:nth-child(11) .perk-item__icon { background-color: rgb(255 246 235); color: rgb(154 96 42); }
+.perk-item:nth-child(12) .perk-item__icon { background-color: rgb(240 250 245); color: rgb(45 110 72); }
+
+.perk-item__icon svg {
+  width: 1.125rem;
+  height: 1.125rem;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.perk-item__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  padding-top: 0.25rem;
+}
+
+.perk-item__title {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  line-height: 1.3;
+}
+
+.perk-item__desc {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: rgb(107 114 128);
+}
+
+/* ── Perk icon colors (dark) ── */
+html[data-theme="dark"] .perk-item:nth-child(1)  .perk-item__icon { background-color: rgb(55 48 30); color: rgb(253 225 140); }
+html[data-theme="dark"] .perk-item:nth-child(2)  .perk-item__icon { background-color: rgb(25 50 48); color: rgb(140 225 218); }
+html[data-theme="dark"] .perk-item:nth-child(3)  .perk-item__icon { background-color: rgb(40 35 60); color: rgb(195 185 255); }
+html[data-theme="dark"] .perk-item:nth-child(4)  .perk-item__icon { background-color: rgb(30 52 40); color: rgb(140 225 175); }
+html[data-theme="dark"] .perk-item:nth-child(5)  .perk-item__icon { background-color: rgb(32 40 52); color: rgb(165 195 230); }
+html[data-theme="dark"] .perk-item:nth-child(6)  .perk-item__icon { background-color: rgb(55 30 38); color: rgb(255 180 195); }
+html[data-theme="dark"] .perk-item:nth-child(7)  .perk-item__icon { background-color: rgb(25 42 58); color: rgb(145 210 255); }
+html[data-theme="dark"] .perk-item:nth-child(8)  .perk-item__icon { background-color: rgb(50 45 35); color: rgb(230 210 175); }
+html[data-theme="dark"] .perk-item:nth-child(9)  .perk-item__icon { background-color: rgb(42 32 58); color: rgb(205 180 255); }
+html[data-theme="dark"] .perk-item:nth-child(10) .perk-item__icon { background-color: rgb(25 46 55); color: rgb(140 225 245); }
+html[data-theme="dark"] .perk-item:nth-child(11) .perk-item__icon { background-color: rgb(55 42 25); color: rgb(253 205 140); }
+html[data-theme="dark"] .perk-item:nth-child(12) .perk-item__icon { background-color: rgb(28 48 38); color: rgb(145 220 170); }
+
+html[data-theme="dark"] .perk-item__desc {
+  color: rgb(163 163 163);
+}
+
 .offer-card ul,
         .pricing-card ul {
   list-style-type: disc;
@@ -4158,94 +4254,214 @@ html[data-theme="dark"] .modal__close {
         <div class="routes-grid">
           <article class="route-card" data-route-difficulty="easy">
             <h3 class="route-card__title">Daglezjowy</h3>
-            <p>Łagodnie wijąca się ścieżka podjazdowa na Kozią Górę, przyjemniejsza niż szutrowa droga.</p>
+            <p>Przyjazna trasa podjazdowa prowadząca na szczyt Koziej Góry – znacznie ciekawsza alternatywa dla monotonnego szutru.</p>
             <span class="route-card__difficulty route-card__difficulty--easy" aria-label="Trudność: łatwa">Łatwa</span>
-            <p class="route-card__meta">Długość: 4 600 m · Spadek: 6,5% · Obniżenie: 271 m</p>
+            <p class="route-card__meta">Długość: 4 600 m · Nachylenie: 6,5% · Przewyższenie: 271 m · Rodzaj: podjazdowa</p>
           </article>
           <article class="route-card" data-route-difficulty="easy">
             <h3 class="route-card__title">Bystry</h3>
-            <p>Szeroki flow trail ze sporą ilością elementów do skakania; mniej doświadczeni muszą się mieć na baczności.</p>
+            <p>Otwarty flow trail z licznymi możliwościami do skoków – początkujący powinni zachować szczególną ostrożność przy elementach lotnych.</p>
             <span class="route-card__difficulty route-card__difficulty--easy" aria-label="Trudność: łatwa">Łatwa</span>
-            <p class="route-card__meta">Długość: 2 660 m · Spadek: 7,4% · Obniżenie: 71 m</p>
+            <p class="route-card__meta">Długość: 2 660 m · Nachylenie: 7,4% / 4,7% · Przewyższenie: 71 m zjazd + 70 m podjazd</p>
           </article>
           <article class="route-card" data-route-difficulty="very-hard">
             <h3 class="route-card__title">Dziabar</h3>
-            <p>Stroma i kręta trasa z bardzo stromą skalistą ścianką w środku (brak objazdu) i szybką sekcją na końcu.</p>
+            <p>Górna część kręta i stroma, w połowie trasy pionowa skalista sekcja bez możliwości objazdu, a na końcu bardzo dynamiczny odcinek.</p>
             <span class="route-card__difficulty route-card__difficulty--very-hard" aria-label="Trudność: bardzo trudna">Bardzo trudna</span>
-            <p class="route-card__meta">Długość: 1 300 m · Spadek: 16,1% · Obniżenie: 210 m</p>
+            <p class="route-card__meta">Długość: 1 300 m · Nachylenie: 16,1% · Przewyższenie: 210 m · Rodzaj: naturalna</p>
           </article>
           <article class="route-card" data-route-difficulty="very-hard">
             <h3 class="route-card__title">Kamieniołom</h3>
-            <p>Trudna technicznie, naturalna ścieżka ze sporą liczbą głazów, korzeni i uskoków.</p>
+            <p>Wymagająca, w pełni naturalna trasa usiana kamieniami, korzeniami i progami skalnymi – prawdziwy test techniczny.</p>
             <span class="route-card__difficulty route-card__difficulty--very-hard" aria-label="Trudność: bardzo trudna">Bardzo trudna</span>
-            <p class="route-card__meta">Długość: 1 800 m · Spadek: 13,8% · Obniżenie: 246 m</p>
+            <p class="route-card__meta">Długość: 1 800 m · Nachylenie: 13,8% · Przewyższenie: 246 m · Rodzaj: naturalna</p>
           </article>
           <article class="route-card" data-route-difficulty="very-hard">
             <h3 class="route-card__title">DH+</h3>
-            <p>Stroma, kamienista i bardzo szybka trasa ze sporą ilością nierówności i sztucznych elementów.</p>
+            <p>Agresywny zjazd z dużym nachyleniem, kamienistym podłożem, licznymi przeszkodami terenowymi i budowanymi elementami.</p>
             <span class="route-card__difficulty route-card__difficulty--very-hard" aria-label="Trudność: bardzo trudna">Bardzo trudna</span>
-            <p class="route-card__meta">Długość: 2 000 m · Spadek: 13,5% · Obniżenie: 271 m</p>
+            <p class="route-card__meta">Długość: 2 000 m · Nachylenie: 13,5% · Przewyższenie: 271 m · Rodzaj: naturalna</p>
           </article>
           <article class="route-card" data-route-difficulty="hard">
             <h3 class="route-card__title">Gaciok</h3>
-            <p>Naturalny kręty singletrack z jednym wypłaszczeniem i krótkim podjazdem.</p>
+            <p>Kręty singletrack o naturalnym charakterze z jednym płaskim odcinkiem i krótkim podjazdem w środku trasy.</p>
             <span class="route-card__difficulty route-card__difficulty--hard" aria-label="Trudność: trudna">Trudna</span>
-            <p class="route-card__meta">Długość: 2 345 m · Spadek: 6,5% · Obniżenie: 143 m</p>
+            <p class="route-card__meta">Długość: 2 345 m · Nachylenie: 6,5% (zjazdy 11%) · Przewyższenie: 143 m · Rodzaj: naturalna / mieszana</p>
           </article>
           <article class="route-card" data-route-difficulty="hard">
             <h3 class="route-card__title">Sahaira</h3>
-            <p>Połączenie naturalnej ścieżki leśnej (środek) z szerszą linią w typie A-line (początek i koniec).</p>
+            <p>Mieszanka dzikiej ścieżki leśnej w centralnej części z profilowanymi sekcjami typu A-line na początku i na końcu.</p>
             <span class="route-card__difficulty route-card__difficulty--hard" aria-label="Trudność: trudna">Trudna</span>
-            <p class="route-card__meta">Długość: 1 740 m · Spadek: 11,2% · Obniżenie: 195 m</p>
+            <p class="route-card__meta">Długość: 1 740 m · Nachylenie: 11,2% · Przewyższenie: 195 m · Rodzaj: naturalna / mieszana</p>
           </article>
           <article class="route-card" data-route-difficulty="easy">
             <h3 class="route-card__title">Dębowiec</h3>
-            <p>Płynna, momentami szybka trasa z małymi „hopkami” i bandami; w dolnej części dosyć stroma.</p>
+            <p>Wartka i płynna linia z niewielkimi przeskokami i wyprofilowanymi bankami; dolna część zaskakuje stromizną.</p>
             <span class="route-card__difficulty route-card__difficulty--easy" aria-label="Trudność: łatwa">Łatwa</span>
-            <p class="route-card__meta">Długość: 2 500 m · Spadek: 12,5% · Obniżenie: 311 m</p>
+            <p class="route-card__meta">Długość: 2 500 m · Nachylenie: 12,5% · Przewyższenie: 311 m · Rodzaj: naturalna / mieszana</p>
           </article>
           <article class="route-card" data-route-difficulty="hard">
             <h3 class="route-card__title">Gondola</h3>
-            <p>Szybka i płynna trasa w górnej części (uwaga na przecięcie szlaków!), z przejazdami przez strumień w dolnej.</p>
+            <p>Dynamiczny, szybki odcinek na starcie z krzyżowaniem szlaków, potem ciekawe przejazdy przez potok na niższych partiach.</p>
             <span class="route-card__difficulty route-card__difficulty--hard" aria-label="Trudność: trudna">Trudna</span>
-            <p class="route-card__meta">Długość: 2 000 m · Spadek: 12% · Obniżenie: 240 m</p>
+            <p class="route-card__meta">Długość: 2 000 m · Nachylenie: 12% · Przewyższenie: 240 m · Rodzaj: naturalna / mieszana</p>
           </article>
           <article class="route-card" data-route-difficulty="hard">
             <h3 class="route-card__title">Cygan</h3>
-            <p>Kręta, niezbyt szybka, ale płynna ścieżka ze sporą ilością flow (kolor czerwony).</p>
+            <p>Zakręcona ścieżka o umiarkowanym tempie, rekompensująca prędkość dużą dawką płynnego flow na każdym odcinku.</p>
             <span class="route-card__difficulty route-card__difficulty--hard" aria-label="Trudność: trudna">Trudna</span>
-            <p class="route-card__meta">Długość: 2 600 m · Spadek: 11,8% · Obniżenie: 303 m</p>
+            <p class="route-card__meta">Długość: 2 600 m · Nachylenie: 11,8% · Przewyższenie: 303 m · Rodzaj: naturalna / mieszana</p>
           </article>
           <article class="route-card" data-route-difficulty="hard">
             <h3 class="route-card__title">Stary zielony</h3>
-            <p>Bardzo szybka trasa, wymaga sporego asortymentu umiejętności i dużej kontroli roweru.</p>
+            <p>Trasa o wysokim tempie, która wymaga wszechstronnych umiejętności i niezawodnej kontroli nad rowerem.</p>
             <span class="route-card__difficulty route-card__difficulty--hard" aria-label="Trudność: trudna">Trudna</span>
-            <p class="route-card__meta">Długość: 2 450 m · Spadek: 11% · Obniżenie: 269 m</p>
+            <p class="route-card__meta">Długość: 2 450 m · Nachylenie: 11% · Przewyższenie: 269 m · Rodzaj: naturalna / mieszana</p>
           </article>
           <article class="route-card" data-route-difficulty="medium">
             <h3 class="route-card__title">Rock'n'Rolla</h3>
-            <p>Najdłuższa i najbardziej urozmaicona trasa w kompleksie (zjazd + podjazd).</p>
+            <p>Najdłuższa i najbardziej różnorodna trasa w ośrodku, łącząca długi zjazd z odcinkiem podjazdowym.</p>
             <span class="route-card__difficulty route-card__difficulty--medium" aria-label="Trudność: średnia">Średnia</span>
-            <p class="route-card__meta">Długość: 6 200 m · Spadek: 7,1% · Obniżenie: 342 m</p>
+            <p class="route-card__meta">Długość: 6 200 m · Nachylenie: 7,1% / 4,7% · Przewyższenie: 342 m zjazd + 70 m podjazd</p>
           </article>
           <article class="route-card" data-route-difficulty="very-easy">
             <h3 class="route-card__title">Cyganka</h3>
-            <p>Łagodnie opadająca, gładka i płynna trasa biegnąca wzdłuż malowniczego strumyka.</p>
+            <p>Spokojna, gładka ścieżka opadająca delikatnym spadkiem wzdłuż leśnego potoku – idealna na rozgrzewkę.</p>
             <span class="route-card__difficulty route-card__difficulty--very-easy" aria-label="Trudność: bardzo łatwa">Bardzo łatwa</span>
-            <p class="route-card__meta">Długość: 1 650 m · Spadek: 4% · Obniżenie: 50 m</p>
+            <p class="route-card__meta">Długość: 1 650 m · Nachylenie: 4% · Przewyższenie: 50 m · Rodzaj: utwardzona</p>
           </article>
           <article class="route-card" data-route-difficulty="easy">
             <h3 class="route-card__title">Twister</h3>
-            <p>Niezbyt stroma, ale bardzo zakręcona ścieżka.</p>
+            <p>Niewielkie nachylenie, ale setki ciasnych zakrętów – serpentyny trzymają w napięciu na całej długości trasy.</p>
             <span class="route-card__difficulty route-card__difficulty--easy" aria-label="Trudność: łatwa">Łatwa</span>
-            <p class="route-card__meta">Długość: 4 400 m · Spadek: 6,2% · Obniżenie: 270 m</p>
+            <p class="route-card__meta">Długość: 4 400 m · Nachylenie: 6,2% · Przewyższenie: 270 m · Rodzaj: utwardzona / mieszana</p>
           </article>
           <article class="route-card" data-route-difficulty="very-easy">
             <h3 class="route-card__title">Stefanka</h3>
-            <p>Łagodnie opadająca, kręta i pofalowana ścieżka.</p>
+            <p>Krótka, lekko opadająca ścieżka z łagodnymi falami terenu i zawijasami – relaksujący zjazd dla każdego.</p>
             <span class="route-card__difficulty route-card__difficulty--very-easy" aria-label="Trudność: bardzo łatwa">Bardzo łatwa</span>
-            <p class="route-card__meta">Długość: 860 m · Spadek: 4,9% · Obniżenie: 42 m</p>
+            <p class="route-card__meta">Długość: 860 m · Nachylenie: 4,9% · Przewyższenie: 42 m · Rodzaj: utwardzona</p>
           </article>
+        </div>
+      </section>
+
+      <section class="section" id="perks" aria-labelledby="perks-title">
+        <div class="section__head">
+          <h2 id="perks-title">Dlaczego Beskider</h2>
+          <p>
+            Nie jesteśmy kolejną wypożyczalnią. Każdy element naszej usługi jest zaprojektowany tak,
+            abyś mógł skupić się wyłącznie na jeździe.
+          </p>
+        </div>
+        <div class="perks-grid">
+          <div class="perk-item">
+            <div class="perk-item__icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" /></svg>
+            </div>
+            <div class="perk-item__text">
+              <span class="perk-item__title">Sprzęt premium</span>
+              <span class="perk-item__desc">Najnowsze modele topowych marek, serwisowane po każdym wyjeździe</span>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-item__icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6.75V15m6-6v8.25m.503 3.498 4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934a1.12 1.12 0 0 1-1.006 0L9.503 3.252a1.125 1.125 0 0 0-1.006 0L3.622 5.689A1.125 1.125 0 0 0 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934a1.12 1.12 0 0 1 1.006 0l4.994 2.497c.317.158.69.158 1.006 0Z" /></svg>
+            </div>
+            <div class="perk-item__text">
+              <span class="perk-item__title">Lokalny przewodnik</span>
+              <span class="perk-item__desc">Doświadczeni riderzy, którzy znają każdy metr beskidzkich tras</span>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-item__icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 13.5V3.75m0 9.75a1.5 1.5 0 0 1 0 3m0-3a1.5 1.5 0 0 0 0 3m0 3.75V16.5m12-3V3.75m0 9.75a1.5 1.5 0 0 1 0 3m0-3a1.5 1.5 0 0 0 0 3m0 3.75V16.5m-6-9V3.75m0 3.75a1.5 1.5 0 0 1 0 3m0-3a1.5 1.5 0 0 0 0 3m0 9.75V10.5" /></svg>
+            </div>
+            <div class="perk-item__text">
+              <span class="perk-item__title">Dopasowanie trasy</span>
+              <span class="perk-item__desc">Dobieramy przejazd do Twojego poziomu umiejętności i kondycji</span>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-item__icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" /></svg>
+            </div>
+            <div class="perk-item__text">
+              <span class="perk-item__title">Pełne wyposażenie</span>
+              <span class="perk-item__desc">Kask, ochraniacze i narzędzia awaryjne zawsze w zestawie</span>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-item__icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.336l-3.276 3.277a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437 1.745-1.437" /></svg>
+            </div>
+            <div class="perk-item__text">
+              <span class="perk-item__title">Serwis przed wyjazdem</span>
+              <span class="perk-item__desc">Regulacja i kontrola techniczna każdego roweru przed odbiorem</span>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-item__icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /><path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" /></svg>
+            </div>
+            <div class="perk-item__text">
+              <span class="perk-item__title">Mapy i nawigacja</span>
+              <span class="perk-item__desc">Gotowe trasy GPX do pobrania na Komoot, Stravę i&nbsp;Google Maps</span>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-item__icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+            </div>
+            <div class="perk-item__text">
+              <span class="perk-item__title">Elastyczne godziny</span>
+              <span class="perk-item__desc">Odbiór i zwrot dopasowany do Twojego planu dnia</span>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-item__icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25m-4.5 0H2.25m12 0v-4.5m0 4.5h-4.5m4.5 0 1.064-.39A5.002 5.002 0 0 1 17.25 3c.94 0 1.813.28 2.543.761A17.946 17.946 0 0 1 21 5.336" /></svg>
+            </div>
+            <div class="perk-item__text">
+              <span class="perk-item__title">Bezpłatny parking</span>
+              <span class="perk-item__desc">Miejsce parkingowe na czas wypożyczenia tuż przy naszej siedzibie</span>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-item__icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z" /></svg>
+            </div>
+            <div class="perk-item__text">
+              <span class="perk-item__title">Płatność bezgotówkowa</span>
+              <span class="perk-item__desc">Karta lub BLIK – bez konieczności posiadania gotówki</span>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-item__icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" /></svg>
+            </div>
+            <div class="perk-item__text">
+              <span class="perk-item__title">Wsparcie na trasie</span>
+              <span class="perk-item__desc">Kontakt telefoniczny i szybka pomoc w razie awarii</span>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-item__icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 9v3.75m0-10.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.249-8.25-3.286Zm0 13.036h.008v.008H12v-.008Z" /></svg>
+            </div>
+            <div class="perk-item__text">
+              <span class="perk-item__title">Ubezpieczenie</span>
+              <span class="perk-item__desc">Każdy rower objęty ochroną – jedź bez obaw o niespodziewane koszty</span>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-item__icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3 4.5h.008v.008H18v-.008Zm0 3h.008v.008H18v-.008Zm0 3h.008v.008H18v-.008Z" /></svg>
+            </div>
+            <div class="perk-item__text">
+              <span class="perk-item__title">Siedziba w Bielsku-Białej</span>
+              <span class="perk-item__desc">Blisko Enduro Trails, kolejki gondolowej i najlepszych szlaków</span>
+            </div>
+          </div>
         </div>
       </section>
 
