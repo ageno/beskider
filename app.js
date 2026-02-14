@@ -336,7 +336,8 @@ const initRouteFilters = () => {
 
   const applyFilter = (filterValue) => {
     routeCards.forEach((card) => {
-      const match = filterValue === "all" || card.dataset.routeDifficulty === filterValue;
+      const difficulties = card.dataset.routeDifficulty.split(" ");
+      const match = filterValue === "all" || difficulties.includes(filterValue);
       card.classList.toggle("route-card--hidden", !match);
     });
   };
