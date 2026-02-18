@@ -50,8 +50,14 @@ const setTheme = (preference) => {
   const switchers = document.querySelectorAll("[data-theme-option]");
   switchers.forEach((el) => {
     const value = el.getAttribute("data-theme-option");
-    el.setAttribute("aria-pressed", value === preference ? "true" : "false");
+    const active = value === preference;
+    el.setAttribute("aria-pressed", active ? "true" : "false");
+    el.classList.toggle("is-active", active);
   });
+  const themePlatter = document.querySelector("[data-theme-option]")?.closest(".tabnav-platter");
+  if (themePlatter?._tabnav?.updateIndicator) {
+    themePlatter._tabnav.updateIndicator();
+  }
 };
 
 const initTheme = () => {
@@ -797,6 +803,24 @@ const initContactForm = () => {
   form.addEventListener("change", scheduleSave);
 
   loadContactFormFromStorage(form);
+
+  // Walidacja pól po załadowaniu (np. po odświeżeniu strony)
+  const validateLoadedFields = () => {
+    const fields = Object.keys(CONTACT_FORM_RULES);
+    fields.forEach((fieldName) => {
+      const group = getContactFormGroup(form, fieldName);
+      if (!group) return;
+      const input = group.querySelector("input, textarea");
+      if (!input) return;
+      const value = input.type === "checkbox" ? input.checked : input.value;
+      // Waliduj tylko jeśli pole ma wartość
+      if (value && (typeof value === "string" ? value.trim() : value)) {
+        const result = validateContactField(fieldName, value, form);
+        setContactFieldState(group, result.valid, result.message);
+      }
+    });
+  };
+  validateLoadedFields();
 
   const clearBtn = form.querySelector("[data-contact-clear]");
   if (clearBtn) {
