@@ -67,6 +67,14 @@
       img.dataset.peekSrc = media.src || "";
       if (media.srcset) img.dataset.peekSrcset = media.srcset;
       mediaWrap.appendChild(img);
+      function wrapPortraitForInfiniteScroll() {
+        if (mediaWrap.querySelector(".peek-gallery__media-wrap--portrait-inner")) return;
+        const inner = document.createElement("div");
+        inner.className = "peek-gallery__media-wrap--portrait-inner";
+        inner.dataset.peekBg = img.dataset.peekSrc || "";
+        img.parentNode.removeChild(img);
+        mediaWrap.appendChild(inner);
+      }
       if (item.portraitInFrame) {
         mediaWrap.classList.add("peek-gallery__media-wrap--portrait");
       }
@@ -190,12 +198,19 @@
         if (((idx + m + n) % n) === logicalIdx) { inRange = true; break; }
       }
       slide.setAttribute("aria-hidden", logicalIdx !== idx);
-      const img = slide.querySelector("[data-peek-img]");
+      const portraitInner = slide.querySelector(".peek-gallery__media-wrap--portrait-inner");
+      const imgs = slide.querySelectorAll("[data-peek-img]");
+      const img = imgs[0];
       const video = slide.querySelector("[data-peek-video]");
+      if (portraitInner && portraitInner.dataset.peekBg && inRange && !portraitInner.style.backgroundImage) {
+        portraitInner.style.backgroundImage = "url(" + portraitInner.dataset.peekBg + ")";
+      }
       if (img && img.dataset.peekSrc) {
         if (inRange && !img.getAttribute("src")) {
-          img.src = img.dataset.peekSrc;
-          if (img.dataset.peekSrcset) img.srcset = img.dataset.peekSrcset;
+          imgs.forEach(function (i) {
+            i.src = i.dataset.peekSrc;
+            if (i.dataset.peekSrcset) i.srcset = i.dataset.peekSrcset;
+          });
         }
       }
       if (video && video.dataset.peekVideoSrc && inRange && !video.src) {
@@ -493,11 +508,17 @@
       for (var m = -PRELOAD_MARGIN; m <= PRELOAD_MARGIN; m++) {
         if (((idx + m + n) % n) === logicalIndex) { inRange = true; break; }
       }
+      var portraitInner = slideEl.querySelector(".peek-gallery__media-wrap--portrait-inner");
+      if (portraitInner && portraitInner.dataset.peekBg && inRange) {
+        portraitInner.style.backgroundImage = "url(" + portraitInner.dataset.peekBg + ")";
+      }
       if (media && media.type === "image") {
-        var img = slideEl.querySelector("[data-peek-img]");
-        if (img && inRange) {
-          img.src = img.dataset.peekSrc || "";
-          if (img.dataset.peekSrcset) img.srcset = img.dataset.peekSrcset;
+        var imgs = slideEl.querySelectorAll("[data-peek-img]");
+        if (imgs.length && inRange) {
+          imgs.forEach(function (i) {
+            i.src = i.dataset.peekSrc || "";
+            if (i.dataset.peekSrcset) i.srcset = i.dataset.peekSrcset;
+          });
         }
       } else if (media && media.type === "video") {
         var vid = slideEl.querySelector("[data-peek-video]");

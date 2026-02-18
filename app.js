@@ -20,6 +20,7 @@ const aboutTilt = document.querySelector("[data-about-tilt]");
 const ctaPlusCard = document.querySelector(".cta-plus");
 const hero = document.querySelector(".hero");
 const heroMedia = document.querySelector(".hero__media");
+const heroTitleFill = document.querySelector(".hero__title-fill");
 const focusableSelectors =
   "a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex='-1'])";
 
@@ -520,6 +521,20 @@ navLinks.forEach((link) => {
   });
 });
 
+/* Beskider+ billing toggle (rocznie / miesięcznie) */
+const beskiderPlusSection = document.querySelector(".beskider-plus-section");
+const beskiderPlusToggleBtns = document.querySelectorAll(".beskider-plus__toggle-btn");
+if (beskiderPlusSection && beskiderPlusToggleBtns.length) {
+  beskiderPlusToggleBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const billing = btn.getAttribute("data-billing");
+      if (!billing) return;
+      beskiderPlusSection.setAttribute("data-billing", billing);
+      beskiderPlusToggleBtns.forEach((b) => b.classList.toggle("is-active", b === btn));
+    });
+  });
+}
+
 /* CTA+ subtle scroll rotation: 1.8deg → ~0.6deg as user scrolls past */
 const updateCtaRotation = () => {
   if (!ctaPlusCard) return;
@@ -539,6 +554,13 @@ const updateHeroScroll = () => {
   const heroHeight = hero.offsetHeight;
   const maxScroll = Math.max(heroHeight * 0.8, 200);
   const progress = Math.min(y / maxScroll, 1);
+
+  if (heroTitleFill) {
+    const opacity = 0.9 * (1 - progress * 0.55);
+    const brightness = 1.5 - 0.5 * progress;
+    heroTitleFill.style.opacity = String(opacity);
+    heroTitleFill.style.filter = `brightness(${brightness.toFixed(2)})`;
+  }
 
   if (y > 0) {
     hero.classList.add("hero--scrolled");
@@ -579,10 +601,297 @@ window.addEventListener("resize", () => {
 }, { passive: true });
 handleScroll();
 
+const CONTACT_FORM_ERRORS = {
+  required: "To pole jest wymagane.",
+  invalidLength: "Wprowadzona ilość znaków jest niepoprawna.",
+  invalidEmail: "Wprowadź poprawny adres e-mail.",
+  invalidPhone: "Wprowadź poprawny numer telefonu (9–15 cyfr).",
+  invalidPostal: "Kod pocztowy w formacie XX-XXX.",
+  invalidNip: "NIP powinien składać się z 10 cyfr.",
+  termsRequired: "Potwierdź akceptację regulaminu.",
+};
+
+const CONTACT_FORM_RULES = {
+  email: { required: true, min: 0, max: 0 },
+  fullname: { required: true, min: 2, max: 100 },
+  phone: { required: true, min: 0, max: 0 },
+  "billing-fullname": { required: true, min: 2, max: 100 },
+  "billing-company": { required: false },
+  "billing-nip": { required: false },
+  "billing-address": { required: true, min: 1, max: 200 },
+  "billing-city": { required: true, min: 1, max: 100 },
+  "billing-postal": { required: true, min: 0, max: 0 },
+  "billing-country": { required: true, min: 1, max: 100 },
+  message: { required: false },
+  terms: { required: true },
+};
+
+const CONTACT_FORM_STORAGE_KEY = "beskider-contact-form";
+
+const saveContactFormToStorage = (form) => {
+  const data = {};
+  const inputs = form.querySelectorAll("input[name]:not([type=hidden]), textarea[name]");
+  inputs.forEach((el) => {
+    const name = el.getAttribute("name");
+    if (!name) return;
+    if (el.type === "checkbox") data[name] = el.checked;
+    else data[name] = el.value;
+  });
+  try {
+    localStorage.setItem(CONTACT_FORM_STORAGE_KEY, JSON.stringify(data));
+  } catch (_) {}
+};
+
+const loadContactFormFromStorage = (form) => {
+  try {
+    const raw = localStorage.getItem(CONTACT_FORM_STORAGE_KEY);
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    if (!data || typeof data !== "object") return;
+    Object.keys(data).forEach((name) => {
+      const el = form.querySelector(`[name="${name}"]`);
+      if (!el) return;
+      if (el.type === "checkbox") el.checked = !!data[name];
+      else el.value = data[name] == null ? "" : String(data[name]);
+    });
+  } catch (_) {}
+};
+
+const clearContactFormStorage = () => {
+  try {
+    localStorage.removeItem(CONTACT_FORM_STORAGE_KEY);
+  } catch (_) {}
+};
+
+const getContactFormGroup = (form, fieldName) =>
+  form.querySelector(`.form-group[data-field="${fieldName}"]`);
+
+const setContactFieldState = (group, valid, message) => {
+  if (!group) return;
+  const input = group.querySelector("input, textarea");
+  const errorEl = group.querySelector(".form-group__error");
+  group.classList.remove("form-group--valid", "form-group--error");
+  if (valid) {
+    group.classList.add("form-group--valid");
+    if (input) input.setAttribute("aria-invalid", "false");
+    if (errorEl) errorEl.textContent = "";
+  } else {
+    group.classList.add("form-group--error");
+    if (input) input.setAttribute("aria-invalid", "true");
+    if (errorEl) errorEl.textContent = message || "";
+  }
+};
+
+const validateContactEmail = (value) => {
+  if (!value || !value.trim()) return { valid: false, message: CONTACT_FORM_ERRORS.required };
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!re.test(value.trim())) return { valid: false, message: CONTACT_FORM_ERRORS.invalidEmail };
+  return { valid: true };
+};
+
+const validateContactLength = (value, min, max, required) => {
+  const trimmed = (value || "").trim();
+  if (required && !trimmed) return { valid: false, message: CONTACT_FORM_ERRORS.required };
+  if (!required && !trimmed) return { valid: true };
+  if (min > 0 && trimmed.length < min) return { valid: false, message: CONTACT_FORM_ERRORS.invalidLength };
+  if (max > 0 && trimmed.length > max) return { valid: false, message: CONTACT_FORM_ERRORS.invalidLength };
+  return { valid: true };
+};
+
+const validateContactPhone = (value) => {
+  const trimmed = (value || "").trim();
+  if (!trimmed) return { valid: false, message: CONTACT_FORM_ERRORS.required };
+  const digits = trimmed.replace(/\D/g, "");
+  if (digits.length < 9 || digits.length > 15) return { valid: false, message: CONTACT_FORM_ERRORS.invalidPhone };
+  return { valid: true };
+};
+
+const validateContactPostal = (value) => {
+  const trimmed = (value || "").trim();
+  if (!trimmed) return { valid: false, message: CONTACT_FORM_ERRORS.required };
+  if (!/^\d{2}-\d{3}$/.test(trimmed)) return { valid: false, message: CONTACT_FORM_ERRORS.invalidPostal };
+  return { valid: true };
+};
+
+const validateContactNip = (value) => {
+  const trimmed = (value || "").trim();
+  if (!trimmed) return { valid: true };
+  const digits = trimmed.replace(/\D/g, "");
+  if (digits.length !== 10) return { valid: false, message: CONTACT_FORM_ERRORS.invalidNip };
+  return { valid: true };
+};
+
+const validateContactField = (fieldName, value, form) => {
+  const rules = CONTACT_FORM_RULES[fieldName];
+  if (!rules) return { valid: true };
+
+  if (fieldName === "terms") {
+    const checked = !!value;
+    if (rules.required && !checked) return { valid: false, message: CONTACT_FORM_ERRORS.termsRequired };
+    return { valid: true };
+  }
+
+  if (fieldName === "email") return validateContactEmail(value);
+  if (fieldName === "phone") return validateContactPhone(value);
+  if (fieldName === "billing-postal") return validateContactPostal(value);
+  if (fieldName === "billing-nip") return validateContactNip(value);
+
+  const required = rules.required !== false;
+  const min = rules.min ?? 0;
+  const max = rules.max ?? 0;
+  return validateContactLength(value, min, max, required);
+};
+
+const validateContactForm = (form) => {
+  const fields = Object.keys(CONTACT_FORM_RULES);
+  let allValid = true;
+  for (const fieldName of fields) {
+    const group = getContactFormGroup(form, fieldName);
+    if (!group) continue;
+    const input = group.querySelector("input, textarea");
+    const value = input ? (input.type === "checkbox" ? input.checked : input.value) : "";
+    const result = validateContactField(fieldName, value, form);
+    setContactFieldState(group, result.valid, result.message);
+    if (!result.valid) allValid = false;
+  }
+  return allValid;
+};
+
+const initContactForm = () => {
+  const form = document.querySelector("[data-contact-form]");
+  if (!form) return;
+
+  const fieldsToValidate = form.querySelectorAll(".form-group[data-field] input:not([type=checkbox]), .form-group[data-field] textarea");
+  const termsCheckbox = form.querySelector("#contact-terms");
+
+  const onFieldValidate = (fieldName) => {
+    const group = getContactFormGroup(form, fieldName);
+    if (!group) return;
+    const input = group.querySelector("input, textarea");
+    const value = input ? (input.type === "checkbox" ? input.checked : input.value) : "";
+    const result = validateContactField(fieldName, value, form);
+    setContactFieldState(group, result.valid, result.message);
+  };
+
+  fieldsToValidate.forEach((input) => {
+    const group = input.closest(".form-group");
+    const fieldName = group?.getAttribute("data-field");
+    if (!fieldName) return;
+    input.addEventListener("blur", () => onFieldValidate(fieldName));
+    input.addEventListener("input", () => onFieldValidate(fieldName));
+  });
+
+  if (termsCheckbox) {
+    termsCheckbox.addEventListener("change", () => onFieldValidate("terms"));
+  }
+
+  let saveTimeout = null;
+  const scheduleSave = () => {
+    if (saveTimeout) clearTimeout(saveTimeout);
+    saveTimeout = setTimeout(() => {
+      saveContactFormToStorage(form);
+      saveTimeout = null;
+    }, 300);
+  };
+  form.addEventListener("input", scheduleSave);
+  form.addEventListener("change", scheduleSave);
+
+  loadContactFormFromStorage(form);
+
+  const clearBtn = form.querySelector("[data-contact-clear]");
+  if (clearBtn) {
+    clearBtn.addEventListener("click", () => {
+      if (!confirm("Czy na pewno chcesz usunąć zapisane dane formularza?")) return;
+      form.reset();
+      clearContactFormStorage();
+      clearStatus();
+      form.querySelectorAll(".form-group").forEach((g) => g.classList.remove("form-group--valid", "form-group--error"));
+      form.querySelectorAll("[aria-invalid]").forEach((el) => el.setAttribute("aria-invalid", "false"));
+      clearBtn.focus();
+    });
+  }
+
+  const termsModalBtn = form.querySelector("button[data-open-modal=\"regulamin\"]");
+  if (termsModalBtn) {
+    termsModalBtn.addEventListener("click", (e) => e.stopPropagation());
+  }
+
+  const statusEl = document.getElementById("contact-form-status");
+  const submitBtn = form.querySelector('button[type="submit"]');
+
+  const setStatus = (message, status) => {
+    if (!statusEl) return;
+    statusEl.textContent = message;
+    statusEl.setAttribute("data-status", status);
+    statusEl.hidden = false;
+  };
+
+  const clearStatus = () => {
+    if (statusEl) {
+      statusEl.textContent = "";
+      statusEl.removeAttribute("data-status");
+      statusEl.hidden = true;
+    }
+  };
+
+  form.addEventListener("click", (e) => {
+    if (e.target.closest(".contact-form__fallback-submit")) {
+      e.preventDefault();
+      form.setAttribute("target", "_blank");
+      form.submit();
+    }
+  });
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    clearStatus();
+    const valid = validateContactForm(form);
+    if (!valid) {
+      const firstError = form.querySelector(".form-group--error");
+      const firstInvalid = firstError?.querySelector("input, textarea");
+      if (firstInvalid) firstInvalid.focus();
+      return;
+    }
+
+    if (submitBtn) submitBtn.disabled = true;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      });
+      const data = await response.json().catch(() => ({}));
+      if (response.ok) {
+        setStatus("Dziękujemy! Wiadomość została wysłana. Odpowiemy wkrótce.", "success");
+        form.reset();
+        clearContactFormStorage();
+        form.querySelectorAll(".form-group").forEach((g) => g.classList.remove("form-group--valid", "form-group--error"));
+        form.querySelectorAll("[aria-invalid]").forEach((el) => el.setAttribute("aria-invalid", "false"));
+      } else {
+        setStatus(data.error || "Wysyłanie nie powiodło się. Spróbuj ponownie lub napisz na hello@beskider.pl.", "error");
+      }
+    } catch {
+      if (statusEl) {
+        statusEl.setAttribute("data-status", "error");
+        statusEl.hidden = false;
+        statusEl.innerHTML =
+          "Wysyłanie nie powiodło się (np. brak sieci lub blokada). " +
+          "<button type=\"button\" class=\"contact-form__fallback-submit link-button\">Wyślij w nowej karcie</button> " +
+          "lub napisz na hello@beskider.pl.";
+      }
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
+    }
+  });
+};
+
 initTabs();
 initRouteFilters();
 initAccordion();
 initModals();
 initGallery();
 initCookieBanner();
+initContactForm();
 registerServiceWorker();

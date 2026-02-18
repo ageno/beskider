@@ -76,6 +76,17 @@ Uruchom w DevTools (Lighthouse, tryb mobile). Docelowe wartości ze [spec.md §2
 
 ---
 
+## Sekcja Kontakt (formularz)
+
+- [ ] Formularz: bloki Dane wypożyczającego, Adres rozliczeniowy, Wiadomość, Warunki; przycisk „Wyślij zapytanie”
+- [ ] Walidacja: pole puste/wyjście z pola (blur) – komunikat błędu pod polem, czerwony obrys i ikona wykrzyknik; poprawne – zielona ikona check
+- [ ] Komunikat „Wprowadzona ilość znaków jest niepoprawna” przy niepoprawnej długości (np. Imię/Nazwisko)
+- [ ] Checkbox regulaminu wymagany; przycisk „Ogólne Warunki regulaminu serwisu” otwiera modal Regulamin
+- [ ] Submit przy błędach: focus na pierwszym polu z błędem; przy poprawnej walidacji: otwarcie mailto z danymi
+- [ ] Panel „Świetny wybór!” po prawej (desktop) / pod formularzem (mobile): nagłówek + 4 punkty z zieloną ikoną check
+
+---
+
 ## Zasady i FAQ
 
 - [ ] Sekcja Zasady: wszystkie karty widoczne (Doba, Bezpieczeństwo, Modyfikacje, Regulamin, Kaucja/depozyt, Udział własny, Weryfikacja, Odmowa wynajmu), tytuły pogrubione

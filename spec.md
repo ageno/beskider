@@ -88,21 +88,22 @@ Lista sekcji w kolejności na stronie (źródło prawdy przy code review i plano
   - Slider typu „peek” (aktywny slajd na środku, sąsiednie po bokach), dane z JSON (data-peek-gallery-config)
   - Pager w formie kapsuły (kropki + animowany aktywny „dash”), opcjonalny przycisk play dla slajdów wideo
   - Swipe/drag, klawiatura (strzałki, Home, End), lazy-load mediów ±1, a11y, prefers-reduced-motion
-- Trasy
-  - Nagłówek sekcji + intro (pomoc w wyborze tras, linki Komoot/Strava/Google Maps)
-  - Siatka 3 kolumny: karty tras (nazwa, opis, trudność, długość m, spadek %, obniżenie m)
 - Dlaczego Beskider (#perks)
   - Siatka 2–3 kolumny: 12 ikon z tytułem i opisem (zalety usługi)
   - Styl wzorowany na sekcji „Udogodnienia" (ikona + tekst, delikatne tło ikon w zielonym)
 - Zasady
+- Trasy
+  - Nagłówek sekcji + intro (pomoc w wyborze tras, linki Komoot/Strava/Google Maps)
+  - Siatka 3 kolumny: karty tras (nazwa, opis, trudność, długość m, spadek %, obniżenie m)
 - FAQ
 - O nas
 - Przewodnicy Beskider (3 karty: zdjęcie, imię i nazwisko, krótki opis)
+- Klub Beskider+ (#beskider-plus) – nad kontaktem: stała opłata, korzyści członkostwa, CTA „Dołącz do Beskider+”, box z delikatną grafiką Memphis (geometria, fale, kolory projektu)
 - Kontakt
   - Karty: E-mail, Social media, Lokalizacja
   - Formularz zapytania (Dane wypożyczającego, Adres rozliczeniowy, Wiadomość, Warunki)
   - Panel „Świetny wybór!” (po prawej na desktop)
-- Stopka (przełącznik trybu: Automatyczny / Ciemny / Jasny; firma, linki, social, copyright)
+- Stopka (układ inspirowany Unsplash press: brand + tagline, kolumny linków Oferta / Firma / Warunki, przełącznik motywu Auto/Ciemny/Jasny, ikony social; na dole copyright i dane firmy)
 - Modale: Produkt, Regulamin, Polityka
 
 Przy każdej nowej sekcji lub nowym linku w nav należy zaktualizować niniejszą listę oraz ewentualnie §7 (Nawigacja).
@@ -195,9 +196,9 @@ Przy każdej nowej sekcji lub nowym linku w nav należy zaktualizować niniejsz�
 - Spójne promienie: preferowany 8 px, większe tylko gdy wymagane
 
 ### 8.5 Ikony
-- **Zestaw:** Heroicons (styl outline/stroke, viewBox 24×24).
-- W sekcjach kart (Dlaczego Beskider, Kontakt): ikona w kwadracie z zaokrąglonymi rogami (np. 2.25rem, border-radius 0.5rem) i delikatnym tłem kolorystycznym; SVG: stroke currentColor, fill none, stroke-width 1.5.
-- Ikony brandów (np. Instagram, Facebook w linkach) mogą być wypełnione (fill) – wyjątek od outline.
+- **Zestaw:** Font Awesome (wersja free), lokalnie: `assets/fontawesome/` (css/all.min.css, webfonts/). Ikony: `<i class="fa-solid fa-…">` lub `fa-brands fa-…` (np. fa-star, fa-chevron-down, fa-envelope, fa-instagram).
+- W sekcjach kart (Dlaczego Beskider, Kontakt): ikona w kwadracie z zaokrąglonymi rogami (np. 2.25rem, border-radius 0.5rem) i delikatnym tłem kolorystycznym; rozmiar ikon FA ustawiany przez font-size w CSS.
+- Ikony brandów (Instagram, Facebook, YouTube): `fa-brands fa-instagram`, `fa-brands fa-facebook`, `fa-brands fa-youtube`.
 
 ---
 
@@ -304,7 +305,7 @@ Zawartość:
 - Sekcja zalet usługi umieszczona między Trasami a Zasadami.
 - Layout inspirowany sekcją „Udogodnienia w tym budynku" (clusteroffices.com) – grid ikon z tytułem i opisem.
 - Grid: 1 kolumna mobile → 2 kolumny (640 px) → 3 kolumny (1024 px).
-- Każdy element: kwadratowa ikona (36 px, zielone tło, SVG Heroicons Outline) + tytuł (semi-bold) + opis (muted).
+- Każdy element: kwadratowa ikona (36 px, zielone tło, Font Awesome solid) + tytuł (semi-bold) + opis (muted).
 - 12 pozycji: Sprzęt premium, Lokalny przewodnik, Dopasowanie trasy, Pełne wyposażenie, Serwis przed wyjazdem, Mapy i nawigacja, Elastyczne godziny, Bezpłatny parking, Płatność bezgotówkowa, Wsparcie na trasie, Ubezpieczenie, Siedziba w Bielsku-Białej.
 - Dark mode: ciemne zielone tło ikon, jaśniejsze opisy.
 
@@ -336,27 +337,26 @@ Karty w siatce (rules-grid):
 
 ## 16. O nas
 
-- Pełny tekst (20–30 zdań)
-- Bez skracania
-- SEO-friendly
-- Zdjęcie: `assets/images/about-us.jpg` + warianty `*-320/640/1280`
-- Układ na desktop: 55/45 (obraz + tekst) dla wizualnej równowagi
-- Zdjęcie „O nas”: pełny bleed do lewej krawędzi na desktop, bez zaokrąglenia po lewej
-- Zdjęcie „O nas”: bez kadrowania (object-contain), bez ramki i bez cienia
-- Bleed realizowany tylko do lewej krawędzi (szerokość kolumny + bleed do krawędzi viewportu)
-- Zdjęcie „O nas”: animacja rotacji podczas scrolla w zakresie 7° do -2°
+- Układ w stylu Unsplash About: **tekst (lewa kolumna) + kolaż zdjęć (prawa kolumna)**. Na mobile: jedna kolumna, najpierw treść, potem kolaż.
+- **Lewa kolumna:** nagłówek („Z gór w sercu. Z jakością na szlaku.”), skrócony tekst „O nas” (kilka akapitów), przycisk CTA „Zobacz galerię” (link do #gallery).
+- **Prawa kolumna:** kolaż 4 zdjęć w **dwóch kolumnach o równej całkowitej wysokości**, wyrównanych górą i dołem. Wysokości lustrzane między kolumnami (proporcje, nie auto):
+  - **Lewa kolumna:** górne zdjęcie 40% wysokości kolumny, dolne 60%.
+  - **Prawa kolumna:** górne zdjęcie 60% wysokości kolumny, dolne 40%.
+  - Górne i dolne krawędzie obu kolumn w jednej linii; suma wysokości w lewej = suma w prawej. Zaokrąglone rogi. Zdjęcia: lewa – gallery-mgla-beskidy (góra), gallery-dwoch-rowerzystow-zachod (dół); prawa – gallery-portret-rowerzysta (góra), gallery-rower-nad-woda (dół).
+- **Kryterium testowe:** po zamianie zdjęć na jednolite bloki kolorów: lewa – mały u góry, duży na dole; prawa – duży u góry, mały na dole; brak pustych przestrzeni, równe całkowite wysokości kolumn.
+- Responsywność: sekcja desktop 2 kolumny (tekst + kolaż), tablet/mobile jedna kolumna (treść, potem kolaż).
 
 ---
 
 ## 17. Kontakt
 
-- **Trzy karty** (contact-card, układ jak rule-card / perks): nad tytułem ikona w kwadracie z tłem (contact-card__icon) – Heroicons outline: E-mail (koperta), Social media (udostępnianie), Lokalizacja (pin mapy). Podnagłówki (contact-card__label):
-  - **E-mail**: „Adres” (link mailto: hello@beskider.pl), „Czas odpowiedzi” (8:00–20:00, max 30 min)
-  - **Social media**: „Obserwuj nas”, linki z ikonkami SVG (Instagram, Facebook, YouTube)
+- **Trzy karty** (contact-card, układ jak rule-card / perks): nad tytułem ikona w kwadracie z tłem (contact-card__icon) – Font Awesome: E-mail (fa-envelope), Social media (fa-share-nodes), Lokalizacja (fa-location-dot). Podnagłówki (contact-card__label):
+  - **E-mail**: „Adres” (link mailto: hello@beskider.pl), „Czas odpowiedzi” (8:00–20:00, max 30 min); pod adresem link do WhatsApp z ikoną (fa-brands fa-whatsapp) i tekstem „Wkrótce dodamy możliwość kontaktu przez WhatsApp (wkrótce)” (na razie bez numeru, link do whatsapp.com)
+  - **Social media**: „Obserwuj nas”, linki z ikonkami (Instagram, Facebook, YouTube)
   - **Lokalizacja**: „Adres” (Bielsko-Biała, ul. Czołgistów – parking Błonia), „Dowóz i odbiór” (rowery dowożone na miejsce po potwierdzeniu rezerwacji; odbiory i zwroty po wcześniejszym kontakcie)
-- **Formularz zapytania** (pod/obok kart):
+- **Formularz zapytania** (pod/obok kart): nagłówek „Formularz rezerwacyjny” + intro „Wypełnij szczegółowo formularz rezerwacyjny w celu potwierdzenia dostępności i możliwości realizacji przygody z Beskider”; wysyłka przez **Formspree** (action `https://formspree.io/f/mjgergpk`, method POST). Po walidacji po stronie klienta wysyłka AJAX (fetch), komunikat sukcesu/błędu w `.contact-form__status`. Ukryte pole `_subject` dla tematu e-maila.
   - Dane wypożyczającego: E-mail*, Imię i nazwisko*, Numer kontaktowy*
-  - Adres rozliczeniowy: Imię*, Nazwisko*, Firma, NIP, Adres*, Miasto*, Kod pocztowy*, Kraj*
+  - Adres rozliczeniowy: Imię i nazwisko*, Firma, NIP, Adres*, Miasto*, Kod pocztowy*, Kraj*
   - Wiadomość (textarea, opcjonalne)
   - Warunki: checkbox* (akceptacja regulaminu, link do modala Regulamin), checkbox (zgoda marketingowa – Ageno sp. z o.o.)
   - Przycisk: Wyślij zapytanie
@@ -453,7 +453,7 @@ Lighthouse (mobile):
 
 ## 25. Bezpieczeństwo
 
-- CSP
+- CSP (connect-src: 'self', Google Analytics, Formspree)
 - HSTS
 - No inline scripts (docelowo)
 - Minimal JS
@@ -493,10 +493,10 @@ Szybka mapa treści w `index.html` (do planowania zmian copy):
 | jak-wynajac | 3 karty: kontakt, odbiór, co zabrać |
 | rules | Nagłówek, 3 karty zasad, przycisk regulamin |
 | faq | Accordion z pytaniami |
-| about | Obraz + tekst „O nas” |
+| about | Tekst „O nas” + CTA + kolaż zdjęć z galerii |
 | guides | Przewodnicy Beskider: 3 karty (zdjęcie, imię i nazwisko, opis) |
 | contact | E-mail, social, adres; formularz zapytania; panel Świetny wybór |
-| stopka | Przełącznik trybu (Auto/Ciemny/Jasny), firma, linki, social, copyright |
+| stopka | Brand + tagline, kolumny Oferta/Firma/Warunki, motyw Auto/Ciemny/Jasny, social, copyright + dane firmy |
 | Modale | Produkt (galeria, spec), Regulamin, Polityka |
 
 ---

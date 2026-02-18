@@ -11,10 +11,11 @@
     <meta name="theme-color" content="#1f7a4a" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; img-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; font-src 'self';"
+      content="default-src 'self'; img-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://formspree.io; font-src 'self';"
     />
     <link rel="manifest" href="./manifest.json" />
     <link rel="icon" href="./assets/icons/icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./assets/fontawesome/css/all.min.css" />
     <link
       rel="preload"
       as="image"
@@ -1243,11 +1244,10 @@ main {
 /* ---------- CTA+ (Beskider+ promo card) ---------- */
 .cta-plus-wrap {
   position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  width: 100vw;
+  max-width: 44rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
   padding: 0 1.5rem;
   z-index: 2;
   margin-top: -0.75rem;
@@ -1314,10 +1314,9 @@ main {
   color: rgb(107 114 128);
 }
 
-.cta-plus__badge svg {
-  width: 0.875rem;
-  height: 0.875rem;
-  fill: #ffcb03;
+.cta-plus__badge i {
+  font-size: 0.875rem;
+  color: #ffcb03;
   margin-right: -0.2rem;
 }
 
@@ -1352,7 +1351,7 @@ main {
 
 .cta-plus__media {
   position: relative;
-  flex: 0 0 28%;
+  flex: 0 0 30%;
   min-height: 120px;
   overflow: hidden;
   flex-shrink: 0;
@@ -1374,7 +1373,7 @@ main {
   }
 
   .cta-plus__media {
-    flex: 0 0 35%;
+    flex: 0 0 30%;
     min-height: 240px;
   }
 
@@ -1391,7 +1390,7 @@ main {
   }
 
   .cta-plus__media {
-    flex: 0 0 40%;
+    flex: 0 0 30%;
   }
 }
 
@@ -1779,6 +1778,21 @@ main {
   font-weight: 600;
 }
 
+.contact-card h3 {
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .contact-card h3 {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+  }
+}
+
 .route-card__difficulty {
   display: inline-block;
   padding: 0.25rem 0.5rem;
@@ -1876,14 +1890,8 @@ html[data-theme="dark"] .route-card__difficulty--very-easy { background-color: r
 .perk-item:nth-child(11) .perk-item__icon { background-color: rgb(255 246 235); color: rgb(154 96 42); }
 .perk-item:nth-child(12) .perk-item__icon { background-color: rgb(240 250 245); color: rgb(45 110 72); }
 
-.perk-item__icon svg {
-  width: 1.125rem;
-  height: 1.125rem;
-  stroke: currentColor;
-  fill: none;
-  stroke-width: 1.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.perk-item__icon i {
+  font-size: 1.125rem;
 }
 
 .perk-item__text {
@@ -2217,8 +2225,7 @@ html[data-theme="dark"] .perk-item__desc {
 }
 
 .accordion__icon {
-  height: 1rem;
-  width: 1rem;
+  font-size: 1rem;
   flex-shrink: 0;
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity, 1));
@@ -2236,63 +2243,480 @@ html[data-theme="dark"] .perk-item__desc {
 
 .about {
   display: grid;
-  gap: 1.5rem;
+  gap: 2rem;
+  align-items: start;
 }
 
 @media (min-width: 768px) {
   .about {
-    grid-template-columns: minmax(0, 28%) minmax(0, 72%);
-    align-items: flex-start;
-  }
-}
-
-.about__media {
-  aspect-ratio: 4/3;
-  width: 100%;
-  background-color: transparent;
-  padding: 0px;
-  --tw-shadow: 0 0 #0000;
-  --tw-shadow-colored: 0 0 #0000;
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-  overflow: visible;
-  transform: rotate(var(--about-tilt, 7deg));
-  transform-origin: left center;
-  will-change: transform;
-}
-
-@media (min-width: 768px) {
-  .about__media {
-    position: relative;
-    max-width: 18rem;
-  }
-}
-
-.about__media img {
-  height: 100%;
-  width: 100%;
-  border-radius: 1.5rem;
-  -o-object-fit: contain;
-     object-fit: contain;
-}
-
-@media (min-width: 768px) {
-  .about__media img {
-    border-top-right-radius: 1.5rem;
-    border-bottom-right-radius: 1.5rem;
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 2.5rem 3rem;
+    align-items: start;
   }
 }
 
 .about__content {
   font-size: 1rem;
-  line-height: 1.5rem;
-  --tw-text-opacity: 1;
-  color: rgb(75 85 99 / var(--tw-text-opacity, 1));
+  line-height: 1.6;
+  color: rgb(75 85 99);
+}
+
+.about__heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: rgb(23 23 23);
+  margin: 0 0 1rem;
+  line-height: 1.3;
 }
 
 .about__content p + p {
   margin-top: 1rem;
+}
+
+.about__cta {
+  display: inline-block;
+  margin-top: 1.5rem;
+}
+
+/* Kolaż 2×2: zdjęcie 2 wystaje nad 1, zdjęcie 3 poniżej 4 – o jeden odstęp (gap), symetrycznie.
+   Proporcje: 1 wyższe, 2 wyższe, 3 niższe, 4 wyższe. */
+.about__collage {
+  --about-collage-gap: 1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--about-collage-gap);
+  aspect-ratio: 4 / 3.5;
+  min-height: 0;
+  overflow: visible;
+}
+
+.about__collage__col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  gap: var(--about-collage-gap);
+}
+
+.about__collage__col:first-child {
+  height: calc(100% + var(--about-collage-gap));
+  padding-top: var(--about-collage-gap);
+}
+
+.about__collage__col:last-child {
+  height: 100%;
+}
+
+/* Proporcje: 1 i 4 po 40%, 2 i 3 po 60%. */
+.about__collage__col:first-child .about__collage-item:nth-child(1) {
+  flex: 0.4;
+}
+.about__collage__col:first-child .about__collage-item:nth-child(2) {
+  flex: 0.6;
+}
+.about__collage__col:last-child .about__collage-item:nth-child(1) {
+  flex: 0.6;
+}
+.about__collage__col:last-child .about__collage-item:nth-child(2) {
+  flex: 0.4;
+}
+
+@media (min-width: 640px) {
+  .about__collage {
+    --about-collage-gap: 1.25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .about__collage {
+    --about-collage-gap: 1.5rem;
+  }
+}
+
+.about__collage-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  background: rgb(229 231 235);
+  width: 100%;
+  min-height: 0;
+}
+
+.about__collage-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Klub Beskider+ – układ 1:1 jak Unsplash Plus */
+.beskider-plus-section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.beskider-plus__wrap {
+  max-width: 32rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.beskider-plus__headline {
+  font-size: 1.75rem;
+  line-height: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: rgb(23 23 23);
+  margin: 0 0 0.75rem;
+}
+
+.beskider-plus__subhead {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: rgb(107 114 128);
+  margin: 0 auto 1.5rem;
+  max-width: 28rem;
+}
+
+.beskider-plus__toggle {
+  display: inline-flex;
+  gap: 0;
+  border-radius: 9999px;
+  background-color: rgb(243 244 246);
+  padding: 0.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.beskider-plus__toggle-btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: rgb(107 114 128);
+  background: none;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.beskider-plus__toggle-btn:hover {
+  color: rgb(55 65 81);
+}
+
+.beskider-plus__toggle-btn.is-active {
+  background-color: rgb(255 255 255);
+  color: rgb(23 23 23);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.06);
+}
+
+.beskider-plus__card {
+  position: relative;
+  text-align: left;
+  background-color: rgb(255 255 255);
+  border: 1px solid rgb(226 232 240);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.08);
+  overflow: hidden;
+}
+
+.beskider-plus__ribbon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  pointer-events: none;
+  width: 9rem;
+  height: 9rem;
+  overflow: hidden;
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+  box-shadow:
+    0 2px 8px rgba(0 0 0 / 0.08),
+    0 4px 16px rgba(0 0 0 / 0.06),
+    2px 4px 12px rgba(0 0 0 / 0.06),
+    4px 8px 20px rgba(0 0 0 / 0.04);
+}
+
+.beskider-plus__ribbon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgb(255 255 255);
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+  transform-origin: 100% 0;
+  transform: scale(0.72);
+  z-index: 1;
+}
+
+.beskider-plus__ribbon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 100% 0;
+}
+
+.beskider-plus__badge {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgb(255 255 255);
+  background-color: rgb(52 120 74);
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+  margin-bottom: 1rem;
+}
+
+.beskider-plus__price-block {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.beskider-plus__price-old {
+  font-size: 1.125rem;
+  color: rgb(156 163 175);
+  text-decoration: line-through;
+  margin-right: 0.25rem;
+}
+
+.beskider-plus__price-current {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: rgb(23 23 23);
+}
+
+.beskider-plus__price-unit {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: rgb(23 23 23);
+}
+
+.beskider-plus__price-per {
+  font-size: 0.8125rem;
+  color: rgb(107 114 128);
+  font-weight: 400;
+}
+
+.beskider-plus__billed {
+  position: relative;
+  z-index: 1;
+  font-size: 0.8125rem;
+  color: rgb(107 114 128);
+  margin: 0 0 1.25rem;
+}
+
+.beskider-plus-section[data-billing="monthly"] .beskider-plus__price-old,
+.beskider-plus-section[data-billing="monthly"] [data-yearly-only] {
+  display: none;
+}
+
+.beskider-plus-section[data-billing="yearly"] [data-monthly-only] {
+  display: none;
+}
+
+.beskider-plus-section[data-billing="monthly"] .beskider-plus__billed[data-yearly-only] {
+  display: none;
+}
+
+.beskider-plus__list {
+  position: relative;
+  z-index: 1;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.25rem;
+}
+
+.beskider-plus__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.375rem 0;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: rgb(55 65 81);
+}
+
+.beskider-plus__list-icon {
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  color: rgb(52 105 80);
+  margin-top: 0.25rem;
+}
+
+.beskider-plus__cta {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 0.875rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  background-color: rgb(23 23 23);
+  color: rgb(255 255 255);
+  border: none;
+}
+
+.beskider-plus__cta:hover {
+  background-color: rgb(38 38 38);
+  color: rgb(255 255 255);
+}
+
+.beskider-plus__fine {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.5rem;
+  font-size: 0.8125rem;
+  color: rgb(107 114 128);
+  margin: 0;
+}
+
+.beskider-plus__fine span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.beskider-plus__fine i {
+  color: rgb(52 105 80);
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+.beskider-plus__footer-link {
+  margin: 1.25rem 0 0;
+  font-size: 0.875rem;
+  color: rgb(107 114 128);
+  text-align: center;
+}
+
+.beskider-plus__footer-link a {
+  color: rgb(37 99 235);
+  text-decoration: none;
+}
+
+.beskider-plus__footer-link a:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 640px) {
+  .beskider-plus__headline {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+}
+
+html[data-theme="dark"] .beskider-plus__headline {
+  color: rgb(244 245 247);
+}
+
+html[data-theme="dark"] .beskider-plus__subhead {
+  color: rgb(163 163 163);
+}
+
+html[data-theme="dark"] .beskider-plus__toggle {
+  background-color: rgb(38 38 38);
+}
+
+html[data-theme="dark"] .beskider-plus__toggle-btn {
+  color: rgb(163 163 163);
+}
+
+html[data-theme="dark"] .beskider-plus__toggle-btn:hover {
+  color: rgb(244 245 247);
+}
+
+html[data-theme="dark"] .beskider-plus__toggle-btn.is-active {
+  background-color: rgb(64 64 64);
+  color: rgb(244 245 247);
+}
+
+html[data-theme="dark"] .beskider-plus__card {
+  background-color: rgb(23 23 23);
+  border-color: rgb(38 38 38);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3);
+}
+
+html[data-theme="dark"] .beskider-plus__ribbon {
+  box-shadow:
+    0 2px 8px rgba(0 0 0 / 0.25),
+    0 4px 16px rgba(0 0 0 / 0.2),
+    2px 4px 14px rgba(0 0 0 / 0.2),
+    4px 8px 24px rgba(0 0 0 / 0.15);
+}
+
+html[data-theme="dark"] .beskider-plus__ribbon::after {
+  background: rgb(23 23 23);
+}
+
+html[data-theme="dark"] .beskider-plus__badge {
+  color: rgb(255 255 255);
+  background-color: rgb(34 120 74);
+}
+
+html[data-theme="dark"] .beskider-plus__cta {
+  background-color: rgb(23 23 23);
+  color: rgb(255 255 255);
+}
+
+html[data-theme="dark"] .beskider-plus__cta:hover {
+  background-color: rgb(38 38 38);
+  color: rgb(255 255 255);
+}
+
+html[data-theme="dark"] .beskider-plus__footer-link {
+  color: rgb(163 163 163);
+}
+
+html[data-theme="dark"] .beskider-plus__footer-link a {
+  color: rgb(96 165 250);
+}
+
+html[data-theme="dark"] .beskider-plus__price-old {
+  color: rgb(115 115 115);
+}
+
+html[data-theme="dark"] .beskider-plus__price-current,
+html[data-theme="dark"] .beskider-plus__price-unit {
+  color: rgb(244 245 247);
+}
+
+html[data-theme="dark"] .beskider-plus__price-per {
+  color: rgb(163 163 163);
+}
+
+html[data-theme="dark"] .beskider-plus__billed {
+  color: rgb(163 163 163);
+}
+
+html[data-theme="dark"] .beskider-plus__list li {
+  color: rgb(229 231 235);
+}
+
+html[data-theme="dark"] .beskider-plus__list-icon {
+  color: rgb(74 222 128);
+}
+
+html[data-theme="dark"] .beskider-plus__fine {
+  color: rgb(163 163 163);
+}
+
+html[data-theme="dark"] .beskider-plus__fine i {
+  color: rgb(74 222 128);
 }
 
 .contact-card__icon {
@@ -2309,14 +2733,8 @@ html[data-theme="dark"] .perk-item__desc {
 .contact-card:nth-child(2) .contact-card__icon { background-color: rgb(243 240 255); color: rgb(88 72 153); }
 .contact-card:nth-child(3) .contact-card__icon { background-color: rgb(240 249 244); color: rgb(38 120 74); }
 
-.contact-card__icon svg {
-  width: 1.125rem;
-  height: 1.125rem;
-  stroke: currentColor;
-  fill: none;
-  stroke-width: 1.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.contact-card__icon i {
+  font-size: 1.125rem;
 }
 
 .contact-card__label {
@@ -2335,10 +2753,76 @@ html[data-theme="dark"] .contact-card__label {
   color: rgb(156 163 175);
 }
 
+.contact-card__email a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.contact-card__email a:hover {
+  opacity: 0.85;
+}
+
+.contact-card__email i {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.contact-card__whatsapp {
+  margin-top: 0.75rem;
+}
+
+.contact-card__whatsapp a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.contact-card__whatsapp a:hover {
+  opacity: 0.85;
+}
+
+.contact-card__whatsapp i {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  color: rgb(37 211 102);
+}
+
+html[data-theme="dark"] .contact-card__links li:nth-child(1) i {
+  color: rgb(233 89 132);
+}
+
+html[data-theme="dark"] .contact-card__links li:nth-child(2) i {
+  color: rgb(96 165 250);
+}
+
+html[data-theme="dark"] .contact-card__links li:nth-child(3) i {
+  color: rgb(248 113 113);
+}
+
+.contact-card__soon {
+  color: rgb(156 163 175);
+  font-weight: 400;
+}
+
+html[data-theme="dark"] .contact-card__whatsapp i {
+  color: rgb(72 225 134);
+}
+
+html[data-theme="dark"] .contact-card__soon {
+  color: rgb(115 115 115);
+}
+
 .contact-card__links {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem 1rem;
+  flex-direction: column;
+  gap: 0.75rem;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -2347,7 +2831,7 @@ html[data-theme="dark"] .contact-card__label {
 .contact-card__links a {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.625rem;
   color: inherit;
   text-decoration: none;
   transition: color 0.2s ease, opacity 0.15s ease;
@@ -2357,15 +2841,29 @@ html[data-theme="dark"] .contact-card__label {
   opacity: 0.85;
 }
 
-.contact-card__links svg {
-  width: 1.25rem;
-  height: 1.25rem;
+.contact-card__links i {
+  font-size: 1.25rem;
   flex-shrink: 0;
-  fill: currentColor;
+}
+
+.contact-card__links li:nth-child(1) i {
+  color: rgb(225 48 108);
+}
+
+.contact-card__links li:nth-child(2) i {
+  color: rgb(24 119 242);
+}
+
+.contact-card__links li:nth-child(3) i {
+  color: rgb(255 0 0);
 }
 
 .contact-card__links > li {
   margin: 0;
+}
+
+.contact-card__links > li + li {
+  margin-top: 0;
 }
 
 .contact-card ul > :not([hidden]) ~ :not([hidden]) {
@@ -2403,6 +2901,61 @@ html[data-theme="dark"] .contact-card__label {
   gap: 1.5rem;
 }
 
+.contact-form__header {
+  margin-bottom: 0.25rem;
+}
+
+.contact-form__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: rgb(23 23 23);
+  margin: 0 0 0.5rem;
+  line-height: 1.3;
+}
+
+.contact-form__intro {
+  font-size: 0.9375rem;
+  color: rgb(107 114 128);
+  line-height: 1.5;
+  margin: 0;
+}
+
+html[data-theme="dark"] .contact-form__title {
+  color: rgb(244 245 247);
+}
+
+html[data-theme="dark"] .contact-form__intro {
+  color: rgb(156 163 175);
+}
+
+.contact-form__status {
+  margin-top: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.375;
+}
+
+.contact-form__status[data-status="success"] {
+  background-color: rgb(240 249 244);
+  color: rgb(38 120 74);
+}
+
+.contact-form__status[data-status="error"] {
+  background-color: rgb(255 241 244);
+  color: rgb(185 28 28);
+}
+
+html[data-theme="dark"] .contact-form__status[data-status="success"] {
+  background-color: rgb(30 52 40);
+  color: rgb(140 225 175);
+}
+
+html[data-theme="dark"] .contact-form__status[data-status="error"] {
+  background-color: rgb(55 30 38);
+  color: rgb(248 113 113);
+}
+
 .contact-form__actions {
   margin-top: 0.25rem;
 }
@@ -2412,9 +2965,44 @@ html[data-theme="dark"] .contact-card__label {
   min-width: 0;
 }
 
+.contact-form__clear {
+  margin-top: 0.75rem;
+  padding: 0.375rem 0;
+  font-size: 0.8125rem;
+  color: rgb(107 114 128);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.contact-form__clear:hover {
+  color: rgb(75 85 99);
+}
+
+html[data-theme="dark"] .contact-form__clear {
+  color: rgb(156 163 175);
+}
+
+html[data-theme="dark"] .contact-form__clear:hover {
+  color: rgb(209 213 219);
+}
+
 @media (min-width: 640px) {
   .contact-form__actions .button {
     width: auto;
+  }
+
+  .contact-form__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1rem;
+  }
+
+  .contact-form__clear {
+    margin-top: 0;
   }
 }
 
@@ -2550,6 +3138,10 @@ fieldset.contact-form__block .contact-form__block-title {
   color: rgb(185 28 28);
 }
 
+.form-group__icon i {
+  font-size: 1.25rem;
+}
+
 .form-group:not(.form-group--valid):not(.form-group--error) .form-group__icon--valid,
 .form-group:not(.form-group--valid):not(.form-group--error) .form-group__icon--invalid {
   display: none;
@@ -2634,49 +3226,135 @@ fieldset.contact-form__block .contact-form__block-title {
   color: rgb(52 105 80);
 }
 
-.footer {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 72rem;
+.good-choice-panel__icon i {
+  font-size: 1.25rem;
 }
 
-.footer > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
-}
-
+/* Footer – układ inspirowany Unsplash (press), dopasowany do Beskider */
 .footer {
   border-top-width: 1px;
   --tw-border-opacity: 1;
   border-color: rgb(229 231 235 / var(--tw-border-opacity, 1));
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity, 1));
   font-size: 0.875rem;
-  line-height: 1.25rem;
+  line-height: 1.5;
+}
+
+.footer__inner {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 72rem;
+  padding: 3rem 1.5rem 2rem;
+}
+
+.footer__top {
+  display: grid;
+  gap: 2rem 2.5rem;
+  grid-template-columns: 1fr;
+  padding-bottom: 2rem;
+  border-bottom-width: 1px;
+  border-color: rgb(229 231 235 / var(--tw-border-opacity, 1));
+  --tw-border-opacity: 1;
+}
+
+@media (min-width: 768px) {
+  .footer__top {
+    grid-template-columns: minmax(0, 12rem) 1fr auto;
+    align-items: start;
+  }
+}
+
+.footer__brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.footer__logo {
+  font-weight: 700;
+  font-size: 1.125rem;
+  --tw-text-opacity: 1;
+  color: rgb(23 23 23 / var(--tw-text-opacity, 1));
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer__logo:hover {
+  color: rgb(31 122 74);
+}
+
+.footer__tagline {
+  font-size: 0.8125rem;
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity, 1));
+  margin: 0;
+}
+
+.footer__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem 2.5rem;
+}
+
+.footer__links-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer__group-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity, 1));
 }
 
-@media (min-width: 640px) {
-  .footer {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-  }
+.footer__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
 
-  .footer > :not([hidden]) ~ :not([hidden]) {
-    --tw-space-y-reverse: 0;
-    margin-top: calc(0px * calc(1 - var(--tw-space-y-reverse)));
-    margin-bottom: calc(0px * var(--tw-space-y-reverse));
-  }
+.footer__links a,
+.footer__link-button {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.footer__links a:hover,
+.footer__link-button:hover {
+  --tw-text-opacity: 1;
+  color: rgb(23 23 23 / var(--tw-text-opacity, 1));
+}
+
+.footer__links a:focus-visible,
+.footer__link-button:focus-visible {
+  outline: 2px solid #0071e3;
+  outline-offset: 2px;
+  border-radius: 0.25rem;
+}
+
+.footer__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .footer__social {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   gap: 1rem;
 }
@@ -2684,12 +3362,11 @@ fieldset.contact-form__block .contact-form__block-title {
 .footer__social a {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity, 1));
-}
-
-.footer__social a {
   transition: color 0.2s ease, opacity 0.15s ease;
 }
 
@@ -2708,10 +3385,35 @@ fieldset.contact-form__block .contact-form__block-title {
   border-radius: 0.25rem;
 }
 
-.footer__social svg {
-  height: 1rem;
-  width: 1rem;
-  fill: currentColor;
+.footer__social i {
+  font-size: 1.25rem;
+}
+
+.footer__bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-top: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .footer__bottom {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.footer__copy,
+.footer__company {
+  margin: 0;
+  font-size: 0.8125rem;
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity, 1));
+}
+
+.footer__company {
+  font-size: 0.75rem;
 }
 
 .theme-switcher {
@@ -3709,15 +4411,49 @@ html[data-theme="dark"] .accordion__icon {
   color: rgb(115 115 115 / var(--tw-text-opacity, 1));
 }
 
+html[data-theme="dark"] .about__heading {
+  color: rgb(244 245 247);
+}
+
 html[data-theme="dark"] .about__content {
-  --tw-text-opacity: 1;
-  color: rgb(163 163 163 / var(--tw-text-opacity, 1));
+  color: rgb(163 163 163);
+}
+
+html[data-theme="dark"] .about__collage-item {
+  background: rgb(38 38 38);
 }
 
 html[data-theme="dark"] .footer {
   --tw-border-opacity: 1;
   border-color: rgb(38 38 38 / var(--tw-border-opacity, 1));
   --tw-text-opacity: 1;
+  color: rgb(163 163 163 / var(--tw-text-opacity, 1));
+}
+
+html[data-theme="dark"] .footer__top {
+  border-color: rgb(38 38 38 / var(--tw-border-opacity, 1));
+}
+
+html[data-theme="dark"] .footer__logo {
+  color: rgb(243 243 243 / var(--tw-text-opacity, 1));
+}
+
+html[data-theme="dark"] .footer__logo:hover {
+  color: rgb(134 239 172);
+}
+
+html[data-theme="dark"] .footer__tagline,
+html[data-theme="dark"] .footer__group-label {
+  color: rgb(163 163 163 / var(--tw-text-opacity, 1));
+}
+
+html[data-theme="dark"] .footer__links a:hover,
+html[data-theme="dark"] .footer__link-button:hover {
+  color: rgb(255 255 255);
+}
+
+html[data-theme="dark"] .footer__copy,
+html[data-theme="dark"] .footer__company {
   color: rgb(163 163 163 / var(--tw-text-opacity, 1));
 }
 
@@ -4660,31 +5396,9 @@ html[data-theme="dark"] .modal__close {
           <a href="#equipment" class="is-active">Sprzęt</a>
           <a href="#routes">Trasy</a>
           <a href="#rules">Zasady</a>
-          <a href="#faq">FAQ</a>
           <a href="#about">O nas</a>
           <a href="#guides">Przewodnicy</a>
           <a href="#contact">Kontakt</a>
-          <button
-            class="theme-toggle"
-            type="button"
-            data-theme-toggle
-            aria-label="Zmień motyw"
-          >
-            <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" aria-hidden="true">
-              <circle cx="12" cy="12" r="5"></circle>
-              <line x1="12" y1="1" x2="12" y2="3"></line>
-              <line x1="12" y1="21" x2="12" y2="23"></line>
-              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-              <line x1="1" y1="12" x2="3" y2="12"></line>
-              <line x1="21" y1="12" x2="23" y2="12"></line>
-              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            </svg>
-            <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path>
-            </svg>
-          </button>
         </div>
         <span class="nav__underline" data-nav-underline aria-hidden="true"></span>
       </nav>
@@ -4728,11 +5442,11 @@ html[data-theme="dark"] .modal__close {
         <a href="#beskider-plus" class="cta-plus" aria-label="Dołącz do Beskider+">
           <div class="cta-plus__body">
             <span class="cta-plus__badge" aria-hidden="true">
-              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8.94 1.37a1 1 0 0 0-1.88 0L5.7 5.04l-3.92.57a1 1 0 0 0-.56 1.7l2.84 2.77-.67 3.9a1 1 0 0 0 1.45 1.06L8 13.35l3.16 1.66a1 1 0 0 0 1.45-1.06l-.67-3.9 2.84-2.77a1 1 0 0 0-.56-1.7l-3.92-.57-1.36-3.64Z"/></svg>
-              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8.94 1.37a1 1 0 0 0-1.88 0L5.7 5.04l-3.92.57a1 1 0 0 0-.56 1.7l2.84 2.77-.67 3.9a1 1 0 0 0 1.45 1.06L8 13.35l3.16 1.66a1 1 0 0 0 1.45-1.06l-.67-3.9 2.84-2.77a1 1 0 0 0-.56-1.7l-3.92-.57-1.36-3.64Z"/></svg>
-              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8.94 1.37a1 1 0 0 0-1.88 0L5.7 5.04l-3.92.57a1 1 0 0 0-.56 1.7l2.84 2.77-.67 3.9a1 1 0 0 0 1.45 1.06L8 13.35l3.16 1.66a1 1 0 0 0 1.45-1.06l-.67-3.9 2.84-2.77a1 1 0 0 0-.56-1.7l-3.92-.57-1.36-3.64Z"/></svg>
-              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8.94 1.37a1 1 0 0 0-1.88 0L5.7 5.04l-3.92.57a1 1 0 0 0-.56 1.7l2.84 2.77-.67 3.9a1 1 0 0 0 1.45 1.06L8 13.35l3.16 1.66a1 1 0 0 0 1.45-1.06l-.67-3.9 2.84-2.77a1 1 0 0 0-.56-1.7l-3.92-.57-1.36-3.64Z"/></svg>
-              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8.94 1.37a1 1 0 0 0-1.88 0L5.7 5.04l-3.92.57a1 1 0 0 0-.56 1.7l2.84 2.77-.67 3.9a1 1 0 0 0 1.45 1.06L8 13.35l3.16 1.66a1 1 0 0 0 1.45-1.06l-.67-3.9 2.84-2.77a1 1 0 0 0-.56-1.7l-3.92-.57-1.36-3.64Z"/></svg>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
               Beskider+
             </span>
             <p class="cta-plus__desc">
@@ -4805,40 +5519,40 @@ html[data-theme="dark"] .modal__close {
 
       <section class="section" id="equipment" aria-labelledby="equipment-title">
         <div class="section__head">
-          <h2 id="equipment-title">Sprzęt</h2>
+          <h2 id="equipment-title">Górska przygoda</h2>
           <p>
-            Wybierz kategorię sprzętu. Rowery są dostępne od ręki, pozostałe kategorie są
-            przygotowywane na kolejny sezon.
+            Wybierasz kategorię. My przygotowujemy resztę. Każdy element oferty Beskider to sprawdzony, wysokiej klasy sprzęt, gotowy do jazdy od pierwszego metra. Rowery dostępne są po wcześniejszym potwierdzeniu i zawsze w pakiecie z lokalnym przewodnikiem. Nie wypożyczasz tylko sprzętu. <strong>Otrzymujesz kompletną, bezpieczną górską przygodę.</strong>
+          </p>
+          <p>
+            Pozostałe kategorie są w przygotowaniu. Wkrótce udostępnimy walizki rowerowe, boxy dachowe i kolejne elementy wyposażenia, które pozwolą podróżować bez kompromisów.
           </p>
         </div>
         <div class="equipment-intro">
           <div>
-            <h3>Rowery Elektryczne</h3>
+            <h3>Rowery elektryczne</h3>
             <p>
-              Wybierz spośród szerokiej gamy wysokiej klasy eBike'ów, idealnych na każdą trasę:
+              Moc, kontrola i zasięg, który otwiera nowe trasy. Nasze e-bike'i są regularnie serwisowane i konfigurowane przed każdym wyjazdem. Wsiadasz i jedziesz, a przewodnik prowadzi Cię najlepszymi ścieżkami Beskidów.
             </p>
-            <ul>
-              <li><strong>E-MTB</strong> – Doskonały na szlaki terenowe i techniczne trasy.</li>
-              <li><strong>E-ROAD BIKE</strong> – Idealny wybór, aby pokonywać podjazdy z łatwością.</li>
-            </ul>
           </div>
           <div>
-            <h3>Akcesoria w Cenie</h3>
+            <h3>Akcesoria</h3>
             <p>
-              Aby zapewnić Ci bezpieczne i komfortowe doświadczenie, wynajem obejmuje:
+              Detale, które zwiększają bezpieczeństwo i komfort jazdy.
             </p>
             <ul>
-              <li>Kask ochronny</li>
-              <li>Zestaw naprawczy na wypadek przebicia opony</li>
-              <li>Konsultacje dotyczące najlepszych tras</li>
+              <li>Kask dopasowany do trasy i stylu jazdy</li>
+              <li>Mini zestaw serwisowy</li>
+              <li>Konsultacje odnośnie sugerowanej trasy</li>
+              <li>Prowadzenie trasy przez doświadczonego lokalnego przewodnika</li>
             </ul>
+            <p>Beskider to sprzęt, który działa bez zarzutu i przewodnik, który zna każdy zakręt. Wsiadasz. Reszta jest po naszej stronie.</p>
           </div>
         </div>
         <div class="tabs-sticky-wrap">
           <div class="tabnav-platter">
             <div class="tabnav-arrow is-left">
               <button type="button" class="tabnav-arrow-btn" aria-label="Przewiń w lewo" tabindex="-1">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 10L4 6l4-4"/></svg>
+                <i class="fa-solid fa-chevron-left fa-sm" aria-hidden="true"></i>
               </button>
             </div>
             <div class="tabnav-viewport">
@@ -4880,7 +5594,7 @@ html[data-theme="dark"] .modal__close {
             </div>
             <div class="tabnav-arrow is-right">
               <button type="button" class="tabnav-arrow-btn" aria-label="Przewiń w prawo" tabindex="-1">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2l4 4-4 4"/></svg>
+                <i class="fa-solid fa-chevron-right fa-sm" aria-hidden="true"></i>
               </button>
             </div>
           </div>
@@ -5131,6 +5845,188 @@ html[data-theme="dark"] .modal__close {
         </script>
       </section>
 
+      <section class="section" id="perks" aria-labelledby="perks-title">
+        <div class="section__head">
+          <h2 id="perks-title">Dlaczego Beskider</h2>
+          <p>
+            Nie jesteśmy kolejną wypożyczalnią. Każdy element naszej usługi jest zaprojektowany tak,
+            abyś mógł skupić się wyłącznie na jeździe.
+          </p>
+        </div>
+        <div class="perks-grid">
+          <div class="perk-item">
+            <div class="perk-item__icon">
+              <i class="fa-solid fa-star" aria-hidden="true"></i>
+            </div>
+            <div class="perk-item__text">
+              <span class="perk-item__title">Sprzęt premium</span>
+              <span class="perk-item__desc">Najnowsze modele topowych marek, serwisowane po każdym wyjeździe</span>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-item__icon">
+              <i class="fa-solid fa-map" aria-hidden="true"></i>
+            </div>
+            <div class="perk-item__text">
+              <span class="perk-item__title">Lokalny przewodnik</span>
+              <span class="perk-item__desc">Doświadczeni riderzy, którzy znają każdy metr beskidzkich tras</span>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-item__icon">
+              <i class="fa-solid fa-sliders" aria-hidden="true"></i>
+            </div>
+            <div class="perk-item__text">
+              <span class="perk-item__title">Dopasowanie trasy</span>
+              <span class="perk-item__desc">Dobieramy przejazd do Twojego poziomu umiejętności i kondycji</span>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-item__icon">
+              <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+            </div>
+            <div class="perk-item__text">
+              <span class="perk-item__title">Pełne wyposażenie</span>
+              <span class="perk-item__desc">Kask, ochraniacze i narzędzia awaryjne zawsze w zestawie</span>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-item__icon">
+              <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
+            </div>
+            <div class="perk-item__text">
+              <span class="perk-item__title">Serwis przed wyjazdem</span>
+              <span class="perk-item__desc">Regulacja i kontrola techniczna każdego roweru przed odbiorem</span>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-item__icon">
+              <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+            </div>
+            <div class="perk-item__text">
+              <span class="perk-item__title">Mapy i nawigacja</span>
+              <span class="perk-item__desc">Gotowe trasy GPX do pobrania na Komoot, Stravę i&nbsp;Google Maps</span>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-item__icon">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+            </div>
+            <div class="perk-item__text">
+              <span class="perk-item__title">Elastyczne godziny</span>
+              <span class="perk-item__desc">Odbiór i zwrot dopasowany do Twojego planu dnia</span>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-item__icon">
+              <i class="fa-solid fa-building" aria-hidden="true"></i>
+            </div>
+            <div class="perk-item__text">
+              <span class="perk-item__title">Bezpłatny parking</span>
+              <span class="perk-item__desc">Miejsce parkingowe na czas wypożyczenia tuż przy naszej siedzibie</span>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-item__icon">
+              <i class="fa-solid fa-credit-card" aria-hidden="true"></i>
+            </div>
+            <div class="perk-item__text">
+              <span class="perk-item__title">Płatność bezgotówkowa</span>
+              <span class="perk-item__desc">Karta lub BLIK – bez konieczności posiadania gotówki</span>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-item__icon">
+              <i class="fa-solid fa-phone" aria-hidden="true"></i>
+            </div>
+            <div class="perk-item__text">
+              <span class="perk-item__title">Wsparcie na trasie</span>
+              <span class="perk-item__desc">Kontakt telefoniczny i szybka pomoc w razie awarii</span>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-item__icon">
+              <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            </div>
+            <div class="perk-item__text">
+              <span class="perk-item__title">Ubezpieczenie</span>
+              <span class="perk-item__desc">Każdy rower objęty ochroną – jedź bez obaw o niespodziewane koszty</span>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-item__icon">
+              <i class="fa-solid fa-building" aria-hidden="true"></i>
+            </div>
+            <div class="perk-item__text">
+              <span class="perk-item__title">Siedziba w Bielsku-Białej</span>
+              <span class="perk-item__desc">Blisko Enduro Trails, kolejki gondolowej i najlepszych szlaków</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="rules" aria-labelledby="rules-title">
+        <div class="section__head">
+          <h2 id="rules-title">Zasady wypożyczeń – skrót</h2>
+          <p>
+            Najważniejsze informacje w pigułce. Pełne zasady znajdziesz w regulaminie.
+          </p>
+        </div>
+        <div class="rules-grid">
+          <article class="rule-card">
+            <h3>Doba wypożyczenia</h3>
+            <p>
+              Doba liczona jest od godziny odbioru do godziny 10:00 następnego dnia. W przypadku opóźnienia powyżej 15 minut doliczany jest koszt następnej doby.
+            </p>
+          </article>
+          <article class="rule-card">
+            <h3>Bezpieczeństwo</h3>
+            <p>
+              Kask jest obowiązkowy w każdym przypadku. Jazda na rowerze wiąże się z licznymi ryzykami i odbywa się na własne ryzyko wynajmującego.
+            </p>
+          </article>
+          <article class="rule-card">
+            <h3>Modyfikacje</h3>
+            <p>
+              Sprzęt nie może być modyfikowany, rozkręcany, przystosowywany ponad zmianę położenia wysokości siodła. Części składowe roweru są ewidencjonowane i sprawdzane.
+            </p>
+          </article>
+          <article class="rule-card">
+            <h3>Regulamin</h3>
+            <p>
+              Sprzęt sportowy wypożyczany jest po spełnieniu warunków regulaminu i zastrzeżeń na tej stronie. Pełna treść regulaminu dostępna jest <a href="#" data-open-modal="regulamin">tutaj</a>.
+            </p>
+          </article>
+          <article class="rule-card">
+            <h3>Kaucja / depozyt</h3>
+            <p>
+              Wymagana jest kaucja zwrotna w postaci blokady depozytu na karcie kredytowej. Kwota depozytu już od 5000 zł (zablokowanie przez bank określonej kwoty na Twojej karcie kredytowej, wysokość zależy od konkretnego modelu roweru).
+            </p>
+          </article>
+          <article class="rule-card">
+            <h3>Udział własny</h3>
+            <p>
+              Udział własny w szkodzie z opcją wykupienia dodatkowego ubezpieczenia, które redukuje udział własny do kwoty kaucji.
+            </p>
+          </article>
+          <article class="rule-card">
+            <h3>Weryfikacja</h3>
+            <p>
+              Do wypożyczenia sprzętu potrzebne Ci będą dwa dokumenty tożsamości (dowód osobisty, prawo jazdy, mObywatel lub paszport).
+            </p>
+          </article>
+          <article class="rule-card">
+            <h3>Odmowa wynajmu</h3>
+            <p>
+              W trosce o bezpieczeństwo sprzętu w przypadku uzasadnionych przyczyn zastrzegamy sobie prawo do odmówienia wynajmu sprzętu.
+            </p>
+          </article>
+          <button class="button button--ghost" type="button" data-open-modal="regulamin">
+            Pełny regulamin
+          </button>
+        </div>
+      </section>
+
       <section class="section" id="routes" aria-labelledby="routes-title">
         <div class="section__head">
           <h2 id="routes-title">Trasy</h2>
@@ -5145,7 +6041,7 @@ html[data-theme="dark"] .modal__close {
           <div class="tabnav-platter">
             <div class="tabnav-arrow is-left">
               <button type="button" class="tabnav-arrow-btn" aria-label="Przewiń w lewo" tabindex="-1">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 10L4 6l4-4"/></svg>
+                <i class="fa-solid fa-chevron-left fa-sm" aria-hidden="true"></i>
               </button>
             </div>
             <div class="tabnav-viewport">
@@ -5160,7 +6056,7 @@ html[data-theme="dark"] .modal__close {
             </div>
             <div class="tabnav-arrow is-right">
               <button type="button" class="tabnav-arrow-btn" aria-label="Przewiń w prawo" tabindex="-1">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2l4 4-4 4"/></svg>
+                <i class="fa-solid fa-chevron-right fa-sm" aria-hidden="true"></i>
               </button>
             </div>
           </div>
@@ -5273,196 +6169,14 @@ html[data-theme="dark"] .modal__close {
         </div>
       </section>
 
-      <section class="section" id="perks" aria-labelledby="perks-title">
-        <div class="section__head">
-          <h2 id="perks-title">Dlaczego Beskider</h2>
-          <p>
-            Nie jesteśmy kolejną wypożyczalnią. Każdy element naszej usługi jest zaprojektowany tak,
-            abyś mógł skupić się wyłącznie na jeździe.
-          </p>
-        </div>
-        <div class="perks-grid">
-          <div class="perk-item">
-            <div class="perk-item__icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" /></svg>
-            </div>
-            <div class="perk-item__text">
-              <span class="perk-item__title">Sprzęt premium</span>
-              <span class="perk-item__desc">Najnowsze modele topowych marek, serwisowane po każdym wyjeździe</span>
-            </div>
-          </div>
-          <div class="perk-item">
-            <div class="perk-item__icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6.75V15m6-6v8.25m.503 3.498 4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934a1.12 1.12 0 0 1-1.006 0L9.503 3.252a1.125 1.125 0 0 0-1.006 0L3.622 5.689A1.125 1.125 0 0 0 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934a1.12 1.12 0 0 1 1.006 0l4.994 2.497c.317.158.69.158 1.006 0Z" /></svg>
-            </div>
-            <div class="perk-item__text">
-              <span class="perk-item__title">Lokalny przewodnik</span>
-              <span class="perk-item__desc">Doświadczeni riderzy, którzy znają każdy metr beskidzkich tras</span>
-            </div>
-          </div>
-          <div class="perk-item">
-            <div class="perk-item__icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 13.5V3.75m0 9.75a1.5 1.5 0 0 1 0 3m0-3a1.5 1.5 0 0 0 0 3m0 3.75V16.5m12-3V3.75m0 9.75a1.5 1.5 0 0 1 0 3m0-3a1.5 1.5 0 0 0 0 3m0 3.75V16.5m-6-9V3.75m0 3.75a1.5 1.5 0 0 1 0 3m0-3a1.5 1.5 0 0 0 0 3m0 9.75V10.5" /></svg>
-            </div>
-            <div class="perk-item__text">
-              <span class="perk-item__title">Dopasowanie trasy</span>
-              <span class="perk-item__desc">Dobieramy przejazd do Twojego poziomu umiejętności i kondycji</span>
-            </div>
-          </div>
-          <div class="perk-item">
-            <div class="perk-item__icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" /></svg>
-            </div>
-            <div class="perk-item__text">
-              <span class="perk-item__title">Pełne wyposażenie</span>
-              <span class="perk-item__desc">Kask, ochraniacze i narzędzia awaryjne zawsze w zestawie</span>
-            </div>
-          </div>
-          <div class="perk-item">
-            <div class="perk-item__icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.336l-3.276 3.277a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437 1.745-1.437" /></svg>
-            </div>
-            <div class="perk-item__text">
-              <span class="perk-item__title">Serwis przed wyjazdem</span>
-              <span class="perk-item__desc">Regulacja i kontrola techniczna każdego roweru przed odbiorem</span>
-            </div>
-          </div>
-          <div class="perk-item">
-            <div class="perk-item__icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /><path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" /></svg>
-            </div>
-            <div class="perk-item__text">
-              <span class="perk-item__title">Mapy i nawigacja</span>
-              <span class="perk-item__desc">Gotowe trasy GPX do pobrania na Komoot, Stravę i&nbsp;Google Maps</span>
-            </div>
-          </div>
-          <div class="perk-item">
-            <div class="perk-item__icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
-            </div>
-            <div class="perk-item__text">
-              <span class="perk-item__title">Elastyczne godziny</span>
-              <span class="perk-item__desc">Odbiór i zwrot dopasowany do Twojego planu dnia</span>
-            </div>
-          </div>
-          <div class="perk-item">
-            <div class="perk-item__icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25m-4.5 0H2.25m12 0v-4.5m0 4.5h-4.5m4.5 0 1.064-.39A5.002 5.002 0 0 1 17.25 3c.94 0 1.813.28 2.543.761A17.946 17.946 0 0 1 21 5.336" /></svg>
-            </div>
-            <div class="perk-item__text">
-              <span class="perk-item__title">Bezpłatny parking</span>
-              <span class="perk-item__desc">Miejsce parkingowe na czas wypożyczenia tuż przy naszej siedzibie</span>
-            </div>
-          </div>
-          <div class="perk-item">
-            <div class="perk-item__icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z" /></svg>
-            </div>
-            <div class="perk-item__text">
-              <span class="perk-item__title">Płatność bezgotówkowa</span>
-              <span class="perk-item__desc">Karta lub BLIK – bez konieczności posiadania gotówki</span>
-            </div>
-          </div>
-          <div class="perk-item">
-            <div class="perk-item__icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" /></svg>
-            </div>
-            <div class="perk-item__text">
-              <span class="perk-item__title">Wsparcie na trasie</span>
-              <span class="perk-item__desc">Kontakt telefoniczny i szybka pomoc w razie awarii</span>
-            </div>
-          </div>
-          <div class="perk-item">
-            <div class="perk-item__icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 9v3.75m0-10.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.249-8.25-3.286Zm0 13.036h.008v.008H12v-.008Z" /></svg>
-            </div>
-            <div class="perk-item__text">
-              <span class="perk-item__title">Ubezpieczenie</span>
-              <span class="perk-item__desc">Każdy rower objęty ochroną – jedź bez obaw o niespodziewane koszty</span>
-            </div>
-          </div>
-          <div class="perk-item">
-            <div class="perk-item__icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3 4.5h.008v.008H18v-.008Zm0 3h.008v.008H18v-.008Zm0 3h.008v.008H18v-.008Z" /></svg>
-            </div>
-            <div class="perk-item__text">
-              <span class="perk-item__title">Siedziba w Bielsku-Białej</span>
-              <span class="perk-item__desc">Blisko Enduro Trails, kolejki gondolowej i najlepszych szlaków</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="rules" aria-labelledby="rules-title">
-        <div class="section__head">
-          <h2 id="rules-title">Zasady wypożyczeń – skrót</h2>
-          <p>
-            Najważniejsze informacje w pigułce. Pełne zasady znajdziesz w regulaminie.
-          </p>
-        </div>
-        <div class="rules-grid">
-          <article class="rule-card">
-            <h3>Doba wypożyczenia</h3>
-            <p>
-              Doba liczona jest od godziny odbioru do godziny 10:00 następnego dnia. W przypadku opóźnienia powyżej 15 minut doliczany jest koszt następnej doby.
-            </p>
-          </article>
-          <article class="rule-card">
-            <h3>Bezpieczeństwo</h3>
-            <p>
-              Kask jest obowiązkowy w każdym przypadku. Jazda na rowerze wiąże się z licznymi ryzykami i odbywa się na własne ryzyko wynajmującego.
-            </p>
-          </article>
-          <article class="rule-card">
-            <h3>Modyfikacje</h3>
-            <p>
-              Sprzęt nie może być modyfikowany, rozkręcany, przystosowywany ponad zmianę położenia wysokości siodła. Części składowe roweru są ewidencjonowane i sprawdzane.
-            </p>
-          </article>
-          <article class="rule-card">
-            <h3>Regulamin</h3>
-            <p>
-              Sprzęt sportowy wypożyczany jest po spełnieniu warunków regulaminu i zastrzeżeń na tej stronie. Pełna treść regulaminu dostępna jest <a href="#" data-open-modal="regulamin">tutaj</a>.
-            </p>
-          </article>
-          <article class="rule-card">
-            <h3>Kaucja / depozyt</h3>
-            <p>
-              Wymagana jest kaucja zwrotna w postaci blokady depozytu na karcie kredytowej. Kwota depozytu już od 5000 zł (zablokowanie przez bank określonej kwoty na Twojej karcie kredytowej, wysokość zależy od konkretnego modelu roweru).
-            </p>
-          </article>
-          <article class="rule-card">
-            <h3>Udział własny</h3>
-            <p>
-              Udział własny w szkodzie z opcją wykupienia dodatkowego ubezpieczenia, które redukuje udział własny do kwoty kaucji.
-            </p>
-          </article>
-          <article class="rule-card">
-            <h3>Weryfikacja</h3>
-            <p>
-              Do wypożyczenia sprzętu potrzebne Ci będą dwa dokumenty tożsamości (dowód osobisty, prawo jazdy, mObywatel lub paszport).
-            </p>
-          </article>
-          <article class="rule-card">
-            <h3>Odmowa wynajmu</h3>
-            <p>
-              W trosce o bezpieczeństwo sprzętu w przypadku uzasadnionych przyczyn zastrzegamy sobie prawo do odmówienia wynajmu sprzętu.
-            </p>
-          </article>
-          <button class="button button--ghost" type="button" data-open-modal="regulamin">
-            Pełny regulamin
-          </button>
-        </div>
-      </section>
-
-      <section class="section" id="faq" aria-labelledby="faq-title">
+            <section class="section" id="faq" aria-labelledby="faq-title">
         <div class="section__head">
           <h2 id="faq-title">FAQ</h2>
           <p>Najczęstsze pytania organizacyjne i techniczne.</p>
         </div>
         <div class="accordion" data-accordion>
           <div class="accordion__item">
-            <button class="accordion__toggle" type="button" aria-expanded="false"><span>Czy mogę odebrać rower wcześniej niż 8:00?</span><svg class="accordion__icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
+            <button class="accordion__toggle" type="button" aria-expanded="false"><span>Czy mogę odebrać rower wcześniej niż 8:00?</span><i class="fa-solid fa-chevron-down accordion__icon" aria-hidden="true"></i></button>
             <div class="accordion__panel">
               <p>
                 Tak, po wcześniejszym ustaleniu telefonicznym. Priorytetem jest przygotowanie
@@ -5471,7 +6185,7 @@ html[data-theme="dark"] .modal__close {
             </div>
           </div>
           <div class="accordion__item">
-            <button class="accordion__toggle" type="button" aria-expanded="false"><span>Jakie dokumenty są wymagane?</span><svg class="accordion__icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
+            <button class="accordion__toggle" type="button" aria-expanded="false"><span>Jakie dokumenty są wymagane?</span><i class="fa-solid fa-chevron-down accordion__icon" aria-hidden="true"></i></button>
             <div class="accordion__panel">
               <p>
                 Wymagane są dwa dokumenty tożsamości (dowód osobisty i prawo jazdy lub paszport).
@@ -5480,7 +6194,7 @@ html[data-theme="dark"] .modal__close {
             </div>
           </div>
           <div class="accordion__item">
-            <button class="accordion__toggle" type="button" aria-expanded="false"><span>Czy rowery są przygotowane do jazdy enduro?</span><svg class="accordion__icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
+            <button class="accordion__toggle" type="button" aria-expanded="false"><span>Czy rowery są przygotowane do jazdy enduro?</span><i class="fa-solid fa-chevron-down accordion__icon" aria-hidden="true"></i></button>
             <div class="accordion__panel">
               <p>
                 Tak. Każdy model jest skonfigurowany pod styl trail i enduro, z odpowiednim
@@ -5489,7 +6203,7 @@ html[data-theme="dark"] .modal__close {
             </div>
           </div>
           <div class="accordion__item">
-            <button class="accordion__toggle" type="button" aria-expanded="false"><span>Dlaczego jeżeli spóźnię się z oddaniem roweru doliczacie kolejną dobę?</span><svg class="accordion__icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
+            <button class="accordion__toggle" type="button" aria-expanded="false"><span>Dlaczego jeżeli spóźnię się z oddaniem roweru doliczacie kolejną dobę?</span><i class="fa-solid fa-chevron-down accordion__icon" aria-hidden="true"></i></button>
             <div class="accordion__panel">
               <p>
                 Inni klienci czekają na swój rower. Musimy mieć czas na weryfikację zdawanego sprzętu, przygotowanie i dostosowanie roweru do nowego ridera. To bardzo ważne.
@@ -5497,7 +6211,7 @@ html[data-theme="dark"] .modal__close {
             </div>
           </div>
           <div class="accordion__item">
-            <button class="accordion__toggle" type="button" aria-expanded="false"><span>Co jeśli spóźnię się ze zwrotem?</span><svg class="accordion__icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
+            <button class="accordion__toggle" type="button" aria-expanded="false"><span>Co jeśli spóźnię się ze zwrotem?</span><i class="fa-solid fa-chevron-down accordion__icon" aria-hidden="true"></i></button>
             <div class="accordion__panel">
               <p>
                 Każde opóźnienie skutkuje naliczeniem kolejnej pełnej doby. Dzięki temu wiemy, że
@@ -5506,7 +6220,7 @@ html[data-theme="dark"] .modal__close {
             </div>
           </div>
           <div class="accordion__item">
-            <button class="accordion__toggle" type="button" aria-expanded="false"><span>Czy mogę zabrać rower poza Beskidy?</span><svg class="accordion__icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
+            <button class="accordion__toggle" type="button" aria-expanded="false"><span>Czy mogę zabrać rower poza Beskidy?</span><i class="fa-solid fa-chevron-down accordion__icon" aria-hidden="true"></i></button>
             <div class="accordion__panel">
               <p>
                 Tak, ale musisz poinformować o tym przy podpisywaniu umowy. Dzięki temu wiemy,
@@ -5515,7 +6229,7 @@ html[data-theme="dark"] .modal__close {
             </div>
           </div>
           <div class="accordion__item">
-            <button class="accordion__toggle" type="button" aria-expanded="false"><span>Czy mogę wypożyczyć kask i ochraniacze?</span><svg class="accordion__icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
+            <button class="accordion__toggle" type="button" aria-expanded="false"><span>Czy mogę wypożyczyć kask i ochraniacze?</span><i class="fa-solid fa-chevron-down accordion__icon" aria-hidden="true"></i></button>
             <div class="accordion__panel">
               <p>
                 Tak, kask jest obowiązkowy i dostępny w ramach pakietu bezpieczeństwa. Ochraniacze
@@ -5524,7 +6238,7 @@ html[data-theme="dark"] .modal__close {
             </div>
           </div>
           <div class="accordion__item">
-            <button class="accordion__toggle" type="button" aria-expanded="false"><span>Dlaczego jesteście drożsi niż konkurencja?</span><svg class="accordion__icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
+            <button class="accordion__toggle" type="button" aria-expanded="false"><span>Dlaczego jesteście drożsi niż konkurencja?</span><i class="fa-solid fa-chevron-down accordion__icon" aria-hidden="true"></i></button>
             <div class="accordion__panel">
               <p>
                 Ponieważ nasze rowery to modele z górnej półki najlepszych firm. To rowery dla pasjonatów. Jeżeli zadajesz to pytanie, to znaczy, że nasza wypożyczalnia nie jest dla Ciebie ;)
@@ -5539,22 +6253,8 @@ html[data-theme="dark"] .modal__close {
           <h2 id="about-title">O nas</h2>
         </div>
         <div class="about">
-          <div class="about__media" data-about-tilt>
-            <img
-              src="./assets/images/about-us-640.jpg"
-              srcset="
-                ./assets/images/about-us-320.jpg 320w,
-                ./assets/images/about-us-640.jpg 640w,
-                ./assets/images/about-us-1280.jpg 1280w,
-                ./assets/images/about-us.jpg 3000w
-              "
-              sizes="(min-width: 768px) 18rem, 100vw"
-              alt="Beskider — wypożyczalnia sprzętu premium"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
           <div class="about__content">
+            <h3 class="about__heading">Z gór w sercu. Z jakością na szlaku.</h3>
             <p>
               Beskider powstał z potrzeby stworzenia wypożyczalni, która działa równie sprawnie jak
               nowoczesne produkty technologiczne. Jesteśmy zespołem ludzi, którzy kochają góry i
@@ -5565,29 +6265,31 @@ html[data-theme="dark"] .modal__close {
               Nasza siedziba znajduje się w Bielsku-Białej, w miejscu skąd najszybciej dotrzesz na
               ulubione trasy. Stawiamy na prostotę, jasne zasady i pełną transparentność w kosztach.
               Uważamy, że wypożyczenie roweru powinno być tak proste jak jego obsługa na szlaku.
-              Dlatego wszystkie informacje prezentujemy w jednym miejscu, a dokumenty
-              przygotowujemy przed Twoim przyjazdem.
             </p>
             <p>
               Nie obiecujemy rzeczy niemożliwych, ale dowozimy to, co uzgadniamy. Każdy rower
-              przechodzi kontrolę po każdej trasie, a części eksploatacyjne są wymieniane wcześniej
-              niż sugeruje producent. Dbamy o estetykę, bo sprzęt premium powinien wyglądać
-              perfekcyjnie.
+              przechodzi kontrolę po każdej trasie. Jeśli szukasz miejsca, gdzie sprzęt jest
+              przygotowany jak do zawodów, jesteś we właściwym miejscu.
             </p>
-            <p>
-              Naszym celem jest długoterminowa relacja z klientami, a nie jednorazowa transakcja.
-              Dlatego słuchamy opinii i rozwijamy ofertę krok po kroku. Współpracujemy z lokalnymi
-              przewodnikami, abyś miał dostęp do najlepszych tras. Gdy jesteś w trasie, możesz
-              liczyć na nasze wsparcie.
-            </p>
-            <p>
-              Wierzymy, że technologia powinna wspierać sport, a nie go komplikować. Chcemy, aby
-              Beskider był synonimem jakości w wypożyczaniu sprzętu sportowego. Kolejne kategorie
-              są już w planach, ale rowery MTB pozostają naszym sercem. Zawsze stawiamy na
-              bezpieczeństwo, bo od niego zależy przyjemność z jazdy. Jeśli szukasz miejsca, gdzie
-              sprzęt jest przygotowany jak do zawodów, jesteś we właściwym miejscu. Dziękujemy, że
-              jesteś z nami i zapraszamy na kolejne wyprawy.
-            </p>
+            <a class="button button--primary about__cta" href="#gallery">Zobacz galerię</a>
+          </div>
+          <div class="about__collage" aria-hidden="true">
+            <div class="about__collage__col">
+              <div class="about__collage-item">
+                <img src="./assets/images/gallery-mgla-beskidy.png" alt="" loading="lazy" decoding="async" />
+              </div>
+              <div class="about__collage-item">
+                <img src="./assets/images/gallery-dwoch-rowerzystow-zachod.png" alt="" loading="lazy" decoding="async" />
+              </div>
+            </div>
+            <div class="about__collage__col">
+              <div class="about__collage-item">
+                <img src="./assets/images/gallery-portret-rowerzysta.png" alt="" loading="lazy" decoding="async" />
+              </div>
+              <div class="about__collage-item">
+                <img src="./assets/images/gallery-rower-nad-woda.png" alt="" loading="lazy" decoding="async" />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -5645,44 +6347,91 @@ html[data-theme="dark"] .modal__close {
         </div>
       </section>
 
+      <section class="section beskider-plus-section" id="beskider-plus" aria-labelledby="beskider-plus-title" data-billing="yearly">
+        <div class="beskider-plus__wrap">
+          <h2 id="beskider-plus-title" class="beskider-plus__headline"><strong>Beskider+.</strong> Jeden abonament, otwiera dostęp do wszystkiego. Bez formalności. Bez dopłat.</h2>
+          <p class="beskider-plus__subhead">Stała opłata miesięczna – nieograniczony dostęp do wypożyczeń. Jedna cena, zero niespodzianek.</p>
+          <div class="beskider-plus__toggle" role="group" aria-label="Wybierz rozliczenie">
+            <button type="button" class="beskider-plus__toggle-btn is-active" data-billing="yearly">Rocznie (taniej)</button>
+            <button type="button" class="beskider-plus__toggle-btn" data-billing="monthly">Miesięcznie</button>
+          </div>
+          <div class="beskider-plus__card">
+            <div class="beskider-plus__ribbon" aria-hidden="true">
+              <img src="./assets/images/beskider-plus-cta-1024.webp" alt="" width="1024" height="1024" loading="lazy" decoding="async" />
+            </div>
+            <span class="beskider-plus__badge">Oferta wprowadzająca na pierwszy rok członkostwa</span>
+            <div class="beskider-plus__price-block">
+              <span class="beskider-plus__price-old">Miesięcznie cena 2999 PLN</span>
+              <span class="beskider-plus__price-current" data-yearly-only>999</span>
+              <span class="beskider-plus__price-current" data-monthly-only>2999</span>
+              <span class="beskider-plus__price-unit">PLN</span>
+              <span class="beskider-plus__price-per">miesięcznie</span>
+            </div>
+            <p class="beskider-plus__billed" data-yearly-only><span class="beskider-plus__billed-current">11988 PLN</span> rozliczenie roczne</p>
+            <p class="beskider-plus__billed" data-monthly-only><span class="beskider-plus__billed-current">2999 PLN</span> rozliczenie miesięczne</p>
+            <ul class="beskider-plus__list" aria-label="Korzyści z członkostwa">
+              <li><i class="fa-solid fa-check beskider-plus__list-icon" aria-hidden="true"></i>Wypożyczenia w cenie abonamentu – bez dopłat za dzień</li>
+              <li><i class="fa-solid fa-check beskider-plus__list-icon" aria-hidden="true"></i>Priorytet przy rezerwacji i odbiorze sprzętu</li>
+              <li><i class="fa-solid fa-check beskider-plus__list-icon" aria-hidden="true"></i>Dostęp do tras premium</li>
+              <li><i class="fa-solid fa-check beskider-plus__list-icon" aria-hidden="true"></i>Wsparcie lokalnych przewodników</li>
+              <li><i class="fa-solid fa-check beskider-plus__list-icon" aria-hidden="true"></i>Dostęp do społeczności Beskider+</li>
+              <li><i class="fa-solid fa-check beskider-plus__list-icon" aria-hidden="true"></i>Możliwość rezygnacji w dowolnym momencie</li>
+              <li><i class="fa-solid fa-check beskider-plus__list-icon" aria-hidden="true"></i>Dostęp tylko dla zaufanych klientów spełniających warunki</li>
+            </ul>
+            <a class="button button--primary beskider-plus__cta" href="#contact">Dołącz do <strong>Beskider+</strong></a>
+            <p class="beskider-plus__fine"><span><i class="fa-solid fa-check" aria-hidden="true"></i> Odnawia się automatycznie</span> <span><i class="fa-solid fa-check" aria-hidden="true"></i> Anuluj kiedy chcesz</span></p>
+          </div>
+          <p class="beskider-plus__footer-link">Potrzebujesz planu dla grupy? <a href="#contact">Napisz do nas</a></p>
+        </div>
+      </section>
+
       <section class="section" id="contact" aria-labelledby="contact-title">
         <div class="section__head">
           <h2 id="contact-title">Kontakt</h2>
-          <p>Skontaktuj się z nami lub odwiedź punkt odbioru.</p>
+          <p>Skontaktuj się z nami i zarezerwuj górską przygodę!</p>
         </div>
         <div class="contact-grid">
           <article class="contact-card">
             <div class="contact-card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
+              <i class="fa-solid fa-envelope" aria-hidden="true"></i>
             </div>
             <h3>E-mail</h3>
             <p class="contact-card__label">Adres</p>
-            <p><a href="mailto:hello@beskider.pl">hello@beskider.pl</a></p>
-            <p class="contact-card__label">Czas odpowiedzi</p>
-            <p>Odpowiadamy maksymalnie w 30 minut w godzinach 8:00–20:00.</p>
+            <p class="contact-card__email">
+              <a href="mailto:hello@beskider.pl">
+                <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                hello@beskider.pl
+              </a>
+            </p>
+            <p class="contact-card__whatsapp">
+              <a href="https://www.whatsapp.com/" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp (wkrótce)">
+                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+                WhatsApp <span class="contact-card__soon">(wkrótce)</span>
+              </a>
+            </p>
           </article>
           <article class="contact-card">
             <div class="contact-card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z" /></svg>
+              <i class="fa-solid fa-share-nodes" aria-hidden="true"></i>
             </div>
             <h3>Social media</h3>
             <p class="contact-card__label">Obserwuj nas</p>
             <ul class="contact-card__links">
               <li>
                 <a href="https://www.instagram.com/beskider" target="_blank" rel="noopener noreferrer" aria-label="Instagram Beskider">
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c2.67 0 2.99.01 4.04.06 2.74.12 4.52.94 5.3 1.73.8.78 1.62 2.56 1.74 5.3.05 1.05.06 1.37.06 4.04s-.01 2.99-.06 4.04c-.12 2.74-.94 4.52-1.73 5.3-.78.8-2.56 1.62-5.3 1.74-1.05.05-1.37.06-4.04.06s-2.99-.01-4.04-.06c-2.74-.12-4.52-.94-5.3-1.73-.8-.78-1.62-2.56-1.74-5.3C2.17 14.99 2.16 14.67 2.16 12s.01-2.99.06-4.04c.12-2.74.94-4.52 1.73-5.3.78-.8 2.56-1.62 5.3-1.74C9.01 2.17 9.33 2.16 12 2.16zM12 0C9.28 0 8.94.01 8.02.07 5.08.2 3.16 1.1 2.16 2.1 1.1 3.16.2 5.08.07 8.02.01 8.94 0 12 0s3.96.01 4.98.07c2.9.13 4.68 1.02 5.75 2.09 1.07 1.07 1.96 2.85 2.09 5.75.06 1.02.07 1.34.07 4.98s-.01 3.96-.07 4.98c-.13 2.9-1.02 4.68-2.09 5.75-1.07 1.07-2.85 1.96-5.75 2.09C15.96 23.99 15.64 24 12 24s-3.96-.01-4.98-.07c-2.9-.13-4.68-1.02-5.75-2.09-1.07-1.07-1.96-2.85-2.09-5.75-.06-1.02-.07-1.34-.07-4.98s.01-3.96.07-4.98c.13-2.9 1.02-4.68 2.09-5.75 1.07-1.07 2.85-1.96 5.75-2.09C8.04.01 8.36 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.41-11.37a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
+                  <i class="fa-brands fa-instagram" aria-hidden="true"></i>
                   Instagram
                 </a>
               </li>
               <li>
                 <a href="https://www.facebook.com/beskider" target="_blank" rel="noopener noreferrer" aria-label="Facebook Beskider">
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.07c0-6.63-5.37-12-12-12S0 5.44 0 12.07c0 6 4.39 10.98 10.12 11.85v-8.38H7.08V12.07h3.04V9.41c0-3.01 1.79-4.67 4.53-4.67 1.31 0 2.69.23 2.69.23v2.95h-1.52c-1.5 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.47h-2.8v8.38C19.61 23.05 24 18.07 24 12.07z"/></svg>
+                  <i class="fa-brands fa-facebook" aria-hidden="true"></i>
                   Facebook
                 </a>
               </li>
               <li>
                 <a href="https://www.youtube.com/@beskider" target="_blank" rel="noopener noreferrer" aria-label="YouTube Beskider">
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.5a2.8 2.8 0 0 0-2-2C19.6 4 12 4 12 4s-7.6 0-9.5.5a2.8 2.8 0 0 0-2 2C0 8.4 0 12 0 12s0 3.6.5 5.5a2.8 2.8 0 0 0 2 2c1.9.5 9.5.5 9.5.5s7.6 0 9.5-.5a2.8 2.8 0 0 0 2-2C24 15.6 24 12 24 12s0-3.6-.5-5.5zM9.5 15.5v-7l6.3 3.5-6.3 3.5z"/></svg>
+                  <i class="fa-brands fa-youtube" aria-hidden="true"></i>
                   YouTube
                 </a>
               </li>
@@ -5690,7 +6439,7 @@ html[data-theme="dark"] .modal__close {
           </article>
           <article class="contact-card">
             <div class="contact-card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 10.5a3 3 0 11-6 0 3 3 0 011 6 0z" /><path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>
+              <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
             </div>
             <h3>Lokalizacja</h3>
             <p class="contact-card__label">Adres</p>
@@ -5700,7 +6449,12 @@ html[data-theme="dark"] .modal__close {
           </article>
         </div>
         <div class="contact-form-wrap">
-          <form class="contact-form" id="contact-form" data-contact-form action="#" method="post" novalidate>
+          <form class="contact-form" id="contact-form" data-contact-form action="https://formspree.io/f/mjgergpk" method="POST" novalidate>
+            <input type="hidden" name="_subject" value="Zapytanie ze strony Beskider" />
+            <div class="contact-form__header">
+              <h2 class="contact-form__title">Formularz rezerwacyjny</h2>
+              <p class="contact-form__intro">Wypełnij szczegółowo formularz rezerwacyjny w celu potwierdzenia dostępności i możliwości realizacji przygody z Beskider</p>
+            </div>
             <fieldset class="contact-form__block">
               <legend class="contact-form__block-title">Dane wypożyczającego</legend>
               <div class="form-group" data-field="email">
@@ -5708,10 +6462,10 @@ html[data-theme="dark"] .modal__close {
                 <div class="form-group__input-wrap">
                   <input type="email" id="contact-email" name="email" autocomplete="email" required placeholder="np. jan@example.com" aria-describedby="contact-email-error" aria-invalid="false" />
                   <span class="form-group__icon form-group__icon--valid" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor"/></svg>
+                    <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
                   </span>
                   <span class="form-group__icon form-group__icon--invalid" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M12 8v4M12 16h.01" fill="none" stroke="currentColor"/></svg>
+                    <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
                   </span>
                 </div>
                 <span class="form-group__error" id="contact-email-error" role="alert"></span>
@@ -5721,10 +6475,10 @@ html[data-theme="dark"] .modal__close {
                 <div class="form-group__input-wrap">
                   <input type="text" id="contact-fullname" name="fullname" autocomplete="name" required placeholder="np. Jan Kowalski" aria-describedby="contact-fullname-error" aria-invalid="false" />
                   <span class="form-group__icon form-group__icon--valid" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor"/></svg>
+                    <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
                   </span>
                   <span class="form-group__icon form-group__icon--invalid" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M12 8v4M12 16h.01" fill="none" stroke="currentColor"/></svg>
+                    <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
                   </span>
                 </div>
                 <span class="form-group__error" id="contact-fullname-error" role="alert"></span>
@@ -5734,10 +6488,10 @@ html[data-theme="dark"] .modal__close {
                 <div class="form-group__input-wrap">
                   <input type="tel" id="contact-phone" name="phone" autocomplete="tel" required placeholder="np. 500 123 456" aria-describedby="contact-phone-error" aria-invalid="false" />
                   <span class="form-group__icon form-group__icon--valid" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor"/></svg>
+                    <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
                   </span>
                   <span class="form-group__icon form-group__icon--invalid" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M12 8v4M12 16h.01" fill="none" stroke="currentColor"/></svg>
+                    <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
                   </span>
                 </div>
                 <span class="form-group__error" id="contact-phone-error" role="alert"></span>
@@ -5745,41 +6499,28 @@ html[data-theme="dark"] .modal__close {
             </fieldset>
             <fieldset class="contact-form__block">
               <legend class="contact-form__block-title">Adres rozliczeniowy</legend>
-              <div class="form-group" data-field="billing-firstname">
-                <label for="contact-billing-firstname">Imię <span aria-hidden="true">*</span></label>
+              <div class="form-group" data-field="billing-fullname">
+                <label for="contact-billing-fullname">Imię i nazwisko <span aria-hidden="true">*</span></label>
                 <div class="form-group__input-wrap">
-                  <input type="text" id="contact-billing-firstname" name="billing_firstname" autocomplete="given-name" required placeholder="np. Jan" aria-describedby="contact-billing-firstname-error" aria-invalid="false" />
+                  <input type="text" id="contact-billing-fullname" name="billing_fullname" autocomplete="name" required placeholder="np. Jan Kowalski" aria-describedby="contact-billing-fullname-error" aria-invalid="false" />
                   <span class="form-group__icon form-group__icon--valid" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor"/></svg>
+                    <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
                   </span>
                   <span class="form-group__icon form-group__icon--invalid" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M12 8v4M12 16h.01" fill="none" stroke="currentColor"/></svg>
+                    <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
                   </span>
                 </div>
-                <span class="form-group__error" id="contact-billing-firstname-error" role="alert"></span>
-              </div>
-              <div class="form-group" data-field="billing-lastname">
-                <label for="contact-billing-lastname">Nazwisko <span aria-hidden="true">*</span></label>
-                <div class="form-group__input-wrap">
-                  <input type="text" id="contact-billing-lastname" name="billing_lastname" autocomplete="family-name" required placeholder="np. Kowalski" aria-describedby="contact-billing-lastname-error" aria-invalid="false" />
-                  <span class="form-group__icon form-group__icon--valid" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor"/></svg>
-                  </span>
-                  <span class="form-group__icon form-group__icon--invalid" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M12 8v4M12 16h.01" fill="none" stroke="currentColor"/></svg>
-                  </span>
-                </div>
-                <span class="form-group__error" id="contact-billing-lastname-error" role="alert"></span>
+                <span class="form-group__error" id="contact-billing-fullname-error" role="alert"></span>
               </div>
               <div class="form-group" data-field="billing-company">
                 <label for="contact-billing-company">Firma</label>
                 <div class="form-group__input-wrap">
                   <input type="text" id="contact-billing-company" name="billing_company" autocomplete="organization" placeholder="opcjonalnie" aria-describedby="contact-billing-company-error" aria-invalid="false" />
                   <span class="form-group__icon form-group__icon--valid" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor"/></svg>
+                    <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
                   </span>
                   <span class="form-group__icon form-group__icon--invalid" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M12 8v4M12 16h.01" fill="none" stroke="currentColor"/></svg>
+                    <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
                   </span>
                 </div>
                 <span class="form-group__error" id="contact-billing-company-error" role="alert"></span>
@@ -5789,10 +6530,10 @@ html[data-theme="dark"] .modal__close {
                 <div class="form-group__input-wrap">
                   <input type="text" id="contact-billing-nip" name="billing_nip" autocomplete="off" placeholder="opcjonalnie, 10 cyfr" aria-describedby="contact-billing-nip-error" aria-invalid="false" />
                   <span class="form-group__icon form-group__icon--valid" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor"/></svg>
+                    <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
                   </span>
                   <span class="form-group__icon form-group__icon--invalid" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M12 8v4M12 16h.01" fill="none" stroke="currentColor"/></svg>
+                    <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
                   </span>
                 </div>
                 <span class="form-group__error" id="contact-billing-nip-error" role="alert"></span>
@@ -5802,10 +6543,10 @@ html[data-theme="dark"] .modal__close {
                 <div class="form-group__input-wrap">
                   <input type="text" id="contact-billing-address" name="billing_address" autocomplete="street-address" required placeholder="np. ul. Przykładowa 1" aria-describedby="contact-billing-address-error" aria-invalid="false" />
                   <span class="form-group__icon form-group__icon--valid" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor"/></svg>
+                    <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
                   </span>
                   <span class="form-group__icon form-group__icon--invalid" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M12 8v4M12 16h.01" fill="none" stroke="currentColor"/></svg>
+                    <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
                   </span>
                 </div>
                 <span class="form-group__error" id="contact-billing-address-error" role="alert"></span>
@@ -5815,10 +6556,10 @@ html[data-theme="dark"] .modal__close {
                 <div class="form-group__input-wrap">
                   <input type="text" id="contact-billing-city" name="billing_city" autocomplete="address-level2" required placeholder="np. Bielsko-Biała" aria-describedby="contact-billing-city-error" aria-invalid="false" />
                   <span class="form-group__icon form-group__icon--valid" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor"/></svg>
+                    <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
                   </span>
                   <span class="form-group__icon form-group__icon--invalid" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M12 8v4M12 16h.01" fill="none" stroke="currentColor"/></svg>
+                    <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
                   </span>
                 </div>
                 <span class="form-group__error" id="contact-billing-city-error" role="alert"></span>
@@ -5828,10 +6569,10 @@ html[data-theme="dark"] .modal__close {
                 <div class="form-group__input-wrap">
                   <input type="text" id="contact-billing-postal" name="billing_postal" autocomplete="postal-code" required placeholder="np. 43-300" aria-describedby="contact-billing-postal-error" aria-invalid="false" />
                   <span class="form-group__icon form-group__icon--valid" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor"/></svg>
+                    <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
                   </span>
                   <span class="form-group__icon form-group__icon--invalid" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M12 8v4M12 16h.01" fill="none" stroke="currentColor"/></svg>
+                    <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
                   </span>
                 </div>
                 <span class="form-group__error" id="contact-billing-postal-error" role="alert"></span>
@@ -5841,10 +6582,10 @@ html[data-theme="dark"] .modal__close {
                 <div class="form-group__input-wrap">
                   <input type="text" id="contact-billing-country" name="billing_country" autocomplete="country-name" required placeholder="np. Polska" value="Polska" aria-describedby="contact-billing-country-error" aria-invalid="false" />
                   <span class="form-group__icon form-group__icon--valid" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor"/></svg>
+                    <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
                   </span>
                   <span class="form-group__icon form-group__icon--invalid" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M12 8v4M12 16h.01" fill="none" stroke="currentColor"/></svg>
+                    <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
                   </span>
                 </div>
                 <span class="form-group__error" id="contact-billing-country-error" role="alert"></span>
@@ -5855,12 +6596,12 @@ html[data-theme="dark"] .modal__close {
               <div class="form-group" data-field="message">
                 <label for="contact-message">Treść wiadomości</label>
                 <div class="form-group__input-wrap">
-                  <textarea id="contact-message" name="message" rows="4" placeholder="Opisz swoje zapytanie lub preferencje…" aria-describedby="contact-message-error" aria-invalid="false"></textarea>
+                  <textarea id="contact-message" name="message" rows="4" placeholder="Opisz szczegóły swojej rezerwacji: termin, liczbę osób, wybrany sprzęt, poziom zaawansowania oraz preferowany charakter trasy. Dodaj wszystkie informacje, które pomogą nam przygotować odpowiedni zestaw i dopasować przewodnika do Twojej wyprawy." aria-describedby="contact-message-error" aria-invalid="false"></textarea>
                   <span class="form-group__icon form-group__icon--valid" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor"/></svg>
+                    <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
                   </span>
                   <span class="form-group__icon form-group__icon--invalid" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M12 8v4M12 16h.01" fill="none" stroke="currentColor"/></svg>
+                    <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
                   </span>
                 </div>
                 <span class="form-group__error" id="contact-message-error" role="alert"></span>
@@ -5882,17 +6623,19 @@ html[data-theme="dark"] .modal__close {
                 </label>
               </div>
             </fieldset>
+            <div class="contact-form__status" id="contact-form-status" role="status" aria-live="polite" hidden></div>
             <div class="contact-form__actions">
               <button type="submit" class="button button--primary">Wyślij zapytanie</button>
+              <button type="button" class="contact-form__clear" data-contact-clear aria-label="Wyczyść zapisane dane formularza">Wyczyść zapisane dane</button>
             </div>
           </form>
           <aside class="good-choice-panel" aria-labelledby="good-choice-title">
             <h3 id="good-choice-title">Świetny wybór!</h3>
             <ul>
-              <li><span class="good-choice-panel__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10" fill="none"/></svg></span>Świetny sprzęt premium</li>
-              <li><span class="good-choice-panel__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10" fill="none"/></svg></span>Przyjazna obsługa</li>
-              <li><span class="good-choice-panel__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10" fill="none"/></svg></span>Zero opłat za rezygnację w ciągu 24 godzin</li>
-              <li><span class="good-choice-panel__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10" fill="none"/></svg></span>Dobry wybór</li>
+              <li><span class="good-choice-panel__icon" aria-hidden="true"><i class="fa-solid fa-circle-check" aria-hidden="true"></i></span>Świetny sprzęt premium</li>
+              <li><span class="good-choice-panel__icon" aria-hidden="true"><i class="fa-solid fa-circle-check" aria-hidden="true"></i></span>Przyjazna obsługa</li>
+              <li><span class="good-choice-panel__icon" aria-hidden="true"><i class="fa-solid fa-circle-check" aria-hidden="true"></i></span>Zero opłat za rezygnację w ciągu 24 godzin</li>
+              <li><span class="good-choice-panel__icon" aria-hidden="true"><i class="fa-solid fa-circle-check" aria-hidden="true"></i></span>Dobry wybór</li>
             </ul>
           </aside>
         </div>
@@ -5900,58 +6643,62 @@ html[data-theme="dark"] .modal__close {
     </main>
 
     <footer class="footer">
-      <div>
-        <div class="theme-switcher" role="group" aria-label="Tryb motywu">
-          <button type="button" class="theme-switcher__option" data-theme-option="auto" aria-pressed="false">
-            Automatyczny
-          </button>
-          <button type="button" class="theme-switcher__option" data-theme-option="dark" aria-pressed="false">
-            Ciemny
-          </button>
-          <button type="button" class="theme-switcher__option" data-theme-option="light" aria-pressed="false">
-            Jasny
-          </button>
+      <div class="footer__inner">
+        <div class="footer__top">
+          <div class="footer__brand">
+            <a class="footer__logo" href="#">Beskider</a>
+            <p class="footer__tagline">Górska przygoda z przewodnikiem</p>
+          </div>
+          <nav class="footer__nav" aria-label="Linki w stopce">
+            <div class="footer__links-group">
+              <span class="footer__group-label">Oferta</span>
+              <ul class="footer__links">
+                <li><a href="#equipment">Sprzęt</a></li>
+                <li><a href="#routes">Trasy</a></li>
+                <li><a href="#rules">Zasady</a></li>
+                <li><a href="#faq">FAQ</a></li>
+              </ul>
+            </div>
+            <div class="footer__links-group">
+              <span class="footer__group-label">Firma</span>
+              <ul class="footer__links">
+                <li><a href="#about">O nas</a></li>
+                <li><a href="#beskider-plus">Beskider+</a></li>
+                <li><a href="#guides">Przewodnicy</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+              </ul>
+            </div>
+            <div class="footer__links-group">
+              <span class="footer__group-label">Warunki</span>
+              <ul class="footer__links">
+                <li><button type="button" class="footer__link-button" data-open-modal="regulamin">Regulamin</button></li>
+                <li><button type="button" class="footer__link-button" data-open-modal="privacy">Polityka prywatności</button></li>
+              </ul>
+            </div>
+          </nav>
+          <div class="footer__meta">
+            <div class="theme-switcher" role="group" aria-label="Tryb motywu">
+              <button type="button" class="theme-switcher__option" data-theme-option="auto" aria-pressed="false">Automatyczny</button>
+              <button type="button" class="theme-switcher__option" data-theme-option="dark" aria-pressed="false">Ciemny</button>
+              <button type="button" class="theme-switcher__option" data-theme-option="light" aria-pressed="false">Jasny</button>
+            </div>
+            <div class="footer__social">
+              <a href="https://www.instagram.com/beskider" target="_blank" rel="noopener noreferrer" aria-label="Instagram Beskider">
+                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+              </a>
+              <a href="https://www.facebook.com/beskider" target="_blank" rel="noopener noreferrer" aria-label="Facebook Beskider">
+                <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+              </a>
+              <a href="https://www.youtube.com/@beskider" target="_blank" rel="noopener noreferrer" aria-label="YouTube Beskider">
+                <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
         </div>
-        <strong>Beskider sp. z o.o.</strong>
-        <span>NIP: 000-000-00-00</span>
-        <span>ul. Przykładowa 1, 00-000 Bielsko-Biała</span>
-      </div>
-      <div>
-        <button class="link-button" type="button" data-open-modal="regulamin">
-          Regulamin
-        </button>
-        <button class="link-button" type="button" data-open-modal="privacy">
-          Polityka prywatności
-        </button>
-      </div>
-      <div class="footer__social">
-        <a href="https://www.instagram.com" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path
-              d="M16.8 3H7.2A4.2 4.2 0 0 0 3 7.2v9.6A4.2 4.2 0 0 0 7.2 21h9.6a4.2 4.2 0 0 0 4.2-4.2V7.2A4.2 4.2 0 0 0 16.8 3Zm2.4 13.8a2.4 2.4 0 0 1-2.4 2.4H7.2a2.4 2.4 0 0 1-2.4-2.4V7.2a2.4 2.4 0 0 1 2.4-2.4h9.6a2.4 2.4 0 0 1 2.4 2.4ZM12 7.2a4.8 4.8 0 1 0 0 9.6 4.8 4.8 0 0 0 0-9.6Zm0 7.8a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm5.1-8.4a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2Z"
-            />
-          </svg>
-          Instagram
-        </a>
-        <a href="https://www.facebook.com" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path
-              d="M13.5 8.5V7c0-.7.4-1 1-1h1.5V4h-2c-2 0-3.5 1.5-3.5 3.5v1H9v2.5h1.5V20h3v-9h2.3l.4-2.5Z"
-            />
-          </svg>
-          Facebook
-        </a>
-        <a href="https://www.youtube.com" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path
-              d="M22 12c0-2.2-.2-3.5-.5-4.3a2.7 2.7 0 0 0-1.8-1.7C18.6 5.6 12 5.6 12 5.6s-6.6 0-7.7.4a2.7 2.7 0 0 0-1.8 1.7C2.2 8.5 2 9.8 2 12s.2 3.5.5 4.3a2.7 2.7 0 0 0 1.8 1.7c1.1.4 7.7.4 7.7.4s6.6 0 7.7-.4a2.7 2.7 0 0 0 1.8-1.7c.3-.8.5-2.1.5-4.3Zm-12 3V9l5.5 3Z"
-            />
-          </svg>
-          YouTube
-        </a>
-      </div>
-      <div>
-        <span>© 2026 Beskider. Wszelkie prawa zastrzeżone.</span>
+        <div class="footer__bottom">
+          <p class="footer__copy">© 2026 Beskider. Wszelkie prawa zastrzeżone.</p>
+          <p class="footer__company"><span>A</span><span>ge</span>n<span>o</span><span> sp. z o.o.</span><span> · </span><span>NIP</span> <span>54722</span><span>21142</span><span> · Bielsko-Biała</span></p>
+        </div>
       </div>
     </footer>
 
@@ -6375,5 +7122,29 @@ html[data-theme="dark"] .modal__close {
         </div>
       </div>
     </div>
+  <!-- #region agent log -->
+  <script>
+  (function(){
+    function send(msg, data, hid) {
+      fetch('http://127.0.0.1:7242/ingest/a5533262-807e-410b-97e3-25468d550b5c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'about-collage',message:msg,data:data||{},hypothesisId:hid||'H1',timestamp:Date.now()})}).catch(function(){});
+    }
+    window.addEventListener('load', function() {
+      var col = document.querySelector('.about__collage');
+      if (!col || col.children.length < 4) return;
+      var r0 = col.getBoundingClientRect();
+      var r1 = col.children[0].getBoundingClientRect();
+      var r2 = col.children[1].getBoundingClientRect();
+      var r3 = col.children[2].getBoundingClientRect();
+      var r4 = col.children[3].getBoundingClientRect();
+      var gapTop = r1.top - r0.top;
+      var gapBetweenRows = r3.top - r1.bottom;
+      var gapBetweenRowsRight = r4.top - r2.bottom;
+      var rowGap = getComputedStyle(col).rowGap;
+      var colGap = getComputedStyle(col).columnGap;
+      send('Collage gaps (px)', { gapTop: Math.round(gapTop), gapBetweenRows: Math.round(gapBetweenRows), gapBetweenRowsRight: Math.round(gapBetweenRowsRight), rowGap: rowGap, columnGap: colGap }, 'H1');
+    });
+  })();
+  </script>
+  <!-- #endregion -->
   </body>
 </html>

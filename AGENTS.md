@@ -6,7 +6,8 @@
 - `sw.js` and `manifest.json` provide PWA/offline support.
 - `assets/` stores static assets:
   - `assets/images/` for product and hero imagery.
-  - `assets/icons/` for PWA icons.
+  - `assets/icons/` for PWA icons; `assets/fontawesome/` for Font Awesome (lokally: `css/all.min.css`, `webfonts/`). Ikony: `fa-solid fa-*` / `fa-brands fa-*` (np. `<i class="fa-solid fa-star" aria-hidden="true"></i>`).
+- **Ikony (definition of done):** W projekcie stosujemy **Font Awesome** (wersja free, zestaw lokalny w `assets/fontawesome/`). Nowe ikony dodawać jako `<i class="fa-solid fa-…">` lub `fa-brands fa-…` z tego zestawu. Spójność wizualna; brak ad-hoc SVG.
 - `spec.md` is the product/design source of truth and must be updated with every change.
 - Every new section or new nav link requires updating **spec.md §6 (Struktura informacji)** and, if needed, §7 (Nawigacja).
 
@@ -24,7 +25,7 @@ This is a static site with no build step.
 
 ## Testing Guidelines
 - No automated tests currently.
-- Manual checks: navigation anchors (Sprzęt, Trasy, Zasady, FAQ, O nas, Kontakt), taby sprzętu (Wszystko/eMTB/Szosowe), taby trudności tras, accordion, modal focus/close, theme toggle, cookie consent flow, image loading (no cropping).
+- Manual checks: navigation anchors (Sprzęt, Trasy, Zasady, FAQ, O nas, Kontakt), taby sprzętu (Wszystko/eMTB/Szosowe), taby trudności tras, accordion, modal focus/close, theme toggle, cookie consent flow, contact form (validation, checkbox regulaminu, Wyślij zapytanie), image loading (no cropping).
 - Verify mobile layout for overflow and wrapping.
 - Pełna checklista: [TESTING.md](TESTING.md).
 

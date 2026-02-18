@@ -1,6 +1,6 @@
 const swUrl = new URL(self.location.href);
 const cacheSuffix = swUrl.searchParams.get("v") || "dev";
-const CACHE_VERSION = `beskider-${cacheSuffix}-20260215`;
+const CACHE_VERSION = `beskider-${cacheSuffix}-20260218`;
 const ASSETS = [
   "./",
   "./index.html",
@@ -12,6 +12,10 @@ const ASSETS = [
   "./assets/icons/icon.svg",
   "./assets/icons/icon-192.png",
   "./assets/icons/icon-512.png",
+  "./assets/fontawesome/css/all.min.css",
+  "./assets/fontawesome/webfonts/fa-brands-400.woff2",
+  "./assets/fontawesome/webfonts/fa-regular-400.woff2",
+  "./assets/fontawesome/webfonts/fa-solid-900.woff2",
   "./assets/images/about-us-1280.jpg",
   "./assets/images/about-us-320.jpg",
   "./assets/images/about-us-640.jpg",
