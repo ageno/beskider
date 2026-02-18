@@ -586,6 +586,7 @@ video {
 
 html {
   scroll-behavior: smooth;
+  --site-header-offset: 5rem;
 }
 
 body {
@@ -960,7 +961,6 @@ main {
   background-color: #1a2320;
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
-  min-height: 56vh;
 }
 
 .hero__media {
@@ -1009,14 +1009,15 @@ main {
   gap: 1.5rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 @media (min-width: 640px) {
   .hero__inner {
-    padding-top: 3.5rem;
-    padding-bottom: 3.5rem;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+    gap: 1.75rem;
   }
 }
 
@@ -1024,10 +1025,16 @@ main {
   .hero__inner {
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     gap: 2rem;
     padding-top: 6rem;
     padding-bottom: 6rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero__inner {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
   }
 }
 
@@ -1061,7 +1068,13 @@ main {
   color: rgb(255 255 255);
 }
 
-/* Ozdobnik „przewodnikiem” – wybierz jedną klasę: hero__highlight--gold | --line | --pill | --white */
+/* Ozdobnik „przewodnikiem” – kolor jednolity */
+.hero__title-fill {
+  color: #f56900;
+  opacity: 0.9;
+  filter: brightness(1.5);
+}
+
 .hero__highlight {
   font-style: italic;
   display: inline-block;
@@ -2092,6 +2105,7 @@ html[data-theme="dark"] .perk-item__desc {
   font-size: 0.875rem;
   line-height: 1.25rem;
   font-weight: 600;
+  border: none;
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
 }
 
@@ -2104,6 +2118,7 @@ html[data-theme="dark"] .perk-item__desc {
 
 .button--ghost {
   border-width: 1px;
+  border-style: solid;
   --tw-border-opacity: 1;
   border-color: rgb(229 231 235 / var(--tw-border-opacity, 1));
   --tw-bg-opacity: 1;
@@ -2280,10 +2295,343 @@ html[data-theme="dark"] .perk-item__desc {
   margin-top: 1rem;
 }
 
+.contact-card__icon {
+  flex-shrink: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+}
+
+.contact-card:nth-child(1) .contact-card__icon { background-color: rgb(236 248 255); color: rgb(38 110 160); }
+.contact-card:nth-child(2) .contact-card__icon { background-color: rgb(243 240 255); color: rgb(88 72 153); }
+.contact-card:nth-child(3) .contact-card__icon { background-color: rgb(240 249 244); color: rgb(38 120 74); }
+
+.contact-card__icon svg {
+  width: 1.125rem;
+  height: 1.125rem;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.contact-card__label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: rgb(107 114 128);
+  margin-bottom: 0.25rem;
+}
+
+html[data-theme="dark"] .contact-card:nth-child(1) .contact-card__icon { background-color: rgb(25 42 58); color: rgb(145 210 255); }
+html[data-theme="dark"] .contact-card:nth-child(2) .contact-card__icon { background-color: rgb(40 35 60); color: rgb(195 185 255); }
+html[data-theme="dark"] .contact-card:nth-child(3) .contact-card__icon { background-color: rgb(30 52 40); color: rgb(140 225 175); }
+
+html[data-theme="dark"] .contact-card__label {
+  color: rgb(156 163 175);
+}
+
+.contact-card__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.contact-card__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease, opacity 0.15s ease;
+}
+
+.contact-card__links a:hover {
+  opacity: 0.85;
+}
+
+.contact-card__links svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  fill: currentColor;
+}
+
+.contact-card__links > li {
+  margin: 0;
+}
+
 .contact-card ul > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
+}
+
+.contact-form-wrap {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .contact-form-wrap {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .contact-form-wrap .contact-form {
+    grid-column: 1 / 3;
+  }
+
+  .contact-form-wrap .good-choice-panel {
+    grid-column: 3 / 4;
+    position: sticky;
+    top: calc(1.5rem + var(--site-header-offset));
+  }
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-form__actions {
+  margin-top: 0.25rem;
+}
+
+.contact-form__actions .button {
+  width: 100%;
+  min-width: 0;
+}
+
+@media (min-width: 640px) {
+  .contact-form__actions .button {
+    width: auto;
+  }
+}
+
+.contact-form__block {
+  border-radius: 0.5rem;
+  border-width: 1px;
+  border-color: rgb(229 231 235);
+  padding: 1.25rem 1.5rem;
+  margin: 0;
+  min-width: 0;
+}
+
+.contact-form__block > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+}
+
+.contact-form__block-title {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  margin: 0;
+  padding: 0 0.25rem;
+}
+
+fieldset.contact-form__block .contact-form__block-title {
+  margin-bottom: 0.75rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.form-group label {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+}
+
+.form-group__input-wrap {
+  position: relative;
+  display: block;
+}
+
+.form-group__input-wrap input,
+.form-group__input-wrap textarea {
+  display: block;
+  width: 100%;
+  border-radius: 0.5rem;
+  border-width: 1px;
+  border-color: rgb(195 199 204);
+  background-color: rgb(255 255 255);
+  padding: 0.5rem 2.5rem 0.5rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: rgb(15 17 21);
+  transition: border-color 0.2s ease;
+}
+
+.form-group__input-wrap input:focus-visible,
+.form-group__input-wrap textarea:focus-visible {
+  outline: none;
+  border-color: rgb(75 85 99);
+}
+
+.form-group__input-wrap textarea {
+  min-height: 6rem;
+  resize: vertical;
+  padding-right: 0.75rem;
+}
+
+.form-group__input-wrap input::placeholder,
+.form-group__input-wrap textarea::placeholder {
+  color: rgb(156 163 175);
+}
+
+.form-group__icon {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.25rem;
+  height: 1.25rem;
+  pointer-events: none;
+}
+
+.form-group__input-wrap textarea ~ .form-group__icon {
+  top: 1rem;
+  transform: none;
+}
+
+.form-group--valid .form-group__input-wrap input,
+.form-group--valid .form-group__input-wrap textarea {
+  border-color: rgb(195 199 204);
+}
+
+.form-group--valid .form-group__icon--valid {
+  display: block;
+}
+
+.form-group--valid .form-group__icon--invalid {
+  display: none;
+}
+
+.form-group--error .form-group__input-wrap input,
+.form-group--error .form-group__input-wrap textarea {
+  border-color: rgb(185 28 28);
+}
+
+.form-group--error .form-group__icon--valid {
+  display: none;
+}
+
+.form-group--error .form-group__icon--invalid {
+  display: block;
+}
+
+.form-group__icon--valid,
+.form-group__icon--invalid {
+  display: none;
+  color: inherit;
+}
+
+.form-group__icon--valid {
+  color: rgb(52 105 80);
+}
+
+.form-group__icon--invalid {
+  color: rgb(185 28 28);
+}
+
+.form-group:not(.form-group--valid):not(.form-group--error) .form-group__icon--valid,
+.form-group:not(.form-group--valid):not(.form-group--error) .form-group__icon--invalid {
+  display: none;
+}
+
+.form-group__error {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: rgb(185 28 28);
+}
+
+.form-group--error .form-group__error {
+  display: block;
+}
+
+.form-group__error:empty,
+.form-group:not(.form-group--error) .form-group__error {
+  display: none;
+}
+
+.contact-form__checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-form__checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.375;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.contact-form__checkbox-label input[type="checkbox"] {
+  margin-top: 0.25rem;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+.good-choice-panel {
+  border-radius: 0.5rem;
+  border: none;
+  background-color: transparent;
+  padding: 1.5rem 0;
+}
+
+.good-choice-panel h3 {
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  margin: 0 0 1rem;
+}
+
+.good-choice-panel ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.good-choice-panel li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.375rem 0;
+  font-size: 0.875rem;
+  line-height: 1.375;
+}
+
+.good-choice-panel li + li {
+  margin-top: 0;
+}
+
+.good-choice-panel__icon {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: rgb(52 105 80);
 }
 
 .footer {
@@ -2675,7 +3023,7 @@ html[data-theme="dark"] .peek-gallery {
   filter: brightness(1);
 }
 
-/* Winieta na każdym slajdzie – przyciemnienie od krawędzi do środka, przesuwa się ze slajdem */
+/* Winieta: delikatne przyciemnienie tylko po rogach (2 stopnie = mniejszy koszt rysowania) */
 .peek-gallery__slide::after {
   content: "";
   position: absolute;
@@ -2683,12 +3031,7 @@ html[data-theme="dark"] .peek-gallery {
   z-index: 1;
   pointer-events: none;
   border-radius: inherit;
-  background: radial-gradient(
-    ellipse 70% 70% at 50% 50%,
-    transparent 28%,
-    rgba(0, 0, 0, 0.4) 55%,
-    rgba(0, 0, 0, 0.75) 100%
-  );
+  background: radial-gradient(ellipse 100% 100% at 50% 50%, transparent 70%, #00000040 100%);
 }
 
 @media (min-width: 768px) {
@@ -2709,9 +3052,9 @@ html[data-theme="dark"] .peek-gallery {
   inset: 0;
 }
 
-@keyframes peek-portrait-scroll {
-  0% { transform: scale(1) translateY(0); }
-  100% { transform: scale(1.04) translateY(-50%); }
+@keyframes peek-portrait-scroll-infinite {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 100%; }
 }
 
 .peek-gallery__media-wrap img,
@@ -2736,17 +3079,25 @@ html[data-theme="dark"] .peek-gallery {
   align-items: flex-start;
 }
 
-.peek-gallery__media-wrap--portrait img {
+/* Wewnętrzny wrapper – tło od 0 do 100%, pętla bez skoku */
+.peek-gallery__media-wrap--portrait-inner {
   width: 100%;
-  height: auto;
-  min-height: 100%;
-  object-fit: contain;
-  object-position: center top;
-  animation: peek-portrait-scroll 9.6s ease-in-out infinite alternate;
+  height: 200%;
+  background-repeat: repeat-y;
+  background-size: 100% 50%;
+  background-position: 0 0;
+  animation: peek-portrait-scroll-infinite 5s linear infinite;
+}
+
+/* Slajd portretowy: img wypełnia kadr bez rozciągania (object-fit: cover) */
+.peek-gallery__media-wrap--portrait > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .peek-gallery__media-wrap--portrait img {
+  .peek-gallery__media-wrap--portrait-inner {
     animation: none;
   }
 }
@@ -3184,6 +3535,67 @@ html[data-theme="dark"] .offer-card,
   border-color: rgb(38 38 38 / var(--tw-border-opacity, 1));
   --tw-bg-opacity: 1;
   background-color: rgb(23 23 23 / var(--tw-bg-opacity, 1));
+}
+
+html[data-theme="dark"] .form-group__input-wrap input,
+html[data-theme="dark"] .form-group__input-wrap textarea {
+  border-width: 1px;
+  border-color: rgb(64 64 64);
+  background-color: rgb(38 38 38);
+  color: rgb(244 245 247);
+}
+
+html[data-theme="dark"] .form-group__input-wrap input::placeholder,
+html[data-theme="dark"] .form-group__input-wrap textarea::placeholder {
+  color: rgb(156 163 175);
+}
+
+html[data-theme="dark"] .form-group__input-wrap input:focus-visible,
+html[data-theme="dark"] .form-group__input-wrap textarea:focus-visible {
+  outline: none;
+  border-color: rgb(115 115 115);
+}
+
+html[data-theme="dark"] .form-group--valid .form-group__input-wrap input,
+html[data-theme="dark"] .form-group--valid .form-group__input-wrap textarea {
+  border-color: rgb(64 64 64);
+}
+
+html[data-theme="dark"] .form-group--error .form-group__input-wrap input,
+html[data-theme="dark"] .form-group--error .form-group__input-wrap textarea {
+  border-color: rgb(185 28 28);
+}
+
+html[data-theme="dark"] .form-group__error {
+  color: rgb(248 113 113);
+}
+
+html[data-theme="dark"] .form-group--valid .form-group__icon--valid {
+  color: rgb(74 222 128);
+}
+
+html[data-theme="dark"] .form-group--error .form-group__icon--invalid {
+  color: rgb(248 113 113);
+}
+
+html[data-theme="dark"] .contact-form__block {
+  border-color: rgb(38 38 38);
+}
+
+html[data-theme="dark"] .good-choice-panel {
+  background-color: transparent;
+}
+
+html[data-theme="dark"] .good-choice-panel h3 {
+  color: rgb(244 245 247);
+}
+
+html[data-theme="dark"] .good-choice-panel li {
+  color: rgb(229 231 235);
+}
+
+html[data-theme="dark"] .good-choice-panel__icon {
+  color: rgb(74 222 128);
 }
 
 html[data-theme="dark"] .guide-card {
@@ -4246,7 +4658,6 @@ html[data-theme="dark"] .modal__close {
         </button>
         <div class="nav__menu" data-nav-menu>
           <a href="#equipment" class="is-active">Sprzęt</a>
-          <a href="#gallery">Galeria</a>
           <a href="#routes">Trasy</a>
           <a href="#rules">Zasady</a>
           <a href="#faq">FAQ</a>
@@ -4301,7 +4712,7 @@ html[data-theme="dark"] .modal__close {
         <div class="hero__inner">
           <div class="hero__content">
             <p class="eyebrow">Beskider • Bielsko-Biała</p>
-            <h1 id="hero-title">Górska przygoda <span style="white-space:nowrap">z&nbsp;<span class="hero__highlight hero__highlight--gold">przewodnikiem</span></span><br>na najwyższym poziomie</h1>
+            <h1 id="hero-title">Górska przygoda <span style="white-space:nowrap">z&nbsp;<span class="hero__title-fill">przewodnikiem</span></span><br>na najwyższym poziomie</h1>
             <p class="hero__lead">
               Topowy rower. Lokalny przewodnik, który zna każdy metr trasy. Mniej kompromisów. Więcej gór. Więcej prędkości. Więcej wolności. Wsiadasz. I&nbsp;dzień od razu wchodzi na wyższy poziom.
             </p>
@@ -5240,25 +5651,250 @@ html[data-theme="dark"] .modal__close {
           <p>Skontaktuj się z nami lub odwiedź punkt odbioru.</p>
         </div>
         <div class="contact-grid">
-          <div class="contact-card">
+          <article class="contact-card">
+            <div class="contact-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
+            </div>
             <h3>E-mail</h3>
+            <p class="contact-card__label">Adres</p>
             <p><a href="mailto:hello@beskider.pl">hello@beskider.pl</a></p>
+            <p class="contact-card__label">Czas odpowiedzi</p>
             <p>Odpowiadamy maksymalnie w 30 minut w godzinach 8:00–20:00.</p>
-          </div>
-          <div class="contact-card">
+          </article>
+          <article class="contact-card">
+            <div class="contact-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z" /></svg>
+            </div>
             <h3>Social media</h3>
-            <ul>
-              <li><a href="https://www.instagram.com" rel="noopener">Instagram</a></li>
-              <li><a href="https://www.facebook.com" rel="noopener">Facebook</a></li>
-              <li><a href="https://www.youtube.com" rel="noopener">YouTube</a></li>
+            <p class="contact-card__label">Obserwuj nas</p>
+            <ul class="contact-card__links">
+              <li>
+                <a href="https://www.instagram.com/beskider" target="_blank" rel="noopener noreferrer" aria-label="Instagram Beskider">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c2.67 0 2.99.01 4.04.06 2.74.12 4.52.94 5.3 1.73.8.78 1.62 2.56 1.74 5.3.05 1.05.06 1.37.06 4.04s-.01 2.99-.06 4.04c-.12 2.74-.94 4.52-1.73 5.3-.78.8-2.56 1.62-5.3 1.74-1.05.05-1.37.06-4.04.06s-2.99-.01-4.04-.06c-2.74-.12-4.52-.94-5.3-1.73-.8-.78-1.62-2.56-1.74-5.3C2.17 14.99 2.16 14.67 2.16 12s.01-2.99.06-4.04c.12-2.74.94-4.52 1.73-5.3.78-.8 2.56-1.62 5.3-1.74C9.01 2.17 9.33 2.16 12 2.16zM12 0C9.28 0 8.94.01 8.02.07 5.08.2 3.16 1.1 2.16 2.1 1.1 3.16.2 5.08.07 8.02.01 8.94 0 12 0s3.96.01 4.98.07c2.9.13 4.68 1.02 5.75 2.09 1.07 1.07 1.96 2.85 2.09 5.75.06 1.02.07 1.34.07 4.98s-.01 3.96-.07 4.98c-.13 2.9-1.02 4.68-2.09 5.75-1.07 1.07-2.85 1.96-5.75 2.09C15.96 23.99 15.64 24 12 24s-3.96-.01-4.98-.07c-2.9-.13-4.68-1.02-5.75-2.09-1.07-1.07-1.96-2.85-2.09-5.75-.06-1.02-.07-1.34-.07-4.98s.01-3.96.07-4.98c.13-2.9 1.02-4.68 2.09-5.75 1.07-1.07 2.85-1.96 5.75-2.09C8.04.01 8.36 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.41-11.37a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/beskider" target="_blank" rel="noopener noreferrer" aria-label="Facebook Beskider">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.07c0-6.63-5.37-12-12-12S0 5.44 0 12.07c0 6 4.39 10.98 10.12 11.85v-8.38H7.08V12.07h3.04V9.41c0-3.01 1.79-4.67 4.53-4.67 1.31 0 2.69.23 2.69.23v2.95h-1.52c-1.5 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.47h-2.8v8.38C19.61 23.05 24 18.07 24 12.07z"/></svg>
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a href="https://www.youtube.com/@beskider" target="_blank" rel="noopener noreferrer" aria-label="YouTube Beskider">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.5a2.8 2.8 0 0 0-2-2C19.6 4 12 4 12 4s-7.6 0-9.5.5a2.8 2.8 0 0 0-2 2C0 8.4 0 12 0 12s0 3.6.5 5.5a2.8 2.8 0 0 0 2 2c1.9.5 9.5.5 9.5.5s7.6 0 9.5-.5a2.8 2.8 0 0 0 2-2C24 15.6 24 12 24 12s0-3.6-.5-5.5zM9.5 15.5v-7l6.3 3.5-6.3 3.5z"/></svg>
+                  YouTube
+                </a>
+              </li>
             </ul>
-          </div>
-          <div class="contact-card">
+          </article>
+          <article class="contact-card">
+            <div class="contact-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 10.5a3 3 0 11-6 0 3 3 0 011 6 0z" /><path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>
+            </div>
             <h3>Lokalizacja</h3>
-            <p>Bielsko-Biała</p>
-            <p>ul. Czołgistów – parking Błonia</p>
-            <p>Odbiory i zwroty po wcześniejszym kontakcie.</p>
-          </div>
+            <p class="contact-card__label">Adres</p>
+            <p>Bielsko-Biała, ul. Czołgistów – parking Błonia</p>
+            <p class="contact-card__label">Dowóz i odbiór</p>
+            <p>Rowery są dowożone na miejsce po potwierdzeniu rezerwacji. Odbiory i zwroty po wcześniejszym kontakcie.</p>
+          </article>
+        </div>
+        <div class="contact-form-wrap">
+          <form class="contact-form" id="contact-form" data-contact-form action="#" method="post" novalidate>
+            <fieldset class="contact-form__block">
+              <legend class="contact-form__block-title">Dane wypożyczającego</legend>
+              <div class="form-group" data-field="email">
+                <label for="contact-email">E-mail <span aria-hidden="true">*</span></label>
+                <div class="form-group__input-wrap">
+                  <input type="email" id="contact-email" name="email" autocomplete="email" required placeholder="np. jan@example.com" aria-describedby="contact-email-error" aria-invalid="false" />
+                  <span class="form-group__icon form-group__icon--valid" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor"/></svg>
+                  </span>
+                  <span class="form-group__icon form-group__icon--invalid" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M12 8v4M12 16h.01" fill="none" stroke="currentColor"/></svg>
+                  </span>
+                </div>
+                <span class="form-group__error" id="contact-email-error" role="alert"></span>
+              </div>
+              <div class="form-group" data-field="fullname">
+                <label for="contact-fullname">Imię i nazwisko <span aria-hidden="true">*</span></label>
+                <div class="form-group__input-wrap">
+                  <input type="text" id="contact-fullname" name="fullname" autocomplete="name" required placeholder="np. Jan Kowalski" aria-describedby="contact-fullname-error" aria-invalid="false" />
+                  <span class="form-group__icon form-group__icon--valid" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor"/></svg>
+                  </span>
+                  <span class="form-group__icon form-group__icon--invalid" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M12 8v4M12 16h.01" fill="none" stroke="currentColor"/></svg>
+                  </span>
+                </div>
+                <span class="form-group__error" id="contact-fullname-error" role="alert"></span>
+              </div>
+              <div class="form-group" data-field="phone">
+                <label for="contact-phone">Numer kontaktowy <span aria-hidden="true">*</span></label>
+                <div class="form-group__input-wrap">
+                  <input type="tel" id="contact-phone" name="phone" autocomplete="tel" required placeholder="np. 500 123 456" aria-describedby="contact-phone-error" aria-invalid="false" />
+                  <span class="form-group__icon form-group__icon--valid" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor"/></svg>
+                  </span>
+                  <span class="form-group__icon form-group__icon--invalid" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M12 8v4M12 16h.01" fill="none" stroke="currentColor"/></svg>
+                  </span>
+                </div>
+                <span class="form-group__error" id="contact-phone-error" role="alert"></span>
+              </div>
+            </fieldset>
+            <fieldset class="contact-form__block">
+              <legend class="contact-form__block-title">Adres rozliczeniowy</legend>
+              <div class="form-group" data-field="billing-firstname">
+                <label for="contact-billing-firstname">Imię <span aria-hidden="true">*</span></label>
+                <div class="form-group__input-wrap">
+                  <input type="text" id="contact-billing-firstname" name="billing_firstname" autocomplete="given-name" required placeholder="np. Jan" aria-describedby="contact-billing-firstname-error" aria-invalid="false" />
+                  <span class="form-group__icon form-group__icon--valid" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor"/></svg>
+                  </span>
+                  <span class="form-group__icon form-group__icon--invalid" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M12 8v4M12 16h.01" fill="none" stroke="currentColor"/></svg>
+                  </span>
+                </div>
+                <span class="form-group__error" id="contact-billing-firstname-error" role="alert"></span>
+              </div>
+              <div class="form-group" data-field="billing-lastname">
+                <label for="contact-billing-lastname">Nazwisko <span aria-hidden="true">*</span></label>
+                <div class="form-group__input-wrap">
+                  <input type="text" id="contact-billing-lastname" name="billing_lastname" autocomplete="family-name" required placeholder="np. Kowalski" aria-describedby="contact-billing-lastname-error" aria-invalid="false" />
+                  <span class="form-group__icon form-group__icon--valid" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor"/></svg>
+                  </span>
+                  <span class="form-group__icon form-group__icon--invalid" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M12 8v4M12 16h.01" fill="none" stroke="currentColor"/></svg>
+                  </span>
+                </div>
+                <span class="form-group__error" id="contact-billing-lastname-error" role="alert"></span>
+              </div>
+              <div class="form-group" data-field="billing-company">
+                <label for="contact-billing-company">Firma</label>
+                <div class="form-group__input-wrap">
+                  <input type="text" id="contact-billing-company" name="billing_company" autocomplete="organization" placeholder="opcjonalnie" aria-describedby="contact-billing-company-error" aria-invalid="false" />
+                  <span class="form-group__icon form-group__icon--valid" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor"/></svg>
+                  </span>
+                  <span class="form-group__icon form-group__icon--invalid" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M12 8v4M12 16h.01" fill="none" stroke="currentColor"/></svg>
+                  </span>
+                </div>
+                <span class="form-group__error" id="contact-billing-company-error" role="alert"></span>
+              </div>
+              <div class="form-group" data-field="billing-nip">
+                <label for="contact-billing-nip">NIP</label>
+                <div class="form-group__input-wrap">
+                  <input type="text" id="contact-billing-nip" name="billing_nip" autocomplete="off" placeholder="opcjonalnie, 10 cyfr" aria-describedby="contact-billing-nip-error" aria-invalid="false" />
+                  <span class="form-group__icon form-group__icon--valid" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor"/></svg>
+                  </span>
+                  <span class="form-group__icon form-group__icon--invalid" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M12 8v4M12 16h.01" fill="none" stroke="currentColor"/></svg>
+                  </span>
+                </div>
+                <span class="form-group__error" id="contact-billing-nip-error" role="alert"></span>
+              </div>
+              <div class="form-group" data-field="billing-address">
+                <label for="contact-billing-address">Adres <span aria-hidden="true">*</span></label>
+                <div class="form-group__input-wrap">
+                  <input type="text" id="contact-billing-address" name="billing_address" autocomplete="street-address" required placeholder="np. ul. Przykładowa 1" aria-describedby="contact-billing-address-error" aria-invalid="false" />
+                  <span class="form-group__icon form-group__icon--valid" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor"/></svg>
+                  </span>
+                  <span class="form-group__icon form-group__icon--invalid" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M12 8v4M12 16h.01" fill="none" stroke="currentColor"/></svg>
+                  </span>
+                </div>
+                <span class="form-group__error" id="contact-billing-address-error" role="alert"></span>
+              </div>
+              <div class="form-group" data-field="billing-city">
+                <label for="contact-billing-city">Miasto <span aria-hidden="true">*</span></label>
+                <div class="form-group__input-wrap">
+                  <input type="text" id="contact-billing-city" name="billing_city" autocomplete="address-level2" required placeholder="np. Bielsko-Biała" aria-describedby="contact-billing-city-error" aria-invalid="false" />
+                  <span class="form-group__icon form-group__icon--valid" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor"/></svg>
+                  </span>
+                  <span class="form-group__icon form-group__icon--invalid" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M12 8v4M12 16h.01" fill="none" stroke="currentColor"/></svg>
+                  </span>
+                </div>
+                <span class="form-group__error" id="contact-billing-city-error" role="alert"></span>
+              </div>
+              <div class="form-group" data-field="billing-postal">
+                <label for="contact-billing-postal">Kod pocztowy <span aria-hidden="true">*</span></label>
+                <div class="form-group__input-wrap">
+                  <input type="text" id="contact-billing-postal" name="billing_postal" autocomplete="postal-code" required placeholder="np. 43-300" aria-describedby="contact-billing-postal-error" aria-invalid="false" />
+                  <span class="form-group__icon form-group__icon--valid" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor"/></svg>
+                  </span>
+                  <span class="form-group__icon form-group__icon--invalid" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M12 8v4M12 16h.01" fill="none" stroke="currentColor"/></svg>
+                  </span>
+                </div>
+                <span class="form-group__error" id="contact-billing-postal-error" role="alert"></span>
+              </div>
+              <div class="form-group" data-field="billing-country">
+                <label for="contact-billing-country">Kraj <span aria-hidden="true">*</span></label>
+                <div class="form-group__input-wrap">
+                  <input type="text" id="contact-billing-country" name="billing_country" autocomplete="country-name" required placeholder="np. Polska" value="Polska" aria-describedby="contact-billing-country-error" aria-invalid="false" />
+                  <span class="form-group__icon form-group__icon--valid" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor"/></svg>
+                  </span>
+                  <span class="form-group__icon form-group__icon--invalid" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M12 8v4M12 16h.01" fill="none" stroke="currentColor"/></svg>
+                  </span>
+                </div>
+                <span class="form-group__error" id="contact-billing-country-error" role="alert"></span>
+              </div>
+            </fieldset>
+            <fieldset class="contact-form__block">
+              <legend class="contact-form__block-title">Wiadomość</legend>
+              <div class="form-group" data-field="message">
+                <label for="contact-message">Treść wiadomości</label>
+                <div class="form-group__input-wrap">
+                  <textarea id="contact-message" name="message" rows="4" placeholder="Opisz swoje zapytanie lub preferencje…" aria-describedby="contact-message-error" aria-invalid="false"></textarea>
+                  <span class="form-group__icon form-group__icon--valid" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor"/></svg>
+                  </span>
+                  <span class="form-group__icon form-group__icon--invalid" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2" stroke="none"/><path d="M12 8v4M12 16h.01" fill="none" stroke="currentColor"/></svg>
+                  </span>
+                </div>
+                <span class="form-group__error" id="contact-message-error" role="alert"></span>
+              </div>
+            </fieldset>
+            <fieldset class="contact-form__block">
+              <legend class="contact-form__block-title">Warunki</legend>
+              <div class="contact-form__checkboxes">
+                <div class="form-group" data-field="terms">
+                  <label class="contact-form__checkbox-label">
+                    <input type="checkbox" id="contact-terms" name="terms" required aria-describedby="contact-terms-error" aria-invalid="false" />
+                    <span>Potwierdzam, że przeczytałem, zrozumiałem i zaakceptowałem <button type="button" class="link-button" data-open-modal="regulamin">Ogólne Warunki regulaminu serwisu</button>.</span>
+                  </label>
+                  <span class="form-group__error" id="contact-terms-error" role="alert"></span>
+                </div>
+                <label class="contact-form__checkbox-label">
+                  <input type="checkbox" id="contact-marketing" name="marketing" aria-describedby="contact-marketing-error" aria-invalid="false" />
+                  <span>Zgadzam się na przetwarzanie moich danych osobowych przez Ageno sp. z o.o. w celu komunikacji marketingowej, a tym samym wysyłania mi newslettera, informacji o usługach, promocjach lub nowościach zgodnie z Regulaminem.</span>
+                </label>
+              </div>
+            </fieldset>
+            <div class="contact-form__actions">
+              <button type="submit" class="button button--primary">Wyślij zapytanie</button>
+            </div>
+          </form>
+          <aside class="good-choice-panel" aria-labelledby="good-choice-title">
+            <h3 id="good-choice-title">Świetny wybór!</h3>
+            <ul>
+              <li><span class="good-choice-panel__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10" fill="none"/></svg></span>Świetny sprzęt premium</li>
+              <li><span class="good-choice-panel__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10" fill="none"/></svg></span>Przyjazna obsługa</li>
+              <li><span class="good-choice-panel__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10" fill="none"/></svg></span>Zero opłat za rezygnację w ciągu 24 godzin</li>
+              <li><span class="good-choice-panel__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10" fill="none"/></svg></span>Dobry wybór</li>
+            </ul>
+          </aside>
         </div>
       </section>
     </main>

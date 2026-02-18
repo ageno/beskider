@@ -99,6 +99,9 @@ Lista sekcji w kolejności na stronie (źródło prawdy przy code review i plano
 - O nas
 - Przewodnicy Beskider (3 karty: zdjęcie, imię i nazwisko, krótki opis)
 - Kontakt
+  - Karty: E-mail, Social media, Lokalizacja
+  - Formularz zapytania (Dane wypożyczającego, Adres rozliczeniowy, Wiadomość, Warunki)
+  - Panel „Świetny wybór!” (po prawej na desktop)
 - Stopka (przełącznik trybu: Automatyczny / Ciemny / Jasny; firma, linki, social, copyright)
 - Modale: Produkt, Regulamin, Polityka
 
@@ -156,16 +159,16 @@ Przy każdej nowej sekcji lub nowym linku w nav należy zaktualizować niniejsz�
   - pomarańczowy (wypożyczony)
   - zielony tylko dla statusu „Dostępny”
 
-### 8.5 Styl premium (Apple-like)
+### 8.6 Styl premium (Apple-like)
 - Minimalistyczna estetyka, dużo światła i spójna typografia
 - Brak dekoracyjnych gradientów kolorystycznych
 - Subtelne cienie i cienkie obrysy zamiast ciężkich kart
 
-### 8.6 Hero (layout)
+### 8.7 Hero (layout)
 - Full-bleed zdjęcie tła z delikatnym overlayem
 - Treść i CTA ułożone w kolumnie na mobile, obok siebie na desktop
 
-### 8.7 Responsywność
+### 8.8 Responsywność
 - Mobile-first: czytelne odstępy między blokami i stabilne łamanie treści
 - Nawigacja i taby zachowują dostępność na małych ekranach
 - Taby (Sprzęt, Trasy) na mobile: zawsze w jednej linii, przewijanie poziome, strzałki L/P gdy jest overflow (styl Apple)
@@ -190,6 +193,11 @@ Przy każdej nowej sekcji lub nowym linku w nav należy zaktualizować niniejsz�
 - Cały layout oparty o siatkę 8px
 - Wszystkie odstępy (padding, margin, gap) i promienie zaokrągleń to wielokrotności 8px
 - Spójne promienie: preferowany 8 px, większe tylko gdy wymagane
+
+### 8.5 Ikony
+- **Zestaw:** Heroicons (styl outline/stroke, viewBox 24×24).
+- W sekcjach kart (Dlaczego Beskider, Kontakt): ikona w kwadracie z zaokrąglonymi rogami (np. 2.25rem, border-radius 0.5rem) i delikatnym tłem kolorystycznym; SVG: stroke currentColor, fill none, stroke-width 1.5.
+- Ikony brandów (np. Instagram, Facebook w linkach) mogą być wypełnione (fill) – wyjątek od outline.
 
 ---
 
@@ -239,6 +247,7 @@ Przy każdej nowej sekcji lub nowym linku w nav należy zaktualizować niniejsz�
 
 ### 10.4 Hero image
 - Nagłówek wykorzystuje panoramiczne zdjęcie w tle (lokalne `assets/images/`)
+- Wysokość sekcji hero dopasowuje się do treści (brak min-height w vh); padding wewnętrzny umiarkowany.
 - Aby uniknąć białego gradientu na krawędziach przy nałożonym blurze: sekcja hero ma ciemne tło (`background-color`), a zdjęcie w stanie z blur jest powiększone (scale ~1.22) i wyśrodkowane, tak że krawędzie obrazu nie wchodzą w viewport.
 - Przy scrollu stosowany jest tylko blur (bez translateY), żeby obraz nie odsłaniał ciemnego tła; overlay ma gradient u góry (#1a2320 → transparent) na wszelki wypadek.
 
@@ -341,14 +350,18 @@ Karty w siatce (rules-grid):
 
 ## 17. Kontakt
 
-- E-mail
-- Social:
-  - Instagram
-  - Facebook
-  - YouTube
-- Lokalizacja (tekst):
-  - Bielsko-Biała
-  - ul. Czołgistów – parking Błonia
+- **Trzy karty** (contact-card, układ jak rule-card / perks): nad tytułem ikona w kwadracie z tłem (contact-card__icon) – Heroicons outline: E-mail (koperta), Social media (udostępnianie), Lokalizacja (pin mapy). Podnagłówki (contact-card__label):
+  - **E-mail**: „Adres” (link mailto: hello@beskider.pl), „Czas odpowiedzi” (8:00–20:00, max 30 min)
+  - **Social media**: „Obserwuj nas”, linki z ikonkami SVG (Instagram, Facebook, YouTube)
+  - **Lokalizacja**: „Adres” (Bielsko-Biała, ul. Czołgistów – parking Błonia), „Dowóz i odbiór” (rowery dowożone na miejsce po potwierdzeniu rezerwacji; odbiory i zwroty po wcześniejszym kontakcie)
+- **Formularz zapytania** (pod/obok kart):
+  - Dane wypożyczającego: E-mail*, Imię i nazwisko*, Numer kontaktowy*
+  - Adres rozliczeniowy: Imię*, Nazwisko*, Firma, NIP, Adres*, Miasto*, Kod pocztowy*, Kraj*
+  - Wiadomość (textarea, opcjonalne)
+  - Warunki: checkbox* (akceptacja regulaminu, link do modala Regulamin), checkbox (zgoda marketingowa – Ageno sp. z o.o.)
+  - Przycisk: Wyślij zapytanie
+- **Walidacja**: pola wymagane, formaty (email, tel, kod XX-XXX, NIP 10 cyfr); komunikaty pod polem (np. „Wprowadzona ilość znaków jest niepoprawna”); stan valid = zielona ikona check, invalid = czerwony obrys + ikona wykrzyknik
+- **Panel „Świetny wybór!”**: nagłówek + 4 punkty z zieloną ikoną check (sprzęt premium, obsługa, zero opłat 24h, dobry wybór)
 
 ---
 
@@ -383,10 +396,10 @@ Zakres:
 
 ## 20. Polityka prywatności
 
-- Administrator: placeholder
+- Administrator: placeholder (zgodnie ze stopką)
 - GA4
 - Cookies
-- Rozszerzenie pod formularz
+- **Formularz kontaktowy**: dane zbierane w celu odpowiedzi na zapytanie; drugi checkbox (opcjonalny) – zgoda na przetwarzanie przez Ageno sp. z o.o. w celu komunikacji marketingowej (newsletter, promocje). Okresy przetwarzania: ogólne / do cofnięcia zgody.
 - Okresy: ogólne
 
 ---
@@ -482,7 +495,7 @@ Szybka mapa treści w `index.html` (do planowania zmian copy):
 | faq | Accordion z pytaniami |
 | about | Obraz + tekst „O nas” |
 | guides | Przewodnicy Beskider: 3 karty (zdjęcie, imię i nazwisko, opis) |
-| contact | E-mail, social, adres |
+| contact | E-mail, social, adres; formularz zapytania; panel Świetny wybór |
 | stopka | Przełącznik trybu (Auto/Ciemny/Jasny), firma, linki, social, copyright |
 | Modale | Produkt (galeria, spec), Regulamin, Polityka |
 
