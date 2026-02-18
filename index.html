@@ -8,6 +8,13 @@
       name="description"
       content="Beskider to premium wypożyczalnia rowerów MTB w Beskidach. Poznaj ofertę, zasady i dostępne modele w trybie offline-ready PWA."
     />
+    <link rel="canonical" href="https://beskider.pl/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Beskider – wypożyczalnia sprzętu sportowego" />
+    <meta property="og:description" content="Beskider to premium wypożyczalnia rowerów MTB w Beskidach. Poznaj ofertę, zasady i dostępne modele w trybie offline-ready PWA." />
+    <meta property="og:url" content="https://beskider.pl/" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:image" content="https://beskider.pl/assets/images/hero-mountains-1280.jpg" />
     <meta name="theme-color" content="#1f7a4a" />
     <meta
       http-equiv="Content-Security-Policy"
@@ -16,6 +23,8 @@
     <link rel="manifest" href="./manifest.json" />
     <link rel="icon" href="./assets/icons/icon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./assets/fontawesome/css/all.min.css" />
+    <link rel="preload" href="./assets/fontawesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./assets/fontawesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin />
     <link
       rel="preload"
       as="image"
@@ -1240,6 +1249,11 @@ main {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
   padding: 1rem;
 }
+
+/* Feature-band icon colors (look and feel: hero orange, premium gold, brand green) */
+.feature-band .feature-card:nth-child(1) .feature-card__icon { color: #f56900; }
+.feature-band .feature-card:nth-child(2) .feature-card__icon { color: rgb(146 110 45); }
+.feature-band .feature-card:nth-child(3) .feature-card__icon { color: #1f7a4a; }
 
 /* ---------- CTA+ (Beskider+ promo card) ---------- */
 .cta-plus-wrap {
@@ -3063,7 +3077,12 @@ fieldset.contact-form__block .contact-form__block-title {
   font-size: 1rem;
   line-height: 1.5rem;
   color: rgb(15 17 21);
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.form-group__input-wrap input:not(:placeholder-shown),
+.form-group__input-wrap textarea:not(:placeholder-shown) {
+  background-color: rgb(243 244 246);
 }
 
 .form-group__input-wrap input:focus-visible,
@@ -3100,34 +3119,48 @@ fieldset.contact-form__block .contact-form__block-title {
 
 .form-group--valid .form-group__input-wrap input,
 .form-group--valid .form-group__input-wrap textarea {
-  border-color: rgb(195 199 204);
+  border-color: rgb(52 105 80);
+  transition: border-color 0.3s ease 1s, background-color 0.2s ease;
 }
 
 .form-group--valid .form-group__icon--valid {
-  display: block;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease 1s, visibility 0s linear 1s;
 }
 
 .form-group--valid .form-group__icon--invalid {
-  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease 1s, visibility 0s linear 1.3s;
 }
 
 .form-group--error .form-group__input-wrap input,
 .form-group--error .form-group__input-wrap textarea {
   border-color: rgb(185 28 28);
+  background-color: rgb(254 242 242);
+  transition: border-color 0.3s ease 1s, background-color 0.2s ease;
 }
 
 .form-group--error .form-group__icon--valid {
-  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease 1s, visibility 0s linear 1.3s;
 }
 
 .form-group--error .form-group__icon--invalid {
-  display: block;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease 1s, visibility 0s linear 1s;
 }
 
 .form-group__icon--valid,
 .form-group__icon--invalid {
-  display: none;
+  display: block;
+  opacity: 0;
+  visibility: hidden;
   color: inherit;
+  transition: opacity 0.3s ease 1s, visibility 0s linear 1.3s;
 }
 
 .form-group__icon--valid {
@@ -3144,17 +3177,24 @@ fieldset.contact-form__block .contact-form__block-title {
 
 .form-group:not(.form-group--valid):not(.form-group--error) .form-group__icon--valid,
 .form-group:not(.form-group--valid):not(.form-group--error) .form-group__icon--invalid {
-  display: none;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .form-group__error {
   font-size: 0.875rem;
   line-height: 1.25rem;
   color: rgb(185 28 28);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease 1s, visibility 0s linear 1.3s;
 }
 
 .form-group--error .form-group__error {
   display: block;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease 1s, visibility 0s linear 1s;
 }
 
 .form-group__error:empty,
@@ -3189,7 +3229,7 @@ fieldset.contact-form__block .contact-form__block-title {
   border-radius: 0.5rem;
   border: none;
   background-color: transparent;
-  padding: 1.5rem 0;
+  padding: 0 0 1.5rem;
 }
 
 .good-choice-panel h3 {
@@ -4183,6 +4223,10 @@ html[data-theme="dark"] .feature-card p {
   color: rgb(163 163 163 / var(--tw-text-opacity, 1));
 }
 
+html[data-theme="dark"] .feature-band .feature-card:nth-child(1) .feature-card__icon { color: rgb(255 165 100); }
+html[data-theme="dark"] .feature-band .feature-card:nth-child(2) .feature-card__icon { color: rgb(253 225 140); }
+html[data-theme="dark"] .feature-band .feature-card:nth-child(3) .feature-card__icon { color: rgb(74 200 130); }
+
 /* CTA+ dark mode */
 html[data-theme="dark"] .cta-plus {
   border-color: rgb(38 38 38);
@@ -4225,7 +4269,7 @@ html[data-theme="dark"] .equipment-intro li {
   color: rgb(163 163 163 / var(--tw-text-opacity, 1));
 }
 
-/* dark mode tab overrides are in tabnav.css */
+/* dark mode tab overrides: tabnav inlined above */
 
 html[data-theme="dark"] .offer-card,
         html[data-theme="dark"] .pricing-card,
@@ -4247,6 +4291,11 @@ html[data-theme="dark"] .form-group__input-wrap textarea {
   color: rgb(244 245 247);
 }
 
+html[data-theme="dark"] .form-group__input-wrap input:not(:placeholder-shown),
+html[data-theme="dark"] .form-group__input-wrap textarea:not(:placeholder-shown) {
+  background-color: rgb(48 48 48);
+}
+
 html[data-theme="dark"] .form-group__input-wrap input::placeholder,
 html[data-theme="dark"] .form-group__input-wrap textarea::placeholder {
   color: rgb(156 163 175);
@@ -4260,12 +4309,15 @@ html[data-theme="dark"] .form-group__input-wrap textarea:focus-visible {
 
 html[data-theme="dark"] .form-group--valid .form-group__input-wrap input,
 html[data-theme="dark"] .form-group--valid .form-group__input-wrap textarea {
-  border-color: rgb(64 64 64);
+  border-color: rgb(74 222 128);
+  transition: border-color 0.3s ease 1s, background-color 0.2s ease;
 }
 
 html[data-theme="dark"] .form-group--error .form-group__input-wrap input,
 html[data-theme="dark"] .form-group--error .form-group__input-wrap textarea {
   border-color: rgb(185 28 28);
+  background-color: rgb(55 38 38);
+  transition: border-color 0.3s ease 1s, background-color 0.2s ease;
 }
 
 html[data-theme="dark"] .form-group__error {
@@ -5362,8 +5414,222 @@ html[data-theme="dark"] .modal__close {
     html[data-theme="dark"] .nav__underline {
       background-color: rgb(255 255 255 / 1);
     }
+
+    /* TabNav — Apple-style platter (inlined from tabnav.css) */
+    .tabnav-platter {
+      --tabnav-bg: #f5f5f7;
+      --tabnav-tab-color: #6e6e73;
+      --tabnav-tab-hover-color: #1d1d1f;
+      --tabnav-active-bg: #1d1d1f;
+      --tabnav-active-color: #fff;
+      --tabnav-active-shadow:
+        0 1px 4px rgba(0, 0, 0, 0.12),
+        0 0.5px 1px rgba(0, 0, 0, 0.08);
+      --tabnav-arrow-bg: rgba(0, 0, 0, 0.06);
+      --tabnav-arrow-hover-bg: rgba(0, 0, 0, 0.1);
+      --tabnav-arrow-color: #1d1d1f;
+      --tabnav-gradient-from: #f5f5f7;
+      --tabnav-focus-ring: #0071e3;
+    }
+    html[data-theme="dark"] .tabnav-platter {
+      --tabnav-bg: rgba(30, 30, 30, 0.8);
+      --tabnav-tab-color: #86868b;
+      --tabnav-tab-hover-color: #f5f5f7;
+      --tabnav-active-bg: #f5f5f7;
+      --tabnav-active-color: #1d1d1f;
+      --tabnav-active-shadow:
+        0 1px 4px rgba(0, 0, 0, 0.3),
+        0 0.5px 1px rgba(0, 0, 0, 0.2);
+      --tabnav-arrow-bg: rgba(255, 255, 255, 0.08);
+      --tabnav-arrow-hover-bg: rgba(255, 255, 255, 0.14);
+      --tabnav-arrow-color: #f5f5f7;
+      --tabnav-gradient-from: rgb(30, 30, 30);
+    }
+    .tabnav-platter {
+      position: relative;
+      display: inline-flex;
+      max-width: 100%;
+      border-radius: 9999px;
+      background: var(--tabnav-bg);
+    }
+    .tabnav-viewport {
+      overflow: hidden;
+      border-radius: 9999px;
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+    .tabnav-scroller {
+      position: relative;
+      display: flex;
+      gap: 2px;
+      padding: 4px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-x;
+      scroll-behavior: smooth;
+    }
+    .tabnav-indicator {
+      position: absolute;
+      left: 0;
+      top: 4px;
+      bottom: 4px;
+      width: var(--indicator-w, 0);
+      transform: translateX(var(--indicator-x, 0));
+      border-radius: 9999px;
+      background: var(--tabnav-active-bg);
+      box-shadow: var(--tabnav-active-shadow);
+      pointer-events: none;
+      z-index: 0;
+      transition:
+        transform 320ms cubic-bezier(0.25, 0.1, 0.25, 1),
+        width 320ms cubic-bezier(0.25, 0.1, 0.25, 1),
+        box-shadow 320ms cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+    .tabnav-scroller:not(.tabnav-indicator-ready) .tabnav-indicator {
+      transition: none;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .tabnav-indicator {
+        transition-duration: 1ms;
+      }
+    }
+    .tabnav-scroller::-webkit-scrollbar {
+      display: none;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .tabnav-scroller {
+        scroll-behavior: auto;
+      }
+    }
+    .tabnav-tab {
+      position: relative;
+      z-index: 1;
+      appearance: none;
+      -webkit-appearance: none;
+      border: none;
+      white-space: nowrap;
+      border-radius: 9999px;
+      padding-inline: 18px;
+      padding-block: 7px;
+      font: inherit;
+      font-size: 0.875rem;
+      line-height: 1.25;
+      background: transparent;
+      color: var(--tabnav-tab-color);
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: color 0.25s ease;
+    }
+    .tabnav-tab:hover {
+      color: var(--tabnav-tab-hover-color);
+    }
+    .tabnav-tab:focus-visible {
+      outline: 2px solid var(--tabnav-focus-ring);
+      outline-offset: -2px;
+      border-radius: 9999px;
+    }
+    .tabnav-tab.is-active {
+      color: var(--tabnav-active-color);
+    }
+    .tabnav-tab.is-active:hover {
+      color: var(--tabnav-active-color);
+    }
+    .tabnav-tab:active:not([disabled]):not([aria-disabled="true"]) {
+      opacity: 0.7;
+    }
+    .tabnav-tab[disabled],
+    .tabnav-tab[aria-disabled="true"] {
+      cursor: not-allowed;
+      opacity: 0.4;
+    }
+    .tabnav-tab[disabled]:hover,
+    .tabnav-tab[aria-disabled="true"]:hover {
+      color: var(--tabnav-tab-color);
+    }
+    .tabnav-arrow {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 56px;
+      display: flex;
+      align-items: center;
+      z-index: 2;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .tabnav-arrow.is-left {
+      left: 0;
+      justify-content: flex-start;
+      padding-inline-start: 6px;
+      border-radius: 9999px 0 0 9999px;
+    }
+    .tabnav-arrow.is-right {
+      right: 0;
+      justify-content: flex-end;
+      padding-inline-end: 6px;
+      border-radius: 0 9999px 9999px 0;
+    }
+    .tabnav-arrow::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      border-radius: inherit;
+    }
+    .tabnav-arrow.is-left::before {
+      background: linear-gradient(
+        to right,
+        var(--tabnav-gradient-from) 35%,
+        transparent
+      );
+    }
+    .tabnav-arrow.is-right::before {
+      background: linear-gradient(
+        to left,
+        var(--tabnav-gradient-from) 35%,
+        transparent
+      );
+    }
+    .tabnav-arrow-btn {
+      position: relative;
+      z-index: 1;
+      pointer-events: auto;
+      appearance: none;
+      -webkit-appearance: none;
+      border: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 9999px;
+      background: var(--tabnav-arrow-bg);
+      color: var(--tabnav-arrow-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    .tabnav-arrow-btn:hover {
+      background: var(--tabnav-arrow-hover-bg);
+    }
+    .tabnav-arrow-btn:focus-visible {
+      outline: 2px solid var(--tabnav-focus-ring);
+      outline-offset: 1px;
+    }
+    .tabnav-arrow-btn:active {
+      background: var(--tabnav-arrow-hover-bg);
+      transform: scale(0.9);
+    }
+    .tabnav-arrow-btn svg {
+      display: block;
+    }
+    .tabnav-platter.has-left-overflow .tabnav-arrow.is-left,
+    .tabnav-platter.has-right-overflow .tabnav-arrow.is-right {
+      opacity: 1;
+    }
     </style>
-    <link rel="stylesheet" href="./tabnav.css" />
     <script defer src="./tabnav.js"></script>
     <script defer src="./peek-gallery.js?v=20260215"></script>
     <script defer src="./app.js"></script>
@@ -5416,6 +5682,8 @@ html[data-theme="dark"] .modal__close {
             ./assets/images/hero-mountains.jpg 2000w
           "
           sizes="100vw"
+          width="1280"
+          height="853"
           alt=""
           decoding="async"
           fetchpriority="high"
@@ -5431,7 +5699,7 @@ html[data-theme="dark"] .modal__close {
               Topowy rower. Lokalny przewodnik, który zna każdy metr trasy. Mniej kompromisów. Więcej gór. Więcej prędkości. Więcej wolności. Wsiadasz. I&nbsp;dzień od razu wchodzi na wyższy poziom.
             </p>
             <div class="hero__actions">
-              <a class="button button--primary" href="#equipment">Wyrusz z nami w podróż</a>
+              <a class="button button--primary" href="#gorska-przygoda">Wyrusz z nami w podróż</a>
             </div>
           </div>
         </div>
@@ -5490,28 +5758,84 @@ html[data-theme="dark"] .modal__close {
       </div>
 
       <section class="feature-band" aria-label="Wyróżniki Beskider">
+        <h2 class="sr-only">Wyróżniki Beskider</h2>
         <div class="feature-band__inner">
           <div class="feature-grid">
             <div class="feature-card flex items-start justify-between gap-3">
               <div>
-                <strong>Wysokie modele e-MTB</strong>
-                <p class="text-sm text-gray-500">Nowa generacja elektrycznych MTB</p>
+                <strong>Premium</strong>
+                <p class="text-sm text-gray-500">Rowery elektryczne najnowszej generacji. Gotowe na każdą trasę.</p>
               </div>
-              <span aria-hidden="true">⚡️</span>
+              <i class="feature-card__icon fa-solid fa-bolt text-xl" aria-hidden="true"></i>
             </div>
             <div class="feature-card flex items-start justify-between gap-3">
               <div>
-                <strong>Super jakość premium</strong>
-                <p class="text-sm text-gray-500">Serwis, kontrola i standard klasy top</p>
+                <strong>Perfekcja</strong>
+                <p class="text-sm text-gray-500">Każdy rower serwisowany i sprawdzany przed wyjazdem.</p>
               </div>
-              <span aria-hidden="true">✨</span>
+              <i class="feature-card__icon fa-solid fa-star text-xl" aria-hidden="true"></i>
             </div>
             <div class="feature-card flex items-start justify-between gap-3">
               <div>
-                <strong>Odbiór od 8:00</strong>
-                <p class="text-sm text-gray-500">Bielsko-Biała</p>
+                <strong>Przewodnicy</strong>
+                <p class="text-sm text-gray-500">Lokalni, doświadczeni i przyjaźni przewodnicy.</p>
               </div>
-              <span aria-hidden="true">📍</span>
+              <i class="feature-card__icon fa-solid fa-users text-xl" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="gorska-przygoda" aria-labelledby="gorska-przygoda-title">
+        <div class="section__head">
+          <h2 id="gorska-przygoda-title">Górska przygoda na najwyższym poziomie</h2>
+        </div>
+        <div class="about">
+          <div class="about__content">
+            <p>
+              Wybierasz kategorię — my przygotowujemy resztę. Beskider to sprawdzony, wysokiej klasy sprzęt gotowy od pierwszego metra. Rowery po potwierdzeniu, zawsze z przewodnikiem. Nie wypożyczasz tylko sprzętu: <strong>otrzymujesz kompletną, bezpieczną górską przygodę.</strong>
+            </p>
+            <p>
+              Pozostałe kategorie w przygotowaniu. Wkrótce: walizki rowerowe, boxy dachowe i inne wyposażenie do podróży bez kompromisów.
+            </p>
+            <div class="equipment-intro">
+              <div>
+                <h3>Rowery elektryczne</h3>
+                <p>
+                  Moc, kontrola i zasięg — nowe trasy na wyciągnięcie ręki. E-bike'i serwisowane i konfigurowane przed każdym wyjazdem. Wsiadasz i jedziesz; przewodnik prowadzi najlepszymi ścieżkami Beskidów.
+                </p>
+              </div>
+              <div>
+                <h3>Akcesoria</h3>
+                <p>
+                  Większe bezpieczeństwo i komfort jazdy.
+                </p>
+                <ul>
+                  <li>Kask dopasowany do trasy i stylu jazdy</li>
+                  <li>Mini zestaw serwisowy</li>
+                  <li>Konsultacje odnośnie sugerowanej trasy</li>
+                  <li>Prowadzenie trasy przez doświadczonego lokalnego przewodnika</li>
+                </ul>
+                <p>Beskider to sprzęt bez zarzutu i przewodnik znający każdy zakręt. Wsiadasz — reszta po naszej stronie.</p>
+              </div>
+            </div>
+          </div>
+          <div class="about__collage" aria-hidden="true">
+            <div class="about__collage__col">
+              <div class="about__collage-item">
+                <img src="./assets/images/gallery-mgla-beskidy.png" alt="" width="1024" height="768" loading="lazy" decoding="async" />
+              </div>
+              <div class="about__collage-item">
+                <img src="./assets/images/gallery-dwoch-rowerzystow-zachod.png" alt="" width="1024" height="768" loading="lazy" decoding="async" />
+              </div>
+            </div>
+            <div class="about__collage__col">
+              <div class="about__collage-item">
+                <img src="./assets/images/gallery-portret-rowerzysta.png" alt="" width="1024" height="768" loading="lazy" decoding="async" />
+              </div>
+              <div class="about__collage-item">
+                <img src="./assets/images/gallery-rower-nad-woda.png" alt="" width="768" height="1024" loading="lazy" decoding="async" />
+              </div>
             </div>
           </div>
         </div>
@@ -5519,34 +5843,7 @@ html[data-theme="dark"] .modal__close {
 
       <section class="section" id="equipment" aria-labelledby="equipment-title">
         <div class="section__head">
-          <h2 id="equipment-title">Górska przygoda</h2>
-          <p>
-            Wybierasz kategorię. My przygotowujemy resztę. Każdy element oferty Beskider to sprawdzony, wysokiej klasy sprzęt, gotowy do jazdy od pierwszego metra. Rowery dostępne są po wcześniejszym potwierdzeniu i zawsze w pakiecie z lokalnym przewodnikiem. Nie wypożyczasz tylko sprzętu. <strong>Otrzymujesz kompletną, bezpieczną górską przygodę.</strong>
-          </p>
-          <p>
-            Pozostałe kategorie są w przygotowaniu. Wkrótce udostępnimy walizki rowerowe, boxy dachowe i kolejne elementy wyposażenia, które pozwolą podróżować bez kompromisów.
-          </p>
-        </div>
-        <div class="equipment-intro">
-          <div>
-            <h3>Rowery elektryczne</h3>
-            <p>
-              Moc, kontrola i zasięg, który otwiera nowe trasy. Nasze e-bike'i są regularnie serwisowane i konfigurowane przed każdym wyjazdem. Wsiadasz i jedziesz, a przewodnik prowadzi Cię najlepszymi ścieżkami Beskidów.
-            </p>
-          </div>
-          <div>
-            <h3>Akcesoria</h3>
-            <p>
-              Detale, które zwiększają bezpieczeństwo i komfort jazdy.
-            </p>
-            <ul>
-              <li>Kask dopasowany do trasy i stylu jazdy</li>
-              <li>Mini zestaw serwisowy</li>
-              <li>Konsultacje odnośnie sugerowanej trasy</li>
-              <li>Prowadzenie trasy przez doświadczonego lokalnego przewodnika</li>
-            </ul>
-            <p>Beskider to sprzęt, który działa bez zarzutu i przewodnik, który zna każdy zakręt. Wsiadasz. Reszta jest po naszej stronie.</p>
-          </div>
+          <h2 id="equipment-title">Sprzęt</h2>
         </div>
         <div class="tabs-sticky-wrap">
           <div class="tabnav-platter">
@@ -5611,6 +5908,8 @@ html[data-theme="dark"] .modal__close {
                     ./assets/images/turbo-levo-3-expert-1-1280.png 1280w,
                     ./assets/images/turbo-levo-3-expert-1.png 4000w
                   "
+                  width="640"
+                  height="355"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   alt="Turbo Levo 3 Expert T-Type"
                   loading="lazy"
@@ -5635,6 +5934,8 @@ html[data-theme="dark"] .modal__close {
                     ./assets/images/turbo-levo-3-comp-1-1280.png 1280w,
                     ./assets/images/turbo-levo-3-comp-1.png 4000w
                   "
+                  width="640"
+                  height="351"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   alt="Turbo Levo 3 Comp Carbon"
                   loading="lazy"
@@ -5659,6 +5960,8 @@ html[data-theme="dark"] .modal__close {
                     ./assets/images/s-works-levo-1-1280.png 1280w,
                     ./assets/images/s-works-levo-1.png 4000w
                   "
+                  width="640"
+                  height="356"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   alt="S-Works Turbo Levo G3"
                   loading="lazy"
@@ -5683,6 +5986,8 @@ html[data-theme="dark"] .modal__close {
                     ./assets/images/turbo-levo-comp-1-1280.png 1280w,
                     ./assets/images/turbo-levo-comp-1.png 3200w
                   "
+                  width="640"
+                  height="351"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   alt="Turbo Levo Comp Carbon"
                   loading="lazy"
@@ -5711,6 +6016,8 @@ html[data-theme="dark"] .modal__close {
                     ./assets/images/tarmac-sl8-1-1280.png 1280w,
                     ./assets/images/tarmac-sl8-1.png 4000w
                   "
+                  width="640"
+                  height="388"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   alt="S-Works Tarmac SL8 – SRAM RED AXS"
                   loading="lazy"
@@ -5735,6 +6042,8 @@ html[data-theme="dark"] .modal__close {
                     ./assets/images/aethos-1-1280.png 1280w,
                     ./assets/images/aethos-1.png 4000w
                   "
+                  width="640"
+                  height="393"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   alt="S-Works Aethos – SRAM Red eTap AXS"
                   loading="lazy"
@@ -6276,18 +6585,18 @@ html[data-theme="dark"] .modal__close {
           <div class="about__collage" aria-hidden="true">
             <div class="about__collage__col">
               <div class="about__collage-item">
-                <img src="./assets/images/gallery-mgla-beskidy.png" alt="" loading="lazy" decoding="async" />
+                <img src="./assets/images/gallery-mgla-beskidy.png" alt="" width="1024" height="768" loading="lazy" decoding="async" />
               </div>
               <div class="about__collage-item">
-                <img src="./assets/images/gallery-dwoch-rowerzystow-zachod.png" alt="" loading="lazy" decoding="async" />
+                <img src="./assets/images/gallery-dwoch-rowerzystow-zachod.png" alt="" width="1024" height="768" loading="lazy" decoding="async" />
               </div>
             </div>
             <div class="about__collage__col">
               <div class="about__collage-item">
-                <img src="./assets/images/gallery-portret-rowerzysta.png" alt="" loading="lazy" decoding="async" />
+                <img src="./assets/images/gallery-portret-rowerzysta.png" alt="" width="1024" height="768" loading="lazy" decoding="async" />
               </div>
               <div class="about__collage-item">
-                <img src="./assets/images/gallery-rower-nad-woda.png" alt="" loading="lazy" decoding="async" />
+                <img src="./assets/images/gallery-rower-nad-woda.png" alt="" width="768" height="1024" loading="lazy" decoding="async" />
               </div>
             </div>
           </div>
@@ -6305,6 +6614,8 @@ html[data-theme="dark"] .modal__close {
                 class="guide-card__image"
                 src="./assets/images/guide-pawel-nowak.png"
                 alt="Paweł Nowak, przewodnik MTB w górach"
+                width="1080"
+                height="1080"
                 loading="lazy"
                 decoding="async"
               />
@@ -6320,6 +6631,8 @@ html[data-theme="dark"] .modal__close {
                 class="guide-card__image"
                 src="./assets/images/guide-klaudia-mec.png"
                 alt="Klaudia Mec, przewodniczka e-MTB na szlaku"
+                width="1080"
+                height="1080"
                 loading="lazy"
                 decoding="async"
               />
@@ -6335,6 +6648,8 @@ html[data-theme="dark"] .modal__close {
                 class="guide-card__image"
                 src="./assets/images/guide-anna-zielinska.png"
                 alt="Anna Zielińska, przewodniczka górska na grani"
+                width="1080"
+                height="1080"
                 loading="lazy"
                 decoding="async"
               />
@@ -6653,6 +6968,7 @@ html[data-theme="dark"] .modal__close {
             <div class="footer__links-group">
               <span class="footer__group-label">Oferta</span>
               <ul class="footer__links">
+                <li><a href="#gorska-przygoda">Górska przygoda na najwyższym poziomie</a></li>
                 <li><a href="#equipment">Sprzęt</a></li>
                 <li><a href="#routes">Trasy</a></li>
                 <li><a href="#rules">Zasady</a></li>
@@ -6811,6 +7127,8 @@ html[data-theme="dark"] .modal__close {
               ./assets/images/turbo-levo-3-expert-1.png 4000w
             "
             sizes="(max-width: 768px) 90vw, 50vw"
+            width="1280"
+            height="710"
             alt="Turbo Levo 3 Expert T-Type"
             data-gallery-main
             loading="lazy"
@@ -6825,6 +7143,8 @@ html[data-theme="dark"] .modal__close {
                   ./assets/images/turbo-levo-3-expert-1-640.png 640w
                 "
                 sizes="80px"
+                width="320"
+                height="177"
                 alt="Widok 1"
                 loading="lazy"
               />
@@ -6837,6 +7157,8 @@ html[data-theme="dark"] .modal__close {
                   ./assets/images/turbo-levo-3-expert-2-640.jpg 640w
                 "
                 sizes="80px"
+                width="320"
+                height="262"
                 alt="Widok 2"
                 loading="lazy"
               />
@@ -6849,6 +7171,8 @@ html[data-theme="dark"] .modal__close {
                   ./assets/images/turbo-levo-3-expert-3-640.jpg 640w
                 "
                 sizes="80px"
+                width="320"
+                height="248"
                 alt="Widok 3"
                 loading="lazy"
               />
@@ -6894,6 +7218,8 @@ html[data-theme="dark"] .modal__close {
               ./assets/images/turbo-levo-3-comp-1.png 4000w
             "
             sizes="(max-width: 768px) 90vw, 50vw"
+            width="1280"
+            height="702"
             alt="Turbo Levo 3 Comp Carbon"
             data-gallery-main
             loading="lazy"
@@ -6908,6 +7234,8 @@ html[data-theme="dark"] .modal__close {
                   ./assets/images/turbo-levo-3-comp-1-640.png 640w
                 "
                 sizes="80px"
+                width="320"
+                height="175"
                 alt="Widok 1"
                 loading="lazy"
               />
@@ -6920,6 +7248,8 @@ html[data-theme="dark"] .modal__close {
                   ./assets/images/turbo-levo-3-comp-2-640.jpg 640w
                 "
                 sizes="80px"
+                width="320"
+                height="252"
                 alt="Widok 2"
                 loading="lazy"
               />
@@ -6932,6 +7262,8 @@ html[data-theme="dark"] .modal__close {
                   ./assets/images/turbo-levo-3-comp-3-640.jpg 640w
                 "
                 sizes="80px"
+                width="320"
+                height="291"
                 alt="Widok 3"
                 loading="lazy"
               />
@@ -6977,6 +7309,8 @@ html[data-theme="dark"] .modal__close {
               ./assets/images/s-works-levo-1.png 4000w
             "
             sizes="(max-width: 768px) 90vw, 50vw"
+            width="1280"
+            height="712"
             alt="S-Works Turbo Levo G3"
             data-gallery-main
             loading="lazy"
@@ -6991,6 +7325,8 @@ html[data-theme="dark"] .modal__close {
                   ./assets/images/s-works-levo-1-640.png 640w
                 "
                 sizes="80px"
+                width="320"
+                height="178"
                 alt="Widok 1"
                 loading="lazy"
               />
@@ -7003,6 +7339,8 @@ html[data-theme="dark"] .modal__close {
                   ./assets/images/s-works-levo-2-640.jpg 640w
                 "
                 sizes="80px"
+                width="320"
+                height="265"
                 alt="Widok 2"
                 loading="lazy"
               />
@@ -7015,6 +7353,8 @@ html[data-theme="dark"] .modal__close {
                   ./assets/images/s-works-levo-3-640.jpg 640w
                 "
                 sizes="80px"
+                width="320"
+                height="252"
                 alt="Widok 3"
                 loading="lazy"
               />
@@ -7060,6 +7400,8 @@ html[data-theme="dark"] .modal__close {
               ./assets/images/turbo-levo-comp-1.png 3200w
             "
             sizes="(max-width: 768px) 90vw, 50vw"
+            width="1280"
+            height="702"
             alt="Turbo Levo Comp Carbon"
             data-gallery-main
             loading="lazy"
@@ -7074,6 +7416,8 @@ html[data-theme="dark"] .modal__close {
                   ./assets/images/turbo-levo-comp-1-640.png 640w
                 "
                 sizes="80px"
+                width="320"
+                height="176"
                 alt="Widok 1"
                 loading="lazy"
               />
@@ -7086,6 +7430,8 @@ html[data-theme="dark"] .modal__close {
                   ./assets/images/turbo-levo-comp-2-640.jpg 640w
                 "
                 sizes="80px"
+                width="320"
+                height="180"
                 alt="Widok 2"
                 loading="lazy"
               />
@@ -7098,6 +7444,8 @@ html[data-theme="dark"] .modal__close {
                   ./assets/images/turbo-levo-comp-3-640.jpg 640w
                 "
                 sizes="80px"
+                width="320"
+                height="180"
                 alt="Widok 3"
                 loading="lazy"
               />
