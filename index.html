@@ -861,17 +861,26 @@ p {
   align-items: center;
   justify-content: flex-start;
   gap: 0.75rem;
-  min-height: 3rem;
-  padding: 0.75rem 1rem;
-  border-bottom-width: 1px;
-  border-color: rgb(229 231 235 / var(--tw-border-opacity, 1));
-  --tw-border-opacity: 1;
   font-size: 0.875rem;
   line-height: 1.25rem;
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity, 1));
   text-align: left;
   transition: color 0.2s ease, opacity 0.15s ease;
+}
+
+@media (min-width: 768px) {
+  .nav__menu a {
+    padding: 0.25rem 0;
+  }
+}
+
+.nav__menu.is-open a {
+  min-height: 3rem;
+  padding: 0.75rem 1rem;
+  border-bottom-width: 1px;
+  border-color: rgb(229 231 235 / var(--tw-border-opacity, 1));
+  --tw-border-opacity: 1;
 }
 
 .nav__menu a i {
@@ -903,8 +912,11 @@ p {
 .nav__menu a.is-active {
   --tw-border-opacity: 1;
   --tw-text-opacity: 1;
-  font-weight: 600;
   color: rgb(23 23 23 / var(--tw-text-opacity, 1));
+}
+
+.nav__menu.is-open a.is-active {
+  font-weight: 600;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity, 1));
   --tw-bg-opacity: 1;
   border-left-width: 3px;
@@ -4312,11 +4324,14 @@ html[data-theme="dark"] .nav__menu a:hover {
 
 html[data-theme="dark"] .nav__menu a.is-active {
   --tw-border-opacity: 1;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+html[data-theme="dark"] .nav__menu.is-open a.is-active {
   border-color: rgb(38 38 38 / var(--tw-border-opacity, 1));
   border-left-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
-  --tw-text-opacity: 1;
   font-weight: 600;
-  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
   background-color: rgb(38 38 38 / var(--tw-bg-opacity, 1));
   --tw-bg-opacity: 1;
   padding-left: calc(1rem - 3px);
