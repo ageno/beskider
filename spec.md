@@ -77,10 +77,13 @@ Lista sekcji w kolejności na stronie (źródło prawdy przy code review i plano
 - Hero
 - CTA Beskider+ (karta z grafiką Memphis; nagłówek, opis, przycisk „Dołącz do Beskider+"; klikalna karta)
 - Wyróżniki (feature-band)
-- Sprzęt
-  - Nagłówek sekcji + intro
-  - Rowery elektryczne (intro: E-MTB, E-ROAD BIKE)
-  - Akcesoria w cenie (kask, zestaw naprawczy, konsultacje tras)
+- Górska przygoda na najwyższym poziomie (#gorska-przygoda)
+  - Nagłówek sekcji + intro (kompletna przygoda, sprzęt + przewodnik)
+  - Układ jak O nas: treść (Rowery elektryczne, Akcesoria) + kolaż zdjęć (te same co w O nas: gallery-mgla-beskidy, gallery-dwoch-rowerzystow-zachod, gallery-portret-rowerzysta, gallery-rower-nad-woda)
+  - Rowery elektryczne (intro: moc, zasięg, serwis, przewodnik)
+  - Akcesoria w cenie (kask, zestaw naprawczy, konsultacje tras, przewodnik)
+- Sprzęt (#equipment)
+  - Nagłówek „Sprzęt”
   - Tabs (kategorie: Rowery eMTB, Rowery Szosowe, Inne)
   - Karty produktów (grid)
 - CTA
@@ -360,7 +363,7 @@ Karty w siatce (rules-grid):
   - Wiadomość (textarea, opcjonalne)
   - Warunki: checkbox* (akceptacja regulaminu, link do modala Regulamin), checkbox (zgoda marketingowa – Ageno sp. z o.o.)
   - Przycisk: Wyślij zapytanie
-- **Walidacja**: pola wymagane, formaty (email, tel, kod XX-XXX, NIP 10 cyfr); komunikaty pod polem (np. „Wprowadzona ilość znaków jest niepoprawna”); stan valid = zielona ikona check, invalid = czerwony obrys + ikona wykrzyknik
+- **Walidacja**: pola wymagane, formaty (email, tel, kod XX-XXX, NIP 10 cyfr); komunikaty pod polem (np. „Wprowadzona ilość znaków jest niepoprawna”); stan valid = zielona ikona check + zielony obrys pola (light: rgb(52 105 80), dark: rgb(74 222 128)), invalid = czerwony obrys + ikona wykrzyknik; pola w stanie błędu mają delikatny czerwony odcień tła (light: rgb(254 242 242), dark: rgb(55 38 38)). Pola już wypełnione mają delikatne szare tło (light: rgb(243 244 246), dark: rgb(48 48 48)), aby odróżnić je od pustych. Walidacja uruchamiana jest również po załadowaniu strony (np. po odświeżeniu) dla wszystkich pól, które mają zapisaną wartość w localStorage, aby od razu pokazać stan valid/error.
 - **Panel „Świetny wybór!”**: nagłówek + 4 punkty z zieloną ikoną check (sprzęt premium, obsługa, zero opłat 24h, dobry wybór)
 
 ---
@@ -449,6 +452,16 @@ Lighthouse (mobile):
 - SEO ≥ 90
 - PWA OK
 
+### 24.1 Indeksowanie (Google)
+
+Aby strona była indeksowana przez Google:
+- **robots.txt** – w katalogu głównym; `Allow: /`, wpis `Sitemap:` z pełnym URL do sitemap.
+- **sitemap.xml** – w katalogu głównym; lista URL-i (one-page: jeden wpis na stronę główną).
+- **Canonical** – w `<head>`: `<link rel="canonical" href="…">` z docelowym URL strony.
+- **Open Graph** – `og:title`, `og:description`, `og:url`, `og:type`, `og:locale`, `og:image` (udostępnianie w social media i sygnał dla wyszukiwarek).
+
+Domena produkcyjna: **https://beskider.pl**. Po wdrożeniu: dodać stronę w [Google Search Console](https://search.google.com/search-console) i przesłać sitemap (Indeksowanie → Mapy witryn): `https://beskider.pl/sitemap.xml`.
+
 ---
 
 ## 25. Bezpieczeństwo
@@ -467,6 +480,8 @@ Lighthouse (mobile):
 ├── app.js
 ├── sw.js
 ├── manifest.json
+├── robots.txt
+├── sitemap.xml
 ├── tabnav.css
 ├── tabnav.js
 ├── tabnav.html
@@ -488,7 +503,8 @@ Szybka mapa treści w `index.html` (do planowania zmian copy):
 |---------------------------|------|
 | hero | H1 (rower + przewodnik), lead, przycisk CTA |
 | feature-band | Wyróżniki (3 kolumny) |
-| equipment | Nagłówek, intro, Rowery elektryczne / Akcesoria, taby, karty produktów |
+| gorska-przygoda | Nagłówek „Górska przygoda na najwyższym poziomie”, intro, Rowery elektryczne / Akcesoria, kolaż 2×2 (zdjęcia jak O nas) |
+| equipment | Nagłówek „Sprzęt”, taby, karty produktów |
 | cta | Nagłówek, lead, przycisk |
 | jak-wynajac | 3 karty: kontakt, odbiór, co zabrać |
 | rules | Nagłówek, 3 karty zasad, przycisk regulamin |

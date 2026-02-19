@@ -6,13 +6,18 @@ Użyj przed release’em. Docelowe wartości Lighthouse: [spec.md §24](spec.md)
 
 ## Nawigacja
 
-- [ ] Linki anchor (Sprzęt, Trasy, Zasady, FAQ, O nas, Kontakt) przewijają do właściwych sekcji
+- [ ] Linki anchor (Górska przygoda na najwyższym poziomie, Sprzęt, Trasy, Zasady, FAQ, O nas, Kontakt) przewijają do właściwych sekcji
 - [ ] Aktywna zakładka w nav podświetlona (podkreślenie)
 - [ ] Mobile: hamburger otwiera/zamyka menu
 - [ ] Mobile: focus trap w otwartym menu (Tab nie ucieka poza menu)
 - [ ] Widoczne stany focus na linkach i przyciskach
 
 ---
+
+## Sekcja Górska przygoda na najwyższym poziomie
+
+- [ ] Nagłówek, intro, bloki Rowery elektryczne i Akcesoria widoczne
+- [ ] Kolaż zdjęć (jak w O nas) widoczny po prawej na desktop, pod treścią na mobile
 
 ## Sekcja Sprzęt
 

@@ -3,8 +3,9 @@
  * Dane z data-peek-gallery-config (JSON). Zgodne z designem: peek, kapsuła, a11y, reduced motion.
  */
 (function () {
-  const GAP_PX = 32;
-  const SLIDE_WIDTH_PCT_MOBILE = 0.82;
+  const GAP_PX_DESK = 32;
+  const GAP_PX_MOBILE = 12;
+  const SLIDE_WIDTH_PCT_MOBILE = 0.74;
   const SLIDE_WIDTH_PCT_TABLET = 0.78;
   const SLIDE_WIDTH_PCT_DESK = 0.7;
   const COMMIT_THRESHOLD_PCT = 0.18;
@@ -17,6 +18,10 @@
     if (viewportWidth >= 1024) return SLIDE_WIDTH_PCT_DESK;
     if (viewportWidth >= 768) return SLIDE_WIDTH_PCT_TABLET;
     return SLIDE_WIDTH_PCT_MOBILE;
+  }
+
+  function getGapPx(viewportWidth) {
+    return viewportWidth < 768 ? GAP_PX_MOBILE : GAP_PX_DESK;
   }
 
   function parseConfig(el) {
@@ -151,9 +156,14 @@
     return vw * pct;
   };
 
+  PeekGallery.prototype._getGapPx = function () {
+    return this.viewport ? getGapPx(this.viewport.offsetWidth) : GAP_PX_DESK;
+  };
+
   PeekGallery.prototype._getTrackOffsetPx = function () {
     if (!this.viewport) return 0;
     const slideWidth = this._getSlideWidthPx();
+    const gapPx = this._getGapPx();
     var slotIndex = this.index;
     if (this.loop && this.slides && this.slides.length > this.count) {
       var so = this._slotOffset != null ? this._slotOffset : 1 + this.index;
@@ -166,7 +176,7 @@
       }
       slotIndex = so;
     }
-    return slotIndex * (slideWidth + GAP_PX);
+    return slotIndex * (slideWidth + gapPx);
   };
 
   PeekGallery.prototype._renderTrack = function () {
@@ -380,10 +390,11 @@
     if (Math.abs(dx) > 5) this._pointerMoved = true;
     const vw = this.viewport.offsetWidth;
     const slideWidth = this._getSlideWidthPx();
+    const gapPx = this._getGapPx();
     const center = vw / 2 - slideWidth / 2;
     const baseTx = this._pointerStart.baseTx;
     const txMax = center;
-    const txMin = -((this.count - 1) * (slideWidth + GAP_PX)) + center;
+    const txMin = -((this.count - 1) * (slideWidth + gapPx)) + center;
     const tx = Math.max(txMin, Math.min(txMax, baseTx + dx));
     this.track.style.transform = "translate3d(" + tx + "px, 0, 0)";
   };

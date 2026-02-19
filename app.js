@@ -1,6 +1,7 @@
 const themeToggle = document.querySelector("[data-theme-toggle]");
 const navToggle = document.querySelector("[data-nav-toggle]");
 const navMenu = document.querySelector("[data-nav-menu]");
+const navBackdrop = document.querySelector("[data-nav-backdrop]");
 const navContainer = document.querySelector(".nav");
 const navUnderline = document.querySelector("[data-nav-underline]");
 const siteHeader = document.querySelector(".site-header");
@@ -55,8 +56,18 @@ const setTheme = (preference) => {
     el.classList.toggle("is-active", active);
   });
   const themePlatter = document.querySelector("[data-theme-option]")?.closest(".tabnav-platter");
-  if (themePlatter?._tabnav?.updateIndicator) {
-    themePlatter._tabnav.updateIndicator();
+  if (themePlatter) {
+    requestAnimationFrame(() => {
+      if (themePlatter._tabnav?.updateIndicator) {
+        themePlatter._tabnav.updateIndicator();
+      } else {
+        setTimeout(() => {
+          if (themePlatter._tabnav?.updateIndicator) {
+            themePlatter._tabnav.updateIndicator();
+          }
+        }, 50);
+      }
+    });
   }
 };
 
@@ -101,7 +112,14 @@ const trapFocus = (container, closeOnEscape = false) => {
 };
 
 const openMenu = () => {
+  if (siteHeader && window.matchMedia("(max-width: 767px)").matches) {
+    siteHeader.style.setProperty("--site-header-height", `${siteHeader.offsetHeight}px`);
+  }
   navMenu.classList.add("is-open");
+  if (navBackdrop) {
+    navBackdrop.classList.add("is-visible");
+    navBackdrop.setAttribute("aria-hidden", "false");
+  }
   navToggle.setAttribute("aria-expanded", "true");
   navToggle.setAttribute("aria-label", "Zamknij menu");
   releaseFocus = trapFocus(navMenu);
@@ -109,6 +127,10 @@ const openMenu = () => {
 
 const closeMenu = () => {
   navMenu.classList.remove("is-open");
+  if (navBackdrop) {
+    navBackdrop.classList.remove("is-visible");
+    navBackdrop.setAttribute("aria-hidden", "true");
+  }
   navToggle.setAttribute("aria-expanded", "false");
   navToggle.setAttribute("aria-label", "Otwórz menu");
   if (releaseFocus) {
@@ -510,6 +532,13 @@ if (navToggle && navMenu) {
     }
     updateHeaderState();
   });
+
+  if (navBackdrop) {
+    navBackdrop.addEventListener("click", () => {
+      closeMenu();
+      updateHeaderState();
+    });
+  }
 
   navMenu.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
