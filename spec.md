@@ -107,7 +107,7 @@ Lista sekcji w kolejności na stronie (źródło prawdy przy code review i plano
   - Karty: E-mail, Social media, Lokalizacja
   - Formularz zapytania (Dane wypożyczającego, Adres rozliczeniowy, Wiadomość, Warunki)
   - Panel „Świetny wybór!” (po prawej na desktop)
-- Stopka (układ inspirowany Unsplash press: logo Beskider [SVG, light/dark], tagline „Górska przygoda z lokalnym przewodnikiem”, kolumny linków Oferta / Firma / Warunki / Materiały prasowe [pobierz logo jasne, pobierz logo ciemne], przełącznik motywu Auto/Ciemny/Jasny, ikony social; na dole copyright i dane firmy)
+- Stopka (układ inspirowany Unsplash press: logo Beskider [SVG, light/dark], tagline „Górska przygoda z lokalnym przewodnikiem”, kolumny linków Oferta / Firma / Warunki / Materiały prasowe [pobierz logo jasne, pobierz logo ciemne, Logo beskider (Figma)], przełącznik motywu Auto/Ciemny/Jasny, ikony social; na dole copyright i dane firmy)
 - Modale: Produkt, Regulamin, Polityka
 - Strona błędu 404 (404.html): nagłówek z logo (link do strony głównej), komunikat „Strona nie została znaleziona”, CTA „Wróć na stronę główną”; spójna z motywem jasnym/ciemnym (localStorage `beskider-theme`).
 
