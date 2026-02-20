@@ -40,7 +40,7 @@ Otwórz `http://localhost:8000`.
 
 ## Ikony
 - **PWA:** `assets/icons/beskider-logo-fav.svg` (favicon i ikona „any” w manifeście), PNG 192/512 (`icon-192.png`, `icon-512.png`) w `manifest.json` i apple-touch-icon.
-- **Heroicons:** `assets/icons/heroicons/24/outline/` i `24/solid/` (324 SVG w każdej wersji). Instrukcja: [assets/icons/heroicons/README.md](assets/icons/heroicons/README.md).
+- **Font Awesome:** lokalnie w `assets/fontawesome/` (css/all.min.css, webfonts); ikony `fa-solid fa-*` / `fa-brands fa-*`.
 
 ## Checklist po zmianach
 - Nawigacja (Sprzęt, Trasy, Zasady, FAQ, O nas, Kontakt) i aktywne podkreślenie.

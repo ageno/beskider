@@ -28,9 +28,6 @@
   function initTabNav(platter) {
     var scroller = platter.querySelector(".tabnav-scroller");
     if (!scroller) return;
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/a5533262-807e-410b-97e3-25468d550b5c',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'c75b25'},body:JSON.stringify({sessionId:'c75b25',location:'tabnav.js:29',message:'initTabNav - initial styles',data:{scrollerBg:window.getComputedStyle(scroller).backgroundColor,viewportBg:window.getComputedStyle(scroller.parentElement).backgroundColor,platterBg:window.getComputedStyle(platter).backgroundColor,bodyBg:window.getComputedStyle(document.body).backgroundColor},timestamp:Date.now(),runId:'run1',hypothesisId:'A,B,C,D,E'})}).catch(()=>{});
-    // #endregion
 
     var leftBtn = platter.querySelector(".tabnav-arrow.is-left .tabnav-arrow-btn");
     var rightBtn = platter.querySelector(".tabnav-arrow.is-right .tabnav-arrow-btn");
@@ -68,9 +65,6 @@
     }
 
     scroller.addEventListener("scroll", function () {
-      // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/a5533262-807e-410b-97e3-25468d550b5c',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'c75b25'},body:JSON.stringify({sessionId:'c75b25',location:'tabnav.js:67',message:'Scroll event on tabnav-scroller',data:{scrollLeft:scroller.scrollLeft,computedBg:window.getComputedStyle(scroller).backgroundColor,computedBgViewport:window.getComputedStyle(scroller.parentElement).backgroundColor,computedBgPlatter:window.getComputedStyle(platter).backgroundColor},timestamp:Date.now(),runId:'run1',hypothesisId:'A,B,C,D'})}).catch(()=>{});
-      // #endregion
       requestAnimationFrame(updateOverflow);
     }, { passive: true });
 
