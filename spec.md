@@ -468,7 +468,7 @@ Domena produkcyjna: **https://beskider.pl**. Po wdrożeniu: dodać stronę w [Go
 
 ## 25. Bezpieczeństwo
 
-- CSP: script-src i frame-src dla Google Tag Manager; connect-src i img-src dla Google Analytics; Formspree
+- CSP: script-src i frame-src dla Google Tag Manager i Cookiebot (consent.cookiebot.com); connect-src i img-src dla Google Analytics, Cookiebot, Formspree; hashe dla inline GTM
 - HSTS
 - No inline scripts (docelowo)
 - Minimal JS
