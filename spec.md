@@ -74,7 +74,7 @@ Projekt realizowany jest jako **statyczna aplikacja PWA**, bez backendu, z myśl
 
 Lista sekcji w kolejności na stronie (źródło prawdy przy code review i planowaniu treści):
 
-- Navigation
+- Navigation (logo, linki, po prawej przycisk CTA jak w sekcji CTA: „Jadę! / Cisnę!…” → #contact)
 - Hero
 - CTA Beskider+ (karta z grafiką Memphis; nagłówek, opis, przycisk „Dołącz do Beskider+"; klikalna karta)
 - Wyróżniki (feature-band)
@@ -118,6 +118,7 @@ Przy każdej nowej sekcji lub nowym linku w nav należy zaktualizować niniejsz�
 ## 7. Nawigacja
 
 - Brand w nav: logo Beskider (SVG) – wersja jasna w light mode, wersja ciemna w dark mode.
+- Po prawej stronie nav: przycisk CTA (ten sam styl co w sekcji CTA – rotujące słowa Jadę! / Cisnę! / Lecę! / Prutuję! / Miażdżę!), link do #contact.
 - Sticky
 - Glassmorphism:
   - backdrop-filter: blur()
@@ -287,10 +288,10 @@ Zawartość:
 
 ## 13. CTA
 
-- Jeden komponent
-- Scroll do Sprzęt
-- Spójny copy
-- Widoczny wielokrotnie
+- Jeden komponent; nagłówek „Jedna decyzja. Cała przygoda.”; lead: sprzęt, przewodnik, jazda, formalności/góry (4 akapity).
+- Szare tło (#f0f0f0), zaokrąglone rogi (8px); bez cienia i animacji. Układ w kolumnę: tekst, pod spodem przycisk (wyrównany do lewej). W trybie ciemnym: tło #2a2a2a, tekst jasny.
+- Przycisk prowadzi do sekcji Kontakt (#contact).
+- Trzy wystąpienia: po sekcji Sprzęt, po sekcji Trasy (przed FAQ) oraz po sekcji Przewodnicy (przed Beskider+).
 
 ---
 
@@ -507,7 +508,7 @@ Szybka mapa treści w `index.html` (do planowania zmian copy):
 | feature-band | Wyróżniki (3 kolumny) |
 | gorska-przygoda | Nagłówek „Górska przygoda na najwyższym poziomie”, intro, Rowery elektryczne / Akcesoria, kolaż 2×2 (zdjęcia jak O nas) |
 | equipment | Nagłówek „Sprzęt”, taby, karty produktów |
-| cta | Nagłówek, lead, przycisk |
+| cta | Nagłówek „Jedna decyzja. Cała przygoda.”, 4 akapity, przycisk |
 | jak-wynajac | 3 karty: kontakt, odbiór, co zabrać |
 | rules | Nagłówek, 3 karty zasad, przycisk regulamin |
 | faq | Accordion z pytaniami |

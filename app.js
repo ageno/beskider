@@ -548,6 +548,18 @@ const updateCtaRotation = () => {
   ctaPlusCard.style.setProperty("--cta-rotate", deg.toFixed(2) + "deg");
 };
 
+/* CTA section: very subtle vertical parallax (background lags on scroll), no edge gap */
+const ctaSection = document.querySelector("section.cta");
+const updateCtaParallax = () => {
+  if (!ctaSection) return;
+  const rect = ctaSection.getBoundingClientRect();
+  const vh = window.innerHeight;
+  const raw = 1 - rect.top / vh;
+  const t = Math.max(0, Math.min(1, raw));
+  const parallaxY = (t * 10).toFixed(1);
+  ctaSection.style.setProperty("--cta-parallax-y", `${parallaxY}px`);
+};
+
 const updateHeroScroll = () => {
   if (!hero || !heroMedia) return;
   const y = window.scrollY;
@@ -585,6 +597,7 @@ const handleScroll = () => {
     updateAboutTilt();
     updateHeroScroll();
     updateCtaRotation();
+    updateCtaParallax();
     scrollPending = false;
   });
 };
@@ -598,6 +611,7 @@ window.addEventListener("resize", () => {
   updateAboutTilt();
   updateActiveLink();
   updateHeroScroll();
+  updateCtaParallax();
 }, { passive: true });
 handleScroll();
 
@@ -905,11 +919,43 @@ const initContactForm = () => {
   });
 };
 
+function initCtaFlip() {
+  const buttons = document.querySelectorAll("[data-cta-flip]");
+  if (!buttons.length) return;
+  let interval = null;
+  const step = () => {
+    buttons.forEach((btn) => {
+      const strip = btn.querySelector(".cta-flip__strip");
+      const words = strip?.querySelectorAll(".cta-flip__word");
+      if (!strip || !words?.length) return;
+      const current = parseInt(strip.dataset.ctaIndex || "0", 10);
+      const next = (current + 1) % words.length;
+      strip.dataset.ctaIndex = String(next);
+      const stepPx = words[0].offsetHeight || 24;
+      strip.style.transform = `translateY(-${next * stepPx}px)`;
+    });
+  };
+  const start = () => {
+    if (!interval) interval = setInterval(step, 1000);
+  };
+  const stop = () => {
+    if (interval) {
+      clearInterval(interval);
+      interval = null;
+    }
+  };
+  document.addEventListener("visibilitychange", () => {
+    document.hidden ? stop() : start();
+  });
+  start();
+}
+
 initTabs();
 initRouteFilters();
 initAccordion();
 initModals();
 initGallery();
 initContactForm();
+initCtaFlip();
 registerServiceWorker();
 initPwaInstall();
