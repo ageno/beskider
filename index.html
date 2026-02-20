@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pl" data-theme="light" data-build="2026-02-14">
+<html lang="pl" data-theme="light" data-build="2026-02-20">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -18,10 +18,20 @@
     <meta name="theme-color" content="#1f7a4a" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; img-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://formspree.io; font-src 'self';"
+      content="default-src 'self'; img-src 'self' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; script-src 'self' https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://formspree.io; font-src 'self'; frame-src https://www.googletagmanager.com;"
     />
+    <!-- Google Tag Manager -->
+    <script>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-TCRPNG9J');
+    </script>
+    <!-- End Google Tag Manager -->
     <link rel="manifest" href="./manifest.json" />
-    <link rel="icon" href="./assets/icons/icon.svg" type="image/svg+xml" />
+    <link rel="icon" href="./assets/icons/beskider-logo-fav.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./assets/icons/icon-192.png" />
     <link rel="stylesheet" href="./assets/fontawesome/css/all.min.css" />
     <link rel="preload" href="./assets/fontawesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="./assets/fontawesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin />
@@ -775,17 +785,29 @@ p {
   animation: nav-name-glow 0.5s ease-out 0.06s forwards;
 }
 
-.nav__logo,
-        .nav__tagline {
+.nav__logo {
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav__logo-img {
+  height: 2rem;
+  width: auto;
+  display: block;
+}
+
+.nav__logo-img--dark {
   display: none;
 }
 
-.nav__brand strong {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-  font-weight: 600;
-  letter-spacing: -0.025em;
+html[data-theme="dark"] .nav__logo-img--light {
+  display: none;
 }
+
+html[data-theme="dark"] .nav__logo-img--dark {
+  display: block;
+}
+
 
 .nav__menu {
   display: none;
@@ -796,6 +818,8 @@ p {
 @media (min-width: 768px) {
   .nav__menu {
     display: flex;
+    align-items: center;
+    gap: 1.5rem;
   }
   .nav__menu a i {
     display: none;
@@ -3479,17 +3503,32 @@ fieldset.contact-form__block .contact-form__block-title {
   gap: 0.25rem;
 }
 
-.footer__logo {
-  font-weight: 700;
-  font-size: 1.125rem;
-  --tw-text-opacity: 1;
-  color: rgb(23 23 23 / var(--tw-text-opacity, 1));
-  text-decoration: none;
-  transition: color 0.2s ease;
+.footer__brand .footer__social {
+  margin-top: 0.5rem;
 }
 
-.footer__logo:hover {
-  color: rgb(31 122 74);
+.footer__logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.footer__logo-img {
+  height: 2.25rem;
+  width: auto;
+  display: block;
+}
+
+.footer__logo-img--dark {
+  display: none;
+}
+
+html[data-theme="dark"] .footer__logo-img--light {
+  display: none;
+}
+
+html[data-theme="dark"] .footer__logo-img--dark {
+  display: block;
 }
 
 .footer__tagline {
@@ -3509,6 +3548,8 @@ fieldset.contact-form__block .contact-form__block-title {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  flex: 1 1 8rem;
+  min-width: 8rem;
 }
 
 .footer__group-label {
@@ -3555,10 +3596,18 @@ fieldset.contact-form__block .contact-form__block-title {
   border-radius: 0.25rem;
 }
 
+.footer__link-meta {
+  color: rgb(156 163 175);
+}
+
 .footer__meta {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+.footer__meta .tabnav-tab i {
+  font-size: 1rem;
 }
 
 .footer__social {
@@ -3573,14 +3622,35 @@ fieldset.contact-form__block .contact-form__block-title {
   justify-content: center;
   width: 2rem;
   height: 2rem;
-  --tw-text-opacity: 1;
-  color: rgb(75 85 99 / var(--tw-text-opacity, 1));
-  transition: color 0.2s ease, opacity 0.15s ease;
+  border-radius: 0.375rem;
+  transition: color 0.2s ease, background-color 0.2s ease, opacity 0.15s ease;
 }
 
-.footer__social a:hover {
-  --tw-text-opacity: 1;
-  color: rgb(23 23 23 / var(--tw-text-opacity, 1));
+.footer__social-link--instagram {
+  color: #e1306c;
+  background-color: rgba(225, 48, 108, 0.12);
+}
+.footer__social-link--instagram:hover {
+  color: #c13584;
+  background-color: rgba(225, 48, 108, 0.2);
+}
+
+.footer__social-link--facebook {
+  color: #1877f2;
+  background-color: rgba(24, 119, 242, 0.12);
+}
+.footer__social-link--facebook:hover {
+  color: #166fe5;
+  background-color: rgba(24, 119, 242, 0.2);
+}
+
+.footer__social-link--youtube {
+  color: #ff0000;
+  background-color: rgba(255, 0, 0, 0.12);
+}
+.footer__social-link--youtube:hover {
+  color: #cc0000;
+  background-color: rgba(255, 0, 0, 0.2);
 }
 
 .footer__social a:active {
@@ -3675,6 +3745,21 @@ fieldset.contact-form__block .contact-form__block-title {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
+}
+
+.install-banner {
+  display: none;
+}
+.install-banner:not([hidden]) {
+  display: block;
+}
+.install-banner__text {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+}
+.install-banner .cookie-banner__actions {
+  margin-top: 0;
 }
 
 .modal {
@@ -4626,17 +4711,13 @@ html[data-theme="dark"] .footer__top {
   border-color: rgb(38 38 38 / var(--tw-border-opacity, 1));
 }
 
-html[data-theme="dark"] .footer__logo {
-  color: rgb(243 243 243 / var(--tw-text-opacity, 1));
-}
-
-html[data-theme="dark"] .footer__logo:hover {
-  color: rgb(134 239 172);
-}
-
 html[data-theme="dark"] .footer__tagline,
 html[data-theme="dark"] .footer__group-label {
   color: rgb(163 163 163 / var(--tw-text-opacity, 1));
+}
+
+html[data-theme="dark"] .footer__link-meta {
+  color: rgb(115 115 115);
 }
 
 html[data-theme="dark"] .footer__links a:hover,
@@ -4649,14 +4730,26 @@ html[data-theme="dark"] .footer__company {
   color: rgb(163 163 163 / var(--tw-text-opacity, 1));
 }
 
-html[data-theme="dark"] .footer__social a {
-  --tw-text-opacity: 1;
-  color: rgb(210 210 210 / var(--tw-text-opacity, 1));
+html[data-theme="dark"] .footer__social-link--instagram {
+  background-color: rgba(225, 48, 108, 0.2);
 }
-
-html[data-theme="dark"] .footer__social a:hover {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+html[data-theme="dark"] .footer__social-link--instagram:hover {
+  color: #f77737;
+  background-color: rgba(225, 48, 108, 0.3);
+}
+html[data-theme="dark"] .footer__social-link--facebook {
+  background-color: rgba(24, 119, 242, 0.2);
+}
+html[data-theme="dark"] .footer__social-link--facebook:hover {
+  color: #4a9eff;
+  background-color: rgba(24, 119, 242, 0.3);
+}
+html[data-theme="dark"] .footer__social-link--youtube {
+  background-color: rgba(255, 0, 0, 0.2);
+}
+html[data-theme="dark"] .footer__social-link--youtube:hover {
+  color: #ff3333;
+  background-color: rgba(255, 0, 0, 0.3);
 }
 
 html[data-theme="dark"] .link-button {
@@ -5757,17 +5850,19 @@ html[data-theme="dark"] .modal__close {
     <script defer src="./app.js"></script>
   </head>
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TCRPNG9J"
+      height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <a class="skip-link" href="#main">Przejdź do treści</a>
 
     <header class="site-header" id="top">
       <nav class="nav" aria-label="Główna nawigacja">
         <a class="nav__brand" href="#top" aria-label="Beskider – strona główna">
-          <span class="nav__logo" aria-hidden="true">B</span>
-          <span class="nav__bolt text-base" aria-hidden="true">⚡️</span>
-          <div>
-            <strong class="nav__brand-name">Beskider</strong>
-            <span class="nav__tagline">Premium wypożyczalnia MTB</span>
-          </div>
+          <span class="nav__logo" aria-hidden="true">
+            <img class="nav__logo-img nav__logo-img--light" src="./assets/images/beskider-logo.svg" alt="" width="175" height="52" />
+            <img class="nav__logo-img nav__logo-img--dark" src="./assets/images/beskider-logo-dark.svg" alt="" width="175" height="52" />
+          </span>
         </a>
         <button
           class="nav__toggle"
@@ -7102,17 +7197,33 @@ html[data-theme="dark"] .modal__close {
       <div class="footer__inner">
         <div class="footer__top">
           <div class="footer__brand">
-            <a class="footer__logo" href="#">Beskider</a>
-            <p class="footer__tagline">Górska przygoda z przewodnikiem</p>
+            <a class="footer__logo" href="#top" aria-label="Beskider – strona główna">
+              <img class="footer__logo-img footer__logo-img--light" src="./assets/images/beskider-logo.svg" alt="" width="175" height="52" />
+              <img class="footer__logo-img footer__logo-img--dark" src="./assets/images/beskider-logo-dark.svg" alt="" width="175" height="52" />
+            </a>
+            <p class="footer__tagline">Górska przygoda z&nbsp;lokalnym przewodnikiem</p>
+            <div class="footer__social">
+              <a class="footer__social-link footer__social-link--instagram" href="https://www.instagram.com/beskider" target="_blank" rel="noopener noreferrer" aria-label="Instagram Beskider">
+                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+              </a>
+              <a class="footer__social-link footer__social-link--facebook" href="https://www.facebook.com/beskider" target="_blank" rel="noopener noreferrer" aria-label="Facebook Beskider">
+                <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+              </a>
+              <a class="footer__social-link footer__social-link--youtube" href="https://www.youtube.com/@beskider" target="_blank" rel="noopener noreferrer" aria-label="YouTube Beskider">
+                <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+              </a>
+            </div>
           </div>
           <nav class="footer__nav" aria-label="Linki w stopce">
             <div class="footer__links-group">
               <span class="footer__group-label">Oferta</span>
               <ul class="footer__links">
                 <li><a href="#gorska-przygoda">Górska przygoda na najwyższym poziomie</a></li>
+                <li><a href="#beskider-plus">Beskider+</a></li>
                 <li><a href="#equipment">Sprzęt</a></li>
                 <li><a href="#routes">Trasy</a></li>
-                <li><a href="#rules">Zasady</a></li>
+                <li><a href="#perks">Dlaczego Beskider</a></li>
+                <li><a href="#gallery">Galeria</a></li>
                 <li><a href="#faq">FAQ</a></li>
               </ul>
             </div>
@@ -7120,7 +7231,6 @@ html[data-theme="dark"] .modal__close {
               <span class="footer__group-label">Firma</span>
               <ul class="footer__links">
                 <li><a href="#about">O nas</a></li>
-                <li><a href="#beskider-plus">Beskider+</a></li>
                 <li><a href="#guides">Przewodnicy</a></li>
                 <li><a href="#contact">Kontakt</a></li>
               </ul>
@@ -7128,8 +7238,16 @@ html[data-theme="dark"] .modal__close {
             <div class="footer__links-group">
               <span class="footer__group-label">Warunki</span>
               <ul class="footer__links">
+                <li><a href="#rules">Zasady</a></li>
                 <li><button type="button" class="footer__link-button" data-open-modal="regulamin">Regulamin</button></li>
                 <li><button type="button" class="footer__link-button" data-open-modal="privacy">Polityka prywatności</button></li>
+              </ul>
+            </div>
+            <div class="footer__links-group">
+              <span class="footer__group-label">Materiały prasowe</span>
+              <ul class="footer__links">
+                <li><a href="./assets/images/beskider-logo.svg" download="Beskider-logo.svg" data-force-download="Beskider-logo.svg">Pobierz logo Beskider</a> <span class="footer__link-meta">(jasne tło, svg)</span></li>
+                <li><a href="./assets/images/beskider-logo-dark.svg" download="Beskider-logo-dark.svg" data-force-download="Beskider-logo-dark.svg">Pobierz logo Beskider</a> <span class="footer__link-meta">(ciemne tło, svg)</span></li>
               </ul>
             </div>
           </nav>
@@ -7137,22 +7255,11 @@ html[data-theme="dark"] .modal__close {
             <div class="tabnav-platter" role="group" aria-label="Tryb motywu">
               <div class="tabnav-viewport">
                 <div class="tabnav-scroller">
-                  <button type="button" class="tabnav-tab" data-theme-option="auto" aria-pressed="false">Automatyczny</button>
-                  <button type="button" class="tabnav-tab" data-theme-option="dark" aria-pressed="false">Ciemny</button>
-                  <button type="button" class="tabnav-tab" data-theme-option="light" aria-pressed="false">Jasny</button>
+                  <button type="button" class="tabnav-tab" data-theme-option="auto" aria-pressed="false" aria-label="Motyw automatyczny" title="Motyw automatyczny (zgodny z ustawieniami systemu)"><i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i></button>
+                  <button type="button" class="tabnav-tab" data-theme-option="dark" aria-pressed="false" aria-label="Ciemny motyw" title="Włącz ciemny motyw"><i class="fa-solid fa-moon" aria-hidden="true"></i></button>
+                  <button type="button" class="tabnav-tab" data-theme-option="light" aria-pressed="false" aria-label="Jasny motyw" title="Włącz jasny motyw"><i class="fa-solid fa-sun" aria-hidden="true"></i></button>
                 </div>
               </div>
-            </div>
-            <div class="footer__social">
-              <a href="https://www.instagram.com/beskider" target="_blank" rel="noopener noreferrer" aria-label="Instagram Beskider">
-                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
-              </a>
-              <a href="https://www.facebook.com/beskider" target="_blank" rel="noopener noreferrer" aria-label="Facebook Beskider">
-                <i class="fa-brands fa-facebook" aria-hidden="true"></i>
-              </a>
-              <a href="https://www.youtube.com/@beskider" target="_blank" rel="noopener noreferrer" aria-label="YouTube Beskider">
-                <i class="fa-brands fa-youtube" aria-hidden="true"></i>
-              </a>
             </div>
           </div>
         </div>
@@ -7162,6 +7269,18 @@ html[data-theme="dark"] .modal__close {
         </div>
       </div>
     </footer>
+
+    <div class="cookie-banner glass install-banner" id="install-banner" role="dialog" aria-live="polite" hidden>
+      <div>
+        <p class="install-banner__text">Zainstaluj Beskider na urządzeniu — dostęp offline i szybki start z ekranu głównego.</p>
+      </div>
+      <div class="cookie-banner__actions">
+        <button class="button button--ghost" type="button" data-install-dismiss aria-label="Pomiń">Pomiń</button>
+        <button class="button button--primary" type="button" data-install-app>
+          <i class="fa-solid fa-download" aria-hidden="true"></i> Zainstaluj
+        </button>
+      </div>
+    </div>
 
     <div class="cookie-banner glass" id="cookie-banner" role="dialog" aria-live="polite">
       <div>

@@ -39,7 +39,7 @@ Otwórz `http://localhost:8000`.
 - **Aethos:** `aethos-hero-white-bg.jpg` (jedno zdjęcie z białym tłem). Opcjonalnie warianty wg [scripts/fetch-road-bike-images.md](scripts/fetch-road-bike-images.md).
 
 ## Ikony
-- **PWA:** `assets/icons/icon.svg`, PNG 192/512 w `manifest.json`.
+- **PWA:** `assets/icons/beskider-logo-fav.svg` (favicon i ikona „any” w manifeście), PNG 192/512 (`icon-192.png`, `icon-512.png`) w `manifest.json` i apple-touch-icon.
 - **Heroicons:** `assets/icons/heroicons/24/outline/` i `24/solid/` (324 SVG w każdej wersji). Instrukcja: [assets/icons/heroicons/README.md](assets/icons/heroicons/README.md).
 
 ## Checklist po zmianach

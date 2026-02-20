@@ -3,7 +3,7 @@
 ## Project Structure & Module Organization
 - `index.html` contains the full page markup plus Tailwind component styles defined in the inline `<style type="text/tailwindcss">` block.
 - `app.js` handles UI behavior (tabs, accordion, modals, theme toggle, cookie consent, nav).
-- `sw.js` and `manifest.json` provide PWA/offline support.
+- `sw.js` and `manifest.json` provide PWA: full offline (precache of page + all images in `ASSETS`), installable (manifest with 192/512 PNG icons; optional install banner via `beforeinstallprompt` in `app.js`).
 - `assets/` stores static assets:
   - `assets/images/` for product and hero imagery.
   - `assets/icons/` for PWA icons; `assets/fontawesome/` for Font Awesome (lokally: `css/all.min.css`, `webfonts/`). Ikony: `fa-solid fa-*` / `fa-brands fa-*` (np. `<i class="fa-solid fa-star" aria-hidden="true"></i>`).
@@ -28,6 +28,7 @@ This is a static site with no build step.
 - Manual checks: navigation anchors (Sprzęt, Trasy, Zasady, FAQ, O nas, Kontakt), taby sprzętu (Wszystko/eMTB/Szosowe), taby trudności tras, accordion, modal focus/close, theme toggle, cookie consent flow, contact form (validation, checkbox regulaminu, Wyślij zapytanie), image loading (no cropping).
 - Verify mobile layout for overflow and wrapping.
 - Pełna checklista: [TESTING.md](TESTING.md).
+- **Debug układu nawigacji (agent):** Aby agent mógł sam zebrać dane o layoutcie nav (szerokości, gap, flex), uruchomić w katalogu projektu: `npm install`, potem `python3 -m http.server 8000` (w tle), potem `npm run debug:nav`. Wynik w `.cursor/nav-layout-debug.json` – agent może go odczytać i zweryfikować hipotezy.
 
 ## Commit & Pull Request Guidelines
 - Use short, imperative commit messages (e.g., `Refine equipment cards`).

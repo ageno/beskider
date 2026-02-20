@@ -510,7 +510,94 @@ const registerServiceWorker = () => {
   }
 };
 
+let deferredInstallPrompt = null;
+
+const initPwaInstall = () => {
+  const installBanner = document.getElementById("install-banner");
+  const installBtn = document.querySelector("[data-install-app]");
+  const dismissBtn = document.querySelector("[data-install-dismiss]");
+
+  const isStandalone = () =>
+    window.matchMedia("(display-mode: standalone)").matches ||
+    window.navigator.standalone === true;
+
+  const showInstallBanner = () => {
+    if (isStandalone() || !deferredInstallPrompt || !installBanner) return;
+    installBanner.hidden = false;
+  };
+
+  const hideInstallBanner = () => {
+    if (installBanner) installBanner.hidden = true;
+  };
+
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredInstallPrompt = e;
+    showInstallBanner();
+  });
+
+  window.addEventListener("appinstalled", () => {
+    deferredInstallPrompt = null;
+    hideInstallBanner();
+  });
+
+  if (installBtn) {
+    installBtn.addEventListener("click", () => {
+      if (!deferredInstallPrompt) return;
+      deferredInstallPrompt.prompt();
+      deferredInstallPrompt.userChoice.then(() => {
+        deferredInstallPrompt = null;
+        hideInstallBanner();
+      });
+    });
+  }
+
+  if (dismissBtn) {
+    dismissBtn.addEventListener("click", hideInstallBanner);
+  }
+};
+
 initTheme();
+
+// #region agent log
+function logNavLayout() {
+  const nav = document.querySelector(".nav");
+  const navMenu = document.querySelector(".nav__menu");
+  if (!nav || !navMenu) return;
+  const links = Array.from(navMenu.querySelectorAll("a"));
+  const menuStyle = window.getComputedStyle(navMenu);
+  const firstLinkStyle = links[0] ? window.getComputedStyle(links[0]) : null;
+  const linkWidths = links.map((a) => ({ text: (a.textContent || "").trim(), width: a.offsetWidth }));
+  const payload = {
+    sessionId: "c6c938",
+    location: "app.js:logNavLayout",
+    message: "Nav layout",
+    data: {
+      navWidth: nav.offsetWidth,
+      menuWidth: navMenu.offsetWidth,
+      menuFlex: menuStyle.flex,
+      menuGap: menuStyle.gap,
+      menuJustify: menuStyle.justifyContent,
+      linkCount: links.length,
+      linkWidths,
+      firstLinkFlex: firstLinkStyle ? firstLinkStyle.flex : null,
+      firstLinkJustify: firstLinkStyle ? firstLinkStyle.justifyContent : null,
+      viewportWidth: window.innerWidth
+    },
+    hypothesisId: "H1",
+    timestamp: Date.now()
+  };
+  fetch("http://127.0.0.1:7242/ingest/a5533262-807e-410b-97e3-25468d550b5c", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "c6c938" },
+    body: JSON.stringify(payload)
+  }).catch(() => {});
+}
+requestAnimationFrame(() => {
+  logNavLayout();
+  window.addEventListener("resize", () => requestAnimationFrame(logNavLayout));
+});
+// #endregion
 
 if (themeToggle) {
   themeToggle.addEventListener("click", toggleTheme);
@@ -521,6 +608,30 @@ document.querySelectorAll("[data-theme-option]").forEach((btn) => {
     const preference = btn.getAttribute("data-theme-option");
     setTheme(preference);
   });
+});
+
+/* Wymuszenie pobierania plików (np. logo) zamiast otwierania w przeglądarce */
+document.addEventListener("click", (e) => {
+  const link = e.target.closest("a[data-force-download]");
+  if (!link || !link.href) return;
+  const filename = link.getAttribute("data-force-download") || link.getAttribute("download") || "download";
+  e.preventDefault();
+  fetch(link.href, { mode: "same-origin" })
+    .then((res) => res.blob())
+    .then((blob) => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      a.style.display = "none";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    })
+    .catch(() => {
+      window.location.href = link.href;
+    });
 });
 
 if (navToggle && navMenu) {
@@ -948,3 +1059,4 @@ initGallery();
 initCookieBanner();
 initContactForm();
 registerServiceWorker();
+initPwaInstall();

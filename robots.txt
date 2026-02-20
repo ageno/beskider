@@ -1,0 +1,6 @@
+# Beskider – wypożyczalnia sprzętu sportowego
+
+User-agent: *
+Allow: /
+
+Sitemap: https://beskider.pl/sitemap.xml

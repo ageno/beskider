@@ -1,0 +1,11 @@
+{
+  "name": "beskider",
+  "private": true,
+  "description": "Static PWA site – debug script only",
+  "devDependencies": {
+    "playwright": "^1.49.0"
+  },
+  "scripts": {
+    "debug:nav": "node scripts/debug-nav-layout.js"
+  }
+}

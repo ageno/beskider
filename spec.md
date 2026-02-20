@@ -106,7 +106,7 @@ Lista sekcji w kolejności na stronie (źródło prawdy przy code review i plano
   - Karty: E-mail, Social media, Lokalizacja
   - Formularz zapytania (Dane wypożyczającego, Adres rozliczeniowy, Wiadomość, Warunki)
   - Panel „Świetny wybór!” (po prawej na desktop)
-- Stopka (układ inspirowany Unsplash press: brand + tagline, kolumny linków Oferta / Firma / Warunki, przełącznik motywu Auto/Ciemny/Jasny, ikony social; na dole copyright i dane firmy)
+- Stopka (układ inspirowany Unsplash press: logo Beskider [SVG, light/dark], tagline „Górska przygoda z lokalnym przewodnikiem”, kolumny linków Oferta / Firma / Warunki / Materiały prasowe [pobierz logo jasne, pobierz logo ciemne], przełącznik motywu Auto/Ciemny/Jasny, ikony social; na dole copyright i dane firmy)
 - Modale: Produkt, Regulamin, Polityka
 
 Przy każdej nowej sekcji lub nowym linku w nav należy zaktualizować niniejszą listę oraz ewentualnie §7 (Nawigacja).
@@ -115,6 +115,7 @@ Przy każdej nowej sekcji lub nowym linku w nav należy zaktualizować niniejsz�
 
 ## 7. Nawigacja
 
+- Brand w nav: logo Beskider (SVG) – wersja jasna w light mode, wersja ciemna w dark mode.
 - Sticky
 - Glassmorphism:
   - backdrop-filter: blur()
@@ -409,6 +410,7 @@ Zakres:
 
 ## 21. Cookies & GA4
 
+- **Google Tag Manager (GTM)** — kontener GTM wstrzyknięty w `<head>` oraz `<noscript>` iframe zaraz po `<body>`; ID kontenera w `index.html` (zastąpić `GTM-XXXXXXX` rzeczywistym ID z panelu GTM). GA4, consent mode i inne tagi konfigurowane z poziomu GTM.
 - Baner Apple-style
 - Akceptuj / Odrzuć / Ustawienia
 - Brak GA4 po odrzuceniu
@@ -417,18 +419,17 @@ Zakres:
 
 ## 22. PWA
 
-- Installable
-- Offline (100%)
+- **Installable** — pełne kryteria instalacji (manifest z ikonami 192×192 i 512×512 PNG, `display: standalone`, `scope`, `id`). Opcjonalny baner „Zainstaluj” po zdarzeniu `beforeinstallprompt` (przycisk Zainstaluj / Pomiń w `#install-banner`).
+- **Offline (100%)** — Service Worker precache: strona, skrypty, manifest, fonty, **wszystkie obrazy** (hero, galeria, karty produktów, przewodnicy, CTA, logo). Fetch handler: cache-first, brak sieci → fallback z cache; nawigacja offline → `index.html`.
 - Service Worker:
-  - cache-first assets
-  - versioning
-  - update flow
-- `CACHE_VERSION` wyprowadzony z parametru `v` (data-build w HTML), aktualizowany przy każdym commicie
-- Manifest:
-  - icons
-  - theme colors
-  - description
-- Ikony PWA: PNG; favicon: SVG (B w okręgu)
+  - precache przy instalacji (lista `ASSETS` w `sw.js`)
+  - cache-first dla GET samej domeny
+  - versioning (`CACHE_VERSION` z parametru `v` / data-build w HTML)
+  - `skipWaiting` + `clients.claim`
+- Manifest (`manifest.json`):
+  - `id`, `scope`, `name`, `short_name`, `description`, `start_url`, `display: standalone`, `orientation`, `theme_color`, `background_color`, `categories`
+  - ikony: SVG (purpose any), PNG 192×192 i 512×512 (purpose `any` i `maskable`)
+- Ikony: favicon i „any” — `assets/icons/beskider-logo-fav.svg`; instalacja PWA i apple-touch — `assets/icons/icon-192.png`, `assets/icons/icon-512.png`. Logo w nav: `assets/images/beskider-logo.svg` (jasny motyw), `assets/images/beskider-logo-dark.svg` (ciemny motyw).
 
 ---
 
@@ -466,7 +467,7 @@ Domena produkcyjna: **https://beskider.pl**. Po wdrożeniu: dodać stronę w [Go
 
 ## 25. Bezpieczeństwo
 
-- CSP (connect-src: 'self', Google Analytics, Formspree)
+- CSP: script-src i frame-src dla Google Tag Manager; connect-src i img-src dla Google Analytics; Formspree
 - HSTS
 - No inline scripts (docelowo)
 - Minimal JS
@@ -512,7 +513,7 @@ Szybka mapa treści w `index.html` (do planowania zmian copy):
 | about | Tekst „O nas” + CTA + kolaż zdjęć z galerii |
 | guides | Przewodnicy Beskider: 3 karty (zdjęcie, imię i nazwisko, opis) |
 | contact | E-mail, social, adres; formularz zapytania; panel Świetny wybór |
-| stopka | Brand + tagline, kolumny Oferta/Firma/Warunki, motyw Auto/Ciemny/Jasny, social, copyright + dane firmy |
+| stopka | Logo Beskider (light/dark), tagline „Górska przygoda z lokalnym przewodnikiem”, kolumny Oferta/Firma/Warunki/Materiały prasowe, motyw Auto/Ciemny/Jasny, social, copyright + dane firmy |
 | Modale | Produkt (galeria, spec), Regulamin, Polityka |
 
 ---
