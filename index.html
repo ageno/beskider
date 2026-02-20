@@ -656,18 +656,19 @@ p {
   margin: -1px;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
   white-space: nowrap;
   border-width: 0;
 }
 
 .skip-link:focus {
-  position: static;
   width: auto;
   height: auto;
   padding: 0;
   margin: 0;
   overflow: visible;
   clip: auto;
+  clip-path: none;
   white-space: normal;
   position: absolute;
   left: 1rem;
@@ -5907,6 +5908,29 @@ html[data-theme="dark"] .modal__close {
       height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <a class="skip-link" href="#main">Przejdź do treści</a>
+    <!-- #region agent log -->
+    <script>
+    (function(){
+      function log(msg, data, hyp) {
+        var payload = { sessionId: '47a08f', location: 'index.html:skip-link-debug', message: msg, data: data || {}, timestamp: Date.now(), hypothesisId: hyp };
+        fetch('http://127.0.0.1:7242/ingest/a5533262-807e-410b-97e3-25468d550b5c', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Debug-Session-Id': '47a08f' }, body: JSON.stringify(payload) }).catch(function(){});
+      }
+      document.addEventListener('DOMContentLoaded', function() {
+        var el = document.querySelector('.skip-link');
+        if (!el) { log('skip-link not found', {}, 'H3'); return; }
+        var s = window.getComputedStyle(el);
+        var rect = el.getBoundingClientRect();
+        log('skip-link computed', {
+          position: s.position, left: s.left, top: s.top, width: s.width, height: s.height,
+          clip: s.clip, overflow: s.overflow, visibility: s.visibility, display: s.display,
+          rectTop: rect.top, rectLeft: rect.left, rectWidth: rect.width, rectHeight: rect.height,
+          hasFocus: document.activeElement === el
+        }, 'H1');
+        if (document.activeElement === el) log('skip-link has focus on load', {}, 'H4');
+      });
+    })();
+    </script>
+    <!-- #endregion -->
 
     <header class="site-header" id="top">
       <nav class="nav" aria-label="Główna nawigacja">
