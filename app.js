@@ -373,7 +373,7 @@ const initGallery = () => {
 
       main.addEventListener("touchstart", (event) => {
         startX = event.touches[0].clientX;
-      });
+      }, { passive: true });
       main.addEventListener("touchend", (event) => {
         const endX = event.changedTouches[0].clientX;
         if (Math.abs(startX - endX) < 40) return;
@@ -386,18 +386,20 @@ const initGallery = () => {
         const nextIndex = (safeIndex + direction + thumbs.length) % thumbs.length;
         const nextTarget = thumbs[nextIndex]?.dataset.galleryTarget;
         setMainImage(nextTarget);
-      });
+      }, { passive: true });
     }
   });
 };
 
 const registerServiceWorker = () => {
+  const protocol = window.location.protocol;
+  if (protocol !== "http:" && protocol !== "https:") return;
   if ("serviceWorker" in navigator) {
     const buildVersion = document.documentElement.dataset.build || "dev";
     window.addEventListener("load", () => {
-      navigator.serviceWorker.register(
-        `./sw.js?v=${encodeURIComponent(buildVersion)}`
-      );
+      navigator.serviceWorker
+        .register(`./sw.js?v=${encodeURIComponent(buildVersion)}`)
+        .catch(() => {});
     });
   }
 };

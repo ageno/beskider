@@ -14,7 +14,7 @@ Statyczna strona dla premium wypożyczalni MTB. Offline-ready PWA, dark/light, g
 ```bash
 python3 -m http.server
 ```
-Otwórz `http://localhost:8000`.
+Otwórz `http://localhost:8000`. Nie otwieraj `index.html` przez `file://` – powoduje to błędy CORS (czcionki) i brak rejestracji Service Workera.
 
 ## Cache i wersjonowanie
 - Wersja cache pochodzi z `data-build` w `<html>`.
