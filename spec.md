@@ -48,6 +48,7 @@ Projekt realizowany jest jako **statyczna aplikacja PWA**, bez backendu, z myśl
 - GA4 + consent mode
 - Dark / Light mode
 - WCAG 2.2 AA
+- Własna strona błędu 404 (404.html)
 
 ### 4.2 Poza zakresem (MVP)
 - Rezerwacje online
@@ -108,6 +109,7 @@ Lista sekcji w kolejności na stronie (źródło prawdy przy code review i plano
   - Panel „Świetny wybór!” (po prawej na desktop)
 - Stopka (układ inspirowany Unsplash press: logo Beskider [SVG, light/dark], tagline „Górska przygoda z lokalnym przewodnikiem”, kolumny linków Oferta / Firma / Warunki / Materiały prasowe [pobierz logo jasne, pobierz logo ciemne], przełącznik motywu Auto/Ciemny/Jasny, ikony social; na dole copyright i dane firmy)
 - Modale: Produkt, Regulamin, Polityka
+- Strona błędu 404 (404.html): nagłówek z logo (link do strony głównej), komunikat „Strona nie została znaleziona”, CTA „Wróć na stronę główną”; spójna z motywem jasnym/ciemnym (localStorage `beskider-theme`).
 
 Przy każdej nowej sekcji lub nowym linku w nav należy zaktualizować niniejszą listę oraz ewentualnie §7 (Nawigacja).
 

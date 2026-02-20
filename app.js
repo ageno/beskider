@@ -451,46 +451,6 @@ const initPwaInstall = () => {
 
 initTheme();
 
-// #region agent log
-function logNavLayout() {
-  const nav = document.querySelector(".nav");
-  const navMenu = document.querySelector(".nav__menu");
-  if (!nav || !navMenu) return;
-  const links = Array.from(navMenu.querySelectorAll("a"));
-  const menuStyle = window.getComputedStyle(navMenu);
-  const firstLinkStyle = links[0] ? window.getComputedStyle(links[0]) : null;
-  const linkWidths = links.map((a) => ({ text: (a.textContent || "").trim(), width: a.offsetWidth }));
-  const payload = {
-    sessionId: "c6c938",
-    location: "app.js:logNavLayout",
-    message: "Nav layout",
-    data: {
-      navWidth: nav.offsetWidth,
-      menuWidth: navMenu.offsetWidth,
-      menuFlex: menuStyle.flex,
-      menuGap: menuStyle.gap,
-      menuJustify: menuStyle.justifyContent,
-      linkCount: links.length,
-      linkWidths,
-      firstLinkFlex: firstLinkStyle ? firstLinkStyle.flex : null,
-      firstLinkJustify: firstLinkStyle ? firstLinkStyle.justifyContent : null,
-      viewportWidth: window.innerWidth
-    },
-    hypothesisId: "H1",
-    timestamp: Date.now()
-  };
-  fetch("http://127.0.0.1:7242/ingest/a5533262-807e-410b-97e3-25468d550b5c", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "c6c938" },
-    body: JSON.stringify(payload)
-  }).catch(() => {});
-}
-requestAnimationFrame(() => {
-  logNavLayout();
-  window.addEventListener("resize", () => requestAnimationFrame(logNavLayout));
-});
-// #endregion
-
 if (themeToggle) {
   themeToggle.addEventListener("click", toggleTheme);
 }

@@ -1,10 +1,11 @@
 const swUrl = new URL(self.location.href);
 const cacheSuffix = swUrl.searchParams.get("v") || "dev";
-const CACHE_VERSION = `beskider-${cacheSuffix}-20260220`;
+const CACHE_VERSION = `beskider-${cacheSuffix}-20260220c`;
 /* Precache: core + all images/CSS/JS for full offline; fetch handler caches on-demand too */
 const ASSETS = [
   "./",
   "./index.html",
+  "./404.html",
   "./robots.txt",
   "./sitemap.xml",
   "./app.js",
@@ -23,10 +24,6 @@ const ASSETS = [
   "./assets/images/hero-mountains-640.jpg",
   "./assets/images/hero-mountains-1280.jpg",
   "./assets/images/hero-mountains.jpg",
-  "./assets/images/about-us-320.jpg",
-  "./assets/images/about-us-640.jpg",
-  "./assets/images/about-us-1280.jpg",
-  "./assets/images/about-us.jpg",
   "./assets/images/beskider-plus-cta-480.jpg",
   "./assets/images/beskider-plus-cta-640.jpg",
   "./assets/images/beskider-plus-cta-1024.jpg",

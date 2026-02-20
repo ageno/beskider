@@ -18,7 +18,7 @@
     <meta name="theme-color" content="#1f7a4a" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; img-src 'self' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; script-src 'self' https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://formspree.io; font-src 'self'; frame-src https://www.googletagmanager.com;"
+      content="default-src 'self'; img-src 'self' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; script-src 'self' https://www.googletagmanager.com 'sha256-IyKt6ual3SkLqXu49Fvbk8BlBwfjbQ4MZNqrnFnRzYg=' 'sha256-1d38a3qVKlLK4YGETO+kDIwDL3YwK3rxazU6qtFFuxc='; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://formspree.io; font-src 'self'; frame-src https://www.googletagmanager.com;"
     />
     <!-- Google Tag Manager -->
     <script>
@@ -7693,29 +7693,5 @@ html[data-theme="dark"] .modal__close {
         </div>
       </div>
     </div>
-  <!-- #region agent log -->
-  <script>
-  (function(){
-    function send(msg, data, hid) {
-      fetch('http://127.0.0.1:7242/ingest/a5533262-807e-410b-97e3-25468d550b5c',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'about-collage',message:msg,data:data||{},hypothesisId:hid||'H1',timestamp:Date.now()})}).catch(function(){});
-    }
-    window.addEventListener('load', function() {
-      var col = document.querySelector('.about__collage');
-      if (!col || col.children.length < 4) return;
-      var r0 = col.getBoundingClientRect();
-      var r1 = col.children[0].getBoundingClientRect();
-      var r2 = col.children[1].getBoundingClientRect();
-      var r3 = col.children[2].getBoundingClientRect();
-      var r4 = col.children[3].getBoundingClientRect();
-      var gapTop = r1.top - r0.top;
-      var gapBetweenRows = r3.top - r1.bottom;
-      var gapBetweenRowsRight = r4.top - r2.bottom;
-      var rowGap = getComputedStyle(col).rowGap;
-      var colGap = getComputedStyle(col).columnGap;
-      send('Collage gaps (px)', { gapTop: Math.round(gapTop), gapBetweenRows: Math.round(gapBetweenRows), gapBetweenRowsRight: Math.round(gapBetweenRowsRight), rowGap: rowGap, columnGap: colGap }, 'H1');
-    });
-  })();
-  </script>
-  <!-- #endregion -->
   </body>
 </html>
