@@ -61,12 +61,12 @@ Projekt realizowany jest jako **statyczna aplikacja PWA**, bez backendu, z myśl
 
 ## 5. Architektura aplikacji
 
-- Typ: Static Web App + PWA
+- Typ: Jekyll (static site generator) + PWA
 - Hosting: GitHub Pages
 - Backend: brak
-- Dane: statyczne (HTML)
-- Logika: Vanilla JS
-- Stylowanie: skompilowany CSS inline w `index.html` (bez CDN)
+- Dane: Jekyll (YAML, Liquid), output statyczny w `_site/`
+- Logika: Vanilla JS (assets/js)
+- Stylowanie: `assets/css/main.css` (Tailwind + komponenty), podłączone w layoutach
 
 ---
 

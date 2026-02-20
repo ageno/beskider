@@ -85,7 +85,7 @@ Uruchom w DevTools (Lighthouse, tryb mobile). Docelowe wartości ze [spec.md §2
 - [ ] Walidacja: pole puste/wyjście z pola (blur) – komunikat błędu pod polem, czerwony obrys i ikona wykrzyknik; poprawne – zielona ikona check
 - [ ] Komunikat „Wprowadzona ilość znaków jest niepoprawna” przy niepoprawnej długości (np. Imię/Nazwisko)
 - [ ] Checkbox regulaminu wymagany; przycisk „Ogólne Warunki regulaminu serwisu” otwiera modal Regulamin
-- [ ] Submit przy błędach: focus na pierwszym polu z błędem; przy poprawnej walidacji: otwarcie mailto z danymi
+- [ ] Submit przy błędach: focus na pierwszym polu z błędem; przy poprawnej walidacji: wysyłka przez Formspree (fetch), komunikat sukcesu lub błędu w obszarze statusu formularza
 - [ ] Panel „Świetny wybór!” po prawej (desktop) / pod formularzem (mobile): nagłówek + 4 punkty z zieloną ikoną check
 
 ---

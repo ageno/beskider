@@ -1,0 +1,52 @@
+items:
+  - id: mgla-beskidy
+    title: "Schronisko na Klimczoku wyłania się z mlecznej mgły o świcie."
+    subtitle: ""
+    theme:
+      overlayTextColor: "#fff"
+    media:
+      type: image
+      src: assets/images/gallery-mgla-beskidy.png
+      sizes: "(max-width: 768px) 92vw, 70vw"
+      alt: "Schronisko na Klimczoku wyłania się z mlecznej mgły o świcie."
+  - id: portret-rowerzysta
+    title: "W trasie"
+    subtitle: "Rowery górskie w plenerze – góry, jesienne kolory i dobra zabawa."
+    media:
+      type: image
+      src: assets/images/gallery-portret-rowerzysta.png
+      sizes: "(max-width: 768px) 92vw, 70vw"
+      alt: "Rowerzysta w kasku na tle gór"
+  - id: dwoch-rowerzystow
+    title: "Jeździmy o różnych porach dnia... i nocy. Jak będziesz miał szczęście to trafisz na takie widoki."
+    subtitle: ""
+    theme:
+      overlayTextColor: "#fff"
+    media:
+      type: image
+      src: assets/images/gallery-dwoch-rowerzystow-zachod.png
+      sizes: "(max-width: 768px) 92vw, 70vw"
+      alt: "Widok na szlaku o zachodzie słońca – rowerzyści w górach"
+  - id: rowerzysta-emtb
+    title: "Nasze tripy to nie tylko jazda i odkrywanie ścieżek, to okazja do dyskusji, poznania ciekawych ludzi."
+    subtitle: ""
+    media:
+      type: image
+      src: assets/images/gallery-rowerzysta-emtb-polana.png
+      sizes: "(max-width: 768px) 92vw, 70vw"
+      alt: "Tripy rowerowe – jazda, ścieżki i spotkania z ludźmi"
+  - id: rower-nad-woda
+    title: "Rano szosa, a po południu eMTB? W Bielsku to możliwe."
+    subtitle: ""
+    portraitInFrame: true
+    objectPosition: "center 80%"
+    theme:
+      overlayTextColor: "#fff"
+    media:
+      type: image
+      src: assets/images/gallery-rower-nad-woda.png
+      sizes: "(max-width: 768px) 92vw, 70vw"
+      alt: "Rower szosowy przy barierce nad jeziorem, w tle zalesione wzgórza."
+loop: false
+autoplay: false
+a11yLabel: Galeria

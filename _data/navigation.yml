@@ -1,0 +1,53 @@
+main:
+  - title: Sprzęt
+    url: "#equipment"
+    icon: fa-bicycle
+  - title: Trasy
+    url: "#routes"
+    icon: fa-route
+  - title: Zasady
+    url: "#rules"
+    icon: fa-file-lines
+  - title: O nas
+    url: "#about"
+    icon: fa-info-circle
+  - title: Przewodnicy
+    url: "#guides"
+    icon: fa-user-group
+  - title: Kontakt
+    url: "#contact"
+    icon: fa-envelope
+
+footer_oferta:
+  - label: Górska przygoda na najwyższym poziomie
+    url: "#gorska-przygoda"
+  - label: Beskider+
+    url: "#beskider-plus"
+  - label: Sprzęt
+    url: "#equipment"
+  - label: Trasy
+    url: "#routes"
+  - label: Dlaczego Beskider
+    url: "#perks"
+  - label: Galeria
+    url: "#gallery"
+  - label: FAQ
+    url: "#faq"
+
+footer_firma:
+  - label: O nas
+    url: "#about"
+  - label: Przewodnicy
+    url: "#guides"
+  - label: Kontakt
+    url: "#contact"
+
+footer_warunki:
+  - label: Zasady
+    url: "#rules"
+  - label: Regulamin
+    url: "/regulamin/"
+    page: true
+  - label: Polityka prywatności
+    url: "/polityka/"
+    page: true

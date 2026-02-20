@@ -1,0 +1,42 @@
+<header class="site-header" id="top">
+  <nav class="nav" aria-label="Główna nawigacja">
+    <a class="nav__brand" href="{{ site.baseurl }}/#top" aria-label="Beskider – strona główna">
+      <span class="nav__logo" aria-hidden="true">
+        <img class="nav__logo-img nav__logo-img--light" src="{{ site.baseurl }}/assets/images/beskider-logo.svg" alt="" width="175" height="52" />
+        <img class="nav__logo-img nav__logo-img--dark" src="{{ site.baseurl }}/assets/images/beskider-logo-dark.svg" alt="" width="175" height="52" />
+      </span>
+    </a>
+    <button
+      class="nav__toggle"
+      type="button"
+      aria-label="Otwórz menu"
+      aria-expanded="false"
+      data-nav-toggle
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav__backdrop" data-nav-backdrop aria-hidden="true"></div>
+    <div class="nav__menu" data-nav-menu>
+      {% for item in site.data.navigation.main %}
+      <a href="{% if item.url contains '#' %}{{ site.baseurl }}/{{ item.url }}{% else %}{{ site.baseurl }}{{ item.url }}{% endif %}"{% if forloop.first %} class="is-active"{% endif %}>
+        <i class="fa-solid {{ item.icon }}" aria-hidden="true"></i>
+        <span>{{ item.title }}</span>
+      </a>
+      {% endfor %}
+    </div>
+    <a class="nav__cta button button--primary cta-button-flip" href="{{ site.baseurl }}/#contact" data-cta-flip aria-label="Przejdź do kontaktu">
+      <span class="cta-flip">
+        <span class="cta-flip__strip" aria-hidden="true">
+          <span class="cta-flip__word">Miażdżę!</span>
+          <span class="cta-flip__word">Prutuję!</span>
+          <span class="cta-flip__word">Lecę!</span>
+          <span class="cta-flip__word">Cisnę!</span>
+          <span class="cta-flip__word">Jadę!</span>
+        </span>
+      </span>
+    </a>
+    <span class="nav__underline" data-nav-underline aria-hidden="true"></span>
+  </nav>
+</header>

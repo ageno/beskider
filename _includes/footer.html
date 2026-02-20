@@ -1,0 +1,74 @@
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a class="footer__logo" href="{{ site.baseurl }}/#top" aria-label="Beskider – strona główna">
+          <img class="footer__logo-img footer__logo-img--light" src="{{ site.baseurl }}/assets/images/beskider-logo.svg" alt="" width="175" height="52" />
+          <img class="footer__logo-img footer__logo-img--dark" src="{{ site.baseurl }}/assets/images/beskider-logo-dark.svg" alt="" width="175" height="52" />
+        </a>
+        <p class="footer__tagline">Górska przygoda z&nbsp;lokalnym przewodnikiem</p>
+        <div class="footer__social">
+          <a class="footer__social-link footer__social-link--instagram" href="https://www.instagram.com/beskider" target="_blank" rel="noopener noreferrer" aria-label="Instagram Beskider">
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+          </a>
+          <a class="footer__social-link footer__social-link--facebook" href="https://www.facebook.com/beskider" target="_blank" rel="noopener noreferrer" aria-label="Facebook Beskider">
+            <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+          </a>
+          <a class="footer__social-link footer__social-link--youtube" href="https://www.youtube.com/@beskider" target="_blank" rel="noopener noreferrer" aria-label="YouTube Beskider">
+            <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+      <nav class="footer__nav" aria-label="Linki w stopce">
+        <div class="footer__links-group">
+          <span class="footer__group-label">Oferta</span>
+          <ul class="footer__links">
+            {% for item in site.data.navigation.footer_oferta %}
+            <li><a href="{{ site.baseurl }}/{{ item.url }}">{{ item.label }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="footer__links-group">
+          <span class="footer__group-label">Firma</span>
+          <ul class="footer__links">
+            {% for item in site.data.navigation.footer_firma %}
+            <li><a href="{{ site.baseurl }}/{{ item.url }}">{{ item.label }}</a></li>
+            {% endfor %}
+            <li><a href="{{ site.baseurl }}/blog/">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer__links-group">
+          <span class="footer__group-label">Warunki</span>
+          <ul class="footer__links">
+            <li><a href="{{ site.baseurl }}/#rules">Zasady</a></li>
+            <li><a href="{{ site.baseurl }}/regulamin/">Regulamin</a></li>
+            <li><a href="{{ site.baseurl }}/polityka/">Polityka prywatności</a></li>
+          </ul>
+        </div>
+        <div class="footer__links-group">
+          <span class="footer__group-label">Materiały prasowe</span>
+          <ul class="footer__links">
+            <li><a href="{{ site.baseurl }}/assets/images/beskider-logo.svg" download="Beskider-logo.svg">Pobierz logo Beskider</a> <span class="footer__link-meta">(jasne tło, svg)</span></li>
+            <li><a href="{{ site.baseurl }}/assets/images/beskider-logo-dark.svg" download="Beskider-logo-dark.svg">Pobierz logo Beskider</a> <span class="footer__link-meta">(ciemne tło, svg)</span></li>
+            <li><a href="https://www.figma.com/design/9NFbDuqnwuplyMRAitnZ8x/Beskider-%E2%80%93%C2%A0Logo?node-id=0-1&t=qZEBEDYTzQRtHPvv-1" target="_blank" rel="noopener noreferrer">Logo beskider</a> <span class="footer__link-meta">(Figma)</span></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="footer__meta">
+        <div class="tabnav-platter" role="group" aria-label="Tryb motywu">
+          <div class="tabnav-viewport">
+            <div class="tabnav-scroller">
+              <button type="button" class="tabnav-tab" data-theme-option="auto" aria-pressed="false" aria-label="Motyw automatyczny" title="Motyw automatyczny (zgodny z ustawieniami systemu)"><i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i></button>
+              <button type="button" class="tabnav-tab" data-theme-option="dark" aria-pressed="false" aria-label="Ciemny motyw" title="Włącz ciemny motyw"><i class="fa-solid fa-moon" aria-hidden="true"></i></button>
+              <button type="button" class="tabnav-tab" data-theme-option="light" aria-pressed="false" aria-label="Jasny motyw" title="Włącz jasny motyw"><i class="fa-solid fa-sun" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">© 2026 Beskider. Wszelkie prawa zastrzeżone.</p>
+      <p class="footer__company"><span>A</span><span>ge</span>n<span>o</span><span> sp. z o.o.</span><span> · </span><span>NIP</span> <span>54722</span><span>21142</span><span> · Bielsko-Biała</span></p>
+    </div>
+  </div>
+</footer>

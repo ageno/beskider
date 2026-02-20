@@ -1,0 +1,41 @@
+# Beskider – Jekyll config (GitHub Pages compatible)
+title: Beskider – Wypożyczalnia sprzętu sportowego premium
+description: Beskider to premium wypożyczalnia rowerów MTB w Beskidach. Poznaj ofertę, zasady i dostępne modele w trybie offline-ready PWA.
+url: "https://beskider.pl"
+baseurl: ""
+lang: pl
+
+markdown: kramdown
+permalink: pretty
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+
+exclude:
+  - node_modules
+  - vendor
+  - scripts
+  - .cursor
+  - .git
+  - Gemfile
+  - Gemfile.lock
+  - package.json
+  - package-lock.json
+  - TESTING.md
+  - CHANGELOG.md
+  - README.md
+  - AGENTS.md
+  - spec.md

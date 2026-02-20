@@ -1,20 +1,20 @@
 # Repository Guidelines
 
 ## Project Structure & Module Organization
-- `index.html` contains the full page markup plus Tailwind component styles defined in the inline `<style type="text/tailwindcss">` block.
-- `app.js` handles UI behavior (tabs, accordion, modals, theme toggle, cookie consent, nav).
-- `sw.js` and `manifest.json` provide PWA: full offline (precache of page + all images in `ASSETS`), installable (manifest with 192/512 PNG icons; instalacja przez przeglądarkę, bez własnego banera).
-- `assets/` stores static assets:
-  - `assets/images/` for product and hero imagery.
-  - `assets/icons/` for PWA icons; `assets/fontawesome/` for Font Awesome (lokally: `css/all.min.css`, `webfonts/`). Ikony: `fa-solid fa-*` / `fa-brands fa-*` (np. `<i class="fa-solid fa-star" aria-hidden="true"></i>`).
-- **Ikony (definition of done):** W projekcie stosujemy **Font Awesome** (wersja free, zestaw lokalny w `assets/fontawesome/`). Nowe ikony dodawać jako `<i class="fa-solid fa-…">` lub `fa-brands fa-…` z tego zestawu. Spójność wizualna; brak ad-hoc SVG.
-- `spec.md` is the product/design source of truth and must be updated with every change.
-- Every new section or new nav link requires updating **spec.md §6 (Struktura informacji)** and, if needed, §7 (Nawigacja).
+- Projekt jest zbudowany w **Jekyll**. Strona główna: `index.html` z `layout: home`; treść w `_includes/home-sections.html`. Style w `assets/css/main.css`.
+- Layouty: `_layouts/default.html`, `page.html`, `home.html`, `post.html`. Nawigacja z `_data/navigation.yml`.
+- `assets/js/app.js`, `tabnav.js`, `peek-gallery.js` – logika UI (taby, accordion, modale, theme toggle, cookie consent, nav).
+- `sw.js` i `manifest.json` w root – PWA (precache w `ASSETS`), instalacja przez przeglądarkę.
+- `assets/images/`, `assets/icons/`, `assets/fontawesome/` – obrazy, ikony PWA, Font Awesome. Ikony: `fa-solid fa-*` / `fa-brands fa-*`.
+- **Ikony:** Font Awesome (free, lokalnie w `assets/fontawesome/`). Nowe ikony: `<i class="fa-solid fa-…">` lub `fa-brands fa-…`.
+- `spec.md` – źródło prawdy; przy nowej sekcji lub linku w nav aktualizować §6 i ewentualnie §7.
 
 ## Build, Test, and Development Commands
-This is a static site with no build step.
-- Local preview: `python3 -m http.server` (serve repo root, open `http://localhost:8000`).
-- PWA sanity: hard-refresh after changes and confirm Service Worker updates (`sw.js`).
+- **Lokalny serwer Jekyll:** `bundle install` → `bundle exec jekyll serve` (http://localhost:4000).
+- **Build:** `bundle exec jekyll build` (output w `_site/`).
+- **Agent:** Po każdej zmianie w plikach Jekylla (layouty, _includes, _data, _config.yml, strony .html/.md, _posts) uruchomić `bundle exec jekyll build` w katalogu projektu (z `eval "$(rbenv init -)"` jeśli rbenv), żeby _site/ było aktualne.
+- **Start pracy nad projektem:** Zalecane uruchomienie `bundle exec jekyll serve` na początku sesji (w tle). Strona na http://localhost:4000 odświeża się przy zapisie plików. Agent może zaproponować lub uruchomić serve, gdy użytkownik zaczyna pracę nad stroną.
+- PWA: hard-refresh po zmianach, sprawdzić aktualizację Service Workera (`sw.js`).
 
 ## Coding Style & Naming Conventions
 - Indentation: 2 spaces in HTML/CSS/JS.
@@ -33,6 +33,7 @@ This is a static site with no build step.
 ## Commit & Pull Request Guidelines
 - Use short, imperative commit messages (e.g., `Refine equipment cards`).
 - PRs should include a brief description plus desktop/mobile screenshots for visual changes.
+- **Przed push:** Gdy użytkownik prosi o push (np. „zrób push”, „wypchnij zmiany”), najpierw uruchomić `bundle exec jekyll build`, potem wykonać git add / commit / push – żeby w repozytorium trafił aktualny _site/.
 
 ## Configuration & Content Notes
 - Nie używać zdjęć HDR w treściach ani zasobach (galeria, hero, karty itd.) – preferować naturalny wygląd.
@@ -46,10 +47,10 @@ This is a static site with no build step.
 
 **Zmiana treści / UI** (np. nowa sekcja, nowy blok tekstu):
 1. Zaktualizować **spec.md** (§6 IA, ewentualnie nowy podrozdział).
-2. W **index.html**: dodać markup (istniejące komponenty: `section`, `section__head`, `rules-grid` / `rule-card`).
-3. Jeśli nowa sekcja – dodać link w nav.
-4. **sw.js**: tylko jeśli dodane/usunięte pliki w `ASSETS`; ewentualnie bump `data-build`.
-5. **spec.md**: dopisać copy w odpowiednim paragrafie (lub w content inventory).
+2. W **_includes/home-sections.html** (strona główna) lub w odpowiednim layoutzie: dodać markup (section, section__head, rules-grid / rule-card).
+3. Jeśli nowa sekcja – dodać link w `_data/navigation.yml` i ewentualnie w stopce.
+4. **sw.js**: tylko jeśli dodane/usunięte pliki w `ASSETS`.
+5. **spec.md**: dopisać copy w odpowiednim paragrafie.
 
 **Nowa funkcja** (np. formularz, kalendarz):
 1. Spec: rozszerzyć §4 (zakres), §6 (IA jeśli nowa sekcja), nowy § lub punkt w §27.
