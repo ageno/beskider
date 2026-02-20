@@ -410,10 +410,9 @@ Zakres:
 
 ## 21. Cookies & GA4
 
-- **Google Tag Manager (GTM)** — kontener GTM wstrzyknięty w `<head>` oraz `<noscript>` iframe zaraz po `<body>`; ID kontenera w `index.html` (zastąpić `GTM-XXXXXXX` rzeczywistym ID z panelu GTM). GA4, consent mode i inne tagi konfigurowane z poziomu GTM.
-- Baner Apple-style
-- Akceptuj / Odrzuć / Ustawienia
-- Brak GA4 po odrzuceniu
+- **Google Tag Manager (GTM)** — kontener GTM wstrzyknięty w `<head>` oraz `<noscript>` iframe zaraz po `<body>`; ID kontenera w `index.html`. GA4, consent mode i inne tagi konfigurowane z poziomu GTM.
+- **Cookiebot** — zarządzanie zgodami cookies (baner i ustawienia); integracja z GTM/GA4 po stronie Cookiebot.
+- Brak własnego banera cookies (usunięty na rzecz Cookiebot).
 
 ---
 

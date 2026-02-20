@@ -43,12 +43,10 @@ Użyj przed release’em. Docelowe wartości Lighthouse: [spec.md §24](spec.md)
 
 ---
 
-## Cookie consent
+## Cookie consent (Cookiebot)
 
-- [ ] Baner wyświetla się (jeśli brak zgody)
-- [ ] Akceptuj: baner znika, GA4 (jeśli skonfigurowane) może ładować
-- [ ] Odrzuć: baner znika, brak GA4 po odrzuceniu
-- [ ] Ustawienia (jeśli dostępne): wybór zapisany
+- [ ] Baner Cookiebot wyświetla się (jeśli skrypt Cookiebot wdrożony)
+- [ ] Akceptacja / odrzucenie / ustawienia działają w interfejsie Cookiebot; GTM/GA4 respektują zgodę
 
 ---
 

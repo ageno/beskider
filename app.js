@@ -10,13 +10,6 @@ const tabs = document.querySelectorAll(".tabnav-tab[data-tab-target]");
 const accordionToggles = document.querySelectorAll(".accordion__toggle");
 const modalTriggers = document.querySelectorAll("[data-open-modal]");
 const modals = document.querySelectorAll(".modal");
-const cookieBanner = document.querySelector("#cookie-banner");
-const cookieSettings = document.querySelector("#cookie-settings");
-const analyticsToggle = document.querySelector("#analytics-toggle");
-const cookieAccept = document.querySelector("[data-cookie-accept]");
-const cookieReject = document.querySelector("[data-cookie-reject]");
-const cookieSettingsButton = document.querySelector("[data-cookie-settings]");
-const cookieSave = document.querySelector("[data-cookie-save]");
 const aboutTilt = document.querySelector("[data-about-tilt]");
 const ctaPlusCard = document.querySelector(".cta-plus");
 const hero = document.querySelector(".hero");
@@ -25,8 +18,6 @@ const heroTitleFill = document.querySelector(".hero__title-fill");
 const focusableSelectors =
   "a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex='-1'])";
 
-const GA_MEASUREMENT_ID = "G-XXXXXXXXXX";
-let gaLoaded = false;
 let releaseFocus = null;
 
 const THEME_KEY = "beskider-theme";
@@ -218,105 +209,6 @@ const closeModal = (modal) => {
   if (releaseFocus) {
     releaseFocus();
     releaseFocus = null;
-  }
-};
-
-const loadGA = () => {
-  if (gaLoaded || GA_MEASUREMENT_ID === "G-XXXXXXXXXX") {
-    return;
-  }
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = function gtag() {
-    window.dataLayer.push(arguments);
-  };
-  window.gtag("js", new Date());
-  window.gtag("config", GA_MEASUREMENT_ID, { anonymize_ip: true });
-
-  const script = document.createElement("script");
-  script.async = true;
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
-  document.head.appendChild(script);
-  gaLoaded = true;
-};
-
-const updateConsent = (analyticsGranted) => {
-  if (!window.gtag) {
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = function gtag() {
-      window.dataLayer.push(arguments);
-    };
-  }
-  window.gtag("consent", "update", {
-    analytics_storage: analyticsGranted ? "granted" : "denied"
-  });
-};
-
-const applyConsent = (consent) => {
-  if (consent?.analytics) {
-    updateConsent(true);
-    loadGA();
-  } else {
-    updateConsent(false);
-  }
-};
-
-const saveConsent = (value) => {
-  localStorage.setItem("beskider-consent", JSON.stringify(value));
-  applyConsent(value);
-  if (cookieBanner) {
-    cookieBanner.style.display = "none";
-  }
-};
-
-const getConsent = () => {
-  const raw = localStorage.getItem("beskider-consent");
-  if (!raw) return null;
-  try {
-    return JSON.parse(raw);
-  } catch (error) {
-    return null;
-  }
-};
-
-const initCookieBanner = () => {
-  const consent = getConsent();
-  if (consent) {
-    if (analyticsToggle) {
-      analyticsToggle.checked = Boolean(consent.analytics);
-    }
-    applyConsent(consent);
-    if (cookieBanner) {
-      cookieBanner.style.display = "none";
-    }
-    return;
-  }
-
-  updateConsent(false);
-  if (analyticsToggle) {
-    analyticsToggle.checked = false;
-  }
-
-  if (cookieAccept) {
-    cookieAccept.addEventListener("click", () =>
-      saveConsent({ status: "accepted", analytics: true })
-    );
-  }
-  if (cookieReject) {
-    cookieReject.addEventListener("click", () =>
-      saveConsent({ status: "rejected", analytics: false })
-    );
-  }
-  if (cookieSettingsButton) {
-    cookieSettingsButton.addEventListener("click", () => openModal(cookieSettings));
-  }
-  if (cookieSave) {
-    cookieSave.addEventListener("click", () => {
-      saveConsent({
-        status: "custom",
-        analytics: analyticsToggle?.checked ?? false
-      });
-      closeModal(cookieSettings);
-    });
   }
 };
 
@@ -1056,7 +948,6 @@ initRouteFilters();
 initAccordion();
 initModals();
 initGallery();
-initCookieBanner();
 initContactForm();
 registerServiceWorker();
 initPwaInstall();
