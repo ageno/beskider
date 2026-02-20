@@ -404,53 +404,6 @@ const registerServiceWorker = () => {
   }
 };
 
-let deferredInstallPrompt = null;
-
-const initPwaInstall = () => {
-  const installBanner = document.getElementById("install-banner");
-  const installBtn = document.querySelector("[data-install-app]");
-  const dismissBtn = document.querySelector("[data-install-dismiss]");
-
-  const isStandalone = () =>
-    window.matchMedia("(display-mode: standalone)").matches ||
-    window.navigator.standalone === true;
-
-  const showInstallBanner = () => {
-    if (isStandalone() || !deferredInstallPrompt || !installBanner) return;
-    installBanner.hidden = false;
-  };
-
-  const hideInstallBanner = () => {
-    if (installBanner) installBanner.hidden = true;
-  };
-
-  window.addEventListener("beforeinstallprompt", (e) => {
-    e.preventDefault();
-    deferredInstallPrompt = e;
-    showInstallBanner();
-  });
-
-  window.addEventListener("appinstalled", () => {
-    deferredInstallPrompt = null;
-    hideInstallBanner();
-  });
-
-  if (installBtn) {
-    installBtn.addEventListener("click", () => {
-      if (!deferredInstallPrompt) return;
-      deferredInstallPrompt.prompt();
-      deferredInstallPrompt.userChoice.then(() => {
-        deferredInstallPrompt = null;
-        hideInstallBanner();
-      });
-    });
-  }
-
-  if (dismissBtn) {
-    dismissBtn.addEventListener("click", hideInstallBanner);
-  }
-};
-
 initTheme();
 
 if (themeToggle) {
@@ -931,12 +884,13 @@ function initCtaFlip() {
       const current = parseInt(strip.dataset.ctaIndex || "0", 10);
       const next = (current + 1) % words.length;
       strip.dataset.ctaIndex = String(next);
-      const stepPx = words[0].offsetHeight || 24;
-      strip.style.transform = `translateY(-${next * stepPx}px)`;
+      const stepPx = words[0].offsetHeight || words[0].getBoundingClientRect().height || 24;
+      const offset = -(words.length - 1 - next) * stepPx;
+      strip.style.transform = `translateY(${offset}px)`;
     });
   };
   const start = () => {
-    if (!interval) interval = setInterval(step, 1000);
+    if (!interval) interval = setInterval(step, 1500);
   };
   const stop = () => {
     if (interval) {
@@ -947,7 +901,20 @@ function initCtaFlip() {
   document.addEventListener("visibilitychange", () => {
     document.hidden ? stop() : start();
   });
-  start();
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      buttons.forEach((btn) => {
+        const strip = btn.querySelector(".cta-flip__strip");
+        const words = strip?.querySelectorAll(".cta-flip__word");
+        if (!strip || !words?.length) return;
+        strip.dataset.ctaIndex = "0";
+        const stepPx = words[0].offsetHeight || words[0].getBoundingClientRect().height || 24;
+        const initialOffset = -(words.length - 1) * stepPx;
+        strip.style.transform = `translateY(${initialOffset}px)`;
+      });
+      start();
+    });
+  });
 }
 
 initTabs();
@@ -958,4 +925,3 @@ initGallery();
 initContactForm();
 initCtaFlip();
 registerServiceWorker();
-initPwaInstall();

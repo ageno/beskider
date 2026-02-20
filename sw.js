@@ -30,6 +30,7 @@ const ASSETS = [
   "./assets/images/beskider-plus-cta-480.webp",
   "./assets/images/beskider-plus-cta-640.webp",
   "./assets/images/beskider-plus-cta-1024.webp",
+  "./assets/images/cta-bg.png",
   "./assets/images/gallery-mgla-beskidy.png",
   "./assets/images/gallery-dwoch-rowerzystow-zachod.png",
   "./assets/images/gallery-portret-rowerzysta.png",

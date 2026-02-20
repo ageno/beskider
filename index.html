@@ -3804,19 +3804,10 @@ html[data-theme="dark"] .footer__logo-img--dark {
   gap: 0.75rem;
 }
 
-.install-banner {
-  display: none;
-}
-.install-banner:not([hidden]) {
-  display: block;
-}
-.install-banner__text {
-  margin: 0 0 0.75rem 0;
-  font-size: 0.9375rem;
-  line-height: 1.4;
-}
-.install-banner .cookie-banner__actions {
-  margin-top: 0;
+/* Ukryty baner instalacji PWA – bez własnego modala „Zainstaluj na urządzeniu” */
+.install-banner,
+[class*="install-banner"] {
+  display: none !important;
 }
 
 .modal {
@@ -5966,11 +5957,11 @@ html[data-theme="dark"] .modal__close {
         <a class="nav__cta button button--primary cta-button-flip" href="#contact" data-cta-flip aria-label="Przejdź do kontaktu">
           <span class="cta-flip">
             <span class="cta-flip__strip" aria-hidden="true">
-              <span class="cta-flip__word">Jadę!</span>
-              <span class="cta-flip__word">Cisnę!</span>
-              <span class="cta-flip__word">Lecę!</span>
-              <span class="cta-flip__word">Prutuję!</span>
               <span class="cta-flip__word">Miażdżę!</span>
+              <span class="cta-flip__word">Prutuję!</span>
+              <span class="cta-flip__word">Lecę!</span>
+              <span class="cta-flip__word">Cisnę!</span>
+              <span class="cta-flip__word">Jadę!</span>
             </span>
           </span>
         </a>
@@ -6372,7 +6363,7 @@ html[data-theme="dark"] .modal__close {
 
       <section class="cta" aria-labelledby="cta-title">
         <div class="section__head">
-          <h2 id="cta-title">Jedna decyzja. Cała przygoda.</h2>
+          <h2 id="cta-title">⚡️ Jedna decyzja. Cała przygoda.</h2>
           <p>
             Sprzęt czeka perfekcyjnie przygotowany. Przewodnik zna każdy zakręt, każdą sekcję, każdy widok, który zatrzymuje oddech. Ty skupiasz się wyłącznie na jeździe. Minimum formalności. Maksimum gór.
           </p>
@@ -6380,11 +6371,11 @@ html[data-theme="dark"] .modal__close {
         <a class="button button--primary cta-button-flip" href="#contact" data-cta-flip aria-label="Przejdź do kontaktu">
           <span class="cta-flip">
             <span class="cta-flip__strip" aria-hidden="true">
-              <span class="cta-flip__word">Jadę!</span>
-              <span class="cta-flip__word">Cisnę!</span>
-              <span class="cta-flip__word">Lecę!</span>
-              <span class="cta-flip__word">Prutuję!</span>
               <span class="cta-flip__word">Miażdżę!</span>
+              <span class="cta-flip__word">Prutuję!</span>
+              <span class="cta-flip__word">Lecę!</span>
+              <span class="cta-flip__word">Cisnę!</span>
+              <span class="cta-flip__word">Jadę!</span>
             </span>
           </span>
         </a>
@@ -6797,7 +6788,7 @@ html[data-theme="dark"] .modal__close {
 
       <section class="cta" aria-labelledby="cta-title-routes">
         <div class="section__head">
-          <h2 id="cta-title-routes">Jedna decyzja. Cała przygoda.</h2>
+          <h2 id="cta-title-routes">⚡️ Jedna decyzja. Cała przygoda.</h2>
           <p>
             Sprzęt czeka perfekcyjnie przygotowany. Przewodnik zna każdy zakręt, każdą sekcję, każdy widok, który zatrzymuje oddech. Ty skupiasz się wyłącznie na jeździe. Minimum formalności. Maksimum gór.
           </p>
@@ -6805,11 +6796,11 @@ html[data-theme="dark"] .modal__close {
         <a class="button button--primary cta-button-flip" href="#contact" data-cta-flip aria-label="Przejdź do kontaktu">
           <span class="cta-flip">
             <span class="cta-flip__strip" aria-hidden="true">
-              <span class="cta-flip__word">Jadę!</span>
-              <span class="cta-flip__word">Cisnę!</span>
-              <span class="cta-flip__word">Lecę!</span>
-              <span class="cta-flip__word">Prutuję!</span>
               <span class="cta-flip__word">Miażdżę!</span>
+              <span class="cta-flip__word">Prutuję!</span>
+              <span class="cta-flip__word">Lecę!</span>
+              <span class="cta-flip__word">Cisnę!</span>
+              <span class="cta-flip__word">Jadę!</span>
             </span>
           </span>
         </a>
@@ -7001,7 +6992,7 @@ html[data-theme="dark"] .modal__close {
 
       <section class="cta" aria-labelledby="cta-title-guides">
         <div class="section__head">
-          <h2 id="cta-title-guides">Jedna decyzja. Cała przygoda.</h2>
+          <h2 id="cta-title-guides">⚡️ Jedna decyzja. Cała przygoda.</h2>
           <p>
             Sprzęt czeka perfekcyjnie przygotowany. Przewodnik zna każdy zakręt, każdą sekcję, każdy widok, który zatrzymuje oddech. Ty skupiasz się wyłącznie na jeździe. Minimum formalności. Maksimum gór.
           </p>
@@ -7009,11 +7000,11 @@ html[data-theme="dark"] .modal__close {
         <a class="button button--primary cta-button-flip" href="#contact" data-cta-flip aria-label="Przejdź do kontaktu">
           <span class="cta-flip">
             <span class="cta-flip__strip" aria-hidden="true">
-              <span class="cta-flip__word">Jadę!</span>
-              <span class="cta-flip__word">Cisnę!</span>
-              <span class="cta-flip__word">Lecę!</span>
-              <span class="cta-flip__word">Prutuję!</span>
               <span class="cta-flip__word">Miażdżę!</span>
+              <span class="cta-flip__word">Prutuję!</span>
+              <span class="cta-flip__word">Lecę!</span>
+              <span class="cta-flip__word">Cisnę!</span>
+              <span class="cta-flip__word">Jadę!</span>
             </span>
           </span>
         </a>
@@ -7390,18 +7381,6 @@ html[data-theme="dark"] .modal__close {
         </div>
       </div>
     </footer>
-
-    <div class="cookie-banner glass install-banner" id="install-banner" role="dialog" aria-live="polite" hidden>
-      <div>
-        <p class="install-banner__text">Zainstaluj Beskider na urządzeniu — dostęp offline i szybki start z ekranu głównego.</p>
-      </div>
-      <div class="cookie-banner__actions">
-        <button class="button button--ghost" type="button" data-install-dismiss aria-label="Pomiń">Pomiń</button>
-        <button class="button button--primary" type="button" data-install-app>
-          <i class="fa-solid fa-download" aria-hidden="true"></i> Zainstaluj
-        </button>
-      </div>
-    </div>
 
     <div class="modal" id="regulamin" role="dialog" aria-modal="true" aria-hidden="true">
       <div class="modal__backdrop" data-close-modal></div>

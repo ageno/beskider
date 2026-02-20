@@ -288,7 +288,7 @@ Zawartość:
 
 ## 13. CTA
 
-- Jeden komponent; nagłówek „Jedna decyzja. Cała przygoda.”; lead: sprzęt, przewodnik, jazda, formalności/góry (4 akapity).
+- Jeden komponent; nagłówek „⚡️ Jedna decyzja. Cała przygoda.”; lead: sprzęt, przewodnik, jazda, formalności/góry (4 akapity).
 - Szare tło (#f0f0f0), zaokrąglone rogi (8px); bez cienia i animacji. Układ w kolumnę: tekst, pod spodem przycisk (wyrównany do lewej). W trybie ciemnym: tło #2a2a2a, tekst jasny.
 - Przycisk prowadzi do sekcji Kontakt (#contact).
 - Trzy wystąpienia: po sekcji Sprzęt, po sekcji Trasy (przed FAQ) oraz po sekcji Przewodnicy (przed Beskider+).
@@ -421,7 +421,7 @@ Zakres:
 
 ## 22. PWA
 
-- **Installable** — pełne kryteria instalacji (manifest z ikonami 192×192 i 512×512 PNG, `display: standalone`, `scope`, `id`). Opcjonalny baner „Zainstaluj” po zdarzeniu `beforeinstallprompt` (przycisk Zainstaluj / Pomiń w `#install-banner`).
+- **Installable** — pełne kryteria instalacji (manifest z ikonami 192×192 i 512×512 PNG, `display: standalone`, `scope`, `id`). Instalacja wyłącznie przez pasek/menu przeglądarki (bez własnego banera).
 - **Offline (100%)** — Service Worker precache: strona, skrypty, manifest, fonty, **wszystkie obrazy** (hero, galeria, karty produktów, przewodnicy, CTA, logo). Fetch handler: cache-first, brak sieci → fallback z cache; nawigacja offline → `index.html`.
 - Service Worker:
   - precache przy instalacji (lista `ASSETS` w `sw.js`)
@@ -508,7 +508,7 @@ Szybka mapa treści w `index.html` (do planowania zmian copy):
 | feature-band | Wyróżniki (3 kolumny) |
 | gorska-przygoda | Nagłówek „Górska przygoda na najwyższym poziomie”, intro, Rowery elektryczne / Akcesoria, kolaż 2×2 (zdjęcia jak O nas) |
 | equipment | Nagłówek „Sprzęt”, taby, karty produktów |
-| cta | Nagłówek „Jedna decyzja. Cała przygoda.”, 4 akapity, przycisk |
+| cta | Nagłówek „⚡️ Jedna decyzja. Cała przygoda.”, 4 akapity, przycisk |
 | jak-wynajac | 3 karty: kontakt, odbiór, co zabrać |
 | rules | Nagłówek, 3 karty zasad, przycisk regulamin |
 | faq | Accordion z pytaniami |

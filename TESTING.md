@@ -62,8 +62,7 @@ Użyj przed release’em. Docelowe wartości Lighthouse: [spec.md §24](spec.md)
 ## PWA
 
 - [ ] Strona działa offline (po pierwszym wejściu) — cała treść i obrazy z cache
-- [ ] Instalacja PWA dostępna (pasek przeglądarki / menu / baner „Zainstaluj”)
-- [ ] Baner instalacji (`#install-banner`): gdy przeglądarka wyśle `beforeinstallprompt`, pojawia się baner z przyciskami „Zainstaluj” i „Pomiń”; Zainstaluj uruchamia prompt, Pomiń chowa baner
+- [ ] Instalacja PWA dostępna (pasek przeglądarki / menu)
 - [ ] Po zmianie `sw.js` / `data-build`: hard refresh powoduje aktualizację SW
 
 ---

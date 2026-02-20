@@ -3,7 +3,7 @@
 ## Project Structure & Module Organization
 - `index.html` contains the full page markup plus Tailwind component styles defined in the inline `<style type="text/tailwindcss">` block.
 - `app.js` handles UI behavior (tabs, accordion, modals, theme toggle, cookie consent, nav).
-- `sw.js` and `manifest.json` provide PWA: full offline (precache of page + all images in `ASSETS`), installable (manifest with 192/512 PNG icons; optional install banner via `beforeinstallprompt` in `app.js`).
+- `sw.js` and `manifest.json` provide PWA: full offline (precache of page + all images in `ASSETS`), installable (manifest with 192/512 PNG icons; instalacja przez przeglądarkę, bez własnego banera).
 - `assets/` stores static assets:
   - `assets/images/` for product and hero imagery.
   - `assets/icons/` for PWA icons; `assets/fontawesome/` for Font Awesome (lokally: `css/all.min.css`, `webfonts/`). Ikony: `fa-solid fa-*` / `fa-brands fa-*` (np. `<i class="fa-solid fa-star" aria-hidden="true"></i>`).
