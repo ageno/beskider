@@ -9,7 +9,7 @@ permalink: /polityka/
 
 Administratorem danych jest Beskider sp. z o.o. (placeholder). Dane kontaktowe znajdują się w stopce strony.
 
-Wykorzystujemy cookies w celach analitycznych (GA4), aby poprawiać jakość usług. Zarządzanie zgodami cookies odbywa się przez Cookiebot.
+Wykorzystujemy cookies w celach analitycznych (GA4), aby poprawiać jakość usług. Zarządzanie zgodami cookies odbywa się przez Cookiebot. Strona zapisuje także niezbędne preferencje w urządzeniu użytkownika (np. wybór motywu jasny/ciemny oraz stan zgody na cookies) – te dane nie są przekazywane poza serwis.
 
 Strona jest przygotowana pod przyszły formularz rezerwacji. Wtedy będziemy informować o dodatkowych celach przetwarzania danych.
 

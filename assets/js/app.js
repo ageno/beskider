@@ -5,7 +5,7 @@ const navBackdrop = document.querySelector("[data-nav-backdrop]");
 const navContainer = document.querySelector(".nav");
 const navUnderline = document.querySelector("[data-nav-underline]");
 const siteHeader = document.querySelector(".site-header");
-const navLinks = navMenu ? Array.from(navMenu.querySelectorAll("a[href^=\"#\"]")) : [];
+const navLinks = navMenu ? Array.from(navMenu.querySelectorAll("a[href*=\"#\"]")) : [];
 const tabs = document.querySelectorAll(".tabnav-tab[data-tab-target]");
 const accordionToggles = document.querySelectorAll(".accordion__toggle");
 const modalTriggers = document.querySelectorAll("[data-open-modal]");
@@ -139,13 +139,15 @@ const updateHeaderState = () => {
 let navUnderlineInitialized = false;
 const updateNavUnderline = (link) => {
   if (!navUnderline || !navContainer || !link) return;
-  if (!window.matchMedia("(min-width: 768px)").matches) {
+  const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+  if (!isDesktop) {
     navUnderline.style.width = "0";
     return;
   }
   const navRect = navContainer.getBoundingClientRect();
   const linkRect = link.getBoundingClientRect();
   const left = linkRect.left - navRect.left;
+  const width = linkRect.width;
   if (!navUnderlineInitialized) {
     navUnderline.style.transition = "none";
     navUnderlineInitialized = true;
@@ -153,11 +155,17 @@ const updateNavUnderline = (link) => {
       if (navUnderline) navUnderline.style.transition = "";
     });
   }
-  navUnderline.style.width = `${linkRect.width}px`;
+  navUnderline.style.width = `${width}px`;
   navUnderline.style.transform = `translateX(${left}px)`;
 };
 
 let pinnedNavLink = null;
+
+const getNavLinkSectionId = (href) => {
+  if (!href) return null;
+  const hashIndex = href.indexOf("#");
+  return hashIndex === -1 ? href.replace(/^\//, "") : href.slice(hashIndex + 1);
+};
 
 const updateActiveLink = () => {
   if (!navLinks.length) return;
@@ -167,7 +175,7 @@ const updateActiveLink = () => {
     current = navLinks[0];
   } else {
     navLinks.forEach((link) => {
-      const id = link.getAttribute("href")?.slice(1);
+      const id = getNavLinkSectionId(link.getAttribute("href"));
       const section = id ? document.getElementById(id) : null;
       if (!section) return;
       if (section.offsetTop <= scrollY) {
@@ -176,7 +184,7 @@ const updateActiveLink = () => {
     });
   }
   if (pinnedNavLink) {
-    const pinnedId = pinnedNavLink.getAttribute("href")?.slice(1);
+    const pinnedId = getNavLinkSectionId(pinnedNavLink.getAttribute("href"));
     const pinnedSection = pinnedId ? document.getElementById(pinnedId) : null;
     if (pinnedSection && pinnedSection.offsetTop <= scrollY) {
       pinnedNavLink = null;

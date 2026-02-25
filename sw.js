@@ -1,6 +1,6 @@
 const swUrl = new URL(self.location.href);
 const cacheSuffix = swUrl.searchParams.get("v") || "dev";
-const CACHE_VERSION = `beskider-${cacheSuffix}-20260220c`;
+const CACHE_VERSION = `beskider-${cacheSuffix}-20260220d`;
 /* Precache: core + all images/CSS/JS for full offline; fetch handler caches on-demand too */
 const ASSETS = [
   "./",

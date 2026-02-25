@@ -212,7 +212,7 @@ Przy każdej nowej sekcji lub nowym linku w nav należy zaktualizować niniejsz�
 ## 9. Sprzęt – kategorie
 
 - Tabs (segmented control) jako filtr; sticky.
-- **Komponent tabnav** (`tabnav.css`, `tabnav.js`, `tabnav.html`): Apple-style platter z przewijaniem poziomym, strzałkami przy overflow i obsługą klawiatury. DOM: `.tabnav-platter` > `.tabnav-viewport` > `.tabnav-scroller` (role="tablist") > `.tabnav-tab`, plus `.tabnav-arrow` jako overlay.
+- **Komponent tabnav** (`tabnav.css`, `tabnav.js`): Apple-style platter z przewijaniem poziomym, strzałkami przy overflow i obsługą klawiatury. DOM: `.tabnav-platter` > `.tabnav-viewport` > `.tabnav-scroller` (role="tablist") > `.tabnav-tab`, plus `.tabnav-arrow` jako overlay.
 - Na mobile: jedna linia, scroll poziomy, strzałki „Przewiń w lewo/prawo” gdy lista nie mieści się (ukryty scrollbar).
 - Kategorie:
   - **Wszystko** (domyślna) – pokazuje obie kategorie (eMTB + Szosowe)
@@ -416,6 +416,7 @@ Zakres:
 - **Google Tag Manager (GTM)** — kontener GTM wstrzyknięty w `<head>` oraz `<noscript>` iframe zaraz po `<body>`; ID kontenera w `index.html`. GA4, consent mode i inne tagi konfigurowane z poziomu GTM.
 - **Cookiebot** — zarządzanie zgodami cookies (baner i ustawienia); integracja z GTM/GA4 po stronie Cookiebot.
 - Brak własnego banera cookies (usunięty na rzecz Cookiebot).
+- **Raport Cookiebot:** Na stronie występują m.in. CookieConsent (Cookiebot) oraz `beskider-theme` (localStorage – preferencja motywu). Aby raport nie pokazywał „Unclassified”, w panelu Cookiebot należy dodać deklarację dla `beskider-theme` (kategoria Necessary lub Preferences, cel: zapamiętanie motywu). Szczegóły: [COOKIEBOT-REPORT.md](COOKIEBOT-REPORT.md).
 
 ---
 
@@ -480,15 +481,16 @@ Domena produkcyjna: **https://beskider.pl**. Po wdrożeniu: dodać stronę w [Go
 
 /
 ├── index.html
-├── app.js
 ├── sw.js
 ├── manifest.json
 ├── robots.txt
 ├── sitemap.xml
 ├── tabnav.css
 ├── tabnav.js
-├── tabnav.html
 └── assets/
+    ├── js/
+    │   ├── app.js
+    │   └── peek-gallery.js
     ├── images/
     │   ├── *-320.jpg
     │   ├── *-640.jpg

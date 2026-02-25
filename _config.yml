@@ -39,3 +39,4 @@ exclude:
   - README.md
   - AGENTS.md
   - spec.md
+  - docs/COOKIEBOT-REPORT.md
