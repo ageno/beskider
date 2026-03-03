@@ -1,6 +1,6 @@
 const swUrl = new URL(self.location.href);
 const cacheSuffix = swUrl.searchParams.get("v") || "dev";
-const CACHE_VERSION = `beskider-${cacheSuffix}-20260220d`;
+const CACHE_VERSION = `beskider-${cacheSuffix}-20260303`;
 /* Precache: core + all images/CSS/JS for full offline; fetch handler caches on-demand too */
 const ASSETS = [
   "./",
@@ -129,7 +129,7 @@ self.addEventListener("fetch", (event) => {
 
   if (event.request.mode === "navigate") {
     event.respondWith(
-      fetch(event.request)
+      fetch(event.request, { cache: "no-store" })
         .then((response) => {
           if (response && response.ok) {
             const responseClone = response.clone();
@@ -140,6 +140,25 @@ self.addEventListener("fetch", (event) => {
           return response;
         })
         .catch(() => caches.match("./index.html"))
+    );
+    return;
+  }
+
+  /* Cache-busted URLs (e.g. main.css?v=): network first so deploy = fresh assets */
+  const isCacheBusted = url.search && url.search.length > 0;
+  if (isCacheBusted) {
+    event.respondWith(
+      fetch(event.request, { cache: "no-store" })
+        .then((response) => {
+          if (response && response.ok) {
+            const responseClone = response.clone();
+            caches.open(CACHE_VERSION).then((cache) => {
+              cache.put(event.request, responseClone);
+            });
+          }
+          return response;
+        })
+        .catch(() => caches.match(event.request))
     );
     return;
   }
