@@ -70,7 +70,7 @@ Na Intel Mac: ścieżka bywa `/usr/local/opt/ruby@3.3/bin`. Sprawdź: `brew --pr
 - `_data/` – navigation.yml, gallery.yml.
 - `_posts/` – wpisy bloga (format `YYYY-MM-DD-tytul.md`).
 - `index.html` – strona główna (layout: home).
-- `404.html`, `regulamin.md`, `polityka.md`, `blog/index.md` – podstrony.
+- `404.html`, `regulamin.md`, `blog/index.md` – podstrony.
 - `assets/css/main.css` – style (Tailwind + komponenty).
 - `assets/js/` – app.js, tabnav.js, peek-gallery.js.
 - `assets/images/`, `assets/icons/`, `assets/fontawesome/` – zasoby.

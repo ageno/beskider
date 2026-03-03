@@ -525,7 +525,7 @@
             </div>
             <div class="perk-item__text">
               <span class="perk-item__title">Bezpłatny parking</span>
-              <span class="perk-item__desc">Miejsce parkingowe na czas wypożyczenia tuż przy naszej siedzibie</span>
+              <span class="perk-item__desc">W okolicy jest bezpłatny parking</span>
             </div>
           </div>
           <div class="perk-item">
@@ -552,7 +552,7 @@
             </div>
             <div class="perk-item__text">
               <span class="perk-item__title">Ubezpieczenie</span>
-              <span class="perk-item__desc">Każdy rower objęty ochroną – jedź bez obaw o niespodziewane koszty</span>
+              <span class="perk-item__desc">Każdy sprzęt może być objęty ochroną – jedź bez obaw o niespodziewane koszty</span>
             </div>
           </div>
           <div class="perk-item">
@@ -596,7 +596,7 @@
           <article class="rule-card">
             <h3>Regulamin</h3>
             <p>
-              Sprzęt sportowy wypożyczany jest po spełnieniu warunków regulaminu i zastrzeżeń na tej stronie. Pełna treść regulaminu dostępna jest <a href="#" data-open-modal="regulamin">tutaj</a>.
+              Sprzęt sportowy wypożyczany jest po spełnieniu warunków regulaminu i zastrzeżeń na tej stronie. Pełna treść regulaminu dostępna jest <a href="{{ site.baseurl }}/regulamin/">tutaj</a>.
             </p>
           </article>
           <article class="rule-card">
@@ -623,9 +623,9 @@
               W trosce o bezpieczeństwo sprzętu w przypadku uzasadnionych przyczyn zastrzegamy sobie prawo do odmówienia wynajmu sprzętu.
             </p>
           </article>
-          <button class="button button--ghost" type="button" data-open-modal="regulamin">
+          <a href="{{ site.baseurl }}/regulamin/" class="button button--ghost">
             Pełny regulamin
-          </button>
+          </a>
         </div>
       </section>
 
@@ -1261,13 +1261,13 @@
                 <div class="form-group" data-field="terms">
                   <label class="contact-form__checkbox-label">
                     <input type="checkbox" id="contact-terms" name="terms" required aria-describedby="contact-terms-error" aria-invalid="false" />
-                    <span>Potwierdzam, że przeczytałem, zrozumiałem i zaakceptowałem <button type="button" class="link-button" data-open-modal="regulamin">Ogólne Warunki regulaminu serwisu</button>.</span>
+                    <span>Potwierdzam, że przeczytałem, zrozumiałem i zaakceptowałem <a href="{{ site.baseurl }}/regulamin/" class="link-button">Regulamin serwisu</a>.</span>
                   </label>
                   <span class="form-group__error" id="contact-terms-error" role="alert"></span>
                 </div>
                 <label class="contact-form__checkbox-label">
                   <input type="checkbox" id="contact-marketing" name="marketing" aria-describedby="contact-marketing-error" aria-invalid="false" />
-                  <span>Zgadzam się na przetwarzanie moich danych osobowych przez Ageno sp. z o.o. w celu komunikacji marketingowej, a tym samym wysyłania mi newslettera, informacji o usługach, promocjach lub nowościach zgodnie z <button type="button" class="link-button" data-open-modal="regulamin">Regulaminem</button> i <button type="button" class="link-button" data-open-modal="privacy">Polityką prywatności</button>.</span>
+                  <span>Zgadzam się na przetwarzanie moich danych osobowych przez Ageno sp. z o.o. w celu komunikacji marketingowej, a tym samym wysyłania mi newslettera, informacji o usługach, promocjach lub nowościach zgodnie z <a href="{{ site.baseurl }}/regulamin/#dane-osobowe" class="link-button">Regulaminem serwisu</a> i <a href="{{ site.baseurl }}/regulamin/#dane-osobowe" class="link-button">Polityką prywatności</a>.</span>
                 </label>
               </div>
             </fieldset>

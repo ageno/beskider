@@ -49,5 +49,5 @@ footer_warunki:
     url: "/regulamin/"
     page: true
   - label: Polityka prywatności
-    url: "/polityka/"
+    url: "/regulamin/#dane-osobowe"
     page: true

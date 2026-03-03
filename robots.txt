@@ -2,5 +2,6 @@
 
 User-agent: *
 Allow: /
+Disallow: /regulamin
 
 Sitemap: https://beskider.pl/sitemap.xml

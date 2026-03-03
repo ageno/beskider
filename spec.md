@@ -44,7 +44,7 @@ Projekt realizowany jest jako **statyczna aplikacja PWA**, bez backendu, z myśl
 - Ceny prezentowane na kartach produktów
 - Zasady wypożyczeń
 - FAQ
-- Regulamin i polityka prywatności
+- Regulamin (z sekcją danych osobowych i RODO)
 - GA4 + consent mode
 - Dark / Light mode
 - WCAG 2.2 AA
@@ -212,7 +212,7 @@ Przy każdej nowej sekcji lub nowym linku w nav należy zaktualizować niniejsz�
 ## 9. Sprzęt – kategorie
 
 - Tabs (segmented control) jako filtr; sticky.
-- **Komponent tabnav** (`tabnav.css`, `tabnav.js`): Apple-style platter z przewijaniem poziomym, strzałkami przy overflow i obsługą klawiatury. DOM: `.tabnav-platter` > `.tabnav-viewport` > `.tabnav-scroller` (role="tablist") > `.tabnav-tab`, plus `.tabnav-arrow` jako overlay.
+- **Komponent tabnav** (style w `assets/css/main.css`, logika w `assets/js/tabnav.js`): Apple-style platter z przewijaniem poziomym, strzałkami przy overflow i obsługą klawiatury. DOM: `.tabnav-platter` > `.tabnav-viewport` > `.tabnav-scroller` (role="tablist") > `.tabnav-tab`, plus `.tabnav-arrow` jako overlay.
 - Na mobile: jedna linia, scroll poziomy, strzałki „Przewiń w lewo/prawo” gdy lista nie mieści się (ukryty scrollbar).
 - Kategorie:
   - **Wszystko** (domyślna) – pokazuje obie kategorie (eMTB + Szosowe)
@@ -485,12 +485,14 @@ Domena produkcyjna: **https://beskider.pl**. Po wdrożeniu: dodać stronę w [Go
 ├── manifest.json
 ├── robots.txt
 ├── sitemap.xml
-├── tabnav.css
-├── tabnav.js
 └── assets/
     ├── js/
     │   ├── app.js
-    │   └── peek-gallery.js
+    │   ├── tabnav.js
+    │   ├── peek-gallery.js
+    │   └── protocol-form.js
+    ├── css/
+    │   └── main.css
     ├── images/
     │   ├── *-320.jpg
     │   ├── *-640.jpg
