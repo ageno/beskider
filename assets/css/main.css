@@ -1,3 +1,8 @@
+/* Enforce SDR (sRGB) color gamut for the whole page */
+html {
+  color-gamut: srgb;
+}
+
 *, ::before, ::after {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;

@@ -1,5 +1,6 @@
 # Configuration & Content Notes
 
+- **SDR (sRGB) only:** Strona wymusza przestrzeń sRGB. Wszystkie zasoby graficzne i kolory w CSS muszą być sRGB. Brak HDR i szerokiej gamy (Display-P3, Rec.2020). Na `html` ustawione jest `color-gamut: srgb`. Nowe obrazy (jpg, png) konwertować do sRGB (np. `sips -m "/System/Library/ColorSync/Profiles/sRGB Profile.icc" plik` na macOS; WebP/AVIF – ImageMagick: `magick input -strip -colorspace sRGB output`).
 - Nie używać zdjęć HDR w treściach ani zasobach (galeria, hero, karty itd.) – preferować naturalny wygląd.
 - Gdy użytkownik poda URL zdjęcia lub innego zasobu do użycia w projekcie – pobrać go od razu (zapisać w `assets/`, ewentualnie wygenerować warianty), bez pytania „czy fetch?”.
 - Uruchamiać potrzebne polecenia (np. curl, sips, serwer) od razu, bez pytania „czy uruchomić?” / „Run?”.

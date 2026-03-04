@@ -128,18 +128,20 @@ self.addEventListener("fetch", (event) => {
   }
 
   if (event.request.mode === "navigate") {
+    const requestUrl = event.request.url;
     event.respondWith(
       fetch(event.request, { cache: "no-store" })
         .then((response) => {
           if (response && response.ok) {
             const responseClone = response.clone();
             caches.open(CACHE_VERSION).then((cache) => {
-              cache.put("./index.html", responseClone);
+              // Cache by request URL so / and /regulamin/ don't overwrite each other
+              cache.put(requestUrl, responseClone);
             });
           }
           return response;
         })
-        .catch(() => caches.match("./index.html"))
+        .catch(() => caches.match(requestUrl))
     );
     return;
   }
