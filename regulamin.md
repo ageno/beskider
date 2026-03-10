@@ -1,6 +1,6 @@
 ---
 layout: page
-title: ⚡️ Beskider.pl - Regulamin
+title: Beskider.pl - Regulamin
 description: Regulamin wypożyczalni sprzętu sportowego Beskider. Warunki, zasady i odpowiedzialność.
 permalink: /regulamin/
 ---

@@ -1,6 +1,6 @@
 ---
 layout: partnerzy
-title: ⚡️ Beskider.pl - Zostań przewodnikiem
+title: Beskider.pl - Zostań przewodnikiem
 description: Dołącz jako przewodnik MTB do Beskider – premium wypożyczalni rowerów. Otrzymuj zlecenia, prowadź klientów w Beskidach i pracuj na sprzęcie najwyższej klasy bez ryzyka kosztów stałych.
 permalink: /partnerzy/
 ---

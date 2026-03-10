@@ -1,6 +1,6 @@
 ---
 layout: page
-title: ⚡️ Beskider.pl - Blog
+title: Beskider.pl - Blog
 description: Artykuły i aktualności Beskider – wypożyczalnia rowerów w Beskidach.
 permalink: /blog/
 ---
