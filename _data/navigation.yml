@@ -39,6 +39,8 @@ footer_firma:
     url: "#about"
   - label: Przewodnicy
     url: "#guides"
+  - label: Dla przewodników
+    url: "partnerzy/"
   - label: Kontakt
     url: "#contact"
 

@@ -72,7 +72,7 @@ Projekt realizowany jest jako **statyczna aplikacja PWA**, bez backendu, z myśl
 
 ## 6. Struktura informacji (IA)
 
-Lista sekcji w kolejności na stronie (źródło prawdy przy code review i planowaniu treści):
+Lista sekcji w kolejności na stronie głównej (źródło prawdy przy code review i planowaniu treści):
 
 - Navigation (logo, linki, po prawej przycisk CTA jak w sekcji CTA: „Jadę! / Cisnę!…” → #contact)
 - Hero
@@ -110,6 +110,18 @@ Lista sekcji w kolejności na stronie (źródło prawdy przy code review i plano
 - Stopka (układ inspirowany Unsplash press: logo Beskider [SVG, light/dark], tagline „Górska przygoda z lokalnym przewodnikiem”, kolumny linków Oferta / Firma / Warunki / Materiały prasowe [pobierz logo jasne, pobierz logo ciemne, Logo beskider (Figma)], przełącznik motywu Auto/Ciemny/Jasny, ikony social; na dole copyright i dane firmy)
 - Modale: Produkt, Regulamin, Polityka
 - Strona błędu 404 (404.html): nagłówek z logo (link do strony głównej), komunikat „Strona nie została znaleziona”, CTA „Wróć na stronę główną”; spójna z motywem jasnym/ciemnym (localStorage `beskider-theme`).
+
+Osobne podstrony:
+
+- `/regulamin/` – pełny regulamin i załączniki (w tym protokół wydania/zwrotu sprzętu i klauzula RODO).
+- `/blog/` – lista wpisów blogowych.
+- `/partnerzy/` – landing dla przewodników MTB:
+  - Hero z tym samym zdjęciem tła co na stronie głównej, nagłówek i lead adresowane do przewodników (więcej zleceń, mniej organizacji, praca na sprzęcie premium), bez formularza w hero.
+  - Krótki formularz zgłoszeniowy (Imię i nazwisko, E-mail, Telefon opcjonalnie, opis doświadczenia) w osobnej sekcji na dole strony; wysyłany przez Formspree do tego samego endpointu, co formularz kontaktowy; zgody: regulamin, wykorzystanie wizerunku, zgoda marketingowa Ageno (opcjonalna).
+  - Sekcja „Dlaczego warto prowadzić z Beskider?” – korzyści dla przewodnika (więcej sensownych zleceń, model bez ryzyka, sprzęt premium, wsparcie marki).
+  - Sekcja „Co zyskujesz, dołączając do nas?” – wsparcie biznesowe, dostęp do potencjalnych ofert partnerów, materiały i oznaczenia przewodnika Beskider.
+  - Sekcja „Jak wygląda współpraca krok po kroku?” – trzy etapy (Zgłoszenie → Rozmowa i formalności → Pierwsze wyjazdy).
+  - Finalne CTA z informacją o pilotażowym, limitowanym naborze przewodników w Beskidach i wezwaniem do wypełnienia formularza.
 
 Przy każdej nowej sekcji lub nowym linku w nav należy zaktualizować niniejszą listę oraz ewentualnie §7 (Nawigacja).
 
