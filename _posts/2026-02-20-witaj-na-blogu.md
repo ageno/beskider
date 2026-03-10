@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Witaj na blogu Beskider
+title: ⚡️ Beskider.pl - Witaj na blogu
 description: Pierwszy wpis na blogu – zapraszamy do śledzenia aktualności.
 date: 2026-02-20 10:00:00 +0100
 ---

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>⚡️ Beskider.pl - Sezonowość liczby klientów</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --card-bg: #ffffff;
+      --accent: #10b981;
+      --accent-soft: rgba(16, 185, 129, 0.12);
+      --text: #111827;
+      --muted: #6b7280;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f3f4f6;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      color: var(--text);
+    }
+
+    .chart-wrapper {
+      width: min(1100px, 100% - 3rem);
+      padding: 1.5rem 2rem 2rem;
+      border-radius: 1.25rem;
+      background:
+        linear-gradient(to bottom, rgba(16, 185, 129, 0.04), transparent 60%),
+        var(--card-bg);
+      box-shadow:
+        0 18px 40px rgba(15, 23, 42, 0.12),
+        0 0 0 1px rgba(148, 163, 184, 0.35);
+    }
+
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .chart-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .chart-subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .chart-legend {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-soft);
+    }
+
+    .chart-canvas-container {
+      position: relative;
+      width: 100%;
+      height: clamp(260px, 45vh, 420px);
+    }
+
+    @media (max-width: 640px) {
+      .chart-wrapper {
+        padding: 1.25rem 1.25rem 1.75rem;
+        border-radius: 1.25rem;
+      }
+      .chart-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="chart-wrapper">
+    <div class="chart-header">
+      <div>
+        <div class="chart-title">Sezonowość liczby klientów</div>
+        <div class="chart-subtitle">
+          Miesięczne, szacunkowe wartości dla całego roku (1–12), z dołkiem w grudniu i szczytem w środku sezonu.
+        </div>
+      </div>
+      <div class="chart-legend">
+        <span class="legend-dot"></span>
+        <span>Szacowana liczba klientów / wpływów</span>
+      </div>
+    </div>
+
+    <div class="chart-canvas-container">
+      <canvas id="seasonalityChart"></canvas>
+    </div>
+  </div>
+
+  <script>
+    const labels = [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12"
+    ];
+
+    const dataValues = [
+      40,
+      50,
+      75,
+      110,
+      140,
+      160,
+      180,
+      175,
+      150,
+      90,
+      60,
+      30
+    ];
+
+    const ctx = document.getElementById("seasonalityChart").getContext("2d");
+
+    new Chart(ctx, {
+      type: "line",
+      data: {
+        labels,
+        datasets: [
+          {
+            label: "Szacowana liczba klientów",
+            data: dataValues,
+            borderColor: "#10b981",
+            backgroundColor: "rgba(16, 185, 129, 0.15)",
+            borderWidth: 3,
+            tension: 0.35,
+            fill: true,
+            pointRadius: 4.5,
+            pointHoverRadius: 6,
+            pointBackgroundColor: "#10b981",
+            pointBorderColor: "#ffffff",
+            pointBorderWidth: 2
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            backgroundColor: "rgba(15,23,42,0.96)",
+            borderColor: "rgba(148,163,184,0.6)",
+            borderWidth: 1,
+            titleColor: "#e5e7eb",
+            bodyColor: "#e5e7eb",
+            padding: 10,
+            displayColors: false,
+            callbacks: {
+              title: (items) => {
+                const month = items[0].label;
+                return "Miesiąc " + month;
+              },
+              label: (item) => {
+                return "Szacowana liczba klientów: " + item.formattedValue;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: "Miesiąc",
+              color: "#9ca3af",
+              font: {
+                size: 12,
+                weight: "500"
+              }
+            },
+            grid: {
+              color: "rgba(30, 64, 175, 0.25)",
+              drawBorder: false
+            },
+            ticks: {
+              color: "#9ca3af"
+            }
+          },
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: "Szacowana liczba klientów",
+              color: "#9ca3af",
+              font: {
+                size: 12,
+                weight: "500"
+              }
+            },
+            grid: {
+              color: "rgba(30, 64, 175, 0.18)",
+              drawBorder: false
+            },
+            ticks: {
+              color: "#9ca3af",
+              stepSize: 20
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
+
