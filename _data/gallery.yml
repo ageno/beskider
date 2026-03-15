@@ -27,6 +27,16 @@ items:
       src: assets/images/gallery-dwoch-rowerzystow-zachod.png
       sizes: "(max-width: 768px) 92vw, 70vw"
       alt: "Widok na szlaku o zachodzie słońca – rowerzyści w górach"
+  - id: grupa-rowerzystow-szlaku
+    title: "Doświadczeni przewodnicy enduro na szlaku."
+    subtitle: ""
+    theme:
+      overlayTextColor: "#fff"
+    media:
+      type: image
+      src: assets/images/gallery-grupa-rowerzystow-szlaku.png
+      sizes: "(max-width: 768px) 92vw, 70vw"
+      alt: "Grupa rowerzystów na leśnej ścieżce – uśmiechy i dobra zabawa w plenerze."
   - id: rowerzysta-emtb
     title: "Nasze tripy to nie tylko jazda i odkrywanie ścieżek, to okazja do dyskusji, poznania ciekawych ludzi."
     subtitle: ""

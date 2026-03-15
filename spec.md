@@ -261,7 +261,7 @@ Przy każdej nowej sekcji lub nowym linku w nav należy zaktualizować niniejsz�
 
 ### 10.3 Galeria
 - Slider typu „peek” nad sekcją Trasy, dane z `data-peek-gallery-config` (JSON)
-- Zdjęcia w sliderze: 4 pliki w `assets/images/` – Beskidy w mgle, portret rowerzysty w górach, dwaj rowerzyści o zachodzie słońca, rowerzysta z e-MTB na polanie (`gallery-mgla-beskidy.png`, `gallery-portret-rowerzysta.png`, `gallery-dwoch-rowerzystow-zachod.png`, `gallery-rowerzysta-emtb-polana.png`)
+- Zdjęcia w sliderze: pliki w `assets/images/` – Beskidy w mgle, portret rowerzysty w górach, dwaj rowerzyści o zachodzie słońca, rowerzysta z e-MTB na polanie, rower nad wodą, grupa rowerzystów na szlaku (`gallery-mgla-beskidy.png`, `gallery-portret-rowerzysta.png`, `gallery-dwoch-rowerzystow-zachod.png`, `gallery-rowerzysta-emtb-polana.png`, `gallery-rower-nad-woda.png`, `gallery-grupa-rowerzystow-szlaku.png`)
 - Swipe / przewijanie w bok, pager z kropkami (timed-dotnav), autoplay, lazy loading ±2 slajdy
 - Cache offline (pliki galerii w `sw.js` ASSETS)
 

@@ -1,6 +1,6 @@
 const swUrl = new URL(self.location.href);
 const cacheSuffix = swUrl.searchParams.get("v") || "dev";
-const CACHE_VERSION = `beskider-${cacheSuffix}-20260303`;
+const CACHE_VERSION = `beskider-${cacheSuffix}-20260315`;
 /* Precache: core + all images/CSS/JS for full offline; fetch handler caches on-demand too */
 const ASSETS = [
   "./",
@@ -37,6 +37,7 @@ const ASSETS = [
   "./assets/images/gallery-portret-rowerzysta.png",
   "./assets/images/gallery-rower-nad-woda.png",
   "./assets/images/gallery-rowerzysta-emtb-polana.png",
+  "./assets/images/gallery-grupa-rowerzystow-szlaku.png",
   "./assets/images/guide-pawel-nowak.png",
   "./assets/images/guide-klaudia-mec.png",
   "./assets/images/guide-anna-zielinska.png",

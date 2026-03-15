@@ -415,6 +415,7 @@
         role="region"
         aria-labelledby="gallery-title"
         data-peek-gallery
+        data-gallery-count="{{ site.data.gallery.items.size }}"
       >
         <div class="peek-gallery__head">
           <h2 id="gallery-title" class="peek-gallery__title">Obraz powie Ci więcej niż 1000 słów</h2>
@@ -423,26 +424,42 @@
         {% assign g = site.data.gallery %}
         {
           "items": [
-          {% for item in g.items %}
+          {% for item in g.items limit: 5 %}
           {
-            "id": "{{ item.id }}",
-            "title": "{{ item.title | replace: '"', '\"' }}",
-            "subtitle": "{{ item.subtitle | default: '' | replace: '"', '\"' }}"{% if item.theme %},
+            "id": {{ item.id | jsonify }},
+            "title": {{ item.title | jsonify }},
+            "subtitle": {{ item.subtitle | default: '' | jsonify }}{% if item.theme %},
             "theme": {{ item.theme | jsonify }}{% endif %},
             "media": {
-              "type": "{{ item.media.type }}",
-              "src": "{{ site.baseurl }}/{{ item.media.src }}",
-              "sizes": "{{ item.media.sizes }}",
-              "alt": "{{ item.media.alt | replace: '"', '\"' }}"
+              "type": {{ item.media.type | jsonify }},
+              "src": {{ item.media.src | prepend: '/' | prepend: site.baseurl | jsonify }},
+              "sizes": {{ item.media.sizes | jsonify }},
+              "alt": {{ item.media.alt | jsonify }}
             }
             {% if item.portraitInFrame %},"portraitInFrame": true{% endif %}
-            {% if item.objectPosition %},"objectPosition": "{{ item.objectPosition }}"{% endif %}
-          }{% unless forloop.last %},{% endunless %}
+            {% if item.objectPosition %},"objectPosition": {{ item.objectPosition | jsonify }}{% endif %}
+          }{% if forloop.last and g.items.size < 6 %}{% else %},{% endif %}
           {% endfor %}
+          {% if g.items.size >= 6 %}
+          {
+            "id": {{ g.items[5].id | jsonify }},
+            "title": {{ g.items[5].title | jsonify }},
+            "subtitle": {{ g.items[5].subtitle | default: '' | jsonify }}{% if g.items[5].theme %},
+            "theme": {{ g.items[5].theme | jsonify }}{% endif %},
+            "media": {
+              "type": {{ g.items[5].media.type | jsonify }},
+              "src": {{ g.items[5].media.src | prepend: '/' | prepend: site.baseurl | jsonify }},
+              "sizes": {{ g.items[5].media.sizes | jsonify }},
+              "alt": {{ g.items[5].media.alt | jsonify }}
+            }
+            {% if g.items[5].portraitInFrame %},"portraitInFrame": true{% endif %}
+            {% if g.items[5].objectPosition %},"objectPosition": {{ g.items[5].objectPosition | jsonify }}{% endif %}
+          }
+          {% endif %}
           ],
           "loop": {{ g.loop }},
           "autoplay": {{ g.autoplay }},
-          "a11yLabel": "{{ g.a11yLabel }}"
+          "a11yLabel": {{ g.a11yLabel | jsonify }}
         }
         </script>
       </section>
