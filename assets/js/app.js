@@ -169,6 +169,21 @@ const getNavLinkSectionId = (href) => {
 
 const updateActiveLink = () => {
   if (!navLinks.length) return;
+
+  // If strona nie zawiera żadnych sekcji odpowiadających linkom nav (np. /partnerzy/),
+  // nie podświetlaj żadnego linku ani underline – nawigacja prowadzi wtedy tylko z powrotem na stronę główną.
+  const hasAnySection = navLinks.some((link) => {
+    const id = getNavLinkSectionId(link.getAttribute("href"));
+    return id && document.getElementById(id);
+  });
+  if (!hasAnySection) {
+    navLinks.forEach((link) => link.classList.remove("is-active"));
+    if (navUnderline) {
+      navUnderline.style.width = "0";
+    }
+    return;
+  }
+
   const scrollY = window.scrollY + 120;
   let current = navLinks[0];
   if (window.scrollY < 150) {
